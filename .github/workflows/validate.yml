@@ -1,0 +1,24 @@
+name: Validate API Contract
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'openapi.yaml'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    paths:
+      - 'openapi.yaml'
+      - '.github/workflows/validate.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate OpenAPI with Redocly
+        run: npx -y @redocly/cli@latest lint openapi.yaml
+      - name: Validate OpenAPI with Swagger CLI
+        run: npx -y @apidevtools/swagger-cli@latest validate openapi.yaml
