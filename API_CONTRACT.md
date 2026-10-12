@@ -51,11 +51,11 @@ curl 'http://localhost:4010/locations?type=upz&per_page=2'
 
 ```bash
 npx @redocly/cli preview-docs openapi.yaml
-# atau build statis
+# atau build statis (HTML mandiri)
 npx @redocly/cli build-docs openapi.yaml -o docs/index.html
 ```
 
-Dokumentasi otomatis ter-deploy ke **GitHub Pages** setiap push ke `main` (workflow `Deploy API Docs`).
+Dokumentasi di-generate lokal. (Deploy ke GitHub Pages butuh hak admin repo sehingga tidak dipakai di sini.)
 
 ## Generate Code / Contract Testing
 
