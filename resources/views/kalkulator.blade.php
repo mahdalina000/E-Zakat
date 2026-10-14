@@ -33,7 +33,7 @@
                         <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive bg-cream border border-cream3 rounded-2xl p-3 text-center transition">
                             <div class="text-sm font-bold">Beras Banjar</div>
                             <div class="text-xs opacity-70">Premium lokal</div>
-                            <div class="text-xs mt-1 font-semibold">Rp <span id="labelBanjar">16.000</span> / kg</div>
+                            <div class="text-xs mt-1 font-semibold">Rp <span id="labelBanjar">{{ number_format($hargaBeras ?? 16000,0,',','.') }}</span> / kg</div>
                         </div>
                     </label>
                     <label class="cursor-pointer">
@@ -50,9 +50,9 @@
                     <label class="text-xs font-semibold text-oliveDark">Harga Beras Banjar (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
                         <span class="text-sm text-olive">Rp</span>
-                        <input id="hargaBanjar" type="number" value="16000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-sm">
+                        <input id="hargaBanjar" type="number" value="{{ $hargaBeras ?? 16000 }}" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-sm">
                     </div>
-                    <p class="text-xs text-olive/50 mt-1">Ubah jika harga pasar berbeda.</p>
+                    <p class="text-xs text-olive/50 mt-1">Harga live dari pengelolaan Admin UPZ/BAZNAS. Ubah jika perlu.</p>
                 </div>
                 <div id="hargaLainBox" class="mt-4 hidden">
                     <label class="text-xs font-semibold text-oliveDark">Harga Beras Lain (per kg)</label>

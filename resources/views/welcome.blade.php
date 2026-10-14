@@ -13,15 +13,20 @@
     <style>body{font-family:'Poppins',sans-serif}</style>
 </head>
 <body class="bg-cream2 min-h-screen flex flex-col">
-<header class="bg-olive text-white">
+<header class="bg-olive text-white shadow-sm">
     <div class="max-w-7xl mx-auto px-4 lg:px-6 h-[56px] flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-9 h-9 bg-cream rounded-xl flex items-center justify-center text-olive"><i class="fa-solid fa-mosque"></i></div>
+        <!-- Logo Baru E-Zakat -->
+        <a href="{{ url('/') }}" class="flex items-center gap-3 group">
+            <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-md transition-transform group-hover:scale-105 overflow-hidden">
+                <img src="{{ asset('images/logo.png') }}" 
+                     alt="E-Zakat Logo" 
+                     class="w-full h-full object-contain">
+            </div>
             <div class="leading-tight">
-                <div class="font-extrabold text-sm tracking-wide">E-ZAKAT</div>
+                <div class="font-extrabold text-sm tracking-wide text-white">E-ZAKAT</div>
                 <div class="text-[10px] tracking-[0.18em] text-cream/80 -mt-0.5">BANJARBARU</div>
             </div>
-        </div>
+        </a>
         <span class="hidden sm:inline text-xs bg-white/15 px-3 py-1.5 rounded-full"><i class="fa-solid fa-location-dot mr-1"></i> Kota Banjarbaru, Kalimantan Selatan</span>
     </div>
 </header>

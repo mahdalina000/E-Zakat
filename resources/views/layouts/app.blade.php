@@ -42,15 +42,19 @@
     <header class="sticky top-0 z-50 bg-olive text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 lg:px-6">
             <div class="flex items-center justify-between h-[64px]">
-                <a href="{{ url('/beranda') }}" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-cream rounded-xl flex items-center justify-center text-olive text-xl">
-                        <i class="fa-solid fa-mosque"></i>
+                {{-- Logo & Brand --}}
+                <a href="{{ url('/beranda') }}" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-md transition-transform group-hover:scale-105 overflow-hidden">
+                        <img src="{{ asset('images/logo.png') }}" 
+                             alt="E-Zakat Logo" 
+                             class="w-full h-full object-contain">
                     </div>
                     <div class="leading-tight">
                         <div class="font-extrabold tracking-wide text-[18px]">E-ZAKAT</div>
                         <div class="text-[10px] tracking-[0.18em] text-cream/80 -mt-1">BANJARBARU</div>
                     </div>
                 </a>
+
                 {{-- Desktop Nav --}}
                 <nav class="hidden lg:flex items-center gap-1">
                     <a href="{{ url('/beranda') }}" class="px-4 py-2 rounded-full text-sm font-medium {{ request()->is('beranda') ? 'bg-white text-olive' : 'text-cream hover:bg-white/10' }}">Beranda</a>
@@ -58,16 +62,19 @@
                     <a href="{{ url('/direktori') }}" class="px-4 py-2 rounded-full text-sm font-medium {{ request()->is('direktori') ? 'bg-white text-olive' : 'text-cream hover:bg-white/10' }}">Direktori</a>
                     <a href="{{ url('/panduan') }}" class="px-4 py-2 rounded-full text-sm font-medium {{ request()->is('panduan') ? 'bg-white text-olive' : 'text-cream hover:bg-white/10' }}">Panduan</a>
                 </nav>
+
                 <div class="hidden lg:flex items-center gap-3">
                     <span class="text-xs bg-white/15 px-3 py-1.5 rounded-full"><i class="fa-solid fa-location-dot mr-1"></i> Banjarbaru, Kalsel</span>
-                    <a href="{{ url('/') }}" class="w-9 h-9 bg-cream text-olive rounded-full flex items-center justify-center hover:bg-white transition"><i class="fa-solid fa-house"></i></a>
+                    @include('partials.auth-menu')
                 </div>
+
                 {{-- Mobile hamburger --}}
                 <button id="mobileBtn" class="lg:hidden w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
+
         {{-- Mobile menu --}}
         <div id="mobileNav" class="hidden lg:hidden border-t border-white/10 bg-olive2">
             <div class="px-4 py-3 space-y-1">
@@ -75,7 +82,18 @@
                 <a href="{{ url('/kalkulator') }}" class="block px-4 py-2.5 rounded-xl {{ request()->is('kalkulator') ? 'bg-white text-olive' : 'text-cream' }}">Kalkulator Zakat & Fidyah</a>
                 <a href="{{ url('/direktori') }}" class="block px-4 py-2.5 rounded-xl {{ request()->is('direktori') ? 'bg-white text-olive' : 'text-cream' }}">Direktori Maps</a>
                 <a href="{{ url('/panduan') }}" class="block px-4 py-2.5 rounded-xl {{ request()->is('panduan') ? 'bg-white text-olive' : 'text-cream' }}">Panduan Zakat</a>
-                <a href="{{ url('/') }}" class="block px-4 py-2.5 rounded-xl text-cream/80"><i class="fa-solid fa-right-from-bracket mr-2"></i> Halaman Selamat Datang</a>
+                <div class="border-t border-white/10 my-2"></div>
+                @auth
+                    <a href="{{ route('dashboard') }}" class="block px-4 py-2.5 rounded-xl text-cream"><i class="fa-solid fa-gauge-high mr-2"></i> Dashboard ({{ auth()->user()->roleLabel() }})</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="w-full text-left px-4 py-2.5 rounded-xl text-red-200"><i class="fa-solid fa-right-from-bracket mr-2"></i> Keluar</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="block px-4 py-2.5 rounded-xl text-cream"><i class="fa-solid fa-right-to-bracket mr-2"></i> Masuk</a>
+                    <a href="{{ route('register') }}" class="block px-4 py-2.5 rounded-xl text-cream"><i class="fa-solid fa-user-plus mr-2"></i> Daftar</a>
+                @endauth
+                <a href="{{ url('/') }}" class="block px-4 py-2.5 rounded-xl text-cream/80"><i class="fa-solid fa-house mr-2"></i> Halaman Selamat Datang</a>
             </div>
         </div>
     </header>
@@ -85,25 +103,32 @@
     </main>
 
     <footer class="bg-olive text-cream mt-12">
-        <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
-            <div class="flex flex-col lg:flex-row justify-between gap-6">
-                <div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 bg-cream rounded-lg flex items-center justify-center text-olive"><i class="fa-solid fa-mosque"></i></div>
-                        <span class="font-bold">E-ZAKAT BANJARBARU</span>
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
+        <div class="flex flex-col lg:flex-row justify-between gap-6">
+            <div>
+                <!-- Bagian Logo & Nama Platform -->
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-sm overflow-hidden">
+                        <img src="{{ asset('images/logo.png') }}" 
+                             alt="E-Zakat Logo" 
+                             class="w-full h-full object-contain">
                     </div>
-                    <p class="text-sm text-cream/70 mt-3 max-w-md">Platform digital zakat terpercaya untuk warga Banjarbaru. Memudahkan perhitungan, penyaluran, dan edukasi zakat sesuai syariat.</p>
+                    <span class="font-bold tracking-wide text-white text-base">E-ZAKAT BANJARBARU</span>
                 </div>
-                <div class="text-sm text-cream/70">
-                    <div class="font-semibold text-cream mb-2">Kontak</div>
-                    <div><i class="fa-solid fa-location-dot mr-2"></i> Jl. A. Yani KM 33, Banjarbaru</div>
-                    <div class="mt-1"><i class="fa-solid fa-phone mr-2"></i> (0511) 123-4567</div>
-                    <div class="mt-1"><i class="fa-brands fa-whatsapp mr-2"></i> 0821-xxxx-xxxx</div>
-                </div>
+                <p class="text-sm text-cream/70 mt-3 max-w-md">Platform digital zakat terpercaya untuk warga Banjarbaru. Memudahkan perhitungan, penyaluran, dan edukasi zakat sesuai syariat.</p>
             </div>
-            <div class="border-t border-white/10 mt-6 pt-6 text-xs text-cream/60 text-center">© {{ date('Y') }} E-Zakat Banjarbaru — Amanah, Transparan, Berkah</div>
+            
+            <!-- Kontak -->
+            <div class="text-sm text-cream/70">
+                <div class="font-semibold text-cream mb-2">Kontak</div>
+                <div><i class="fa-solid fa-location-dot mr-2"></i> Jl. A. Yani KM 33, Banjarbaru</div>
+                <div class="mt-1"><i class="fa-solid fa-phone mr-2"></i> (0511) 123-4567</div>
+                <div class="mt-1"><i class="fa-brands fa-whatsapp mr-2"></i> 0821-xxxx-xxxx</div>
+            </div>
         </div>
-    </footer>
+        <div class="border-t border-white/10 mt-6 pt-6 text-xs text-cream/60 text-center">© {{ date('Y') }} E-Zakat Banjarbaru — Amanah, Transparan, Berkah</div>
+    </div>
+</footer>
 
     <script>
         document.getElementById('mobileBtn')?.addEventListener('click', ()=>{

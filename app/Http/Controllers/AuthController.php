@@ -76,7 +76,7 @@ class AuthController extends Controller
             'logged_in_at' => now(),
         ]);
 
-        return redirect()->route('dashboard.user');
+        return redirect()->route('dashboard');
     }
 
     public function logout(Request $request)
@@ -90,9 +90,9 @@ class AuthController extends Controller
     private function redirectByRole($user)
     {
         return match ($user->role) {
-            'super_admin' => redirect()->route('dashboard.super'),
-            'admin_baznas', 'admin_upz', 'admin' => redirect()->route('dashboard.admin'),
-            default => redirect()->route('dashboard.user'),
+            'super_admin' => redirect()->route('dashboard'),
+            'admin_baznas', 'admin_upz', 'admin' => redirect()->route('dashboard'),
+            default => redirect()->route('dashboard'),
         };
     }
 }
