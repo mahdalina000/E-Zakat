@@ -8,9 +8,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script>
-        tailwind.config={theme:{extend:{colors:{cream:'#F5EAD8',cream2:'#FFF8EC',cream3:'#EDE0CC',olive:'#5A6B33',olive2:'#4A5A2B',olive3:'#6B7F3D',oliveDark:'#3D4A24',earth:'#C5A880'},fontFamily:{poppins:['Poppins','sans-serif'],amiri:['Amiri','serif']}}}}
-    </script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    // Pemetaan Palet Warna Baru
+                    cream: '#EAEAEA',       // Background dasar / light gray
+                    cream2: '#F4F4F4',      // Background secondary / off-white
+                    cream3: '#D6D6D6',      // Border & divider
+                    olive: '#4B8B3B',       // Hijau utama (Header, Button, Accent)
+                    olive2: '#3D7330',      // Hijau gelap (Hover states)
+                    olive3: '#A8D5BA',      // Hijau mint (Highlight / Badge)
+                    oliveDark: '#001F3F',   // Navy gelap (Teks utama, Footer)
+                    earth: '#F2C94C',       // Kuning emas (Aksen khusus, Quote, Icon)
+                },
+                fontFamily: {
+                    poppins: ['Poppins', 'sans-serif'],
+                    amiri: ['Amiri', 'serif'],
+                }
+            }
+        }
+    }
+</script>
     <style>body{font-family:'Poppins',sans-serif}</style>
+    <style>
+    @keyframes slideUpSmooth {
+        from { opacity: 0; transform: translateY(25px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-dashboard { animation: slideUpSmooth 0.4s ease-out forwards; }
+</style>
     @yield('head')
 </head>
 <body class="bg-cream2 text-oliveDark min-h-screen">
@@ -96,7 +123,7 @@
                 </div>
             </div>
         </header>
-        <div class="p-4 lg:p-8">
+        <div class="p-4 lg:p-8 anim-dashboard">
             @if(session('success'))
                 <div class="mb-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl px-4 py-3 text-sm flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif

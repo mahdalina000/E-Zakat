@@ -8,9 +8,41 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script>
-        tailwind.config={theme:{extend:{colors:{cream:'#F5EAD8',cream2:'#FFF8EC',cream3:'#EDE0CC',olive:'#5A6B33',olive2:'#4A5A2B',olive3:'#6B7F3D',oliveDark:'#3D4A24',earth:'#C5A880'},fontFamily:{poppins:['Poppins','sans-serif'],amiri:['Amiri','serif']}}}}
-    </script>
-    <style>body{font-family:'Poppins',sans-serif}</style>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    // Pemetaan Palet Warna Baru
+                    cream: '#EAEAEA',       // Background dasar / light gray
+                    cream2: '#F4F4F4',      // Background secondary / off-white
+                    cream3: '#D6D6D6',      // Border & divider
+                    olive: '#4B8B3B',       // Hijau utama (Header, Button, Accent)
+                    olive2: '#3D7330',      // Hijau gelap (Hover states)
+                    olive3: '#A8D5BA',      // Hijau mint (Highlight / Badge)
+                    oliveDark: '#001F3F',   // Navy gelap (Teks utama, Footer)
+                    earth: '#F2C94C',       // Kuning emas (Aksen khusus, Quote, Icon)
+                },
+                fontFamily: {
+                    poppins: ['Poppins', 'sans-serif'],
+                    amiri: ['Amiri', 'serif'],
+                }
+            }
+        }
+    }
+</script>
+    <style>
+        body{font-family:'Poppins',sans-serif}
+
+        /* Mencegah gambar logo/asset meluap besar */
+        img { max-width: 100%; height: auto; }
+
+        /* Animasi Zoom Smooth */
+        @keyframes zoomInAuth {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .anim-auth { animation: zoomInAuth 0.4s ease-out forwards; }
+    </style>
 </head>
 <body class="bg-cream min-h-screen flex flex-col">
 
@@ -18,7 +50,7 @@
     <div class="max-w-6xl mx-auto px-4 lg:px-6 h-[60px] flex items-center justify-between">
       {{-- Logo E-Zakat --}}
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-            <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-sm transition-transform group-hover:scale-105 overflow-hidden">
+            <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-sm transition-transform group-hover:scale-105 overflow-hidden shrink-0">
                 <img src="{{ asset('images/logo.png') }}" 
                      alt="E-Zakat Logo" 
                      class="w-full h-full object-contain">
@@ -35,7 +67,7 @@
     </div>
 </header>
 
-<main class="flex-1 flex items-center justify-center p-4 py-10">
+<main class="flex-1 flex items-center justify-center p-4 py-10 anim-auth">
     @yield('content')
 </main>
 
