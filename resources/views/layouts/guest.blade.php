@@ -42,7 +42,7 @@
     <div class="max-w-6xl mx-auto px-4 lg:px-6 h-[60px] flex items-center justify-between">
       {{-- Logo E-Zakat --}}
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-            <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-sm transition-transform group-hover:scale-105 overflow-hidden shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-sm transition-transform group-hover:scale-105 overflow-hidden shrink-0">
                 <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain" fetchpriority="high" decoding="async">
             </div>
             <div class="leading-tight">

@@ -38,7 +38,7 @@
         <div class="h-[64px] flex items-center gap-3 px-5 border-b border-white/10">
             <!-- Logo Baru E-Zakat -->
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-md overflow-hidden shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-md overflow-hidden shrink-0">
                     <img src="{{ asset('images/logo.png') }}" 
                          alt="E-Zakat Logo" 
                          class="w-full h-full object-contain" fetchpriority="high" decoding="async">
