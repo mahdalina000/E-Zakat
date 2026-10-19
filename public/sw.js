@@ -1,84 +1,87 @@
 /**
- * E-Zakat Service Worker
- * Cache-first for static assets, network-first for pages
- * 
- * Cache strategy:
- * - Public static assets (CSS, JS, fonts, images): cache-first, long-lived
- * - HTML pages: network-first, fall back to cache on offline
- * - API / dynamic: no cache
+ * E-Zakat Service Worker — optimasi kecepatan navigasi
+ *
+ * Strategi:
+ * - ASSET (CSS/JS/font/gambar dari /build & /images): cache-first
+ *   -> setelah visit pertama, pindah halaman = instan (tidak download ulang)
+ * - HALAMAN (navigate): selalu dari network (jangan cache, karena konten
+ *   dinamis + session-based), kecuali offline -> fallback ke cache
+ *
+ * Hanya efektif setelah install (skipWaiting + claim langsung).
  */
 
-const CACHE_NAME = 'ezakat-v1';
-const STATIC_CACHE = [
-  '/',
-  '/beranda',
-  '/kalkulator',
-  '/direktori',
-  '/panduan',
-  '/login',
-];
+const CACHE = 'ezakat-assets-v1';
+const PAGE_CACHE = 'ezakat-pages-v1';
 
-// Assets that should always be cached aggressively
-const ASSET_PATTERNS = [
-  /\.(css|js|woff2?|ttf|eot|svg|png|jpg|jpeg|webp|ico)$/i,
-];
+// Pola asset yang di-cache agresif
+const ASSET_RE = /\/(build|images)\/.+|\.woff2?|\.ttf|\.eot/i;
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_CACHE);
-    })
-  );
+    // Tidak pre-cache apa pun di install:
+    // pre-cache halaman akan STALE (sesi/user beda) dan memblokir aktivasi.
+    event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
-  // Remove old caches
-  event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys
-          .filter((key) => key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
-      );
-    })
-  );
-  self.clients.claim();
+    event.waitUntil(
+        (async () => {
+            const keys = await caches.keys();
+            await Promise.all(keys.filter(k => k !== CACHE && k !== PAGE_CACHE)
+                .map(k => caches.delete(k)));
+            await self.clients.claim();
+        })()
+    );
 });
 
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
+    const req = event.request;
 
-  // Only handle same-origin GET requests
-  if (request.method !== 'GET' || url.origin !== location.origin) {
-    return;
-  }
+    // Hanya GET same-origin
+    if (req.method !== 'GET') return;
+    const url = new URL(req.url);
+    if (url.origin !== self.location.origin) return;
 
-  // Static assets: cache-first
-  if (ASSET_PATTERNS.some((p) => p.test(url.pathname))) {
-    event.respondWith(
-      caches.match(request).then((cached) => {
-        if (cached) return cached;
-        return fetch(request).then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        });
-      })
-    );
-    return;
-  }
+    // ============ 1. ASSET: cache-first ============
+    if (ASSET_RE.test(url.pathname)) {
+        event.respondWith(
+            (async () => {
+                const cached = await caches.match(req);
+                if (cached) return cached;
+                try {
+                    const res = await fetch(req);
+                    if (res.ok) {
+                        const cache = await caches.open(CACHE);
+                        await cache.put(req, res.clone());
+                    }
+                    return res;
+                } catch (e) {
+                    return new Response('', { status: 503 });
+                }
+            })()
+        );
+        return;
+    }
 
-  // HTML pages: network-first, fall back to cache
-  if (request.mode === 'navigate' || url.pathname.startsWith('/')) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => caches.match(request).then((cached) => cached || new Response('Offline', { status: 503, statusText: 'Offline' })))
-    );
-  }
+    // ============ 2. HALAMAN: network-first, fallback offline ============
+    if (req.mode === 'navigate') {
+        event.respondWith(
+            (async () => {
+                try {
+                    const res = await fetch(req);
+                    if (res.ok) {
+                        const cache = await caches.open(PAGE_CACHE);
+                        await cache.put(req, res.clone());
+                    }
+                    return res;
+                } catch (e) {
+                    const cached = await caches.match(req);
+                    if (cached) return cached;
+                    return new Response('<h1>Offline</h1><p>Terhubung ke internet untuk lanjut.</p>', {
+                        status: 503,
+                        headers: { 'Content-Type': 'text/html' },
+                    });
+                }
+            })()
+        );
+    }
 });

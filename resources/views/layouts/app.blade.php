@@ -218,20 +218,31 @@
                 if(themeIcon) themeIcon.className = isDark ? 'fa-solid fa-sun text-earth' : 'fa-solid fa-moon';
             });
 
-            // Prefetch Logic
+            // ============================
+            // PREFETCH LOGIC (OPTIMASI)
+            // ============================
             const prefetched = new Set();
+            function prefetch(href) {
+                if (!href || !href.startsWith('/') || prefetched.has(href)) return;
+                prefetched.add(href);
+                const l = document.createElement('link');
+                l.rel = 'prefetch';
+                l.href = href;
+                document.head.appendChild(l);
+            }
+
+            // 1. Prefetch semua link saat hover (desktop)
             document.querySelectorAll('a[href]').forEach(link => {
-                link.addEventListener('mouseenter', () => {
-                    const href = link.getAttribute('href');
-                    if (href && href.startsWith('/') && !prefetched.has(href)) {
-                        prefetched.add(href);
-                        const prefetchLink = document.createElement('link');
-                        prefetchLink.rel = 'prefetch';
-                        prefetchLink.href = href;
-                        document.head.appendChild(prefetchLink);
-                    }
-                });
+                link.addEventListener('mouseenter', () => prefetch(link.getAttribute('href')));
+                // 2. Prefetch saat touch start (mobile)
+                link.addEventListener('touchstart', () => prefetch(link.getAttribute('href')), {passive: true});
             });
+
+            // 3. Prefetch asset kritis (CSS utama) saat idle
+            requestIdleCallback(() => {
+                const mainCss = document.querySelector('link[rel="stylesheet"][href*="app-"]');
+                if (mainCss) prefetch(mainCss.getAttribute('href'));
+            }, {timeout: 2000});
         });
     </script>
 </body>
