@@ -13,5 +13,8 @@ window.Chart = Chart;
 // Leaflet CSS — Vite akan auto-bundle
 import 'leaflet/dist/leaflet.css';
 
-console.log('[E-Zakat] JS bundle: Leaflet + Chart.js loaded');
+// Smooth page transition (SPA-feel)
+import './transition.js';
+
+console.log('[E-Zakat] JS bundle: Leaflet + Chart.js + Transition loaded');
 

@@ -99,7 +99,7 @@
 
     @yield('scripts')
 
-    <!-- INSTANT PREFETCH & DARK MODE TOGGLE SCRIPT -->
+    <!-- DARK MODE + PREFETCH (transition.js handle progress bar & smooth reveal) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Dark Mode Logic
@@ -118,9 +118,7 @@
                 if(themeIcon) themeIcon.className = isDark ? 'fa-solid fa-sun text-earth' : 'fa-solid fa-moon';
             });
 
-            // ============================
-            // PREFETCH LOGIC (OPTIMASI)
-            // ============================
+            // Prefetch saat hover (page + CSS idle)
             const prefetched = new Set();
             function prefetch(href) {
                 if (!href || !href.startsWith('/') || prefetched.has(href)) return;
@@ -130,75 +128,14 @@
                 l.href = href;
                 document.head.appendChild(l);
             }
-
-            // 1. Prefetch semua link saat hover (desktop)
             document.querySelectorAll('a[href]').forEach(link => {
                 link.addEventListener('mouseenter', () => prefetch(link.getAttribute('href')));
-                // 2. Prefetch saat touch start (mobile)
                 link.addEventListener('touchstart', () => prefetch(link.getAttribute('href')), {passive: true});
             });
-
-            // 3. Prefetch asset kritis (CSS utama) saat idle
             requestIdleCallback(() => {
                 const mainCss = document.querySelector('link[rel="stylesheet"][href*="app-"]');
                 if (mainCss) prefetch(mainCss.getAttribute('href'));
             }, {timeout: 2000});
-
-            // ============================
-            // PROGRESS BAR INSTAN (ala Turbolinks)
-            // Saat klik link internal: bar tipis di atas tumbuh seketika,
-            // konten lama tetap terlihat -> navigasi terasa cepat.
-            // ============================
-            const bar = document.createElement('div');
-            bar.style.cssText = [
-                'position:fixed',
-                'top:0',
-                'left:0',
-                'height:3px',
-                'width:0%',
-                'background:linear-gradient(90deg,#F2C94C,#4B8B3B)',
-                'z-index:99999',
-                'transition:width .3s ease,opacity .2s ease',
-                'opacity:0'
-            ].join(';');
-            document.body.appendChild(bar);
-
-            let navigating = false;
-            document.querySelectorAll('a[href]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const href = link.getAttribute('href');
-                    // Skip: anchor, eksternal, modifer, _blank, javascript
-                    if (!href || href === '#' || href.startsWith('#')) return;
-                    if (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
-                    if (href.startsWith('javascript:')) return;
-                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-                    if (link.target === '_blank') return;
-
-                    if (navigating) return;
-                    navigating = true;
-
-                    // Tampilkan bar seketika, tumbuh ke 80% (bukan 100% -> user lihat loading)
-                    bar.style.opacity = '1';
-                    bar.style.width = '80%';
-                    sessionStorage.setItem('ezakat_nav', '1');
-                });
-            });
-
-            // Saat halaman baru ready: selesaikan bar ke 100% lalu sembunyikan
-            window.addEventListener('DOMContentLoaded', () => {
-                if (sessionStorage.getItem('ezakat_nav') === '1') {
-                    sessionStorage.removeItem('ezakat_nav');
-                    // Animasi: 80% -> 100% -> fade out
-                    bar.style.width = '100%';
-                    setTimeout(() => {
-                        bar.style.opacity = '0';
-                        setTimeout(() => { bar.style.width = '0%'; }, 250);
-                    }, 200);
-                } else {
-                    // Fresh load: bar tersembunyi
-                    bar.style.opacity = '0';
-                }
-            });
         });
     </script>
 </body>
