@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body{font-family:'Poppins',sans-serif}
+        @keyframes slideUpSmooth {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-dashboard { animation: slideUpSmooth 0.4s ease-out forwards; }
+    </style>
     @yield('head')
 
     <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
@@ -26,7 +34,7 @@
 <body class="bg-cream2 text-oliveDark min-h-screen">
 <div class="flex min-h-screen">
     {{-- Sidebar --}}
-    <aside id="sidebar" class="fixed lg:sticky top-0 z-50 w-[260px] h-screen bg-olive text-white flex flex-col -translate-x-full lg:translate-x-0 transition-transform anim-smooth delay-1">
+    <aside id="sidebar" class="fixed lg:sticky top-0 z-50 w-[260px] h-screen bg-olive text-white flex flex-col -translate-x-full lg:translate-x-0 transition-transform">
         <div class="h-[64px] flex items-center gap-3 px-5 border-b border-white/10">
             <!-- Logo Baru E-Zakat -->
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
@@ -44,7 +52,7 @@
         </div>
 
         @php $u = auth()->user(); @endphp
-        <div class="px-4 py-4 border-b border-white/10 anim-smooth delay-2">
+        <div class="px-4 py-4 border-b border-white/10">
             <div class="flex items-center gap-3 bg-white/10 rounded-2xl p-3">
                 <span class="w-10 h-10 rounded-full bg-cream text-olive flex items-center justify-center font-bold">{{ strtoupper(substr($u->name,0,1)) }}</span>
                 <div class="min-w-0">
@@ -106,7 +114,7 @@
                 </div>
             </div>
         </header>
-        <div class="p-4 lg:p-8 anim-smooth delay-3">
+        <div class="p-4 lg:p-8 anim-dashboard">
             @if(session('success'))
                 <div class="mb-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl px-4 py-3 text-sm flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif

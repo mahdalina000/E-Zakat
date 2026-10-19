@@ -8,6 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body{font-family:'Poppins',sans-serif}
+
+        /* Mencegah gambar logo/asset meluap besar */
+        img { max-width: 100%; height: auto; }
+
+        /* Animasi Zoom Smooth */
+        @keyframes zoomInAuth {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .anim-auth { animation: zoomInAuth 0.4s ease-out forwards; }
+    </style>
     @yield('head')
 
     <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
@@ -44,7 +57,7 @@
     </div>
 </header>
 
-<main class="flex-1 flex items-center justify-center p-4 py-10 anim-smooth delay-2">
+<main class="flex-1 flex items-center justify-center p-4 py-10 anim-auth">
     @yield('content')
 </main>
 

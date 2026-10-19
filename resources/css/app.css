@@ -20,12 +20,12 @@
     --color-oliveDark: #001F3F;
     --color-earth: #F2C94C;
 
-    --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-poppins: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     --font-amiri: 'Amiri', serif;
 }
 
 /* ============================================================
-   ANIMASI
+   ANIMASI KONSISTEN
    ============================================================ */
 @keyframes smoothReveal {
     0% {
@@ -40,6 +40,8 @@
     }
 }
 
+/* anim-smooth — dipakai di semua layout publik (beranda, kalkulator,
+   direktori, panduan, welcome). Stagger lewat .delay-1..5. */
 .anim-smooth {
     animation: smoothReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
