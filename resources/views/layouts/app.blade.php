@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap">
+    <link rel="preload" as="image" href="{{ asset('images/logo.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('head')
 
@@ -31,7 +32,7 @@
     <!-- ELEMEN BACKGROUND AESTHETIC GLOBAL (E-ZAKAT BLUR + AMBIENT LIGHTING GLOW) -->
     <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <!-- Asset Gambar E-Zakat dengan Opacity Halus & Blur -->
-       <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover opacity-15 blur-[12px] scale-105" loading="lazy">
+       <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover opacity-15 blur-[12px] scale-105" fetchpriority="low">
         
         <!-- Ambient Glowing Orbs -->
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
@@ -47,7 +48,7 @@
             <!-- LOGO BRANDING -->
             <a href="{{ url('/') }}" class="flex items-center gap-3 group">
                 <div class="w-9 h-9 rounded-full bg-white p-1 flex items-center justify-center shadow-sm transition-transform group-hover:scale-105 shrink-0 overflow-hidden">
-                    <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain">
+                    <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain" fetchpriority="high" decoding="async">
                 </div>
                 <div class="leading-tight">
                     <div class="font-extrabold text-sm tracking-wide text-white">E-ZAKAT</div>
@@ -144,29 +145,30 @@
             }, {timeout: 2000});
 
             // ============================
-            // INSTANT TRANSITION OVERLAY
-            // Saat user klik link internal, tampilkan overlay hijau seketika
-            // -> rasa "klik langsung pindah" tanpa white-flash.
+            // PROGRESS BAR INSTAN (ala Turbolinks)
+            // Saat klik link internal: bar tipis di atas tumbuh seketika,
+            // konten lama tetap terlihat -> navigasi terasa cepat.
             // ============================
-            const overlay = document.createElement('div');
-            overlay.style.cssText = [
+            const bar = document.createElement('div');
+            bar.style.cssText = [
                 'position:fixed',
-                'inset:0',
-                'background:#4B8B3B',
+                'top:0',
+                'left:0',
+                'height:3px',
+                'width:0%',
+                'background:linear-gradient(90deg,#F2C94C,#4B8B3B)',
                 'z-index:99999',
-                'opacity:0',
-                'pointer-events:none',
-                'transition:opacity .15s ease'
+                'transition:width .3s ease,opacity .2s ease',
+                'opacity:0'
             ].join(';');
-            document.body.appendChild(overlay);
+            document.body.appendChild(bar);
 
             let navigating = false;
             document.querySelectorAll('a[href]').forEach(link => {
                 link.addEventListener('click', (e) => {
                     const href = link.getAttribute('href');
-                    // Skip: link hash (anchor), eksternal, _blank, modifer, javascript
-                    if (!href || href === '#') return;
-                    if (href.startsWith('#')) return;        // anchor in-page
+                    // Skip: anchor, eksternal, modifer, _blank, javascript
+                    if (!href || href === '#' || href.startsWith('#')) return;
                     if (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
                     if (href.startsWith('javascript:')) return;
                     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -174,25 +176,27 @@
 
                     if (navigating) return;
                     navigating = true;
+
+                    // Tampilkan bar seketika, tumbuh ke 80% (bukan 100% -> user lihat loading)
+                    bar.style.opacity = '1';
+                    bar.style.width = '80%';
                     sessionStorage.setItem('ezakat_nav', '1');
-                    overlay.style.opacity = '1';
-                    overlay.style.pointerEvents = 'auto';
                 });
             });
 
-            // Saat dokumen baru mulai load, sembunyikan overlay
-            // (jika navigasi, overlay masih opaque -> fade out; jika fresh, langsung hidden)
+            // Saat halaman baru ready: selesaikan bar ke 100% lalu sembunyikan
             window.addEventListener('DOMContentLoaded', () => {
                 if (sessionStorage.getItem('ezakat_nav') === '1') {
                     sessionStorage.removeItem('ezakat_nav');
-                    // Fade out overlay setelah konten render
-                    requestAnimationFrame(() => {
-                        overlay.style.opacity = '0';
-                        overlay.style.pointerEvents = 'none';
-                    });
+                    // Animasi: 80% -> 100% -> fade out
+                    bar.style.width = '100%';
+                    setTimeout(() => {
+                        bar.style.opacity = '0';
+                        setTimeout(() => { bar.style.width = '0%'; }, 250);
+                    }, 200);
                 } else {
-                    // Fresh load: pastikan overlay tersembunyi (transisi fade-in)
-                    overlay.style.opacity = '0';
+                    // Fresh load: bar tersembunyi
+                    bar.style.opacity = '0';
                 }
             });
         });
