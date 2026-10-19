@@ -31,27 +31,9 @@
         
         img { max-width: 100%; height: auto; }
 
-        /* Animasi Ultra Smooth Reveal */
-        @keyframes zyraSmoothWelcome {
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.98);
-                filter: blur(5px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-
-        .anim-welcome {
-            animation: zyraSmoothWelcome 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-
         .turbolinks-progress-bar { display: none !important; }
 
-        /* DARK MODE SUDAH DI app.css (via Vite) — tidak perlu inline di sini */
+        /* DARK MODE & ANIMASI SUDAH DI app.css (via Vite) — tidak perlu inline di sini */
     </style>
 </head>
 <body class="h-screen w-screen flex flex-col justify-between p-3 lg:p-5 box-border relative overflow-hidden">
@@ -65,10 +47,10 @@
 </div>
 
     <!-- FLOATING HEADER -->
-    <header class="bg-olive text-white rounded-full max-w-7xl mx-auto w-full px-6 h-[56px] flex items-center justify-between shadow-md shrink-0 border border-white/10 relative z-10">
-        <a href="{{ url('/') }}" class="flex items-center gap-3 group">
+    <header class="bg-olive text-white rounded-full max-w-7xl mx-auto w-full px-6 h-[56px] flex items-center justify-between shadow-md shrink-0 border border-white/10 relative z-10 anim-smooth delay-1">
+        <a href="{{ url('/') }}" class="flex items-center gap-3 group anim-smooth delay-2">
             <div class="w-9 h-9 rounded-full bg-white p-1 flex items-center justify-center shadow-sm transition-transform group-hover:scale-105 shrink-0 overflow-hidden">
-                <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain">
+                <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain" fetchpriority="high" decoding="async">
             </div>
             <div class="leading-tight">
                 <div class="font-extrabold text-sm tracking-wide text-white">E-ZAKAT</div>
@@ -86,13 +68,13 @@
     </header>
 
     <!-- MAIN CONTAINER (LANGSUNG DILUAR TANPA CARD PUTIH) -->
-    <main class="max-w-7xl mx-auto w-full my-auto space-y-4 flex-1 flex flex-col justify-center anim-welcome relative z-10 px-2">
+    <main class="max-w-7xl mx-auto w-full my-auto space-y-4 flex-1 flex flex-col justify-center anim-smooth delay-1 relative z-10 px-2">
 
         <!-- HERO SECTION 2 KOLOM -->
         <div class="grid lg:grid-cols-12 gap-8 items-center w-full my-auto">
             
             <!-- KOLOM KIRI: UCAPAN SELAMAT DATANG (LANGSUNG DI ATAS BACKGROUND) -->
-            <div class="lg:col-span-7 space-y-4">
+            <div class="lg:col-span-7 space-y-4 anim-smooth delay-2">
                 <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-cream3/80 px-3.5 py-1 rounded-full text-xs font-bold text-olive shadow-sm">
                     <i class="fa-solid fa-star-and-crescent text-earth"></i> PLATFORM ZAKAT DIGITAL TERPERCAYA
                 </div>
@@ -117,7 +99,7 @@
             </div>
 
             <!-- KOLOM KANAN: HADIS SLIDER (HIJAU OLIVE CARD) -->
-            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+            <div class="lg:col-span-5 flex justify-center lg:justify-end anim-smooth delay-3">
                 <div class="w-full bg-olive text-white p-6 rounded-3xl shadow-2xl relative border border-white/20 flex flex-col justify-between min-h-[260px] backdrop-blur-sm">
                     
                     <!-- Badge Hadis -->
@@ -234,7 +216,19 @@
     function render(){
         if(!card) return;
         const h=hadiths[idx];
-        card.innerHTML=`<div class="text-left space-y-1"><div class="font-amiri text-earth text-base lg:text-lg font-bold leading-snug">${h.arab}</div><p class="text-white/95 text-xs leading-relaxed font-normal">"${h.indo}"</p><div class="text-[10px] text-cream/80 font-semibold pt-1"><i class="fa-solid fa-book-open mr-1 text-earth"></i> ${h.sumber}</div></div>`;
+        card.innerHTML=`<div class="zy-hadith text-left space-y-1"><div class="font-amiri text-earth text-base lg:text-lg font-bold leading-snug">${h.arab}</div><p class="text-white/95 text-xs leading-relaxed font-normal">"${h.indo}"</p><div class="text-[10px] text-cream/80 font-semibold pt-1"><i class="fa-solid fa-book-open mr-1 text-earth"></i> ${h.sumber}</div></div>`;
+        // Stagger animasi: teks Arab → terjemahan → sumber
+        card.querySelectorAll('.zy-hadith > *').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(12px)';
+            el.style.transition = `opacity .5s ease ${i * 120}ms, transform .5s cubic-bezier(.16,1,.3,1) ${i * 120}ms`;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            });
+        });
         idxLabel.textContent=idx+1;
         [...dots.children].forEach((d,i)=> d.className=i===idx?'w-4 h-1 rounded-full bg-earth transition-all':'w-1 h-1 rounded-full bg-white/30 transition-all');
     }
