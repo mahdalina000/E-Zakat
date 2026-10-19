@@ -46,7 +46,7 @@
     </a>
     <a href="{{ url('/direktori') }}" class="bg-white rounded-[20px] border border-cream3 p-5 hover:shadow-md transition">
         <div class="w-12 h-12 bg-earth text-white rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-map-location-dot"></i></div>
-        <div class="font-bold text-oliveDark mt-4">Direktori UPZ/BAZNAS</div>
+        <div class="font-bold text-oliveDark mt-4">Lokasi Penyaluran UPZ/BAZNAS</div>
         <div class="text-sm text-olive/60 mt-1">Lihat lokasi penyaluran zakat di Banjarbaru.</div>
         <span class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-olive">Lihat Peta <i class="fa-solid fa-arrow-right text-xs"></i></span>
     </a>

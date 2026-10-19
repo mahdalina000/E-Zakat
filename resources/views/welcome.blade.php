@@ -59,6 +59,43 @@
         }
 
         .turbolinks-progress-bar { display: none !important; }
+
+        /* =========================================================
+           MODE GELAP (DARK MODE) — konsisten dengan layouts/app
+        ========================================================= */
+        body.dark-mode { background-color: #0b132b !important; color: #f8fafc; }
+
+        /* Gambar ilustrasi & background lebih gelap */
+        body.dark-mode .fixed.inset-0 img { opacity: 0.12; filter: blur(8px) brightness(0.6); }
+
+        /* KARTU / PANEL UTAMA MENJADI GELAP */
+        body.dark-mode .bg-white\/90,
+        body.dark-mode .bg-white\/80,
+        body.dark-mode .bg-white {
+            background-color: #1e293b !important;
+        }
+        body.dark-mode .border-cream3 { border-color: #334155 !important; }
+
+        /* Teks navy gelap -> terang */
+        body.dark-mode .text-oliveDark { color: #e2e8f0 !important; }
+        body.dark-mode .text-oliveDark\/90,
+        body.dark-mode .text-oliveDark\/80,
+        body.dark-mode .text-oliveDark\/70,
+        body.dark-mode .text-oliveDark\/60 { color: #cbd5e1 !important; }
+
+        /* Sub-kartu cream2/80 */
+        body.dark-mode .bg-cream2\/80,
+        body.dark-mode .bg-cream2 {
+            background-color: #334155 !important;
+            color: #f8fafc !important;
+        }
+
+        /* Kartu hijau olive dipertahankan, teks tetap terbaca */
+        body.dark-mode .bg-olive { background-color: #4B8B3B !important; }
+        body.dark-mode .bg-earth { background-color: #F2C94C !important; }
+
+        /* Quick action bar & chip badge */
+        body.dark-mode .bg-white\/90 { background-color: rgba(30, 41, 59, 0.92) !important; }
     </style>
 </head>
 <body class="h-screen w-screen flex flex-col justify-between p-3 lg:p-5 box-border relative overflow-hidden">
@@ -87,6 +124,9 @@
             <span>Masuk Web</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </a>
+        <button id="themeToggle" type="button" title="Mode Gelap/Terang" class="ml-1 w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition shadow-sm active:scale-95">
+            <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
+        </button>
     </header>
 
     <!-- MAIN CONTAINER (LANGSUNG DILUAR TANPA CARD PUTIH) -->
@@ -129,7 +169,12 @@
                         <span class="bg-earth text-oliveDark text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
                             <i class="fa-solid fa-quote-left mr-1"></i> Hadis Zakat
                         </span>
-                        <span class="text-xs text-cream/90 font-bold"><span id="idxLabel">1</span> / 20</span>
+                        <div class="flex items-center gap-2">
+                            <button id="speakBtn" type="button" title="Putar bacaan hadis & artinya" class="bg-white/20 hover:bg-earth hover:text-oliveDark text-white transition w-7 h-7 rounded-full flex items-center justify-center text-xs active:scale-95">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                            <span class="text-xs text-cream/90 font-bold"><span id="idxLabel">1</span> / 20</span>
+                        </div>
                     </div>
 
                     <!-- Content Hadis -->
@@ -161,7 +206,7 @@
             <div class="flex items-center gap-3 px-3 py-1 md:border-r border-cream3">
                 <i class="fa-solid fa-map-location-dot text-earth text-lg shrink-0"></i>
                 <div>
-                    <div class="text-xs font-bold text-oliveDark">Direktori Maps</div>
+                    <div class="text-xs font-bold text-oliveDark">Lokasi Penyaluran</div>
                     <div class="text-[10px] text-oliveDark/60">Peta amil zakat Banjarbaru</div>
                 </div>
             </div>
@@ -185,6 +230,24 @@
     <footer class="max-w-7xl mx-auto w-full text-center text-[11px] text-oliveDark/70 py-1 shrink-0 relative z-10 font-medium">
         © {{ date('Y') }} E-Zakat Banjarbaru — Amanah, Transparan, Berkah
     </footer>
+
+    <!-- SCRIPT DARK MODE TOGGLE (KONSISTEN DENGAN layouts/app, SAMA-SAMA BACA localStorage 'theme') -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const toggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        if(localStorage.getItem('theme') === 'dark'){
+            document.body.classList.add('dark-mode');
+            if(themeIcon) themeIcon.className = 'fa-solid fa-sun text-xs text-earth';
+        }
+        toggleBtn?.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            if(themeIcon) themeIcon.className = isDark ? 'fa-solid fa-sun text-xs text-earth' : 'fa-solid fa-moon text-xs';
+        });
+    });
+    </script>
 
     <!-- SCRIPT HADIS SLIDER -->
     <script>
@@ -228,6 +291,85 @@
     document.getElementById('pauseBtn')?.addEventListener('click',()=>{paused=!paused;document.getElementById('pauseIcon').className=paused?'fa-solid fa-play text-[10px]':'fa-solid fa-pause text-[10px]';});
     render();startTimer();
     document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){next();startTimer();} if(e.key==='ArrowLeft'){prev();startTimer();}});
+    </script>
+    <!-- TOMBOL SUARA HADIS & TTS (TERINTEGRASI DI KARTU HADIS) -->
+    <script>
+    (function(){
+        const speakBtn = document.getElementById('speakBtn');
+        if(!speakBtn) return;
+
+        let speaking = false;
+        let supported = 'speechSynthesis' in window;
+
+        // Pilih suara terbaik: utamakan suara Indonesia, lalu Arab, lalu default
+        function pickVoices(){
+            const v = window.speechSynthesis.getVoices();
+            const idVoice = v.find(x => /id[-_]ID/i.test(x.lang));
+            const arVoice = v.find(x => /ar[-_](SA|EG|AE)?/i.test(x.lang));
+            return {id: idVoice || null, ar: arVoice || null};
+        }
+
+        function speakHadith(){
+            if(!supported) return;
+            // Stop semua bacaan yang masih berjalan
+            window.speechSynthesis.cancel();
+
+            const h = hadiths[idx];
+            const {id, ar} = pickVoices();
+
+            const uAr = new SpeechSynthesisUtterance(h.arab);
+            uAr.lang = 'ar-SA';
+            uAr.rate = 0.85;
+            uAr.pitch = 1.0;
+            if(ar) uAr.voice = ar;
+
+            const uId = new SpeechSynthesisUtterance('Artinya: ' + h.indo + ' (' + h.sumber + ')');
+            uId.lang = 'id-ID';
+            uId.rate = 0.95;
+            uId.pitch = 1.0;
+            if(id) uId.voice = id;
+
+            uAr.onend = () => {
+                window.speechSynthesis.speak(uId);
+            };
+            uId.onend = () => { speaking = false; updateIcon(false); };
+
+            window.speechSynthesis.speak(uAr);
+            speaking = true;
+            updateIcon(true);
+        }
+
+        function updateIcon(isSpeaking){
+            const icon = speakBtn.querySelector('i');
+            icon.className = isSpeaking ? 'fa-solid fa-stop' : 'fa-solid fa-volume-high';
+        }
+
+        speakBtn.addEventListener('click', speakHadith);
+
+        // Jika suara belum ter-load (beberapa browser load-asyn), refresh
+        if(supported){
+            window.speechSynthesis.onvoiceschanged = () => {}; // force refresh
+        }
+
+        // Jika user ganti hadis (next/prev/dot/keyboard), stop bacaan yang sedang berjalan
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        if(supported){
+            const stopIfSpeaking = () => {
+                if(speaking){
+                    window.speechSynthesis.cancel();
+                    speaking = false;
+                    updateIcon(false);
+                }
+            };
+            nextBtn?.addEventListener('click', stopIfSpeaking);
+            prevBtn?.addEventListener('click', stopIfSpeaking);
+            document.getElementById('dots')?.addEventListener('click', stopIfSpeaking);
+            document.addEventListener('keydown', e => {
+                if(e.key === 'ArrowRight' || e.key === 'ArrowLeft') stopIfSpeaking();
+            });
+        }
+    })();
     </script>
 </body>
 </html>

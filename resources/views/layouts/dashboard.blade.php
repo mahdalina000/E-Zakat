@@ -88,7 +88,7 @@
 
             @if($u->isUser())
                 <a href="{{ url('/kalkulator') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-calculator w-4"></i> Kalkulator Zakat</a>
-                <a href="{{ url('/direktori') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-map-location-dot w-4"></i> Direktori UPZ</a>
+                <a href="{{ url('/direktori') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-map-location-dot w-4"></i> Lokasi Penyaluran</a>
                 <a href="{{ url('/panduan') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-book-open w-4"></i> Panduan Zakat</a>
             @endif
 

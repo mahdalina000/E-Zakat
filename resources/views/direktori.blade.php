@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Direktori Maps — E-Zakat Banjarbaru')
+@section('title','Lokasi Penyaluran Zakat — E-Zakat Banjarbaru')
 
 @section('head')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -15,7 +15,7 @@
     <!-- HERO HEADER DIREKTORI -->
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] p-5 lg:p-6 border border-cream3 shadow-xl anim-smooth delay-1 hover-smooth">
         <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
-            <i class="fa-solid fa-map-location-dot text-olive"></i> Direktori Penyaluran Zakat — Banjarbaru
+            <i class="fa-solid fa-map-location-dot text-olive"></i> Lokasi Penyaluran Zakat — Banjarbaru
         </h1>
         <p class="text-xs lg:text-sm text-olive/70 mt-1 font-medium">Peta interaktif titik penyaluran. Filter berdasarkan kategori dan klik pin untuk detail & rute.</p>
 
@@ -29,14 +29,17 @@
                 </div>
                 <span class="ml-auto text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full" id="countBaznas">0</span>
             </div>
+
+            <!-- UPZ LEGEND DIBUAT BIRU SERAGAM -->
             <div class="bg-cream2/80 rounded-2xl p-3 border border-cream3/80 flex gap-3 items-center shadow-sm hover-smooth">
-                <span class="w-3.5 h-3.5 rounded-full bg-orange-500 shrink-0"></span>
+                <span class="w-3.5 h-3.5 rounded-full bg-blue-600 shrink-0"></span>
                 <div>
                     <div class="font-bold text-xs lg:text-sm text-oliveDark">UPZ / Masjid</div>
                     <div class="text-[10px] text-olive/60">Menerima zakat fitrah & maal</div>
                 </div>
-                <span class="ml-auto text-xs font-bold bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full" id="countUpz">0</span>
+                <span class="ml-auto text-xs font-bold bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full" id="countUpz">0</span>
             </div>
+
             <div class="bg-cream2/80 rounded-2xl p-3 border border-cream3/80 flex gap-3 items-center shadow-sm hover-smooth">
                 <span class="w-3.5 h-3.5 rounded-full bg-red-500 shrink-0"></span>
                 <div>
@@ -73,7 +76,7 @@
         </div>
     </div>
 
-    {{-- Penjelasan Warna --}}
+    {{-- Penjelasan Warna (SUDAH DIUBAH DARI ORANGE KE BIRU) --}}
     <div class="mt-6 bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 shadow-xl anim-smooth delay-3 hover-smooth">
         <h3 class="font-extrabold text-oliveDark text-sm flex items-center gap-2">
             <i class="fa-solid fa-circle-info text-olive"></i> Penjelasan Warna Pin
@@ -85,12 +88,15 @@
                 </div>
                 <p class="text-emerald-900/70 text-xs mt-2 leading-relaxed">Badan Amil Zakat Nasional Kota Banjarbaru. Menerima semua jenis zakat, infak, sedekah. Penyaluran terverifikasi ke 8 asnaf dan program pemberdayaan. Buka jam kerja, ada layanan jemput zakat.</p>
             </div>
-            <div class="bg-orange-50/80 rounded-2xl p-4 border border-orange-100/80 shadow-sm">
-                <div class="font-bold text-orange-800 text-sm flex items-center gap-2">
-                    <span class="w-3 h-3 bg-orange-500 rounded-full inline-block"></span> Orange — UPZ / Masjid
+
+            <!-- PENJELASAN UPZ WARNA BIRU -->
+            <div class="bg-blue-50/80 rounded-2xl p-4 border border-blue-100/80 shadow-sm">
+                <div class="font-bold text-blue-800 text-sm flex items-center gap-2">
+                    <span class="w-3 h-3 bg-blue-600 rounded-full inline-block"></span> Biru — UPZ / Masjid
                 </div>
-                <p class="text-orange-900/70 text-xs mt-2 leading-relaxed">Unit Pengumpul Zakat atau masjid yang ditunjuk. Melayani zakat fitrah & maal lingkungan sekitar, fidyah, dan sedekah. Cocok untuk penyaluran terdekat dari rumah.</p>
+                <p class="text-blue-900/70 text-xs mt-2 leading-relaxed">Unit Pengumpul Zakat atau masjid yang ditunjuk. Melayani zakat fitrah & maal lingkungan sekitar, fidyah, dan sedekah. Cocok untuk penyaluran terdekat dari rumah.</p>
             </div>
+
             <div class="bg-red-50/80 rounded-2xl p-4 border border-red-100/80 shadow-sm">
                 <div class="font-bold text-red-800 text-sm flex items-center gap-2">
                     <span class="w-3 h-3 bg-red-500 rounded-full inline-block"></span> Merah — Rumah Warga
@@ -106,7 +112,8 @@
 <script>
 const spots = @json($spots);
 
-const color = {baznas:'#10b981', upz:'#1647f9', warga:'#ef4444'};
+// SINKRONISASI WARNA BIRU UNTUK UPZ (#2563eb)
+const color = {baznas:'#10b981', upz:'#2563eb', warga:'#ef4444'};
 const label = {baznas:'BAZNAS', upz:'UPZ / Masjid', warga:'Rumah Warga'};
 
 const map = L.map('map').setView([-3.442,114.833], 13);

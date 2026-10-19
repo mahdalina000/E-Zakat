@@ -7,6 +7,23 @@
     <!-- CONTAINER UTAMA -->
     <main class="space-y-4 my-auto">
 
+        {{-- BANNER HARI RAYA & PENGINGAT ZAKAT --}}
+        <div id="holidayBanner" class="hidden anim-smooth delay-1">
+            <div id="holidayBannerInner" class="flex items-start gap-3 p-4 rounded-2xl border shadow-lg text-sm" style="transition: all .25s ease;">
+                <div id="holidayBannerIcon" class="text-lg shrink-0 mt-0.5"></div>
+                <div class="flex-1">
+                    <div id="holidayBannerTitle" class="font-extrabold text-base"></div>
+                    <div id="holidayBannerText" class="text-xs mt-0.5 leading-relaxed"></div>
+                </div>
+                <button id="holidayBannerClose" type="button" class="w-7 h-7 rounded-full hover:opacity-70 transition flex items-center justify-center shrink-0 text-xs" title="Sembunyikan pengingat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div id="holidayBannerNote" class="hidden text-[10px] text-center text-olive/50 py-0.5">
+            <i class="fa-solid fa-circle-info mr-1"></i> Jadwal hari raya bersifat <b>perkiraan</b> berdasarkan hisab & dapat berubah mengikuti hasil Sidang Isbat Kemenag.
+        </div>
+
         <!-- HERO TEXT (KIRI) + PENGUMUMAN CARD (KANAN) -->
         <div class="grid lg:grid-cols-12 gap-6 items-center w-full">
             
@@ -30,7 +47,7 @@
                         <i class="fa-solid fa-calculator"></i> Hitung Zakat
                     </a>
                     <a href="{{ url('/direktori') }}" class="bg-white hover:bg-cream border border-cream3 text-olive font-bold px-6 py-2.5 rounded-full text-xs transition shadow-sm hover-smooth active:scale-95">
-                        <i class="fa-solid fa-map-location-dot"></i> Lihat Direktori
+                        <i class="fa-solid fa-map-location-dot"></i> Lihat Lokasi Penyaluran
                     </a>
                 </div>
 
@@ -109,7 +126,7 @@
             <a href="{{ url('/direktori') }}" class="bg-white/90 backdrop-blur-md rounded-2xl border border-cream3 p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm">
                 <div class="w-10 h-10 bg-earth text-oliveDark rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Direktori Maps</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Lokasi Penyaluran</div>
                     <div class="text-[10px] text-olive/70 mt-0.5">Peta BAZNAS, UPZ & titik penerima.</div>
                 </div>
             </a>
@@ -151,5 +168,133 @@ const list = [
     "Berinfaklah wahai anak Adam, niscaya Aku akan berinfak kepadamu. — HR. Bukhari & Muslim",
 ];
 document.getElementById('dailyHadith').textContent = '"' + list[new Date().getDate() % list.length] + '"';
+
+// =========================================================
+// BANNER HARI RAYA / PENGINGAT RAMADAN & ZAKAT (TUGAS 8)
+// =========================================================
+// Kumpulan tanggal hari raya (perkiraan — bisa disesuaikan dgn hasil isbat).
+// 2 Syawal 1448H (Idul Fitri 2) ≈ 31 Maret 2027
+// 1 Syawal 1447H (Idul Fitri 1) ≈ 21 Maret 2026
+// Ramadan 1448H mulai ≈ 8 Feb 2027
+// Idul Adha 1448H (10 Dzulhijjah) ≈ 16 Mei 2027
+const HOLIDAYS = [
+    {
+        key: 'ramadan-1448',
+        name: 'Bulan Suci Ramadan 1448H',
+        date: new Date(2027, 1, 8),        // 8 Feb 2027
+        before: 30,                          // tampil 30 hari sebelum
+        after: 0,
+        icon: 'fa-solid fa-star-and-crescent',
+        color: 'olive',
+        title: 'Ramadan 1448H Akan Tiba!',
+        text: 'Bersyukurlah & siapkan fisik dan harta. Segera tunaikan zakat fitrah menjelang akhir Ramadan.',
+    },
+    {
+        key: 'idul-fitri-1447',
+        name: '1 Syawal 1447H (Idul Fitri)',
+        date: new Date(2026, 2, 21),       // 21 Mar 2026
+        before: 15,
+        after: 3,
+        icon: 'fa-solid fa-mosque',
+        color: 'earth',
+        title: 'Idul Fitri Mendekat!',
+        text: 'Segera tunaikan zakat fitrah sebelum Sholat Id. 2,5 kg beras/jiwa (±Rp16.000).',
+    },
+    {
+        key: 'idul-fitri-1448',
+        name: '1 Syawal 1448H (Idul Fitri)',
+        date: new Date(2027, 2, 30),       // 30 Mar 2027
+        before: 15,
+        after: 3,
+        icon: 'fa-solid fa-mosque',
+        color: 'earth',
+        title: 'Selamat Hari Raya Idul Fitri 1448H!',
+        text: 'Semoga ibadah kita diterima dan zakat kita membersihkan harta. Maaf lahir dan batin.',
+    },
+    {
+        key: 'idul-adha-1448',
+        name: '10 Dzulhijjah 1448H (Idul Adha)',
+        date: new Date(2027, 4, 16),       // 16 Mei 2027
+        before: 15,
+        after: 3,
+        icon: 'fa-solid fa-cow',
+        color: 'olive',
+        title: 'Idul Adha Mendekat!',
+        text: 'Waktunya kurban. Siapkan 1/7 bagian hewan kurban setara daging — minimal ±2,5 kg per jiwa.',
+    },
+];
+
+(function initHolidayBanner() {
+    const banner = document.getElementById('holidayBanner');
+    const inner = document.getElementById('holidayBannerInner');
+    const iconEl = document.getElementById('holidayBannerIcon');
+    const titleEl = document.getElementById('holidayBannerTitle');
+    const textEl = document.getElementById('holidayBannerText');
+    const closeBtn = document.getElementById('holidayBannerClose');
+    const noteEl = document.getElementById('holidayBannerNote');
+    if(!banner || !inner) return;
+
+    const now = new Date();
+    const DAY_MS = 86400000;
+
+    // Temukan event terdekat yang masih relevan
+    let active = null;
+    for(const h of HOLIDAYS){
+        const start = new Date(h.date.getTime() - h.before * DAY_MS);
+        const end = new Date(h.date.getTime() + h.after * DAY_MS);
+        if(now >= start && now <= end){
+            // Pilih event yang paling dekat harinya
+            const daysUntil = Math.max(0, Math.round((h.date - now) / DAY_MS));
+            const daysAfter = Math.max(0, Math.round((now - h.date) / DAY_MS));
+            if(!active || Math.min(daysUntil, daysAfter) < Math.min(active.daysUntil ?? 999, active.daysAfter ?? 999)){
+                active = { ...h, daysUntil, daysAfter };
+                break;
+            }
+        }
+    }
+
+    if(!active) return;
+
+    // Cek apakah banner ini sudah ditutup user (per event)
+    const closedKey = 'ezakat_banner_closed_' + active.key;
+    if(localStorage.getItem(closedKey) === String(now.getFullYear())){
+        return; // jangan tampil lagi tahun ini
+    }
+
+    // Warna dinamis
+    const palette = {
+        olive:  { bg: 'bg-olive',   border: 'border-olive',   text: 'text-white',   iconBg: 'bg-white/20' },
+        earth:  { bg: 'bg-earth',   border: 'border-earth',   text: 'text-oliveDark', iconBg: 'bg-oliveDark/10' },
+    };
+    const p = palette[active.color] || palette.olive;
+
+    inner.className = 'flex items-start gap-3 p-4 rounded-2xl border shadow-lg text-sm ' +
+        'bg-' + p.bg + ' border-' + p.border + ' text-' + p.text + ' hover-smooth';
+    iconEl.className = 'text-2xl shrink-0 mt-0.5 ' + p.iconBg + ' p-2 rounded-xl';
+    iconEl.innerHTML = '<i class="' + active.icon + '"></i>';
+
+    // Teks dinamis sesuai tahap
+    if(active.daysAfter === 0){
+        titleEl.textContent = active.title;
+        textEl.textContent = active.text;
+    } else if(active.daysAfter > 0){
+        // Hari raya sudah lewat
+        titleEl.textContent = active.title;
+        textEl.textContent = 'Hari ini ' + active.name + ' yang lalu (H-' + active.daysAfter + '). ' + active.text;
+    } else {
+        // Masih sebelum hari raya
+        titleEl.textContent = active.daysAfter === 0 ? active.title : (active.name + ' dalam ' + active.daysUntil + ' hari');
+        textEl.textContent = active.text;
+    }
+
+    banner.classList.remove('hidden');
+    noteEl.classList.remove('hidden');
+
+    closeBtn.addEventListener('click', () => {
+        banner.classList.add('hidden');
+        noteEl.classList.add('hidden');
+        localStorage.setItem(closedKey, String(now.getFullYear()));
+    });
+})();
 </script>
 @endsection
