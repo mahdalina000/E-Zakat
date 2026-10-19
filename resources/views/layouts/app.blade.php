@@ -8,35 +8,23 @@
     <!-- OPTIMASI PRECONNECT CDN AGAR LOADING INSTAN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://unpkg.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('head')
 
+    <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
+    @if(!env('APP_DEBUG'))
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: '#EAEAEA',
-                        cream2: '#F4F4F4',
-                        cream3: '#D6D6D6',
-                        olive: '#4B8B3B',
-                        olive2: '#3D7330',
-                        olive3: '#A8D5BA',
-                        oliveDark: '#001F3F',
-                        earth: '#F2C94C',
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        amiri: ['Amiri', 'serif'],
-                    }
-                }
-            }
+        if('serviceWorker' in navigator && location.protocol !== 'file:'){
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('[SW] Registered:', reg.scope))
+                    .catch(err => console.warn('[SW] Registration failed:', err));
+            });
         }
     </script>
+    @endif
 
     <style>
         body { 
