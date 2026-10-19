@@ -142,6 +142,59 @@
                 const mainCss = document.querySelector('link[rel="stylesheet"][href*="app-"]');
                 if (mainCss) prefetch(mainCss.getAttribute('href'));
             }, {timeout: 2000});
+
+            // ============================
+            // INSTANT TRANSITION OVERLAY
+            // Saat user klik link internal, tampilkan overlay hijau seketika
+            // -> rasa "klik langsung pindah" tanpa white-flash.
+            // ============================
+            const overlay = document.createElement('div');
+            overlay.style.cssText = [
+                'position:fixed',
+                'inset:0',
+                'background:#4B8B3B',
+                'z-index:99999',
+                'opacity:0',
+                'pointer-events:none',
+                'transition:opacity .15s ease'
+            ].join(';');
+            document.body.appendChild(overlay);
+
+            let navigating = false;
+            document.querySelectorAll('a[href]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    // Skip: link hash (anchor), eksternal, _blank, modifer, javascript
+                    if (!href || href === '#') return;
+                    if (href.startsWith('#')) return;        // anchor in-page
+                    if (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
+                    if (href.startsWith('javascript:')) return;
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                    if (link.target === '_blank') return;
+
+                    if (navigating) return;
+                    navigating = true;
+                    sessionStorage.setItem('ezakat_nav', '1');
+                    overlay.style.opacity = '1';
+                    overlay.style.pointerEvents = 'auto';
+                });
+            });
+
+            // Saat dokumen baru mulai load, sembunyikan overlay
+            // (jika navigasi, overlay masih opaque -> fade out; jika fresh, langsung hidden)
+            window.addEventListener('DOMContentLoaded', () => {
+                if (sessionStorage.getItem('ezakat_nav') === '1') {
+                    sessionStorage.removeItem('ezakat_nav');
+                    // Fade out overlay setelah konten render
+                    requestAnimationFrame(() => {
+                        overlay.style.opacity = '0';
+                        overlay.style.pointerEvents = 'none';
+                    });
+                } else {
+                    // Fresh load: pastikan overlay tersembunyi (transisi fade-in)
+                    overlay.style.opacity = '0';
+                }
+            });
         });
     </script>
 </body>
