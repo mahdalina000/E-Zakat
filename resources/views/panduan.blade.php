@@ -90,6 +90,72 @@
                     @endforeach
                 </div>
             </div>
+
+            {{-- Zakat Maal --}}
+            <div id="maal" class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl anim-smooth delay-4 hover-smooth">
+                <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> Zakat Maal
+                </h2>
+                <div class="mt-4 grid md:grid-cols-2 gap-4 text-xs">
+                    <div class="space-y-2.5">
+                        <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60"><div class="font-bold text-oliveDark">Hukum</div><div class="text-olive/70 mt-0.5">Wajib atas harta yang mencapai nisab (85 gr emas) dan haul (genap 1 tahun hijriah).</div></div>
+                        <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60"><div class="font-bold text-oliveDark">Besaran</div><div class="text-olive/70 mt-0.5">2,5% dari total harta yang memenuhi syarat.</div></div>
+                    </div>
+                    <div class="bg-olive text-white rounded-2xl p-4 flex flex-col justify-between shadow-md">
+                        <div>
+                            <div class="text-[10px] text-earth font-extrabold uppercase tracking-wider">CONTOH CEPAT</div>
+                            <div class="font-bold mt-1">Harta Rp200.000.000 (sudah haul)</div>
+                            <div class="text-cream/80 text-xs mt-1">2,5% × 200.000.000 = <b class="text-white">Rp5.000.000</b> zakat maal.</div>
+                        </div>
+                        <a href="{{ url('/kalkulator') }}" class="inline-block mt-3 bg-white text-oliveDark text-xs font-bold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-earth transition">Hitung di Kalkulator →</a>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Fidyah --}}
+            <div id="fidyah" class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl anim-smooth delay-4 hover-smooth">
+                <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">5</span> Fidyah
+                </h2>
+                <div class="mt-4 grid md:grid-cols-2 gap-4 text-xs">
+                    <div class="space-y-2.5">
+                        <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60"><div class="font-bold text-oliveDark">Syarat</div><div class="text-olive/70 mt-0.5">Bagi yang tidak mampu berpuasa (sakit menahun, lansia).</div></div>
+                        <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60"><div class="font-bold text-oliveDark">Besaran</div><div class="text-olive/70 mt-0.5">1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan per hari yang ditinggalkan.</div></div>
+                    </div>
+                    <div class="bg-olive text-white rounded-2xl p-4 flex flex-col justify-between shadow-md">
+                        <div>
+                            <div class="text-[10px] text-earth font-extrabold uppercase tracking-wider">BENTUK FIDYAH</div>
+                            <div class="text-cream/80 text-xs mt-1">Uang tunai, beras (0,75 kg/hari), atau <b class="text-white">porsi makanan siap saji</b> (nasi + lauk + sayur) yang dibagikan ke fakir/miskin.</div>
+                        </div>
+                        <a href="{{ url('/kalkulator') }}" class="inline-block mt-3 bg-white text-oliveDark text-xs font-bold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-earth transition">Hitung Fidyah →</a>
+                    </div>
+                </div>
+            </div>
+
+            {{-- FAQ --}}
+            <div id="faq" class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl anim-smooth delay-4 hover-smooth">
+                <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">6</span> FAQ Zakat
+                </h2>
+                <div class="mt-4 space-y-3 text-xs">
+                    <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60">
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-olive mr-1.5"></i>Apakah zakat fitrah boleh dibayar pakai uang?</div>
+                        <div class="text-olive/70 mt-0.5 leading-relaxed">Boleh, dengan konversi harga beras lokal (±Rp16.000/kg × 2,5 kg/jiwa). Disunnahkan membayar dengan beras langsung agar manfaatnya lebih cepat sampai ke asnaf.</div>
+                    </div>
+                    <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60">
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-olive mr-1.5"></i>Kapan waktu membayar zakat fitrah?</div>
+                        <div class="text-olive/70 mt-0.5 leading-relaxed">Sebaiknya sebelum Shalat Idul Fitri. Tidak disarankan melebihkan 2 hari sebelum Id. Waktu ideal: akhir Ramadhan sampai H-1 Idul Fitri.</div>
+                    </div>
+                    <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60">
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-olive mr-1.5"></i>Apakah anak & lansia wajib zakat fitrah?</div>
+                        <div class="text-olive/70 mt-0.5 leading-relaxed">Ya — setiap jiwa muslim yang masih hidup di 1 Syawal wajib ditunaikan zakat fitrahnya. Wali/kepala keluarga membayar atas nama mereka.</div>
+                    </div>
+                    <div class="bg-cream2/80 rounded-xl p-3 border border-cream3/60">
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-olive mr-1.5"></i>Ke mana zakat saya disalurkan?</div>
+                        <div class="text-olive/70 mt-0.5 leading-relaxed">Melalui amil yang sah: BAZNAS, UPZ masjid, atau lembaga yang ditunjuk pemerintah kota Banjarbaru. Lihat <a href="{{ url('/direktori') }}" class="font-bold text-olive underline">Lokasi Penyaluran</a> untuk titik terdekat.</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         {{-- Sidebar sticky --}}

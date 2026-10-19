@@ -51,42 +51,7 @@
 
         .turbolinks-progress-bar { display: none !important; }
 
-        /* =========================================================
-           MODE GELAP (DARK MODE) — konsisten dengan layouts/app
-        ========================================================= */
-        body.dark-mode { background-color: #0b132b !important; color: #f8fafc; }
-
-        /* Gambar ilustrasi & background lebih gelap */
-        body.dark-mode .fixed.inset-0 img { opacity: 0.12; filter: blur(8px) brightness(0.6); }
-
-        /* KARTU / PANEL UTAMA MENJADI GELAP */
-        body.dark-mode .bg-white\/90,
-        body.dark-mode .bg-white\/80,
-        body.dark-mode .bg-white {
-            background-color: #1e293b !important;
-        }
-        body.dark-mode .border-cream3 { border-color: #334155 !important; }
-
-        /* Teks navy gelap -> terang */
-        body.dark-mode .text-oliveDark { color: #e2e8f0 !important; }
-        body.dark-mode .text-oliveDark\/90,
-        body.dark-mode .text-oliveDark\/80,
-        body.dark-mode .text-oliveDark\/70,
-        body.dark-mode .text-oliveDark\/60 { color: #cbd5e1 !important; }
-
-        /* Sub-kartu cream2/80 */
-        body.dark-mode .bg-cream2\/80,
-        body.dark-mode .bg-cream2 {
-            background-color: #334155 !important;
-            color: #f8fafc !important;
-        }
-
-        /* Kartu hijau olive dipertahankan, teks tetap terbaca */
-        body.dark-mode .bg-olive { background-color: #4B8B3B !important; }
-        body.dark-mode .bg-earth { background-color: #F2C94C !important; }
-
-        /* Quick action bar & chip badge */
-        body.dark-mode .bg-white\/90 { background-color: rgba(30, 41, 59, 0.92) !important; }
+        /* DARK MODE SUDAH DI app.css (via Vite) — tidak perlu inline di sini */
     </style>
 </head>
 <body class="h-screen w-screen flex flex-col justify-between p-3 lg:p-5 box-border relative overflow-hidden">

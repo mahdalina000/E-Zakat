@@ -3,7 +3,7 @@
 @section('page-title','Dashboard Super Admin')
 @section('page-sub','Monitoring sistem E-Zakat Kota Banjarbaru')
 @section('head')
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{{-- Chart.js sudah di-bundle Vite di resources/js/app.js --}}
 @endsection
 @section('content')
 

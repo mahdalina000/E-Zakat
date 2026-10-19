@@ -2,8 +2,6 @@
 @section('title','Lokasi Penyaluran Zakat — E-Zakat Banjarbaru')
 
 @section('head')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
     #map { height: 500px; border-radius: 20px; position: relative; z-index: 0; } 
     .leaflet-popup-content { font-family: 'Poppins', sans-serif; }

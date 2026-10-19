@@ -42,11 +42,13 @@
 .anim-smooth {
     animation: smoothReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.anim-smooth.delay-1 { animation-delay: 0.03s; }
-.anim-smooth.delay-2 { animation-delay: 0.06s; }
-.anim-smooth.delay-3 { animation-delay: 0.09s; }
-.anim-smooth.delay-4 { animation-delay: 0.12s; }
-.anim-smooth.delay-5 { animation-delay: 0.15s; }
+
+/* Delay — standalone agar bisa dipake di elemen apa pun (anim-smooth, anim-welcome, dll) */
+.delay-1 { animation-delay: 0.03s; }
+.delay-2 { animation-delay: 0.06s; }
+.delay-3 { animation-delay: 0.09s; }
+.delay-4 { animation-delay: 0.12s; }
+.delay-5 { animation-delay: 0.15s; }
 
 /* Hover Float Soft Effect */
 .hover-smooth {
