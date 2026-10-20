@@ -6,13 +6,13 @@
     <!-- HEADER TAB TIPE ZAKAT -->
     <div class="anim-smooth delay-1">
         <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
-            <i class="fa-solid fa-calculator text-olive"></i> Kalkulator Zakat & Fidyah
+            <i class="fa-solid fa-calculator text-black"></i> Kalkulator Zakat & Fidyah
         </h1>
-        <p class="text-xs lg:text-sm text-olive/70 mt-1 font-medium">Pilih jenis zakat, atur jumlah, dan lihat hasil perhitungan secara otomatis. Harga beras dapat disesuaikan.</p>
+        <p class="text-xs lg:text-sm text-black/70 mt-1 font-medium">Pilih jenis zakat, atur jumlah, dan lihat hasil perhitungan secara otomatis. Harga beras dapat disesuaikan.</p>
         <div class="mt-4 flex flex-wrap gap-2">
             <button data-tab="fitrah" class="tab-btn bg-olive text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow transition active:scale-95">Zakat Fitrah</button>
-            <button data-tab="maal" class="tab-btn border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Maal</button>
-            <button data-tab="fidyah" class="tab-btn border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Fidyah</button>
+            <button data-tab="maal" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Maal</button>
+            <button data-tab="fidyah" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Fidyah</button>
         </div>
     </div>
 
@@ -20,12 +20,12 @@
     <div id="panel-fitrah" class="tab-panel mt-6 anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
             <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
-                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-olive"></i> Zakat Fitrah</h2>
-                <p class="text-xs text-olive/70 mt-1">Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras atau 3,5 liter / jiwa (1 sha').</p>
+                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-black"></i> Zakat Fitrah</h2>
+                <p class="text-xs text-black/70 mt-1">Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras atau 3,5 liter / jiwa (1 sha').</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jumlah Jiwa</label>
                 <div class="mt-2 flex items-center gap-3">
-                    <button id="fitrahMinus" type="button" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-olive font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <button id="fitrahMinus" type="button" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
                     <input id="fitrahJiwa" type="number" min="1" value="1" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-cream2">
                     <button id="fitrahPlus" type="button" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
@@ -53,14 +53,14 @@
                 <div id="hargaBanjarBox" class="mt-4">
                     <label class="text-xs font-bold text-oliveDark">Harga Beras Banjar (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
-                        <span class="text-xs font-bold text-olive">Rp</span>
+                        <span class="text-xs font-bold text-black">Rp</span>
                         <input id="hargaBanjar" type="number" value="{{ $hargaBeras ?? 16000 }}" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                     </div>
                 </div>
                 <div id="hargaLainBox" class="mt-4 hidden">
                     <label class="text-xs font-bold text-oliveDark">Harga Beras Lain (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
-                        <span class="text-xs font-bold text-olive">Rp</span>
+                        <span class="text-xs font-bold text-black">Rp</span>
                         <input id="hargaLain" type="number" value="14000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                     </div>
                     <input id="namaBerasLain" placeholder="Nama beras (opsional, mis. Beras Siam)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2">
@@ -74,14 +74,14 @@
                     <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
                         <div class="grid grid-cols-2 gap-3 text-center">
                             <div class="bg-cream2 rounded-xl p-3">
-                                <div class="text-[10px] text-olive/70 font-semibold">Total Beras</div>
-                                <div id="fitrahBeras" class="font-black text-olive text-lg">2,5 kg</div>
-                                <div id="fitrahLiter" class="text-[10px] text-olive/60">≈ 3,5 liter</div>
+                                <div class="text-[10px] text-black/70 font-semibold">Total Beras</div>
+                                <div id="fitrahBeras" class="font-black text-black text-lg">2,5 kg</div>
+                                <div id="fitrahLiter" class="text-[10px] text-black/60">≈ 3,5 liter</div>
                             </div>
                             <div class="bg-cream2 rounded-xl p-3">
-                                <div class="text-[10px] text-olive/70 font-semibold">Jiwa</div>
-                                <div id="fitrahJiwaOut" class="font-black text-olive text-lg">1</div>
-                                <div class="text-[10px] text-olive/60">orang</div>
+                                <div class="text-[10px] text-black/70 font-semibold">Jiwa</div>
+                                <div id="fitrahJiwaOut" class="font-black text-black text-lg">1</div>
+                                <div class="text-[10px] text-black/60">orang</div>
                             </div>
                         </div>
                         <div class="mt-3 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
@@ -90,9 +90,9 @@
                             <div id="fitrahJenisLabel" class="text-[10px] text-cream/80 mt-0.5">Beras Banjar • Rp16.000/kg</div>
                         </div>
                         {{-- PENJELASAN SATUAN PER-ORANG (BAWAH) --}}
-                        <div id="fitrahRincian" class="mt-3 text-[11px] text-olive/70 leading-relaxed font-medium">
+                        <div id="fitrahRincian" class="mt-3 text-[11px] text-black/70 leading-relaxed font-medium">
                             <div class="pt-2 border-t border-olive/20 mt-2 space-y-1">
-                                <div>📌 <b>Per orang</b>: 2,5 kg beras = <b class="text-olive">Rp 40.000 / orang</b></div>
+                                <div>📌 <b>Per orang</b>: 2,5 kg beras = <b class="text-black">Rp 40.000 / orang</b></div>
                                 <div>👨‍👩‍👧 1 jiwa wajib membayar zakat fitrah sesuai jumlah orang (termasuk anak & lansia muslim di keluarga).</div>
                             </div>
                         </div>
@@ -107,8 +107,8 @@
     <div id="panel-maal" class="tab-panel mt-6 hidden anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
             <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
-                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-olive"></i> Zakat Maal (Harta)</h2>
-                <p class="text-xs text-olive/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
+                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-black"></i> Zakat Maal (Harta)</h2>
+                <p class="text-xs text-black/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark">Total Harta (Rp)</label>
                 <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
@@ -117,7 +117,7 @@
                 <!-- MODUL KONVERSI GRAM EMAS -->
                 <div class="mt-3 p-3 rounded-2xl border border-cream3/40">
                     <label class="block text-xs font-bold text-oliveDark mb-1">
-                        <i class="fa-solid fa-scale-balanced text-olive mr-1"></i> Hitung Dari Gram Emas
+                        <i class="fa-solid fa-scale-balanced text-black mr-1"></i> Hitung Dari Gram Emas
                     </label>
                     <div class="flex items-center gap-2">
                         <input id="gramEmasInput" type="number" placeholder="Jumlah Gram (mis. 85)" class="w-1/2 border border-cream3 rounded-full px-3 py-1.5 text-xs font-semibold">
@@ -129,19 +129,19 @@
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas per gram (Rp)</label>
                 <div class="mt-1.5 flex items-center gap-2">
-                    <span class="text-xs font-bold text-olive">Rp</span>
+                    <span class="text-xs font-bold text-black">Rp</span>
                     <input id="maalEmasFormatted" type="text" value="1.300.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
-                    <span class="text-[10px] text-olive/60">/gram</span>
+                    <span class="text-[10px] text-black/60">/gram</span>
                 </div>
                 <input id="maalEmas" type="hidden" value="1300000">
                 
                 <!-- HASIL KONVERSI GRAM EMAS -->
                 <div id="emasKonsiBox" class="mt-3 hidden bg-olive/5 border border-olive/30 rounded-2xl p-3">
-                    <div class="text-xs font-bold text-olive flex items-center gap-1.5 mb-1">
+                    <div class="text-xs font-bold text-black flex items-center gap-1.5 mb-1">
                         <i class="fa-solid fa-check-double"></i> Hasil Konversi Gram Emas
                     </div>
                     <div class="text-sm font-black text-oliveDark" id="emasKonsiTotal">Rp 0</div>
-                    <div class="text-[10px] text-olive/70 mt-0.5">Tersimpan ke kolom "Total Harta" di atas — silakan cek status wajib zakat di panel samping.</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">Tersimpan ke kolom "Total Harta" di atas — silakan cek status wajib zakat di panel samping.</div>
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Sudah haul 1 tahun?</label>
@@ -155,12 +155,12 @@
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL ZAKAT MAAL</div>
                     <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
-                        <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">Nisab (85 gr)</span><span id="maalNisab" class="font-bold">Rp 110.500.000</span></div>
-                        <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">Harta Anda</span><span id="maalHartaOut" class="font-bold">Rp 100.000.000</span></div>
+                        <div class="flex justify-between text-xs font-medium"><span class="text-black/70">Nisab (85 gr)</span><span id="maalNisab" class="font-bold">Rp 110.500.000</span></div>
+                        <div class="flex justify-between text-xs font-medium mt-2"><span class="text-black/70">Harta Anda</span><span id="maalHartaOut" class="font-bold">Rp 100.000.000</span></div>
                         <div class="mt-3 bg-cream2 rounded-xl p-3 text-center">
-                            <div class="text-[10px] text-olive/70">Status</div>
-                            <div id="maalStatus" class="font-extrabold text-olive text-sm">Belum wajib zakat</div>
-                            <div id="maalKet" class="text-[10px] text-olive/60 mt-0.5"></div>
+                            <div class="text-[10px] text-black/70">Status</div>
+                            <div id="maalStatus" class="font-extrabold text-black text-sm">Belum wajib zakat</div>
+                            <div id="maalKet" class="text-[10px] text-black/60 mt-0.5"></div>
                         </div>
                         <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
                             <div class="text-[10px] text-cream/80">Zakat yang harus dibayar (2,5%)</div>
@@ -177,12 +177,12 @@
     <div id="panel-fidyah" class="tab-panel mt-6 hidden anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
             <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
-                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-olive"></i> Fidyah Puasa</h2>
-                <p class="text-xs text-olive/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
+                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-black"></i> Fidyah Puasa</h2>
+                <p class="text-xs text-black/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark">Jumlah hari yang ditinggalkan</label>
                 <div class="mt-2 flex items-center gap-3">
-                    <button id="fidyahMinus" type="button" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-olive font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <button id="fidyahMinus" type="button" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
                     <input id="fidyahHari" type="number" min="1" value="7" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-cream2">
                     <button id="fidyahPlus" type="button" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
@@ -197,7 +197,7 @@
 
                 <!-- DESKRIPSI PILIHAN BENTUK FIDYAH -->
                 <div class="mt-4 bg-cream2 rounded-2xl p-3.5 border border-cream3/80 text-xs text-oliveDark leading-relaxed">
-                    <div class="font-bold flex items-center gap-1.5 text-olive">
+                    <div class="font-bold flex items-center gap-1.5 text-black">
                         <i class="fa-solid fa-circle-info"></i> Catatan Bentuk Penyaluran Fidyah:
                     </div>
                     <p class="mt-1 text-[11px] text-oliveDark/80">
@@ -211,8 +211,8 @@
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL FIDYAH</div>
                     <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
                         <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-olive/70">Hari</div><div id="fidyahHariOut" class="font-black text-olive text-lg">7</div><div class="text-[10px] text-olive/60">hari</div></div>
-                            <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-olive/70">Per hari</div><div id="fidyahPerHari" class="font-bold text-olive text-xs">Rp 45.000</div><div class="text-[10px] text-olive/60">1 porsi</div></div>
+                            <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-black/70">Hari</div><div id="fidyahHariOut" class="font-black text-black text-lg">7</div><div class="text-[10px] text-black/60">hari</div></div>
+                            <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-black/70">Per hari</div><div id="fidyahPerHari" class="font-bold text-black text-xs">Rp 45.000</div><div class="text-[10px] text-black/60">1 porsi</div></div>
                         </div>
                         <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
                             <div class="text-[10px] text-cream/80">Total Fidyah</div>
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => {
-                b.className = 'tab-btn border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition';
+                b.className = 'tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition';
             });
             btn.className = 'tab-btn bg-olive text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow transition';
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="pt-2 border-t border-olive/20 mt-2 space-y-1">
                 <div class="text-xs font-extrabold text-oliveDark mt-1">📌 Rincian Satuan:</div>
                 <div>• <b>Per orang</b>: ${fmt(rupiahPerJiwa)} / orang (2,5 kg × Rp${Number(harga).toLocaleString('id-ID')}/kg)</div>
-                <div>• <b>Total ${jiwa} orang</b>: ${jiwa} × ${fmt(rupiahPerJiwa)} = <b class="text-olive">${fmt(totalRupiah)}</b></div>
+                <div>• <b>Total ${jiwa} orang</b>: ${jiwa} × ${fmt(rupiahPerJiwa)} = <b class="text-black">${fmt(totalRupiah)}</b></div>
                 <div>• Total beras: <b>${fmtKg(totalKg)} kg</b> (${kgPerJiwa} kg/orang × ${jiwa} orang)</div>
             </div>
         `;

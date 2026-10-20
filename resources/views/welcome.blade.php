@@ -93,13 +93,13 @@
             
             <!-- KOLOM KIRI: UCAPAN SELAMAT DATANG (LANGSUNG DI ATAS BACKGROUND) -->
             <div class="lg:col-span-7 space-y-4">
-                <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-cream3/80 px-3.5 py-1 rounded-full text-xs font-bold text-olive shadow-sm">
+                <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-cream3/80 px-3.5 py-1 rounded-full text-xs font-bold text-black shadow-sm">
                     <i class="fa-solid fa-star-and-crescent text-earth"></i> PLATFORM ZAKAT DIGITAL TERPERCAYA
                 </div>
 
                 <h1 class="font-black text-oliveDark leading-[0.98] text-[36px] sm:text-[48px] lg:text-[58px] tracking-tight drop-shadow-sm">
                     Selamat Datang<br>
-                    <span class="text-olive">di E-Zakat</span>
+                    <span class="text-black">di E-Zakat</span>
                 </h1>
 
                 <p class="text-oliveDark/90 text-xs sm:text-sm lg:text-base max-w-lg leading-relaxed font-semibold drop-shadow-sm">
@@ -110,7 +110,7 @@
                     <a href="{{ url('/beranda') }}" class="bg-olive hover:bg-olive2 text-white font-bold px-7 py-3 rounded-full text-xs lg:text-sm shadow-md transition flex items-center gap-2">
                         Mulai Sekarang <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
-                    <span class="text-xs text-olive font-semibold bg-white/90 backdrop-blur-md border border-cream3 px-4 py-2.5 rounded-full shadow-sm">
+                    <span class="text-xs text-black font-semibold bg-white/90 backdrop-blur-md border border-cream3 px-4 py-2.5 rounded-full shadow-sm">
                         <i class="fa-solid fa-shield-halved text-earth mr-1"></i> 100% Sesuai Syariat
                     </span>
                 </div>
@@ -153,7 +153,7 @@
         <!-- QUICK ACTION FLOATING BAR (BAGIAN BAWAH) -->
         <div class="bg-white/90 backdrop-blur-md rounded-2xl p-3 border border-cream3 shadow-lg grid md:grid-cols-3 gap-3 items-center shrink-0">
             <div class="flex items-center gap-3 px-3 py-1 md:border-r border-cream3">
-                <i class="fa-solid fa-calculator text-olive text-lg shrink-0"></i>
+                <i class="fa-solid fa-calculator text-black text-lg shrink-0"></i>
                 <div>
                     <div class="text-xs font-bold text-oliveDark">Kalkulator Zakat</div>
                     <div class="text-[10px] text-oliveDark/60">Hitung Fitrah, Maal & Fidyah</div>
@@ -168,13 +168,13 @@
             </div>
             <div class="flex items-center justify-between px-3 py-1">
                 <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-book-quran text-olive text-lg shrink-0"></i>
+                    <i class="fa-solid fa-book-quran text-black text-lg shrink-0"></i>
                     <div>
                         <div class="text-xs font-bold text-oliveDark">Panduan Syariat</div>
                         <div class="text-[10px] text-oliveDark/60">Nisab, syarat & 8 asnaf</div>
                     </div>
                 </div>
-                <a href="{{ url('/panduan') }}" class="bg-olive3/30 hover:bg-olive hover:text-white text-olive w-7 h-7 rounded-full flex items-center justify-center transition shrink-0">
+                <a href="{{ url('/panduan') }}" class="bg-olive3/30 hover:bg-olive hover:text-white text-black w-7 h-7 rounded-full flex items-center justify-center transition shrink-0">
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </a>
             </div>

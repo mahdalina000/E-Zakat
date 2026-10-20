@@ -20,7 +20,7 @@
                 </button>
             </div>
         </div>
-        <div id="holidayBannerNote" class="hidden text-[10px] text-center text-olive/50 py-0.5">
+        <div id="holidayBannerNote" class="hidden text-[10px] text-center text-black/50 py-0.5">
             <i class="fa-solid fa-circle-info mr-1"></i> Jadwal hari raya bersifat <b>perkiraan</b> berdasarkan hisab & dapat berubah mengikuti hasil Sidang Isbat Kemenag.
         </div>
 
@@ -29,13 +29,13 @@
             
             <!-- KOLOM KIRI: HERO RINGKAS -->
             <div class="lg:col-span-7 space-y-3">
-                <div class="inline-flex items-center gap-2 border border-cream3/40 px-3.5 py-1 rounded-full text-xs font-bold text-olive anim-smooth delay-2">
+                <div class="inline-flex items-center gap-2 border border-cream3/40 px-3.5 py-1 rounded-full text-xs font-bold text-black anim-smooth delay-2">
                     <i class="fa-solid fa-sparkles text-earth"></i> ZAKAT MEMBERSIHKAN HARTA & JIWA
                 </div>
 
                 <h1 class="font-black text-oliveDark text-[34px] lg:text-[48px] leading-[1.02] tracking-tight anim-smooth delay-3">
                     Mudahkan Zakat,<br>
-                    <span class="text-olive">Raih Berkah.</span>
+                    <span class="text-black">Raih Berkah.</span>
                 </h1>
 
                 <p class="text-oliveDark/80 text-xs lg:text-sm max-w-lg leading-relaxed font-medium anim-smooth delay-4">
@@ -46,7 +46,7 @@
                     <a href="{{ url('/kalkulator') }}" class="bg-olive hover:bg-olive2 text-white font-bold px-6 py-2.5 rounded-full text-xs transition shadow flex items-center gap-2 hover-smooth active:scale-95">
                         <i class="fa-solid fa-calculator"></i> Hitung Zakat
                     </a>
-                    <a href="{{ url('/direktori') }}" class="border border-cream3/50 hover:bg-cream/20 text-olive font-bold px-6 py-2.5 rounded-full text-xs transition hover-smooth active:scale-95">
+                    <a href="{{ url('/direktori') }}" class="border border-cream3/50 hover:bg-cream/20 text-black font-bold px-6 py-2.5 rounded-full text-xs transition hover-smooth active:scale-95">
                         <i class="fa-solid fa-map-location-dot"></i> Lihat Lokasi Penyaluran
                     </a>
                 </div>
@@ -54,15 +54,15 @@
                 <!-- STATS CARD -->
                 <div class="grid grid-cols-3 gap-2.5 pt-2 max-w-md text-center anim-smooth delay-5">
                     <div class="rounded-2xl p-2.5 border border-cream3/30 hover-smooth">
-                        <div class="text-base font-black text-olive">2.5<span class="text-xs font-semibold">kg</span></div>
+                        <div class="text-base font-black text-black">2.5<span class="text-xs font-semibold">kg</span></div>
                         <div class="text-[10px] text-oliveDark/70 font-medium">Zakat Fitrah / jiwa</div>
                     </div>
                     <div class="rounded-2xl p-2.5 border border-cream3/30 hover-smooth">
-                        <div class="text-base font-black text-olive">3<span class="text-xs font-semibold"> Kat.</span></div>
+                        <div class="text-base font-black text-black">3<span class="text-xs font-semibold"> Kat.</span></div>
                         <div class="text-[10px] text-oliveDark/70 font-medium">Titik Penyaluran</div>
                     </div>
                     <div class="rounded-2xl p-2.5 border border-cream3/30 hover-smooth">
-                        <div class="text-base font-black text-olive">8</div>
+                        <div class="text-base font-black text-black">8</div>
                         <div class="text-[10px] text-oliveDark/70 font-medium">Asnaf Penerima</div>
                     </div>
                 </div>
@@ -76,37 +76,37 @@
                     </div>
                     <div>
                         <div class="font-extrabold text-oliveDark text-xs">Pengumuman Penting</div>
-                        <div class="text-[10px] text-olive/70">Batas Zakat Fitrah 1 Syawal • Fidyah Rp45.000/hari</div>
+                        <div class="text-[10px] text-black/70">Batas Zakat Fitrah 1 Syawal • Fidyah Rp45.000/hari</div>
                     </div>
                 </div>
 
                 <div class="space-y-2 text-xs">
                     <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
-                        <div class="w-7 h-7 bg-olive/15 text-olive rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-wheat-awn text-xs"></i></div>
+                        <div class="w-7 h-7 bg-olive/15 text-black rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-wheat-awn text-xs"></i></div>
                         <div class="leading-tight">
                             <div class="font-bold text-oliveDark text-[11px]">Beras Banjar Premium</div>
-                            <div class="text-[10px] text-olive/70">2.5 kg / 3.5 liter per jiwa</div>
+                            <div class="text-[10px] text-black/70">2.5 kg / 3.5 liter per jiwa</div>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
-                        <div class="w-7 h-7 bg-earth/20 text-olive rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-bowl-rice text-xs"></i></div>
+                        <div class="w-7 h-7 bg-earth/20 text-black rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-bowl-rice text-xs"></i></div>
                         <div class="leading-tight">
                             <div class="font-bold text-oliveDark text-[11px]">Beras Lainnya</div>
-                            <div class="text-[10px] text-olive/70">Pilih harga/kg untuk konversi uang</div>
+                            <div class="text-[10px] text-black/70">Pilih harga/kg untuk konversi uang</div>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
-                        <div class="w-7 h-7 bg-olive2/15 text-olive2 rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-utensils text-xs"></i></div>
+                        <div class="w-7 h-7 bg-olive2/15 text-black rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-utensils text-xs"></i></div>
                         <div class="leading-tight">
                             <div class="font-bold text-oliveDark text-[11px]">Fidyah Puasa</div>
-                            <div class="text-[10px] text-olive/70">1 mud (±0.75 kg) atau 1 porsi makan/hari</div>
+                            <div class="text-[10px] text-black/70">1 mud (±0.75 kg) atau 1 porsi makan/hari</div>
                         </div>
                     </div>
                 </div>
 
-                <a href="{{ url('/panduan') }}" class="block text-center bg-cream hover:bg-olive hover:text-white text-olive font-bold py-2 rounded-xl border border-cream3 transition text-xs shadow-sm active:scale-95">
+                <a href="{{ url('/panduan') }}" class="block text-center bg-cream hover:bg-olive hover:text-white text-black font-bold py-2 rounded-xl border border-cream3 transition text-xs shadow-sm active:scale-95">
                     Baca Panduan Lengkap <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
                 </a>
             </div>
@@ -118,24 +118,24 @@
             <a href="{{ url('/kalkulator') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3">
                 <div class="w-10 h-10 bg-olive text-white rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm"><i class="fa-solid fa-calculator"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Kalkulator Zakat</div>
-                    <div class="text-[10px] text-olive/70 mt-0.5">Hitung Fitrah, Maal & Fidyah otomatis.</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">Kalkulator Zakat</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">Hitung Fitrah, Maal & Fidyah otomatis.</div>
                 </div>
             </a>
 
             <a href="{{ url('/direktori') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3">
                 <div class="w-10 h-10 bg-earth text-oliveDark rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Lokasi Penyaluran</div>
-                    <div class="text-[10px] text-olive/70 mt-0.5">Peta BAZNAS, UPZ & titik penerima.</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">Lokasi Penyaluran</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">Peta BAZNAS, UPZ & titik penerima.</div>
                 </div>
             </a>
 
             <a href="{{ url('/panduan') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3">
                 <div class="w-10 h-10 bg-olive2 text-white rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm"><i class="fa-solid fa-book-open"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Panduan Zakat</div>
-                    <div class="text-[10px] text-olive/70 mt-0.5">Niat, syarat, 8 asnaf & FAQ zakat.</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">Panduan Zakat</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">Niat, syarat, 8 asnaf & FAQ zakat.</div>
                 </div>
             </a>
         </div>
