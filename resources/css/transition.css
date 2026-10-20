@@ -3,30 +3,31 @@
    Dipakai oleh layouts/app.blade.php, welcome, guest, dashboard
    ============================================================ */
 
-/* 1. CONTAINER KONTEN — wrapper transisi */
+/* 1. CONTAINER KONTEN — wrapper transisi (durasi pendek biar cepet) */
 [data-page-transition] {
-    transition: opacity .28s ease, transform .28s cubic-bezier(.16,1,.3,1);
+    transition: opacity .18s ease, transform .18s cubic-bezier(.16,1,.3,1);
 }
-/* Saat navigasi keluar: konten lama naik + blur halus */
+/* Saat navigasi keluar: konten lama naik + blur halus (cepat) */
 body.zy-nav-out [data-page-transition] {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity .22s ease, transform .22s cubic-bezier(.16,1,.3,1);
+    transform: translateY(10px);
+    transition: opacity .16s ease, transform .16s cubic-bezier(.16,1,.3,1);
 }
-/* Saat masuk: konten baru naik dari bawah + fade */
+/* Saat masuk: konten baru naik dari bawah + fade (cepat) */
 body.zy-nav-in [data-page-transition] {
-    animation: zyPageIn .42s cubic-bezier(.16,1,.3,1) both;
+    animation: zyPageIn .3s cubic-bezier(.16,1,.3,1) both;
 }
 @keyframes zyPageIn {
-    from { opacity: 0; transform: translateY(18px); }
+    from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. SCROLL REVEAL — elemen muncul saat masuk viewport */
+/* 2. SCROLL REVEAL — HANYA untuk konten di bawah viewport (lazy-load).
+   Konten di atas layar tampil langsung, tidak di-reveal. */
 .zy-reveal {
     opacity: 0;
-    transform: translateY(26px);
-    transition: opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1);
+    transform: translateY(18px);
+    transition: opacity .35s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1);
     transition-delay: var(--zy-delay, 0ms);
     will-change: opacity, transform;
 }

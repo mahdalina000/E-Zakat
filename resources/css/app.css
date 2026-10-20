@@ -87,7 +87,7 @@ body.dark-mode {
 body.dark-mode .bg-cream2,
 body.dark-mode .bg-white {
     background-color: #1e293b !important;
-    color: #ffffff !important;
+    color: #f8fafc !important;
 }
 
 /* Kontainer avatar/logo bundar (kecil) TETAP PUTIH di dark mode
@@ -99,19 +99,50 @@ body.dark-mode .rounded-lg.bg-white {
     color: #001F3F !important;
 }
 
-/* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI PUTIH (TEKS HIJAU TETAP HIJAU) */
+/* Elemen dengan background KUNYAU/EARTH (tombol "Masuk", ikon) —
+   teks di dalamnya tetap gelap agar kontras */
+body.dark-mode .bg-earth,
+body.dark-mode .bg-earth\/20,
+body.dark-mode .bg-earth\/15 {
+    background-color: #F2C94C !important;
+}
+body.dark-mode .bg-earth,
+body.dark-mode .bg-earth\/20 {
+    color: #001F3F !important;
+}
+
+/* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI PUTIH */
 body.dark-mode .text-oliveDark,
-body.dark-mode h1:not(.text-olive),
-body.dark-mode h2:not(.text-olive),
-body.dark-mode h3:not(.text-olive),
-body.dark-mode p:not(.text-olive),
-body.dark-mode div:not(.text-olive) {
+body.dark-mode h1:not(.text-olive):not(.text-olive2),
+body.dark-mode h2:not(.text-olive):not(.text-olive2),
+body.dark-mode h3:not(.text-olive):not(.text-olive2),
+body.dark-mode p:not(.text-olive):not(.text-olive2),
+body.dark-mode div:not(.text-olive):not(.text-olive2) {
     color: #f8fafc !important;
 }
 
-/* PERTAHANKAN WARNA HIJAU UNTUK KELAS HIJAU KHUSUS */
-body.dark-mode .text-olive { color: #4B8B3B !important; }
-body.dark-mode .text-olive2 { color: #3D7330 !important; }
+/* TEKS HIJAU DI DARK MODE → WARNA TERANG (kontras dgn bg gelap) */
+body.dark-mode .text-olive { color: #A8D5BA !important; }
+body.dark-mode .text-olive2 { color: #8CC9A1 !important; }
+/* Variasi opasitas hijau (text-olive/70, /50) */
+body.dark-mode .text-olive\/70,
+body.dark-mode .text-olive\/60,
+body.dark-mode .text-olive\/50,
+body.dark-mode .text-olive\/80 { color: #A8D5BA !important; }
+/* Opasitas oliveDark */
+body.dark-mode .text-oliveDark\/70,
+body.dark-mode .text-oliveDark\/80 { color: #cbd5e1 !important; }
+
+/* TEKS CREAM DI DARK MODE → terang (di header olive/footer) */
+body.dark-mode .text-cream,
+body.dark-mode .text-cream\/80,
+body.dark-mode .text-cream\/90,
+body.dark-mode .text-cream\/70 { color: #E2E8F0 !important; }
+
+/* Teks putih / white di dark mode tetap putih */
+body.dark-mode .text-white { color: #ffffff !important; }
+body.dark-mode .text-white\/40,
+body.dark-mode .text-white\/90 { color: #94a3b8 !important; }
 
 /* 3. SUB-KARTU & STATISTIK (2.5kg, 3 Kat, 8, Beras, Fidyah, dll) */
 body.dark-mode div[class*="bg-cream2"],
@@ -130,7 +161,19 @@ body.dark-mode nav a.bg-white {
     font-weight: 800 !important;
 }
 
-/* 5. INPUT FORM & BORDER HALUS */
+/* 5. TOMBOL EARTH (Masuk, dsb) — teks tetap gelap */
+body.dark-mode a.bg-earth,
+body.dark-mode button.bg-earth {
+    background-color: #F2C94C !important;
+    color: #001F3F !important;
+}
+body.dark-mode a.bg-olive,
+body.dark-mode button.bg-olive {
+    background-color: #4B8B3B !important;
+    color: #ffffff !important;
+}
+
+/* 6. INPUT FORM & BORDER HALUS */
 body.dark-mode .border-cream3 {
     border-color: #334155 !important;
 }
@@ -139,3 +182,11 @@ body.dark-mode input {
     color: #ffffff !important;
     border-color: #475569 !important;
 }
+
+/* 7. BACKGROUND LAYAR PENUH DI DARK MODE */
+body.dark-mode {
+    background-color: #0b132b !important;
+}
+/* Orb ambient glow tetap halus */
+body.dark-mode .bg-olive\/20 { background-color: rgba(75,139,59,0.25) !important; }
+body.dark-mode .bg-earth\/15 { background-color: rgba(242,201,76,0.2) !important; }

@@ -2,6 +2,8 @@
    E-Zakat — Smooth Page Transition (SPA-feel)
    Dipakai oleh SEMUA layout (app, welcome, guest, dashboard)
    Tidak butuh library eksternal.
+   Prinsip: CEPAT — konten tampil langsung, reveal hanya untuk
+   konten di bawah layar (agar scroll tetap smooth).
    ============================================================ */
 (function () {
     'use strict';
@@ -22,13 +24,11 @@
 
     // ---- 2. Deteksi konten utama (robust untuk semua layout) ----
     function markContent() {
-        // Coba berbagai kemungkinan wrapper konten
         const candidates = [
             document.querySelector('main'),
             document.querySelector('[role="main"]'),
             document.querySelector('.anim-dashboard'),   // dashboard
-            document.querySelector('[class*="flex-1"][class*="content"]'),
-            document.querySelector('.max-w-7xl'),        // halaman publik
+            document.querySelector('.max-w-7xl'),         // halaman publik
         ];
         for (const el of candidates) {
             if (el && el !== document.body) {
@@ -36,7 +36,6 @@
                 return el;
             }
         }
-        // Fallback: body
         document.body.setAttribute('data-page-transition', '');
         return document.body;
     }
@@ -59,17 +58,17 @@
                 if (u.origin !== location.origin) return;
             } catch (_) { return; }
         }
-        // Link rel="external" atau form submit
+        // Link dalam form
         if (a.closest('form')) return;
 
-        // Tandai navigasi + animasi keluar
+        // Tandai navigasi + animasi keluar (cepat: 0.16s)
         sessionStorage.setItem('zy_nav', '1');
         document.body.classList.add('zy-nav-out');
 
         // Progress bar langsung tampil
         const bar = ensureProgress();
         bar.style.opacity = '1';
-        setTimeout(() => { bar.style.width = '70%'; }, 30);
+        setTimeout(() => { bar.style.width = '70%'; }, 20);
     }, false);
 
     // ---- 4. Saat halaman baru siap ----
@@ -89,43 +88,36 @@
             document.body.classList.add('zy-nav-in');
             window.scrollTo(0, 0);
 
-            // Fade out progress bar setelah konten masuk
+            // Fade out progress bar SETELAH konten masuk (cepat)
             setTimeout(() => {
                 if (bar) {
                     bar.style.width = '100%';
                     setTimeout(() => {
                         bar.style.opacity = '0';
-                        setTimeout(() => { bar.style.width = '0%'; }, 250);
-                    }, 150);
+                        setTimeout(() => { bar.style.width = '0%'; }, 200);
+                    }, 120);
                 }
-            }, 80);
+            }, 60);
 
             // Bersihkan flag
             sessionStorage.removeItem('zy_nav');
             document.body.classList.remove('zy-nav-out');
 
-            // Jalankan scroll reveal
-            initReveal();
-        } else {
-            // Fresh load (bukan navigasi): biarkan animasi bawaan halaman
-            // (anim-smooth, anim-welcome, anim-auth, anim-dashboard sudah handle)
+            // Reveal HANYA konten di bawah layar (biar scroll smooth)
+            initBelowFoldReveal();
         }
+        // Fresh load: tidak perlu reveal — animasi CSS bawaan (anim-smooth,
+        // anim-welcome, anim-auth, anim-dashboard) sudah handle tampil.
     });
 
-    // ---- 5. Scroll Reveal (IntersectionObserver) ----
-    function initReveal() {
+    // ---- 5. Reveal KONTEN DI BAWAH LAYAR SAJA ----
+    // Tidak ada elemen yang di-hide sampai di-scroll — konten di atas
+    // layar langsung tampil. Ini yang bikin navigasi terasa CEPAT.
+    function initBelowFoldReveal() {
         if (prefersReduced) return;
 
-        // Elemen yang akan di-reveal — hanya yang BELUM punya animasi sendiri
         const targets = document.querySelectorAll(
-            [
-                'main > *',
-                '.grid > *',
-                '.space-y-6 > *',
-                '.space-y-4 > *',
-                '.space-y-3 > *',
-                '.anim-dashboard > *',
-            ].join(',')
+            ['.grid > *', '.space-y-6 > *', '.anim-dashboard > *'].join(',')
         );
         if (!targets.length) return;
 
@@ -136,7 +128,7 @@
                     io.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
         targets.forEach((el, i) => {
             // Lewati elemen yang sudah punya animasi sendiri
@@ -146,7 +138,15 @@
                 el.classList.contains('anim-dashboard') ||
                 el.hasAttribute('data-page-transition')) return;
 
-            const delay = Math.min(i * 50, 450);
+            // Elemen yang SUDAH terlihat di viewport: langsung reveal,
+            // tanpa jeda — biar tidak ada "lambat muncul"
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                el.classList.add('zy-reveal', 'zy-in');
+                return;
+            }
+
+            const delay = Math.min(i * 40, 300);
             el.style.setProperty('--zy-delay', delay + 'ms');
             el.classList.add('zy-reveal');
             io.observe(el);
