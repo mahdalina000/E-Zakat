@@ -224,6 +224,32 @@ body.dark-mode .bg-panel-2 .text-olive\/50 { color: #A8D5BA !important; }
 body.dark-mode .bg-panel .text-olive2,
 body.dark-mode .bg-panel-2 .text-olive2 { color: #8CC9A1 !important; }
 
+/* 3b. TEKS PENJELASAN DI DALAM BLOK PANEL HIJAU → PUTIH
+   (hanya deskripsi/penjelasan yang sebelumnya hijau redup & navy redup;
+    judul, angka besar, dan tombol tetap warna aslinya.
+    Di dark mode, aturan section 3 tetap menang → text hijau terang). */
+.bg-panel .text-olive\/70,
+.bg-panel .text-olive\/60,
+.bg-panel .text-olive\/50,
+.bg-panel .text-olive\/80,
+.bg-panel .text-oliveDark\/70,
+.bg-panel .text-oliveDark\/60,
+.bg-panel .text-oliveDark\/80,
+.bg-panel-2 .text-olive\/70,
+.bg-panel-2 .text-olive\/60,
+.bg-panel-2 .text-olive\/50,
+.bg-panel-2 .text-olive\/80,
+.bg-panel-2 .text-oliveDark\/70,
+.bg-panel-2 .text-oliveDark\/60,
+.bg-panel-2 .text-oliveDark\/80,
+.bg-panel p,
+.bg-panel-2 p,
+.bg-panel small,
+.bg-panel-2 small {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 31, 63, 0.35);
+}
+
 /* 4. SUB-KARTU & STATISTIK bg-cream2 (masih ada di form input) */
 body.dark-mode .bg-cream2,
 body.dark-mode .bg-cream2\/80,
