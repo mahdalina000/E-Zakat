@@ -85,10 +85,18 @@ body.dark-mode {
 
 /* 1. KARTU UTAMA DAN CONTAINER GELAP */
 body.dark-mode .bg-cream2,
-body.dark-mode .bg-white\/90,
 body.dark-mode .bg-white {
     background-color: #1e293b !important;
     color: #ffffff !important;
+}
+
+/* Kontainer avatar/logo bundar (kecil) TETAP PUTIH di dark mode
+   biar logo & teks dalam bundaran tetap terbaca */
+body.dark-mode .rounded-full.bg-white,
+body.dark-mode .rounded-xl.bg-white,
+body.dark-mode .rounded-lg.bg-white {
+    background-color: #ffffff !important;
+    color: #001F3F !important;
 }
 
 /* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI PUTIH (TEKS HIJAU TETAP HIJAU) */
