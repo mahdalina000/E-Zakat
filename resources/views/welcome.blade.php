@@ -54,10 +54,14 @@
 </head>
 <body class="h-screen w-screen flex flex-col justify-between p-3 lg:p-5 box-border relative overflow-hidden">
 
-    <!-- GAMBAR ILUSTRASI SEBAGAI BACKGROUND UTAMA LAYAR (TANPA KOTAK PUTIH) -->
-    <!-- GAMBAR ILUSTRASI BACKGROUND DENGAN EFEK BLUR -->
-<div class="fixed inset-0 w-full h-full opacity-20 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
-    <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover opacity-15 blur-[12px] scale-105" fetchpriority="low">
+    <!-- GAMBAR ILUSTRASI BACKGROUND — SAMA DENGAN BERANDA (blur halus + glow + grid) -->
+<div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+    <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-20" fetchpriority="low">
+    <!-- Ambient Glowing Orbs -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-earth/15 rounded-full blur-3xl"></div>
+    <!-- Subtle Pattern Mesh Grid -->
+    <div class="absolute inset-0 bg-[radial-gradient(#4B8B3B_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
 </div>
 
     <!-- FLOATING HEADER -->
