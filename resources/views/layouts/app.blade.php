@@ -28,16 +28,14 @@
     @endif
 </head>
 <body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden bg-cream2">
-
-    <!-- ELEMEN BACKGROUND AESTHETIC GLOBAL (E-ZAKAT BLUR + AMBIENT LIGHTING GLOW) -->
+    <!-- ELEMEN BACKGROUND AESTHETIC GLOBAL — SAMA PERSIS DENGAN WELCOME
+         (gambar blur + ambient glow + mesh grid) -->
     <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <!-- Asset Gambar E-Zakat dengan Opacity Halus & Blur -->
-       <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover opacity-15 blur-[12px] scale-105" fetchpriority="low">
-        
+        <img src="{{ asset('images/e-zakat.jpg') }}" alt="E-Zakat Background Aesthetic"
+             class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-20" fetchpriority="low">
         <!-- Ambient Glowing Orbs -->
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-earth/15 rounded-full blur-3xl"></div>
-        
         <!-- Subtle Pattern Mesh Grid -->
         <div class="absolute inset-0 bg-[radial-gradient(#4B8B3B_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
     </div>

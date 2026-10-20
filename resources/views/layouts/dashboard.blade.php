@@ -31,8 +31,8 @@
     </script>
     @endif
 </head>
-<body class="bg-cream2 text-oliveDark min-h-screen">
-<div class="flex min-h-screen">
+<body class="bg-cream2 text-oliveDark min-h-screen relative">
+<div class="flex min-h-screen relative z-10">
     {{-- Sidebar --}}
     <aside id="sidebar" class="fixed lg:sticky top-0 z-50 w-[260px] h-screen bg-olive text-white flex flex-col -translate-x-full lg:translate-x-0 transition-transform">
         <div class="h-[64px] flex items-center gap-3 px-5 border-b border-white/10">

@@ -4,25 +4,25 @@
 @section('page-sub','Riwayat aktivitas login seluruh pengguna')
 @section('content')
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-    <div class="bg-white rounded-[20px] border border-cream3 p-4">
+    <div class="rounded-[20px] border border-cream3/30 p-4">
         <div class="text-3xl font-black text-oliveDark">{{ $total }}</div>
         <div class="text-xs font-semibold text-oliveDark">Total Login Tercatat</div>
     </div>
-    <div class="bg-white rounded-[20px] border border-cream3 p-4">
+    <div class="rounded-[20px] border border-cream3/30 p-4">
         <div class="text-3xl font-black text-oliveDark">{{ \App\Models\LoginActivity::whereDate('logged_in_at',today())->count() }}</div>
         <div class="text-xs font-semibold text-oliveDark">Login Hari Ini</div>
     </div>
-    <div class="bg-white rounded-[20px] border border-cream3 p-4">
+    <div class="rounded-[20px] border border-cream3/30 p-4">
         <div class="text-3xl font-black text-oliveDark">{{ \App\Models\LoginActivity::where('logged_in_at','>=',now()->subDays(7))->count() }}</div>
         <div class="text-xs font-semibold text-oliveDark">7 Hari Terakhir</div>
     </div>
-    <div class="bg-white rounded-[20px] border border-cream3 p-4">
+    <div class="rounded-[20px] border border-cream3/30 p-4">
         <div class="text-3xl font-black text-oliveDark">{{ \App\Models\LoginActivity::distinct('user_id')->count('user_id') }}</div>
         <div class="text-xs font-semibold text-oliveDark">Pengguna Unik</div>
     </div>
 </div>
 
-<div class="bg-white rounded-[20px] border border-cream3 overflow-hidden">
+<div class="rounded-[20px] border border-cream3/30 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-xs text-olive/50 bg-cream">

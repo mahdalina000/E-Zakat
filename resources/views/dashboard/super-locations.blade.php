@@ -7,13 +7,13 @@
     @php $tabs=['all'=>'Semua','baznas'=>'BAZNAS','upz'=>'UPZ/Masjid','warga'=>'Rumah Warga']; @endphp
     @foreach($tabs as $k=>$v)
         <a href="{{ route('super.locations', $k==='all'?null:['type'=>$k]) }}"
-           class="px-4 py-2 rounded-full text-xs font-semibold {{ ($type===$k || ($k==='all' && !$type)) ? 'bg-olive text-white' : 'bg-white border border-cream3 text-olive' }}">
+           class="px-4 py-2 rounded-full text-xs font-semibold {{ ($type===$k || ($k==='all' && !$type)) ? 'bg-olive text-white' : 'border border-cream3 text-olive' }}">
             {{ $v }} <span class="opacity-60">({{ $counts[$k] }})</span>
         </a>
     @endforeach
 </div>
 
-<div class="bg-white rounded-[20px] border border-cream3 overflow-hidden">
+<div class="rounded-[20px] border border-cream3/30 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-xs text-olive/50 bg-cream">

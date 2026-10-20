@@ -4,7 +4,7 @@
 @section('content')
 <div class="w-full max-w-lg mx-auto">
     <!-- CARD UTAMA LOGIN -->
-    <div class="bg-white/95 backdrop-blur-md rounded-[28px] shadow-2xl border border-cream3 p-6 sm:p-7">
+    <div class="rounded-[28px] border border-cream3/40 p-6 sm:p-7">
         
         <!-- HEADER LOGIN -->
         <div class="text-center">

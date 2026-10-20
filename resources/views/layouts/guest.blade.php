@@ -13,13 +13,6 @@
 
         /* Mencegah gambar logo/asset meluap besar */
         img { max-width: 100%; height: auto; }
-
-        /* Animasi Zoom Smooth */
-        @keyframes zoomInAuth {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .anim-auth { animation: zoomInAuth 0.4s ease-out forwards; }
     </style>
     @yield('head')
 
@@ -38,7 +31,16 @@
 </head>
 <body class="bg-cream min-h-screen flex flex-col">
 
-<header class="bg-olive text-white shadow-sm anim-smooth delay-1">
+    <!-- BACKGROUND AESTHETIC — SAMA DENGAN WELCOME (gambar blur + glow + grid) -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+        <img src="{{ asset('images/e-zakat.jpg') }}" alt="E-Zakat Background Aesthetic"
+             class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-20" fetchpriority="low">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-earth/15 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#4B8B3B_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+    </div>
+
+<header class="bg-olive text-white shadow-sm relative z-10 anim-smooth delay-1">
     <div class="max-w-6xl mx-auto px-4 lg:px-6 h-[60px] flex items-center justify-between">
       {{-- Logo E-Zakat --}}
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
@@ -57,7 +59,7 @@
     </div>
 </header>
 
-<main class="flex-1 flex items-center justify-center p-4 py-10 anim-auth">
+<main class="flex-1 flex items-center justify-center p-4 py-10 relative z-10 anim-auth">
     @yield('content')
 </main>
 

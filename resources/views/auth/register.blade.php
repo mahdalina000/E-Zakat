@@ -2,7 +2,7 @@
 @section('title','Daftar — E-Zakat Banjarbaru')
 @section('content')
 <div class="w-full max-w-md">
-    <div class="bg-white rounded-[24px] shadow-xl border border-cream3 p-7">
+    <div class="rounded-[24px] border border-cream3/40 p-7">
         <div class="text-center">
             <div class="w-14 h-14 bg-olive rounded-2xl flex items-center justify-center text-cream text-2xl mx-auto"><i class="fa-solid fa-user-plus"></i></div>
             <h1 class="mt-4 font-extrabold text-oliveDark text-xl">Daftar Akun Masyarakat</h1>

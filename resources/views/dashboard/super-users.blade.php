@@ -9,18 +9,18 @@
     @endphp
     @foreach($tabs as $k=>$v)
         <a href="{{ route('super.users', array_filter(['role'=>$k==='all'?null:$k,'q'=>$q])) }}"
-           class="px-4 py-2 rounded-full text-xs font-semibold {{ ($role===$k || ($k==='all' && !$role)) ? 'bg-olive text-white' : 'bg-white border border-cream3 text-olive' }}">
+           class="px-4 py-2 rounded-full text-xs font-semibold {{ ($role===$k || ($k==='all' && !$role)) ? 'bg-olive text-white' : 'border border-cream3 text-olive' }}">
             {{ $v }} <span class="opacity-60">({{ $counts[$k] }})</span>
         </a>
     @endforeach
-    <form method="GET" class="ml-auto flex items-center border border-cream3 rounded-full px-3 bg-white">
+    <form method="GET" class="ml-auto flex items-center border border-cream3 rounded-full px-3">
         <i class="fa-solid fa-magnifying-glass text-olive/40 text-xs"></i>
         <input name="q" value="{{ $q }}" placeholder="Cari nama/email..." class="text-xs px-2 py-2 outline-none bg-transparent w-40">
         @if($role) <input type="hidden" name="role" value="{{ $role }}"> @endif
     </form>
 </div>
 
-<div class="bg-white rounded-[20px] border border-cream3 overflow-hidden">
+<div class="rounded-[20px] border border-cream3/30 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-xs text-olive/50 bg-cream">
