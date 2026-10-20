@@ -21,10 +21,12 @@
     --color-earth: #F2C94C;
 
     /* Blok konten hijau semi-transparan — ganti card putih di semua halaman.
-       Utility: bg-panel, bg-panel-2, border-panel-border */
-    --color-panel: rgba(75, 139, 59, 0.14);
-    --color-panel-2: rgba(75, 139, 59, 0.22);
-    --color-panel-border: rgba(75, 139, 59, 0.35);
+       Utility: bg-panel, bg-panel-2, border-panel-border.
+       Opasitas dinaikkan tipis (14%→22%, 22%→32%) agar hijau lebih terlihat
+       tapi tetap transparan. */
+    --color-panel: rgba(75, 139, 59, 0.22);
+    --color-panel-2: rgba(75, 139, 59, 0.32);
+    --color-panel-border: rgba(75, 139, 59, 0.40);
 
     /* Warna teks untuk di atas panel hijau:
        panel = olive (terang), panel-2 = oliveDark (gelap).
