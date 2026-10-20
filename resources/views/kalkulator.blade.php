@@ -19,7 +19,7 @@
     {{-- FITRAH --}}
     <div id="panel-fitrah" class="tab-panel mt-6 anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-olive"></i> Zakat Fitrah</h2>
                 <p class="text-xs text-olive/70 mt-1">Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras atau 3,5 liter / jiwa (1 sha').</p>
 
@@ -54,16 +54,16 @@
                     <label class="text-xs font-bold text-oliveDark">Harga Beras Banjar (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
                         <span class="text-xs font-bold text-olive">Rp</span>
-                        <input id="hargaBanjar" type="number" value="{{ $hargaBeras ?? 16000 }}" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+                        <input id="hargaBanjar" type="number" value="{{ $hargaBeras ?? 16000 }}" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                     </div>
                 </div>
                 <div id="hargaLainBox" class="mt-4 hidden">
                     <label class="text-xs font-bold text-oliveDark">Harga Beras Lain (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
                         <span class="text-xs font-bold text-olive">Rp</span>
-                        <input id="hargaLain" type="number" value="14000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+                        <input id="hargaLain" type="number" value="14000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                     </div>
-                    <input id="namaBerasLain" placeholder="Nama beras (opsional, mis. Beras Siam)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                    <input id="namaBerasLain" placeholder="Nama beras (opsional, mis. Beras Siam)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2">
                 </div>
             </div>
 
@@ -106,12 +106,12 @@
     {{-- MAAL --}}
     <div id="panel-maal" class="tab-panel mt-6 hidden anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-olive"></i> Zakat Maal (Harta)</h2>
                 <p class="text-xs text-olive/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark">Total Harta (Rp)</label>
-                <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+                <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                 <input id="maalHarta" type="hidden" value="100000000">
 
                 <!-- MODUL KONVERSI GRAM EMAS -->
@@ -130,7 +130,7 @@
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas per gram (Rp)</label>
                 <div class="mt-1.5 flex items-center gap-2">
                     <span class="text-xs font-bold text-olive">Rp</span>
-                    <input id="maalEmasFormatted" type="text" value="1.300.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+                    <input id="maalEmasFormatted" type="text" value="1.300.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                     <span class="text-[10px] text-olive/60">/gram</span>
                 </div>
                 <input id="maalEmas" type="hidden" value="1300000">
@@ -176,7 +176,7 @@
     {{-- FIDYAH --}}
     <div id="panel-fidyah" class="tab-panel mt-6 hidden anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-olive"></i> Fidyah Puasa</h2>
                 <p class="text-xs text-olive/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
 
@@ -188,7 +188,7 @@
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp)</label>
-                <input id="fidyahHarga" type="number" value="45000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+                <input id="fidyahHarga" type="number" value="45000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
 
                 <div class="mt-4 flex items-center gap-2 bg-cream2 rounded-xl p-3 border border-cream3/60">
                     <input id="fidyahModeBeras" type="checkbox" class="accent-olive rounded">

@@ -20,6 +20,18 @@
     --color-oliveDark: #001F3F;
     --color-earth: #F2C94C;
 
+    /* Blok konten hijau semi-transparan — ganti card putih di semua halaman.
+       Utility: bg-panel, bg-panel-2, border-panel-border */
+    --color-panel: rgba(75, 139, 59, 0.14);
+    --color-panel-2: rgba(75, 139, 59, 0.22);
+    --color-panel-border: rgba(75, 139, 59, 0.35);
+
+    /* Warna teks untuk di atas panel hijau:
+       panel = olive (terang), panel-2 = oliveDark (gelap).
+       Di dark mode dipaksa jadi terang (lihat override di bawah). */
+    --color-panel-text: #3D7330;
+    --color-panel-text-2: #001F3F;
+
     --font-poppins: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     --font-amiri: 'Amiri', serif;
 }
@@ -183,7 +195,34 @@ body.dark-mode div.bg-olive:not([class*="bg-olive\\/"}) {
     color: #ffffff !important;
 }
 
-/* 3. SUB-KARTU & STATISTIK bg-cream2 (masih ada di form input) */
+/* 3. BLOK PANEL HIJAU (bg-panel / bg-panel-2)
+   Light mode: blok hijau semi-transparan, teks gelap
+   (oliveDark = navy gelap, olive = hijau). */
+/* Panel hijau di dark mode → jadi gelap, teks terang */
+body.dark-mode .bg-panel,
+body.dark-mode .bg-panel\/50,
+body.dark-mode .bg-panel\/60,
+body.dark-mode .bg-panel-2,
+body.dark-mode .bg-panel-2\/50,
+body.dark-mode .bg-panel-2\/70 {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+/* Teks di atas panel: navy gelap & hijau gelap → terang di dark mode */
+body.dark-mode .bg-panel .text-oliveDark,
+body.dark-mode .bg-panel-2 .text-oliveDark { color: #f8fafc !important; }
+body.dark-mode .bg-panel .text-oliveDark\/70,
+body.dark-mode .bg-panel-2 .text-oliveDark\/70 { color: #cbd5e1 !important; }
+body.dark-mode .bg-panel .text-olive,
+body.dark-mode .bg-panel-2 .text-olive,
+body.dark-mode .bg-panel .text-olive\/70,
+body.dark-mode .bg-panel-2 .text-olive\/70,
+body.dark-mode .bg-panel .text-olive\/50,
+body.dark-mode .bg-panel-2 .text-olive\/50 { color: #A8D5BA !important; }
+body.dark-mode .bg-panel .text-olive2,
+body.dark-mode .bg-panel-2 .text-olive2 { color: #8CC9A1 !important; }
+
+/* 4. SUB-KARTU & STATISTIK bg-cream2 (masih ada di form input) */
 body.dark-mode .bg-cream2,
 body.dark-mode .bg-cream2\/80,
 body.dark-mode .bg-cream2\/60,

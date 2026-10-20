@@ -30,7 +30,6 @@
     @endif
 </head>
 <body class="bg-cream min-h-screen flex flex-col">
-
     <!-- BACKGROUND AESTHETIC — SAMA DENGAN WELCOME (gambar blur + glow + grid) -->
     <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden flex items-center justify-center">
         <img src="{{ asset('images/e-zakat.jpg') }}" alt="E-Zakat Background Aesthetic"

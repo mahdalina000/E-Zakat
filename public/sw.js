@@ -3,7 +3,7 @@
 // TIDAK cache HTML halaman -> navigasi selalu fresh dari server,
 // tanpa efek "stale" service worker.
 
-const ASSET_CACHE = 'ezakat-assets-v2';
+const ASSET_CACHE = 'ezakat-assets-v3';
 const ASSET_RE = /\/(build|images)\/|\.(woff2?|ttf|eot|otf|css|js|png|jpe?g|webp|svg|ico)(\?|$)/i;
 
 self.addEventListener('install', () => self.skipWaiting());

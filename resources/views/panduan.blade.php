@@ -22,7 +22,7 @@
     <div class="mt-6 grid lg:grid-cols-[1fr_300px] gap-6">
         <div class="space-y-6">
             {{-- Niat --}}
-            <div id="niat" class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
+            <div id="niat" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">1</span> Niat Zakat
                 </h2>
@@ -45,7 +45,7 @@
             </div>
 
             {{-- Zakat Fitrah --}}
-            <div id="fitrah" class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-3">
+            <div id="fitrah" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-3">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">2</span> Zakat Fitrah
                 </h2>
@@ -66,7 +66,7 @@
             </div>
 
             {{-- 8 Asnaf --}}
-            <div id="asnaf" class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-4">
+            <div id="asnaf" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">3</span> 8 Asnaf Penerima Zakat
                 </h2>
@@ -92,7 +92,7 @@
             </div>
 
             {{-- Zakat Maal --}}
-            <div id="maal" class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-4">
+            <div id="maal" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> Zakat Maal
                 </h2>
@@ -113,7 +113,7 @@
             </div>
 
             {{-- Fidyah --}}
-            <div id="fidyah" class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-4">
+            <div id="fidyah" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">5</span> Fidyah
                 </h2>
@@ -133,7 +133,7 @@
             </div>
 
             {{-- FAQ --}}
-            <div id="faq" class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-4">
+            <div id="faq" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">6</span> FAQ Zakat
                 </h2>

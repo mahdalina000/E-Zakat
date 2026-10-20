@@ -69,7 +69,7 @@
             </div>
 
             <!-- KOLOM KANAN: PENGUMUMAN -->
-            <div class="lg:col-span-5 rounded-3xl p-5 border border-cream3/20 space-y-3 anim-smooth delay-3">
+            <div class="lg:col-span-5 bg-panel rounded-3xl p-5 border border-panel-border space-y-3 anim-smooth delay-3">
                 <div class="flex items-center gap-3">
                     <div class="w-9 h-9 bg-olive text-white rounded-xl flex items-center justify-center shrink-0 shadow-sm">
                         <i class="fa-solid fa-bullhorn text-sm"></i>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="space-y-2 text-xs">
-                    <div class="flex items-center gap-2.5 rounded-xl p-2.5 border border-cream3/30">
+                    <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
                         <div class="w-7 h-7 bg-olive/15 text-olive rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-wheat-awn text-xs"></i></div>
                         <div class="leading-tight">
                             <div class="font-bold text-oliveDark text-[11px]">Beras Banjar Premium</div>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2.5 rounded-xl p-2.5 border border-cream3/30">
+                    <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
                         <div class="w-7 h-7 bg-earth/20 text-olive rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-bowl-rice text-xs"></i></div>
                         <div class="leading-tight">
                             <div class="font-bold text-oliveDark text-[11px]">Beras Lainnya</div>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-2.5 rounded-xl p-2.5 border border-cream3/30">
+                    <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
                         <div class="w-7 h-7 bg-olive2/15 text-olive2 rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-utensils text-xs"></i></div>
                         <div class="leading-tight">
                             <div class="font-bold text-oliveDark text-[11px]">Fidyah Puasa</div>
@@ -115,7 +115,7 @@
 
         <!-- 3 MENU CARDS RINGKAS -->
         <div class="grid md:grid-cols-3 gap-3 shrink-0 anim-smooth delay-4">
-            <a href="{{ url('/kalkulator') }}" class="rounded-2xl border border-cream3/20 p-3.5 hover-smooth transition group flex items-center gap-3">
+            <a href="{{ url('/kalkulator') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3">
                 <div class="w-10 h-10 bg-olive text-white rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm"><i class="fa-solid fa-calculator"></i></div>
                 <div class="leading-tight">
                     <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Kalkulator Zakat</div>
@@ -123,7 +123,7 @@
                 </div>
             </a>
 
-            <a href="{{ url('/direktori') }}" class="rounded-2xl border border-cream3/20 p-3.5 hover-smooth transition group flex items-center gap-3">
+            <a href="{{ url('/direktori') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3">
                 <div class="w-10 h-10 bg-earth text-oliveDark rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="leading-tight">
                     <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Lokasi Penyaluran</div>
@@ -131,7 +131,7 @@
                 </div>
             </a>
 
-            <a href="{{ url('/panduan') }}" class="rounded-2xl border border-cream3/20 p-3.5 hover-smooth transition group flex items-center gap-3">
+            <a href="{{ url('/panduan') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3">
                 <div class="w-10 h-10 bg-olive2 text-white rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm"><i class="fa-solid fa-book-open"></i></div>
                 <div class="leading-tight">
                     <div class="font-bold text-oliveDark text-xs group-hover:text-olive transition">Panduan Zakat</div>

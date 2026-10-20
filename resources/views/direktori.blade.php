@@ -60,12 +60,12 @@
 
     <!-- PETA + LIST LOKASI -->
     <div class="mt-6 grid lg:grid-cols-[1fr_360px] gap-6 anim-smooth delay-2">
-        <div class="rounded-[24px] border border-cream3/20 p-2">
+        <div class="bg-panel rounded-[24px] border border-panel-border p-2">
             <div id="map"></div>
         </div>
 
         {{-- List --}}
-        <div class="rounded-[24px] border border-cream3/20 p-4 flex flex-col">
+        <div class="bg-panel rounded-[24px] border border-panel-border p-4 flex flex-col">
             <div class="flex items-center justify-between pb-2 border-b border-cream3/60">
                 <h3 class="font-extrabold text-oliveDark text-xs uppercase tracking-wider">Daftar Lokasi</h3>
                 <input id="searchBox" placeholder="Cari nama / alamat..." class="border border-cream3 rounded-full px-3 py-1.5 text-xs w-40 bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/40 transition">
@@ -75,7 +75,7 @@
     </div>
 
     {{-- Penjelasan Warna (SUDAH DIUBAH DARI ORANGE KE BIRU) --}}
-    <div class="mt-6 rounded-[24px] border border-cream3/20 p-5 anim-smooth delay-3">
+    <div class="mt-6 bg-panel rounded-[24px] border border-panel-border p-5 anim-smooth delay-3">
         <h3 class="font-extrabold text-oliveDark text-sm flex items-center gap-2">
             <i class="fa-solid fa-circle-info text-olive"></i> Penjelasan Warna Pin
         </h3>
