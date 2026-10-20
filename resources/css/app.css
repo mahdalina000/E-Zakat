@@ -111,27 +111,44 @@ body.dark-mode .bg-earth\/20 {
     color: #001F3F !important;
 }
 
-/* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI PUTIH */
+/* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI PUTIH
+   (di atas bg gelap halaman; elemen ber-putih sendiri punya aturan khusus) */
 body.dark-mode .text-oliveDark,
-body.dark-mode h1:not(.text-olive):not(.text-olive2),
-body.dark-mode h2:not(.text-olive):not(.text-olive2),
-body.dark-mode h3:not(.text-olive):not(.text-olive2),
-body.dark-mode p:not(.text-olive):not(.text-olive2),
-body.dark-mode div:not(.text-olive):not(.text-olive2) {
+body.dark-mode h1:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth),
+body.dark-mode h2:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth),
+body.dark-mode h3:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth) {
+    color: #f8fafc !important;
+}
+/* div: hanya yang tidak punya kelas warna sendiri */
+body.dark-mode div:not([class*="text-"]) {
     color: #f8fafc !important;
 }
 
 /* TEKS HIJAU DI DARK MODE → WARNA TERANG (kontras dgn bg gelap) */
 body.dark-mode .text-olive { color: #A8D5BA !important; }
 body.dark-mode .text-olive2 { color: #8CC9A1 !important; }
-/* Variasi opasitas hijau (text-olive/70, /50) */
+/* Variasi opasitas hijau (Tailwind generate class .text-olive\/70 dst) */
 body.dark-mode .text-olive\/70,
 body.dark-mode .text-olive\/60,
 body.dark-mode .text-olive\/50,
-body.dark-mode .text-olive\/80 { color: #A8D5BA !important; }
+body.dark-mode .text-olive\/80,
+body.dark-mode .text-olive\/90 { color: #A8D5BA !important; }
 /* Opasitas oliveDark */
 body.dark-mode .text-oliveDark\/70,
-body.dark-mode .text-oliveDark\/80 { color: #cbd5e1 !important; }
+body.dark-mode .text-oliveDark\/80,
+body.dark-mode .text-oliveDark\/60 { color: #cbd5e1 !important; }
+
+/* ELEMEN PUTIH TETAP PUTIH (nav aktif, logo, tombol) */
+body.dark-mode nav a.bg-white {
+    background-color: #ffffff !important;
+    color: #001F3F !important;
+    font-weight: 800 !important;
+}
+body.dark-mode .rounded-full.bg-white,
+body.dark-mode .rounded-xl.bg-white {
+    background-color: #ffffff !important;
+    color: #001F3F !important;
+}
 
 /* TEKS CREAM DI DARK MODE → terang (di header olive/footer) */
 body.dark-mode .text-cream,
@@ -143,34 +160,38 @@ body.dark-mode .text-cream\/70 { color: #E2E8F0 !important; }
 body.dark-mode .text-white { color: #ffffff !important; }
 body.dark-mode .text-white\/40,
 body.dark-mode .text-white\/90 { color: #94a3b8 !important; }
+/* Teks earth (kuning) tetap kuning terang */
+body.dark-mode .text-earth { color: #F2C94C !important; }
 
-/* 3. SUB-KARTU & STATISTIK (2.5kg, 3 Kat, 8, Beras, Fidyah, dll) */
-body.dark-mode div[class*="bg-cream2"],
-body.dark-mode button[class*="bg-cream2"],
-body.dark-mode .bg-cream2\/80,
-body.dark-mode .bg-cream2\/60 {
-    background-color: #334155 !important;
-    color: #ffffff !important;
-    border-color: #475569 !important;
-}
-
-/* 4. NAVIGASI AKTIF HASIL KONTRAST */
-body.dark-mode nav a.bg-white {
-    background-color: #ffffff !important;
+/* Elemen KUNYAU (tombol Masuk, badge) — teks gelap */
+body.dark-mode .bg-earth,
+body.dark-mode .bg-earth\/20 {
+    background-color: #F2C94C !important;
     color: #001F3F !important;
-    font-weight: 800 !important;
 }
-
-/* 5. TOMBOL EARTH (Masuk, dsb) — teks tetap gelap */
 body.dark-mode a.bg-earth,
 body.dark-mode button.bg-earth {
     background-color: #F2C94C !important;
     color: #001F3F !important;
 }
+
+/* TOMBOL HIJAU — teks putih */
 body.dark-mode a.bg-olive,
-body.dark-mode button.bg-olive {
+body.dark-mode button.bg-olive,
+body.dark-mode div.bg-olive:not([class*="bg-olive\\/"}) {
     background-color: #4B8B3B !important;
     color: #ffffff !important;
+}
+
+/* 3. SUB-KARTU & STATISTIK bg-cream2 (masih ada di form input) */
+body.dark-mode .bg-cream2,
+body.dark-mode .bg-cream2\/80,
+body.dark-mode .bg-cream2\/60,
+body.dark-mode .bg-cream2\/90,
+body.dark-mode .bg-cream2\/50 {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
 }
 
 /* 6. INPUT FORM & BORDER HALUS */

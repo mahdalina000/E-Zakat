@@ -4,22 +4,22 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full">
     <!-- HEADER TAB TIPE ZAKAT -->
-    <div class="bg-white/90 backdrop-blur-md rounded-[24px] p-5 lg:p-6 border border-cream3 shadow-xl anim-smooth delay-1 hover-smooth">
+    <div class="anim-smooth delay-1">
         <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
             <i class="fa-solid fa-calculator text-olive"></i> Kalkulator Zakat & Fidyah
         </h1>
         <p class="text-xs lg:text-sm text-olive/70 mt-1 font-medium">Pilih jenis zakat, atur jumlah, dan lihat hasil perhitungan secara otomatis. Harga beras dapat disesuaikan.</p>
         <div class="mt-4 flex flex-wrap gap-2">
             <button data-tab="fitrah" class="tab-btn bg-olive text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow transition active:scale-95">Zakat Fitrah</button>
-            <button data-tab="maal" class="tab-btn bg-white border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95">Zakat Maal</button>
-            <button data-tab="fidyah" class="tab-btn bg-white border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95">Fidyah</button>
+            <button data-tab="maal" class="tab-btn border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Maal</button>
+            <button data-tab="fidyah" class="tab-btn border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Fidyah</button>
         </div>
     </div>
 
     {{-- FITRAH --}}
     <div id="panel-fitrah" class="tab-panel mt-6 anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl hover-smooth">
+            <div class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-olive"></i> Zakat Fitrah</h2>
                 <p class="text-xs text-olive/70 mt-1">Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras atau 3,5 liter / jiwa (1 sha').</p>
 
@@ -34,7 +34,7 @@
                 <div class="mt-2 grid grid-cols-2 gap-2">
                     <label class="cursor-pointer">
                         <input type="radio" name="beras" value="banjar" checked class="peer sr-only">
-                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive bg-cream2 border border-cream3 rounded-2xl p-3 text-center transition shadow-sm">
+                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive border border-cream3/40 rounded-2xl p-3 text-center transition shadow-sm">
                             <div class="text-xs font-extrabold">Beras Banjar</div>
                             <div class="text-[10px] opacity-80">Premium lokal</div>
                             <div class="text-xs mt-1 font-bold">Rp <span id="labelBanjar">{{ number_format($hargaBeras ?? 16000,0,',','.') }}</span> / kg</div>
@@ -42,7 +42,7 @@
                     </label>
                     <label class="cursor-pointer">
                         <input type="radio" name="beras" value="lain" class="peer sr-only">
-                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive bg-cream2 border border-cream3 rounded-2xl p-3 text-center transition shadow-sm">
+                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive border border-cream3/40 rounded-2xl p-3 text-center transition shadow-sm">
                             <div class="text-xs font-extrabold">Beras Lain</div>
                             <div class="text-[10px] opacity-80">Atur harga</div>
                             <div class="text-xs mt-1 font-bold">Custom / kg</div>
@@ -106,7 +106,7 @@
     {{-- MAAL --}}
     <div id="panel-maal" class="tab-panel mt-6 hidden anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl hover-smooth">
+            <div class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-olive"></i> Zakat Maal (Harta)</h2>
                 <p class="text-xs text-olive/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
 
@@ -115,12 +115,12 @@
                 <input id="maalHarta" type="hidden" value="100000000">
 
                 <!-- MODUL KONVERSI GRAM EMAS -->
-                <div class="mt-3 p-3 bg-cream2 rounded-2xl border border-cream3/80">
+                <div class="mt-3 p-3 rounded-2xl border border-cream3/40">
                     <label class="block text-xs font-bold text-oliveDark mb-1">
                         <i class="fa-solid fa-scale-balanced text-olive mr-1"></i> Hitung Dari Gram Emas
                     </label>
                     <div class="flex items-center gap-2">
-                        <input id="gramEmasInput" type="number" placeholder="Jumlah Gram (mis. 85)" class="w-1/2 border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-semibold">
+                        <input id="gramEmasInput" type="number" placeholder="Jumlah Gram (mis. 85)" class="w-1/2 border border-cream3 rounded-full px-3 py-1.5 text-xs font-semibold">
                         <button type="button" id="btnKonversiEmas" class="bg-olive text-white text-xs font-bold px-4 py-1.5 rounded-full hover:bg-olive2 transition shadow-sm active:scale-95">
                             Konversi ke Rp
                         </button>
@@ -146,8 +146,8 @@
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Sudah haul 1 tahun?</label>
                 <div class="mt-2 flex gap-2">
-                    <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Ya</div></label>
-                    <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
+                    <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Ya</div></label>
+                    <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
                 </div>
             </div>
 
@@ -176,7 +176,7 @@
     {{-- FIDYAH --}}
     <div id="panel-fidyah" class="tab-panel mt-6 hidden anim-smooth delay-2">
         <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl hover-smooth">
+            <div class="rounded-[24px] border border-cream3/20 p-5 lg:p-6 anim-smooth delay-2">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-olive"></i> Fidyah Puasa</h2>
                 <p class="text-xs text-olive/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
 
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(b => {
-                b.className = 'tab-btn bg-white border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition';
+                b.className = 'tab-btn border border-cream3 text-olive px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition';
             });
             btn.className = 'tab-btn bg-olive text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow transition';
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));

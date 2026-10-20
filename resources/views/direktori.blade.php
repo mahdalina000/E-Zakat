@@ -11,7 +11,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full">
     <!-- HERO HEADER DIREKTORI -->
-    <div class="bg-white/90 backdrop-blur-md rounded-[24px] p-5 lg:p-6 border border-cream3 shadow-xl anim-smooth delay-1 hover-smooth">
+    <div class="anim-smooth delay-1">
         <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
             <i class="fa-solid fa-map-location-dot text-olive"></i> Lokasi Penyaluran Zakat — Banjarbaru
         </h1>
@@ -60,12 +60,12 @@
 
     <!-- PETA + LIST LOKASI -->
     <div class="mt-6 grid lg:grid-cols-[1fr_360px] gap-6 anim-smooth delay-2">
-        <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-2 shadow-xl hover-smooth">
+        <div class="rounded-[24px] border border-cream3/20 p-2">
             <div id="map"></div>
         </div>
 
         {{-- List --}}
-        <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-4 shadow-xl hover-smooth flex flex-col">
+        <div class="rounded-[24px] border border-cream3/20 p-4 flex flex-col">
             <div class="flex items-center justify-between pb-2 border-b border-cream3/60">
                 <h3 class="font-extrabold text-oliveDark text-xs uppercase tracking-wider">Daftar Lokasi</h3>
                 <input id="searchBox" placeholder="Cari nama / alamat..." class="border border-cream3 rounded-full px-3 py-1.5 text-xs w-40 bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/40 transition">
@@ -75,7 +75,7 @@
     </div>
 
     {{-- Penjelasan Warna (SUDAH DIUBAH DARI ORANGE KE BIRU) --}}
-    <div class="mt-6 bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 shadow-xl anim-smooth delay-3 hover-smooth">
+    <div class="mt-6 rounded-[24px] border border-cream3/20 p-5 anim-smooth delay-3">
         <h3 class="font-extrabold text-oliveDark text-sm flex items-center gap-2">
             <i class="fa-solid fa-circle-info text-olive"></i> Penjelasan Warna Pin
         </h3>
