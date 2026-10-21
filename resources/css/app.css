@@ -143,16 +143,16 @@ body.dark-mode div:not([class*="text-"]) {
 /* TEKS HIJAU DI DARK MODE → WARNA TERANG (kontras dgn bg gelap) */
 body.dark-mode .text-olive { color: #A8D5BA !important; }
 body.dark-mode .text-olive2 { color: #8CC9A1 !important; }
-/* Variasi opasitas hijau (Tailwind generate class .text-olive\/70 dst) */
+/* Variasi opasitas hijau */
 body.dark-mode .text-olive\/70,
 body.dark-mode .text-olive\/60,
 body.dark-mode .text-olive\/50,
 body.dark-mode .text-olive\/80,
 body.dark-mode .text-olive\/90 { color: #A8D5BA !important; }
-/* Opasitas oliveDark */
+/* Opasitas oliveDark → PUTIH (sesuai permintaan: hitam→putih di dark) */
 body.dark-mode .text-oliveDark\/70,
 body.dark-mode .text-oliveDark\/80,
-body.dark-mode .text-oliveDark\/60 { color: #cbd5e1 !important; }
+body.dark-mode .text-oliveDark\/60 { color: #f8fafc !important; }
 
 /* ELEMEN PUTIH TETAP PUTIH (nav aktif, logo, tombol) */
 body.dark-mode nav a.bg-white {
@@ -166,16 +166,16 @@ body.dark-mode .rounded-xl.bg-white {
     color: #2E5A26 !important;
 }
 
-/* TEKS CREAM DI DARK MODE → terang (di header olive/footer) */
+/* TEKS CREAM DI DARK MODE → PUTIH TERANG (di header olive/footer) */
 body.dark-mode .text-cream,
 body.dark-mode .text-cream\/80,
 body.dark-mode .text-cream\/90,
-body.dark-mode .text-cream\/70 { color: #E2E8F0 !important; }
+body.dark-mode .text-cream\/70 { color: #f8fafc !important; }
 
 /* Teks putih / white di dark mode tetap putih */
 body.dark-mode .text-white { color: #ffffff !important; }
 body.dark-mode .text-white\/40,
-body.dark-mode .text-white\/90 { color: #94a3b8 !important; }
+body.dark-mode .text-white\/90 { color: #f8fafc !important; }
 /* Teks earth (kuning) tetap kuning terang */
 body.dark-mode .text-earth { color: #F2C94C !important; }
 
@@ -224,7 +224,11 @@ body.dark-mode .bg-panel-2 .text-black { color: #f8fafc !important; }
 body.dark-mode .bg-panel .text-black\/70,
 body.dark-mode .bg-panel-2 .text-black\/70,
 body.dark-mode .bg-panel .text-black\/60,
-body.dark-mode .bg-panel-2 .text-black\/60 { color: #cbd5e1 !important; }
+body.dark-mode .bg-panel-2 .text-black\/60,
+body.dark-mode .bg-panel .text-black\/50,
+body.dark-mode .bg-panel-2 .text-black\/50,
+body.dark-mode .bg-panel .text-black\/40,
+body.dark-mode .bg-panel-2 .text-black\/40 { color: #f8fafc !important; }
 
 /* 3b. TEKS PENJELASAN DI DALAM BLOK PANEL (p / small / text-olive* / text-oliveDark*)
    Light: hitam (sesuai mapping). Dark: HITAM→PUTIH, HIJAU TUA→HIJAU MUDA. */
@@ -309,12 +313,19 @@ body.dark-mode .bg-earth\/20 { background-color: rgba(46,90,38,0.30) !important;
 body.dark-mode .bg-earth\/15 { background-color: rgba(46,90,38,0.20) !important; }
 body.dark-mode .bg-earth\/10 { background-color: rgba(46,90,38,0.15) !important; }
 
-/* 8. TEKS DI LUAR PANEL (text-black & varian) DI DARK → TERANG KONTRA */
+/* 8. TEKS DI LUAR PANEL DI DARK MODE → PUTIH TERANG (hanya teks yang sebelumnya
+   gelap/black. Text putih, hijau, & kuning sudah di-cover aturan sebelumnya) */
 body.dark-mode .text-black,
 body.dark-mode .text-black\/90,
 body.dark-mode .text-black\/80,
 body.dark-mode .text-black\/70,
 body.dark-mode .text-black\/60,
-body.dark-mode .text-black\/50 {
+body.dark-mode .text-black\/50,
+body.dark-mode .text-black\/40 {
     color: #f8fafc !important;
 }
+
+/* 9. FALLBACK GLOBAL DI DARK MODE — semua teks yang belum punya kelas warna
+   eksplisit & bukan putih/hijau/kuning → PUTIH TERANG (anti nabrak).
+   Berlaku untuk welcome s.d. panduan. */
+body.dark-mode .text-oliveDark { color: #f8fafc !important; }
