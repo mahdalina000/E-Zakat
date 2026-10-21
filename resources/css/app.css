@@ -125,7 +125,7 @@ body.dark-mode .bg-earth\/20 {
     color: #2E5A26 !important;
 }
 
-/* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI PUTIH
+/* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI TERANG
    (di atas bg gelap halaman; elemen ber-putih sendiri punya aturan khusus) */
 body.dark-mode .text-oliveDark,
 body.dark-mode h1:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth),
@@ -133,6 +133,8 @@ body.dark-mode h2:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-
 body.dark-mode h3:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth) {
     color: #f8fafc !important;
 }
+/* TEKS KUNYAU (text-earth) DI DARK → HIJAU MUDA (agar tidak tenggelam jadi kuning pekat) */
+body.dark-mode .text-earth { color: #A8D5BA !important; }
 /* div: hanya yang tidak punya kelas warna sendiri */
 body.dark-mode div:not([class*="text-"]) {
     color: #f8fafc !important;
@@ -198,67 +200,50 @@ body.dark-mode div.bg-olive:not([class*="bg-olive\\/"}) {
 }
 
 /* 3. BLOK PANEL HIJAU (bg-panel / bg-panel-2)
-   Light mode: blok hijau semi-transparan, teks gelap
-   (oliveDark = navy gelap, olive = hijau). */
-/* Panel hijau di dark mode → jadi gelap, teks terang */
+   Light mode: blok hijau semi-transparan, teks gelap.
+   Dark mode: panel DIPECATKAN (gelap pekat #0f1b12) supaya tidak pucat,
+   cahaya orange TIDAK menembus, dan teks selalu kontras. */
 body.dark-mode .bg-panel,
 body.dark-mode .bg-panel\/50,
 body.dark-mode .bg-panel\/60,
 body.dark-mode .bg-panel-2,
 body.dark-mode .bg-panel-2\/50,
 body.dark-mode .bg-panel-2\/70 {
-    background-color: #1e293b !important;
-    border-color: #334155 !important;
+    background-color: #0f1b12 !important;
+    border-color: #1f3324 !important;
 }
-/* Teks di atas panel: navy gelap & hijau gelap → terang di dark mode */
+/* Teks di atas panel: HIJAU TUA → HIJAU MUDA, HITAM → PUTIH */
 body.dark-mode .bg-panel .text-oliveDark,
-body.dark-mode .bg-panel-2 .text-oliveDark { color: #f8fafc !important; }
+body.dark-mode .bg-panel-2 .text-oliveDark { color: #A8D5BA !important; }
 body.dark-mode .bg-panel .text-oliveDark\/70,
-body.dark-mode .bg-panel-2 .text-oliveDark\/70 { color: #cbd5e1 !important; }
+body.dark-mode .bg-panel-2 .text-oliveDark\/70 { color: #A8D5BA !important; }
 body.dark-mode .bg-panel .text-olive,
-body.dark-mode .bg-panel-2 .text-olive,
-body.dark-mode .bg-panel .text-olive\/70,
-body.dark-mode .bg-panel-2 .text-olive\/70,
-body.dark-mode .bg-panel .text-olive\/50,
-body.dark-mode .bg-panel-2 .text-olive\/50 { color: #A8D5BA !important; }
-body.dark-mode .bg-panel .text-olive2,
-body.dark-mode .bg-panel-2 .text-olive2 { color: #8CC9A1 !important; }
+body.dark-mode .bg-panel-2 .text-olive { color: #f8fafc !important; }
+body.dark-mode .bg-panel .text-black,
+body.dark-mode .bg-panel-2 .text-black { color: #f8fafc !important; }
+body.dark-mode .bg-panel .text-black\/70,
+body.dark-mode .bg-panel-2 .text-black\/70,
+body.dark-mode .bg-panel .text-black\/60,
+body.dark-mode .bg-panel-2 .text-black\/60 { color: #cbd5e1 !important; }
 
-/* 3b. TEKS PENJELASAN DI DALAM BLOK PANEL HIJAU → PUTIH
-   (hanya deskripsi/penjelasan yang sebelumnya hijau redup & navy redup;
-    judul, angka besar, dan tombol tetap warna aslinya.
-    Di dark mode, aturan section 3 tetap menang → text hijau terang). */
-.bg-panel .text-olive\/70,
-.bg-panel .text-olive\/60,
-.bg-panel .text-olive\/50,
-.bg-panel .text-olive\/80,
-.bg-panel .text-oliveDark\/70,
-.bg-panel .text-oliveDark\/60,
-.bg-panel .text-oliveDark\/80,
-.bg-panel-2 .text-olive\/70,
-.bg-panel-2 .text-olive\/60,
-.bg-panel-2 .text-olive\/50,
-.bg-panel-2 .text-olive\/80,
-.bg-panel-2 .text-oliveDark\/70,
-.bg-panel-2 .text-oliveDark\/60,
-.bg-panel-2 .text-oliveDark\/80,
-.bg-panel p,
-.bg-panel-2 p,
-.bg-panel small,
-.bg-panel-2 small {
-    color: #ffffff !important;
-    text-shadow: 0 1px 3px rgba(0, 31, 63, 0.35);
+/* 3b. TEKS PENJELASAN DI DALAM BLOK PANEL (p / small / text-olive* / text-oliveDark*)
+   Light: hitam (sesuai mapping). Dark: HITAM→PUTIH, HIJAU TUA→HIJAU MUDA. */
+body.dark-mode .bg-panel p,
+body.dark-mode .bg-panel-2 p,
+body.dark-mode .bg-panel small,
+body.dark-mode .bg-panel-2 small {
+    color: #f8fafc !important;
 }
 
-/* 4. SUB-KARTU & STATISTIK bg-cream2 (masih ada di form input) */
+/* 4. SUB-KARTU & STATISTIK bg-cream2 → DIPECATKAN di dark (tidak pucat) */
 body.dark-mode .bg-cream2,
 body.dark-mode .bg-cream2\/80,
 body.dark-mode .bg-cream2\/60,
 body.dark-mode .bg-cream2\/90,
 body.dark-mode .bg-cream2\/50 {
-    background-color: #1e293b !important;
+    background-color: #0f1b12 !important;
     color: #f8fafc !important;
-    border-color: #334155 !important;
+    border-color: #1f3324 !important;
 }
 
 /* 6. INPUT FORM & BORDER HALUS */
@@ -275,16 +260,61 @@ body.dark-mode input {
 body.dark-mode {
     background-color: #0b132b !important;
 }
-/* Orb ambient glow: hijau tetap halus, KUNING/ORANGE DIHILANGKAN (permintaan user) */
-body.dark-mode .bg-olive\/20 { background-color: rgba(75,139,59,0.18) !important; }
-body.dark-mode .bg-earth\/15 { background-color: transparent !important; }
 
-/* 8. TEKS HITAM (text-black & varian) DI DARK MODE -> TERANG KONTRA
-   (blade memakai text-black untuk teks yang sebelumnya hijau;
-    di dark mode dipaksa terang agar tetap terbaca di atas bg gelap) */
+/* GAMBAR LATAR (e-zakat.jpg) DI DARK MODE → DIGELAPKAN SUPAYA TIDAK CAHAYA ORANGE
+   (Gambar blur di welcome & layout app/guest jadi gelap pekat di dark mode) */
+body.dark-mode img[src*="e-zakat.jpg"] {
+    filter: brightness(0.15) contrast(1.1) saturate(0.3) !important;
+    opacity: 0.25 !important;
+}
+/* Overlay gelap di atas gambar latar agar background benar-benar gelap */
+body.dark-mode::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #0b132b;
+    opacity: 0.92;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Orb ambient glow: DIHILANGKAN di dark mode (cahaya orange) */
+body.dark-mode .bg-olive\/20 { background-color: transparent !important; }
+body.dark-mode .bg-earth\/15 { background-color: transparent !important; }
+body.dark-mode .bg-earth\/10 { background-color: transparent !important; }
+
+/* BLOK PUCAT (bg-white, bg-cream, bg-cream2) DI DARK → DIGELAPKAN
+   (Supaya panel & kartu tidak pucat dan teks tidak nabrak) */
+body.dark-mode .bg-white,
+body.dark-mode .bg-cream,
+body.dark-mode .bg-cream2,
+body.dark-mode .bg-cream2\/80,
+body.dark-mode .bg-cream2\/60,
+body.dark-mode .bg-cream2\/90,
+body.dark-mode .bg-cream2\/50,
+body.dark-mode .bg-panel,
+body.dark-mode .bg-panel\/50,
+body.dark-mode .bg-panel\/60,
+body.dark-mode .bg-panel-2,
+body.dark-mode .bg-panel-2\/50,
+body.dark-mode .bg-panel-2\/70 {
+    background-color: #0f1b12 !important;
+    color: #f8fafc !important;
+    border-color: #1f3324 !important;
+}
+
+/* ELEMEN KUNYAU (bg-earth) DI DARK → NADIRKAN AGAR TIDAK JADI CAHAYA */
+body.dark-mode .bg-earth { background-color: #4a3d20 !important; color: #f2c94c !important; }
+body.dark-mode .bg-earth\/20 { background-color: rgba(46,90,38,0.30) !important; }
+body.dark-mode .bg-earth\/15 { background-color: rgba(46,90,38,0.20) !important; }
+body.dark-mode .bg-earth\/10 { background-color: rgba(46,90,38,0.15) !important; }
+
+/* 8. TEKS DI LUAR PANEL (text-black & varian) DI DARK → TERANG KONTRA */
 body.dark-mode .text-black,
-body.dark-mode .text-black\/90 { color: #f8fafc !important; }
+body.dark-mode .text-black\/90,
+body.dark-mode .text-black\/80,
 body.dark-mode .text-black\/70,
 body.dark-mode .text-black\/60,
-body.dark-mode .text-black\/50,
-body.dark-mode .text-black\/80 { color: #cbd5e1 !important; }
+body.dark-mode .text-black\/50 {
+    color: #f8fafc !important;
+}
