@@ -46,7 +46,7 @@
                     <a href="{{ url('/kalkulator') }}" class="bg-olive hover:bg-olive2 text-white font-bold px-6 py-2.5 rounded-full text-xs transition shadow flex items-center gap-2 hover-smooth active:scale-95">
                         <i class="fa-solid fa-calculator"></i> Hitung Zakat
                     </a>
-                    <a href="{{ url('/direktori') }}" class="border border-cream3/50 hover:bg-cream/20 text-black font-bold px-6 py-2.5 rounded-full text-xs transition hover-smooth active:scale-95">
+                    <a href="{{ url('/direktori') }}" class="border border-panel-border hover:bg-panel-2/60 text-black font-bold px-6 py-2.5 rounded-full text-xs transition hover-smooth active:scale-95">
                         <i class="fa-solid fa-map-location-dot"></i> Lihat Lokasi Penyaluran
                     </a>
                 </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <a href="{{ url('/panduan') }}" class="block text-center bg-cream hover:bg-olive hover:text-white text-black font-bold py-2 rounded-xl border border-cream3 transition text-xs shadow-sm active:scale-95">
+                <a href="{{ url('/panduan') }}" class="block text-center bg-panel-2/70 hover:bg-olive hover:text-white text-oliveDark font-bold py-2 rounded-xl border border-panel-border transition text-xs shadow-sm active:scale-95">
                     Baca Panduan Lengkap <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
                 </a>
             </div>

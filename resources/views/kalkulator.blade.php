@@ -25,8 +25,8 @@
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jumlah Jiwa</label>
                 <div class="mt-2 flex items-center gap-3">
-                    <button id="fitrahMinus" type="button" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
-                    <input id="fitrahJiwa" type="number" min="1" value="1" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-cream2">
+                    <button id="fitrahMinus" type="button" class="w-10 h-10 rounded-full bg-panel-2 border border-cream3/70 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <input id="fitrahJiwa" type="number" min="1" value="1" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-panel-2 border border-cream3/70">
                     <button id="fitrahPlus" type="button" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
 
@@ -71,14 +71,14 @@
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL PERHITUNGAN</div>
                     <h3 class="font-black text-2xl mt-1">Zakat Fitrah</h3>
-                    <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
+                    <div class="mt-4 bg-panel-2/70 text-oliveDark rounded-2xl p-4 border border-panel-border">
                         <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-cream2 rounded-xl p-3">
+                            <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
                                 <div class="text-[10px] text-black/70 font-semibold">Total Beras</div>
                                 <div id="fitrahBeras" class="font-black text-black text-lg">2,5 kg</div>
                                 <div id="fitrahLiter" class="text-[10px] text-black/60">≈ 3,5 liter</div>
                             </div>
-                            <div class="bg-cream2 rounded-xl p-3">
+                            <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
                                 <div class="text-[10px] text-black/70 font-semibold">Jiwa</div>
                                 <div id="fitrahJiwaOut" class="font-black text-black text-lg">1</div>
                                 <div class="text-[10px] text-black/60">orang</div>
@@ -154,10 +154,10 @@
             <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl hover-smooth flex flex-col justify-between">
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL ZAKAT MAAL</div>
-                    <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
+                    <div class="mt-4 bg-panel-2/70 text-oliveDark rounded-2xl p-4 border border-panel-border">
                         <div class="flex justify-between text-xs font-medium"><span class="text-black/70">Nisab (85 gr)</span><span id="maalNisab" class="font-bold">Rp 110.500.000</span></div>
                         <div class="flex justify-between text-xs font-medium mt-2"><span class="text-black/70">Harta Anda</span><span id="maalHartaOut" class="font-bold">Rp 100.000.000</span></div>
-                        <div class="mt-3 bg-cream2 rounded-xl p-3 text-center">
+                        <div class="mt-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border text-center">
                             <div class="text-[10px] text-black/70">Status</div>
                             <div id="maalStatus" class="font-extrabold text-black text-sm">Belum wajib zakat</div>
                             <div id="maalKet" class="text-[10px] text-black/60 mt-0.5"></div>
@@ -182,21 +182,21 @@
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark">Jumlah hari yang ditinggalkan</label>
                 <div class="mt-2 flex items-center gap-3">
-                    <button id="fidyahMinus" type="button" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
-                    <input id="fidyahHari" type="number" min="1" value="7" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-cream2">
+                    <button id="fidyahMinus" type="button" class="w-10 h-10 rounded-full bg-panel-2 border border-cream3/70 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <input id="fidyahHari" type="number" min="1" value="7" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-panel-2 border border-cream3/70">
                     <button id="fidyahPlus" type="button" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp)</label>
                 <input id="fidyahHarga" type="number" value="45000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
 
-                <div class="mt-4 flex items-center gap-2 bg-cream2 rounded-xl p-3 border border-cream3/60">
+                <div class="mt-4 flex items-center gap-2 bg-panel-2/70 rounded-xl p-3 border border-panel-border border border-cream3/60">
                     <input id="fidyahModeBeras" type="checkbox" class="accent-olive rounded">
                     <label for="fidyahModeBeras" class="text-xs font-semibold text-oliveDark">Hitung juga dalam beras (0,75 kg × hari)</label>
                 </div>
 
                 <!-- DESKRIPSI PILIHAN BENTUK FIDYAH -->
-                <div class="mt-4 bg-cream2 rounded-2xl p-3.5 border border-cream3/80 text-xs text-oliveDark leading-relaxed">
+                <div class="mt-4 bg-panel-2/70 rounded-2xl p-3.5 border border-panel-border text-xs text-oliveDark leading-relaxed">
                     <div class="font-bold flex items-center gap-1.5 text-black">
                         <i class="fa-solid fa-circle-info"></i> Catatan Bentuk Penyaluran Fidyah:
                     </div>
@@ -209,10 +209,10 @@
             <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl hover-smooth flex flex-col justify-between">
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL FIDYAH</div>
-                    <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
+                    <div class="mt-4 bg-panel-2/70 text-oliveDark rounded-2xl p-4 border border-panel-border">
                         <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-black/70">Hari</div><div id="fidyahHariOut" class="font-black text-black text-lg">7</div><div class="text-[10px] text-black/60">hari</div></div>
-                            <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-black/70">Per hari</div><div id="fidyahPerHari" class="font-bold text-black text-xs">Rp 45.000</div><div class="text-[10px] text-black/60">1 porsi</div></div>
+                            <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="text-[10px] text-black/70">Hari</div><div id="fidyahHariOut" class="font-black text-black text-lg">7</div><div class="text-[10px] text-black/60">hari</div></div>
+                            <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="text-[10px] text-black/70">Per hari</div><div id="fidyahPerHari" class="font-bold text-black text-xs">Rp 45.000</div><div class="text-[10px] text-black/60">1 porsi</div></div>
                         </div>
                         <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
                             <div class="text-[10px] text-cream/80">Total Fidyah</div>
@@ -220,12 +220,12 @@
                             <div id="fidyahBerasOut" class="text-[10px] text-cream/80 mt-0.5 hidden"></div>
                         </div>
                         {{-- CATATAN BENTUK FIDYAH: UANG, BERAS, MAU MAKANAN --}}
-                        <div class="mt-4 bg-white/10 rounded-xl p-3 border border-white/20 text-[11px] text-cream/90 leading-relaxed space-y-1">
-                            <div class="font-bold text-earth text-xs"><i class="fa-solid fa-utensils mr-1"></i> Fidyah bisa disalurkan dalam 3 bentuk:</div>
+                        <div class="mt-4 bg-panel-2/70 rounded-xl p-3 border border-panel-border text-[11px] text-black/80 leading-relaxed space-y-1">
+                            <div class="font-bold text-oliveDark text-xs"><i class="fa-solid fa-utensils mr-1"></i> Fidyah bisa disalurkan dalam 3 bentuk:</div>
                             <ul class="list-disc list-inside space-y-0.5 ml-2">
-                                <li><b class="text-earth">Uang</b>: Total di atas sesuai harga 1 porsi makan.</li>
-                                <li><b class="text-earth">Beras</b>: ±0,75 kg per hari puasa yang ditinggalkan (aktifkan centang di panel kiri).</li>
-                                <li><b class="text-earth">Makanan siap saji</b>: 1 porsi lengkap (nasi + lauk + sayur) dibagikan langsung kepada fakir/miskin.</li>
+                                <li><b class="text-oliveDark">Uang</b>: Total di atas sesuai harga 1 porsi makan.</li>
+                                <li><b class="text-oliveDark">Beras</b>: ±0,75 kg per hari puasa yang ditinggalkan (aktifkan centang di panel kiri).</li>
+                                <li><b class="text-oliveDark">Makanan siap saji</b>: 1 porsi lengkap (nasi + lauk + sayur) dibagikan langsung kepada fakir/miskin.</li>
                             </ul>
                             <div class="text-[10px] text-cream/70 mt-1"><i class="fa-solid fa-scale-balanced mr-1"></i> Ketiga bentuk setara dalam nilai — pilih yang paling bermanfaat bagi penerima.</div>
                         </div>
