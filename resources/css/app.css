@@ -325,7 +325,8 @@ body.dark-mode .text-black\/40 {
     color: #f8fafc !important;
 }
 
-/* 9. FALLBACK GLOBAL DI DARK MODE — semua teks yang belum punya kelas warna
-   eksplisit & bukan putih/hijau/kuning → PUTIH TERANG (anti nabrak).
-   Berlaku untuk welcome s.d. panduan. */
-body.dark-mode .text-oliveDark { color: #f8fafc !important; }
+/* 9. FALLBACK GLOBAL DI DARK MODE — semua teks gelap/hitam → PUTIH TERANG
+   (anti nabrak). Berlaku untuk welcome s.d. panduan.
+   TEKS HIJAU (olive) tetap jadi hijau muda; TEKS HITAM/NAVY → putih. */
+body.dark-mode .text-oliveDark,
+body.dark-mode .text-black { color: #f8fafc !important; }
