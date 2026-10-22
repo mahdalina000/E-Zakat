@@ -11,28 +11,30 @@
    Palet warna lokal (cream, olive, earth, dll.)
    ============================================================ */
 @theme {
+    /* ===== PALET BARU (elegan, tidak monoton) =====
+       Hijau segar sebagai warna utama + aksen emas (gold) sekunder.
+       earth (kuning) tetap dipakai, tapi saya tambahkan aksen baru
+       bernama 'gold' yang lebih hangat & premium. */
     --color-cream: #EAEAEA;
     --color-cream2: #F4F4F4;
     --color-cream3: #D6D6D6;
-    --color-olive: #4B8B3B;
-    --color-olive2: #3D7330;
-    --color-olive3: #A8D5BA;
-    --color-oliveDark: #2E5A26;   /* hitam/navy -> HIJAU TUA (permintaan user) */
-    --color-earth: #F2C94C;
+    --color-olive: #3A8C44;        /* hijau segar (lebih profesional) */
+    --color-olive2: #2E5A26;       /* hijau lebih gelap (untuk hover/gradasi) */
+    --color-olive3: #A8D5BA;       /* hijau muda */
+    --color-oliveDark: #1F3D1B;    /* hijau pekat (teks utama light mode, elegan) */
+    --color-earth: #F2C94C;        /* kuning/emas hangat */
+    --color-gold: #C59B52;        /* aksen emas premium (oramen lentera) */
+    --color-gold2: #D4AF37;       /* emas terang */
 
-    /* Blok konten hijau semi-transparan — ganti card putih di semua halaman.
-       Utility: bg-panel, bg-panel-2, border-panel-border.
-       Opasitas dinaikkan tipis (14%→22%, 22%→32%) agar hijau lebih terlihat
-       tapi tetap transparan. */
-    --color-panel: rgba(75, 139, 59, 0.22);
-    --color-panel-2: rgba(75, 139, 59, 0.32);
-    --color-panel-border: rgba(75, 139, 59, 0.40);
+    /* Blok konten hijau mint-glass (efek kaca seperti screenshot:
+       hijau muda semi-transparan + blur) */
+    --color-panel: rgba(75, 139, 59, 0.18);
+    --color-panel-2: rgba(75, 139, 59, 0.30);
+    --color-panel-border: rgba(75, 139, 59, 0.35);
 
-    /* Warna teks untuk di atas panel hijau:
-       panel = olive (terang), panel-2 = oliveDark (gelap).
-       Di dark mode dipaksa jadi terang (lihat override di bawah). */
+    /* Warna teks untuk di atas panel hijau */
     --color-panel-text: #3D7330;
-    --color-panel-text-2: #2E5A26;
+    --color-panel-text-2: #1F3D1B;
 
     --font-poppins: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     --font-amiri: 'Amiri', serif;
@@ -122,8 +124,14 @@ body.dark-mode .bg-earth\/15 {
 }
 body.dark-mode .bg-earth,
 body.dark-mode .bg-earth\/20 {
-    color: #2E5A26 !important;
+    color: #1F3D1B !important;
 }
+/* Elemen EMAS (gold) di dark mode — aksen tetap terlihat jelas */
+body.dark-mode .bg-gold { background-color: #C59B52 !important; color: #1F3D1B !important; }
+body.dark-mode .bg-gold2 { background-color: #D4AF37 !important; color: #1F3D1B !important; }
+body.dark-mode .text-gold { color: #D4AF37 !important; }
+body.dark-mode .text-gold2 { color: #E8C547 !important; }
+body.dark-mode .border-gold { border-color: rgba(197, 155, 82, 0.6) !important; }
 
 /* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI TERANG
    (di atas bg gelap halaman; elemen ber-putih sendiri punya aturan khusus) */
@@ -133,8 +141,10 @@ body.dark-mode h2:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-
 body.dark-mode h3:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth) {
     color: #f8fafc !important;
 }
-/* TEKS KUNYAU (text-earth) DI DARK → HIJAU MUDA (agar tidak tenggelam jadi kuning pekat) */
-body.dark-mode .text-earth { color: #A8D5BA !important; }
+/* TEKS KUNYAU/EMAS (text-earth) DI DARK → EMAS TERANG (kontras di bg gelap) */
+body.dark-mode .text-earth { color: #F2C94C !important; }
+body.dark-mode .text-gold,
+body.dark-mode .text-gold2 { color: #D4AF37 !important; }
 /* div: hanya yang tidak punya kelas warna sendiri */
 body.dark-mode div:not([class*="text-"]) {
     color: #f8fafc !important;
@@ -176,8 +186,10 @@ body.dark-mode .text-cream\/70 { color: #f8fafc !important; }
 body.dark-mode .text-white { color: #ffffff !important; }
 body.dark-mode .text-white\/40,
 body.dark-mode .text-white\/90 { color: #f8fafc !important; }
-/* Teks earth (kuning) tetap kuning terang */
+/* Teks earth (kuning) & gold (emas) di dark mode — aksen tetap terlihat */
 body.dark-mode .text-earth { color: #F2C94C !important; }
+body.dark-mode .text-gold { color: #D4AF37 !important; }
+body.dark-mode .text-gold2 { color: #E8C547 !important; }
 
 /* Elemen KUNYAU (tombol Masuk, badge) — teks gelap */
 body.dark-mode .bg-earth,

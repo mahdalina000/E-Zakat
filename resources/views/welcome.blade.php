@@ -27,9 +27,63 @@
             font-family: 'Poppins', sans-serif; 
             overflow: hidden; /* Mencegah Scroll / Pas 1 Layar */
             background-color: #EAEAEA;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         img { max-width: 100%; height: auto; }
+
+        /* Styles khusus Dark Mode sesuai kustomisasi warna */
+        body.dark-mode {
+            background-color: #121816 !important;
+            color: #FFFFFF !important;
+        }
+
+        body.dark-mode .text-black {
+            color: #FFFFFF !important;
+        }
+
+        body.dark-mode .text-oliveDark {
+            color: #F59E0B !important; /* Oranye Terang */
+        }
+
+        body.dark-mode .text-oliveDark\/90,
+        body.dark-mode .text-oliveDark\/80,
+        body.dark-mode .text-oliveDark\/70,
+        body.dark-mode .text-oliveDark\/60 {
+            color: #FBBF24 !important; /* Oranye Soft */
+        }
+
+        body.dark-mode .bg-white\/80,
+        body.dark-mode .bg-white\/90 {
+            background-color: rgba(30, 41, 59, 0.9) !important;
+            border-color: rgba(245, 158, 11, 0.3) !important;
+        }
+
+        body.dark-mode .quick-action-bar {
+            background-color: rgba(30, 41, 59, 0.95) !important;
+            border-color: rgba(245, 158, 11, 0.3) !important;
+        }
+
+        body.dark-mode .quick-action-bar i {
+            color: #F59E0B !important;
+        }
+
+        body.dark-mode .quick-action-bar .border-cream3 {
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* AKSEN TAMBAHAN UNTUK MEMBUAT TIDAK MONOTON */
+        .badge-accent-gold {
+            border-color: rgba(245, 158, 11, 0.4) !important;
+            color: #D97706 !important;
+        }
+        body.dark-mode .badge-accent-gold {
+            color: #FBBF24 !important;
+        }
+
+        .quick-card-gold { border-left: 3px solid #C59B52 !important; }
+        .quick-card-blue { border-left: 3px solid #2563EB !important; }
+        .quick-card-emerald { border-left: 3px solid #10B981 !important; }
 
         /* Animasi Ultra Smooth Reveal */
         @keyframes zyraSmoothWelcome {
@@ -54,15 +108,26 @@
 </head>
 <body class="h-screen w-screen flex flex-col justify-between p-3 lg:p-5 box-border relative overflow-hidden">
 
-    <!-- GAMBAR ILUSTRASI BACKGROUND — SAMA DENGAN BERANDA (blur halus + glow + grid) -->
-<div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-    <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-20" fetchpriority="low">
-    <!-- Ambient Glowing Orbs -->
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-earth/15 rounded-full blur-3xl"></div>
-    <!-- Subtle Pattern Mesh Grid -->
-    <div class="absolute inset-0 bg-[radial-gradient(#4B8B3B_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
-</div>
+    <!-- GAMBAR ILUSTRASI BACKGROUND & ORNAMEN LENTERA -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <img src="{{ asset('images/e-zakat.jpg') }}" alt="Background Aesthetic" class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-30" fetchpriority="low">
+        
+        <!-- SVG DEKORATIF ORNAMEN LENTERA GANTUNG ATAS -->
+        <svg class="absolute top-0 inset-x-0 w-full h-32 opacity-15 text-gold2 dark:text-gold2" viewBox="0 0 1000 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.2">
+            <line x1="100" y1="0" x2="100" y2="40" /><polygon points="100,40 90,55 110,55" /><rect x="92" y="55" width="16" height="25" rx="2" /><polygon points="100,88 92,80 108,80" />
+            <line x1="300" y1="0" x2="300" y2="25" /><polygon points="300,25 292,38 308,38" /><rect x="294" y="38" width="12" height="18" rx="2" />
+            <line x1="500" y1="0" x2="500" y2="50" /><polygon points="500,50 488,68 512,68" /><rect x="490" y="68" width="20" height="28" rx="3" />
+            <line x1="700" y1="0" x2="700" y2="30" /><polygon points="700,30 692,43 708,43" /><rect x="694" y="43" width="12" height="18" rx="2" />
+            <line x1="900" y1="0" x2="900" y2="45" /><polygon points="900,45 890,60 910,60" /><rect x="892" y="60" width="16" height="25" rx="2" />
+            <path d="M200,20 A8,8 0 0,0 200,36 A7,7 0 0,1 200,20" fill="currentColor" />
+            <path d="M800,15 A8,8 0 0,0 800,31 A7,7 0 0,1 800,15" fill="currentColor" />
+        </svg>
+
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
+        <!-- Subtle Pattern Mesh Grid -->
+        <div class="absolute inset-0 bg-[radial-gradient(#4B8B3B_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+    </div>
 
     <!-- FLOATING HEADER -->
     <header class="bg-olive text-white rounded-full max-w-7xl mx-auto w-full px-6 h-[56px] flex items-center justify-between shadow-md shrink-0 border border-white/10 relative z-10">
@@ -76,7 +141,7 @@
             </div>
         </a>
 
-        <a href="{{ url('/beranda') }}" class="bg-earth hover:bg-yellow-400 text-oliveDark text-xs font-bold px-5 py-2 rounded-full transition shadow-md flex items-center gap-1.5">
+        <a href="{{ url('/beranda') }}" class="bg-gold hover:bg-gold2 text-oliveDark text-xs font-bold px-5 py-2 rounded-full transition shadow-md flex items-center gap-1.5">
             <span>Masuk Web</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </a>
@@ -85,21 +150,21 @@
         </button>
     </header>
 
-    <!-- MAIN CONTAINER (LANGSUNG DILUAR TANPA CARD PUTIH) -->
+    <!-- MAIN CONTAINER -->
     <main class="max-w-7xl mx-auto w-full my-auto space-y-4 flex-1 flex flex-col justify-center anim-welcome relative z-10 px-2">
 
         <!-- HERO SECTION 2 KOLOM -->
         <div class="grid lg:grid-cols-12 gap-8 items-center w-full my-auto">
             
-            <!-- KOLOM KIRI: UCAPAN SELAMAT DATANG (LANGSUNG DI ATAS BACKGROUND) -->
+            <!-- KOLOM KIRI: UCAPAN SELAMAT DATANG -->
             <div class="lg:col-span-7 space-y-4">
-                <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-cream3/80 px-3.5 py-1 rounded-full text-xs font-bold text-black shadow-sm">
-                    <i class="fa-solid fa-star-and-crescent text-earth"></i> PLATFORM ZAKAT DIGITAL TERPERCAYA
+                <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-cream3/80 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark shadow-sm">
+                    <i class="fa-solid fa-star-and-crescent text-gold"></i> PLATFORM ZAKAT DIGITAL TERPERCAYA
                 </div>
 
                 <h1 class="font-black text-oliveDark leading-[0.98] text-[36px] sm:text-[48px] lg:text-[58px] tracking-tight drop-shadow-sm">
                     Selamat Datang<br>
-                    <span class="text-black">di E-Zakat</span>
+                    <span class="text-gold">di E-Zakat</span>
                 </h1>
 
                 <p class="text-oliveDark/90 text-xs sm:text-sm lg:text-base max-w-lg leading-relaxed font-semibold drop-shadow-sm">
@@ -110,8 +175,8 @@
                     <a href="{{ url('/beranda') }}" class="bg-olive hover:bg-olive2 text-white font-bold px-7 py-3 rounded-full text-xs lg:text-sm shadow-md transition flex items-center gap-2">
                         Mulai Sekarang <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
-                    <span class="text-xs text-black font-semibold bg-white/90 backdrop-blur-md border border-cream3 px-4 py-2.5 rounded-full shadow-sm">
-                        <i class="fa-solid fa-shield-halved text-earth mr-1"></i> 100% Sesuai Syariat
+                    <span class="text-xs text-oliveDark font-semibold bg-white/90 backdrop-blur-md border border-gold/40 px-4 py-2.5 rounded-full shadow-sm">
+                        <i class="fa-solid fa-shield-halved text-gold mr-1"></i> 100% Sesuai Syariat
                     </span>
                 </div>
             </div>
@@ -122,11 +187,11 @@
                     
                     <!-- Badge Hadis -->
                     <div class="flex items-center justify-between mb-2">
-                        <span class="bg-earth text-oliveDark text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                        <span class="bg-gold text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
                             <i class="fa-solid fa-quote-left mr-1"></i> Hadis Zakat
                         </span>
                         <div class="flex items-center gap-2">
-                            <button id="speakBtn" type="button" title="Putar bacaan hadis & artinya" class="bg-white/20 hover:bg-earth hover:text-oliveDark text-white transition w-7 h-7 rounded-full flex items-center justify-center text-xs active:scale-95">
+                            <button id="speakBtn" type="button" title="Putar bacaan hadis & artinya" class="bg-white/20 hover:bg-gold hover:text-white text-white transition w-7 h-7 rounded-full flex items-center justify-center text-xs active:scale-95">
                                 <i class="fa-solid fa-volume-high"></i>
                             </button>
                             <span class="text-xs text-cream/90 font-bold"><span id="idxLabel">1</span> / 20</span>
@@ -139,9 +204,9 @@
                     <!-- Navigasi Slider -->
                     <div class="flex items-center justify-between pt-3 border-t border-white/20">
                         <div class="flex items-center gap-2">
-                            <button id="prevBtn" class="w-7 h-7 rounded-full bg-white/20 hover:bg-earth hover:text-oliveDark text-white transition flex items-center justify-center text-xs"><i class="fa-solid fa-chevron-left"></i></button>
-                            <button id="nextBtn" class="w-7 h-7 rounded-full bg-white/20 hover:bg-earth hover:text-oliveDark text-white transition flex items-center justify-center text-xs"><i class="fa-solid fa-chevron-right"></i></button>
-                            <button id="pauseBtn" class="w-7 h-7 rounded-full bg-white/20 hover:bg-earth hover:text-oliveDark text-white transition flex items-center justify-center text-xs ml-1"><i id="pauseIcon" class="fa-solid fa-pause"></i></button>
+                            <button id="prevBtn" class="w-7 h-7 rounded-full bg-white/20 hover:bg-gold hover:text-white text-white transition flex items-center justify-center text-xs"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button id="nextBtn" class="w-7 h-7 rounded-full bg-white/20 hover:bg-gold hover:text-white text-white transition flex items-center justify-center text-xs"><i class="fa-solid fa-chevron-right"></i></button>
+                            <button id="pauseBtn" class="w-7 h-7 rounded-full bg-white/20 hover:bg-gold hover:text-white text-white transition flex items-center justify-center text-xs ml-1"><i id="pauseIcon" class="fa-solid fa-pause"></i></button>
                         </div>
                         <div id="dots" class="flex gap-1"></div>
                     </div>
@@ -151,30 +216,30 @@
         </div>
 
         <!-- QUICK ACTION FLOATING BAR (BAGIAN BAWAH) -->
-        <div class="bg-white/90 backdrop-blur-md rounded-2xl p-3 border border-cream3 shadow-lg grid md:grid-cols-3 gap-3 items-center shrink-0">
-            <div class="flex items-center gap-3 px-3 py-1 md:border-r border-cream3">
-                <i class="fa-solid fa-calculator text-black text-lg shrink-0"></i>
+        <div class="quick-action-bar bg-white/90 backdrop-blur-md rounded-2xl p-3 border border-cream3 shadow-lg grid md:grid-cols-3 gap-3 items-center shrink-0">
+            <div class="flex items-center gap-3 px-3 py-1 md:border-r border-cream3 quick-card-gold">
+                <i class="fa-solid fa-calculator text-gold2 text-lg shrink-0"></i>
                 <div>
                     <div class="text-xs font-bold text-oliveDark">Kalkulator Zakat</div>
                     <div class="text-[10px] text-oliveDark/60">Hitung Fitrah, Maal & Fidyah</div>
                 </div>
             </div>
-            <div class="flex items-center gap-3 px-3 py-1 md:border-r border-cream3">
-                <i class="fa-solid fa-map-location-dot text-earth text-lg shrink-0"></i>
+            <div class="flex items-center gap-3 px-3 py-1 md:border-r border-cream3 quick-card-blue">
+                <i class="fa-solid fa-map-location-dot text-blue-600 text-lg shrink-0"></i>
                 <div>
                     <div class="text-xs font-bold text-oliveDark">Lokasi Penyaluran</div>
                     <div class="text-[10px] text-oliveDark/60">Peta amil zakat Banjarbaru</div>
                 </div>
             </div>
-            <div class="flex items-center justify-between px-3 py-1">
+            <div class="flex items-center justify-between px-3 py-1 quick-card-emerald">
                 <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-book-quran text-black text-lg shrink-0"></i>
+                    <i class="fa-solid fa-book-quran text-emerald-600 text-lg shrink-0"></i>
                     <div>
                         <div class="text-xs font-bold text-oliveDark">Panduan Syariat</div>
                         <div class="text-[10px] text-oliveDark/60">Nisab, syarat & 8 asnaf</div>
                     </div>
                 </div>
-                <a href="{{ url('/panduan') }}" class="bg-olive3/30 hover:bg-olive hover:text-white text-black w-7 h-7 rounded-full flex items-center justify-center transition shrink-0">
+                <a href="{{ url('/panduan') }}" class="bg-emerald-500/20 hover:bg-emerald-600 hover:text-white text-emerald-700 w-7 h-7 rounded-full flex items-center justify-center transition shrink-0">
                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </a>
             </div>
@@ -187,20 +252,20 @@
         © {{ date('Y') }} E-Zakat Banjarbaru — Amanah, Transparan, Berkah
     </footer>
 
-    <!-- SCRIPT DARK MODE TOGGLE (KONSISTEN DENGAN layouts/app, SAMA-SAMA BACA localStorage 'theme') -->
+    <!-- SCRIPT DARK MODE TOGGLE -->
     <script>
     document.addEventListener('DOMContentLoaded', function(){
         const toggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         if(localStorage.getItem('theme') === 'dark'){
             document.body.classList.add('dark-mode');
-            if(themeIcon) themeIcon.className = 'fa-solid fa-sun text-xs text-earth';
+            if(themeIcon) themeIcon.className = 'fa-solid fa-sun text-xs text-gold2';
         }
         toggleBtn?.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            if(themeIcon) themeIcon.className = isDark ? 'fa-solid fa-sun text-xs text-earth' : 'fa-solid fa-moon text-xs';
+            if(themeIcon) themeIcon.className = isDark ? 'fa-solid fa-sun text-xs text-gold2' : 'fa-solid fa-moon text-xs';
         });
     });
     </script>
@@ -234,8 +299,7 @@
     function render(){
         if(!card) return;
         const h=hadiths[idx];
-        card.innerHTML=`<div class="zy-hadith text-left space-y-1"><div class="font-amiri text-earth text-base lg:text-lg font-bold leading-snug">${h.arab}</div><p class="text-white/95 text-xs leading-relaxed font-normal">"${h.indo}"</p><div class="text-[10px] text-cream/80 font-semibold pt-1"><i class="fa-solid fa-book-open mr-1 text-earth"></i> ${h.sumber}</div></div>`;
-        // Stagger animasi: teks Arab → terjemahan → sumber
+        card.innerHTML=`<div class="zy-hadith text-left space-y-1"><div class="font-amiri text-gold2 text-base lg:text-lg font-bold leading-snug">${h.arab}</div><p class="text-white/95 text-xs leading-relaxed font-normal">"${h.indo}"</p><div class="text-[10px] text-gold2 font-semibold pt-1"><i class="fa-solid fa-book-open mr-1 text-gold2"></i> ${h.sumber}</div></div>`;
         card.querySelectorAll('.zy-hadith > *').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(12px)';
@@ -248,7 +312,7 @@
             });
         });
         idxLabel.textContent=idx+1;
-        [...dots.children].forEach((d,i)=> d.className=i===idx?'w-4 h-1 rounded-full bg-earth transition-all':'w-1 h-1 rounded-full bg-white/30 transition-all');
+        [...dots.children].forEach((d,i)=> d.className=i===idx?'w-4 h-1 rounded-full bg-gold transition-all':'w-1 h-1 rounded-full bg-white/30 transition-all');
     }
     function next(){idx=(idx+1)%hadiths.length;render();}
     function prev(){idx=(idx-1+hadiths.length)%hadiths.length;render();}
@@ -260,7 +324,8 @@
     render();startTimer();
     document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){next();startTimer();} if(e.key==='ArrowLeft'){prev();startTimer();}});
     </script>
-    <!-- TOMBOL SUARA HADIS & TTS (TERINTEGRASI DI KARTU HADIS) -->
+
+    <!-- TOMBOL SUARA HADIS & TTS -->
     <script>
     (function(){
         const speakBtn = document.getElementById('speakBtn');
@@ -269,7 +334,6 @@
         let speaking = false;
         let supported = 'speechSynthesis' in window;
 
-        // Pilih suara terbaik: utamakan suara Indonesia, lalu Arab, lalu default
         function pickVoices(){
             const v = window.speechSynthesis.getVoices();
             const idVoice = v.find(x => /id[-_]ID/i.test(x.lang));
@@ -279,7 +343,6 @@
 
         function speakHadith(){
             if(!supported) return;
-            // Stop semua bacaan yang masih berjalan
             window.speechSynthesis.cancel();
 
             const h = hadiths[idx];
@@ -314,12 +377,10 @@
 
         speakBtn.addEventListener('click', speakHadith);
 
-        // Jika suara belum ter-load (beberapa browser load-asyn), refresh
         if(supported){
-            window.speechSynthesis.onvoiceschanged = () => {}; // force refresh
+            window.speechSynthesis.onvoiceschanged = () => {};
         }
 
-        // Jika user ganti hadis (next/prev/dot/keyboard), stop bacaan yang sedang berjalan
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
         if(supported){

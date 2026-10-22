@@ -32,12 +32,13 @@
          (gambar blur + ambient glow + mesh grid) -->
     <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <img src="{{ asset('images/e-zakat.jpg') }}" alt="E-Zakat Background Aesthetic"
-             class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-20" fetchpriority="low">
-        <!-- Ambient Glowing Orbs -->
-        <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-earth/15 rounded-full blur-3xl"></div>
+             class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-30" fetchpriority="low">
+        <!-- Ambient Glowing Orbs (Hijau + EMAS, tidak monoton) -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/25 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-gold/15 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-olive3/10 rounded-full blur-3xl"></div>
         <!-- Subtle Pattern Mesh Grid -->
-        <div class="absolute inset-0 bg-[radial-gradient(#4B8B3B_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#3A8C44_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.08]"></div>
     </div>
 
     <header class="max-w-7xl mx-auto w-full px-4 pt-4 shrink-0 relative z-20 anim-smooth delay-1">
@@ -79,6 +80,7 @@
 
     <!-- CONTENT WRAPPER -->
     <div class="relative z-10 flex-1 flex flex-col justify-center">
+    
         @yield('content')
     </div>
 
