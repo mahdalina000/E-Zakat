@@ -125,20 +125,45 @@
             </defs>
             <rect width="100%" height="100%" fill="url(#zy-star-pat)" />
         </svg>
-        <!-- MANDALA ROSETTE EMAS -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[52%] w-[420px] md:w-[680px] lg:w-[820px] aspect-square pointer-events-none zy-mandala">
-            <svg viewBox="0 0 500 500" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(250, 250)">
-                    <circle r="230" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.4"/>
-                    <circle r="220" stroke="currentColor" stroke-width="1.8" opacity="0.5"/>
-                    <circle r="210" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity="0.3"/>
-                    <circle r="190" stroke="currentColor" stroke-width="2" opacity="0.6"/>
-                    <circle r="165" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.45"/>
-                    <circle r="60" stroke="currentColor" stroke-width="1.5"/>
-                    <circle r="50" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
-                    <circle r="36" class="zy-mandala-core" stroke="currentColor" stroke-width="2"/>
-                    <circle r="16" class="zy-mandala-core2"/>
-                    <circle r="6" class="zy-mandala-core3"/>
+        <!-- MANDALA ROSETTE EMAS (atas tengah, ukuran SEDANG) -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[38%] w-[300px] md:w-[420px] lg:w-[520px] aspect-square pointer-events-none zy-mandala">
+            <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(200, 200)">
+                    <!-- Lapisan terluar: 8 kelopak (outer petals) -->
+                    <g class="zy-md-outer">
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(45)" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(90)" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(135)" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(180)" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(225)" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(270)" />
+                        <path d="M0,-190 C25,-160 30,-120 0,-100 C-30,-120 -25,-160 0,-190 Z" transform="rotate(315)" />
+                    </g>
+                    <!-- Cincin luar -->
+                    <circle r="150" class="zy-md-ring" stroke-dasharray="3 3"/>
+                    <circle r="140" class="zy-md-ring" stroke-dasharray="2 2"/>
+                    <!-- 8 kelopak dalam (inner petals) -->
+                    <g class="zy-md-inner">
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(45)" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(90)" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(135)" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(180)" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(225)" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(270)" />
+                        <path d="M0,-120 C18,-100 22,-70 0,-52 C-22,-70 -18,-100 0,-120 Z" transform="rotate(315)" />
+                    </g>
+                    <!-- Rosette tengah -->
+                    <circle r="58" class="zy-md-ring"/>
+                    <circle r="48" class="zy-md-ring" stroke-dasharray="2 2"/>
+                    <circle r="34" class="zy-mandala-core"/>
+                    <circle r="14" class="zy-mandala-core2"/>
+                    <circle r="5" class="zy-mandala-core3"/>
+                    <!-- Bintang 8 di tengah -->
+                    <g class="zy-md-star">
+                        <path d="M0,-40 L8,-8 L40,0 L8,8 L0,40 L-8,8 L-40,0 L-8,-8 Z"/>
+                    </g>
                 </g>
             </svg>
         </div>

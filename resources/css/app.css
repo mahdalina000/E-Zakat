@@ -129,6 +129,20 @@ body.dark-mode {
 .zy-star { color: var(--zy-orb); opacity: 0.05; transition: color .4s, opacity .4s; }
 body.dark-mode .zy-star { opacity: 0.08; }
 .zy-mandala { color: var(--zy-mandala); opacity: 0.85; transition: color .4s, opacity .4s; z-index: 5; position: relative; }
+/* Putar perlahan (sekitar 90 detik per putaran) — transform-origin di tengah,
+   tidak mengganggu animasi geser/translate posisi */
+@keyframes zyMandalaSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.zy-mandala svg {
+    transform-origin: center center;
+    animation: zyMandalaSpin 90s linear infinite;
+    will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+    .zy-mandala svg { animation: none; }
+}
 body.dark-mode .zy-mandala { opacity: 0.95; }
 /* Bagian mandala baru (lapisan kelopak, cincin, bintang) — warna mengikuti CSS variables */
 .zy-md-outer path { fill: rgba(200,157,68,0.28); stroke: var(--zy-mandala); stroke-width: 2; }
