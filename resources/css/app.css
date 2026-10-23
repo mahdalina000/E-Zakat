@@ -11,30 +11,29 @@
    Palet warna lokal (cream, olive, earth, dll.)
    ============================================================ */
 @theme {
-    /* ===== PALET BARU (elegan, tidak monoton) =====
-       Hijau segar sebagai warna utama + aksen emas (gold) sekunder.
-       earth (kuning) tetap dipakai, tapi saya tambahkan aksen baru
-       bernama 'gold' yang lebih hangat & premium. */
-    --color-cream: #EAEAEA;
-    --color-cream2: #F4F4F4;
-    --color-cream3: #D6D6D6;
-    --color-olive: #3A8C44;        /* hijau segar (lebih profesional) */
-    --color-olive2: #2E5A26;       /* hijau lebih gelap (untuk hover/gradasi) */
-    --color-olive3: #A8D5BA;       /* hijau muda */
-    --color-oliveDark: #1F3D1B;    /* hijau pekat (teks utama light mode, elegan) */
-    --color-earth: #F2C94C;        /* kuning/emas hangat */
-    --color-gold: #C59B52;        /* aksen emas premium (oramen lentera) */
-    --color-gold2: #D4AF37;       /* emas terang */
+    /* ===== PALET WARNA (hijau utama + aksen emas hangat) =====
+       Selaras dengan referensi: hijau profesional sebagai warna utama,
+       aksen EMAS hangat sebagai pelengkap (tidak monoton hijau/putih/hitam).
+       Nama utility lama tetap dipakai, hanya nilainya yang disesuaikan. */
+    --color-cream: #d5e2d3;      /* netral kehijauan (dasar, sesuai referensi) */
+    --color-cream2: #cdd8c9;    /* latar hijau pucat hangat */
+    --color-cream3: #becfbe;    /* garis pembatas hijau pudar */
+    --color-olive: #246c42;     /* HIJAU UTAMA — tombol/aksen solid */
+    --color-olive2: #1d5b37;    /* hijau lebih gelap (hover/gradasi) */
+    --color-olive3: #3a8c44;    /* hijau segar (ikon/micro) */
+    --color-oliveDark: #133221; /* hijau pekat (teks utama, elegan) */
+    --color-earth: #e2b356;     /* EMAS HANGAT — aksen lentera/event */
+    --color-gold: #c89d44;     /* emas lebih pekat (light) */
+    --color-gold2: #e2b356;    /* emas terang */
 
-    /* Blok konten hijau mint-glass (efek kaca seperti screenshot:
-       hijau muda semi-transparan + blur) */
-    --color-panel: rgba(75, 139, 59, 0.18);
-    --color-panel-2: rgba(75, 139, 59, 0.30);
-    --color-panel-border: rgba(75, 139, 59, 0.35);
+    /* Blok konten: panel hijau mint-glass (efek kaca, selaras referensi) */
+    --color-panel: rgba(212, 233, 213, 0.85);
+    --color-panel-2: rgba(228, 237, 224, 0.90);
+    --color-panel-border: rgba(184, 209, 177, 0.70);
 
     /* Warna teks untuk di atas panel hijau */
-    --color-panel-text: #3D7330;
-    --color-panel-text-2: #1F3D1B;
+    --color-panel-text: #2e5a26;
+    --color-panel-text-2: #133221;
 
     --font-poppins: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     --font-amiri: 'Amiri', serif;
@@ -84,7 +83,14 @@
 body {
     font-family: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     overflow-x: hidden;
-    background-color: #EAEAEA;
+    /* Latar dasar HANYA WARNA (tanpa ornamen baru): hijau lembut hangat,
+       bukan krem/abu. Sentuhan glow hijau & emas tipis di pojok agar
+       tampilan tidak monoton. */
+    background:
+        radial-gradient(circle at 18% 12%, rgba(36, 108, 66, 0.08), transparent 40%),
+        radial-gradient(circle at 82% 88%, rgba(200, 157, 68, 0.10), transparent 42%),
+        linear-gradient(180deg, #f6f4e9 0%, #f1efe0 55%, #ece8d6 100%);
+    background-attachment: fixed;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -92,10 +98,71 @@ body {
 .font-amiri { font-family: 'Amiri', serif !important; }
 
 /* ============================================================
+   LATAR ORNAMEN ISLAMI (mandala + lentera + pola bintang)
+   Warna ornamen memakai CSS variables agar bisa berganti
+   otomatis saat dark mode (body.dark-mode).
+   ============================================================ */
+:root {
+    --zy-orb: #6b8a5f;             /* garis pola bintang (light) */
+    --zy-mandala: #8a7434;          /* garis mandala (light, emas pucat) */
+    --zy-mandala-core: #c3d5c1;
+    --zy-mandala-core2: #3e5b40;
+    --zy-mandala-core3: #edf5eb;
+    --zy-grad: radial-gradient(circle at 20% 10%, rgba(36,108,66,0.10), transparent 40%),
+               radial-gradient(circle at 80% 90%, rgba(200,157,68,0.10), transparent 45%),
+               linear-gradient(180deg, #d5e2d3 0%, #cbd8ca 55%, #becfbe 100%);
+}
+body.dark-mode {
+    --zy-orb: #e6c374;
+    --zy-mandala: #e2b356;
+    --zy-mandala-core: #133522;
+    --zy-mandala-core2: #c89d44;
+    --zy-mandala-core3: #fff8e7;
+    --zy-grad: radial-gradient(circle at 20% 10%, rgba(41,122,75,0.20), transparent 40%),
+               radial-gradient(circle at 80% 90%, rgba(226,179,86,0.14), transparent 45%),
+               linear-gradient(180deg, #06150e 0%, #091b12 55%, #040e09 100%);
+}
+
+/* Utilitas Tailwind-style untuk elemen latar ornamen */
+.bg-zy-bg { background-color: transparent; }
+.zy-zy-grad { background: var(--zy-grad); transition: background 0.4s ease; }
+.zy-star { color: var(--zy-orb); opacity: 0.05; transition: color .4s, opacity .4s; }
+body.dark-mode .zy-star { opacity: 0.08; }
+.zy-mandala { color: var(--zy-mandala); opacity: 0.20; transition: color .4s, opacity .4s; }
+body.dark-mode .zy-mandala { opacity: 0.85; }
+.zy-mandala-core  { fill: var(--zy-mandala-core); }
+.zy-mandala-core2 { fill: var(--zy-mandala-core2); }
+.zy-mandala-core3 { fill: var(--zy-mandala-core3); }
+.zy-lantern-line { stroke: var(--zy-orb); }
+body.dark-mode .zy-lantern-line { stroke: #e0b553; }
+.zy-lantern { opacity: 0.60; }
+body.dark-mode .zy-lantern { opacity: 0.85; }
+
+/* Animasi swing halus lentera */
+@keyframes zySwayLeft {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(1.2deg); }
+}
+@keyframes zySwayRight {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(-1.5deg); }
+}
+.zy-lantern-left  { transform-origin: top center; animation: zySwayLeft 7s ease-in-out infinite; }
+.zy-lantern-right { transform-origin: top center; animation: zySwayRight 8.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .zy-lantern-left, .zy-lantern-right { animation: none; }
+}
+
+/* ============================================================
    DARK MODE (harus di-compile Vite, bukan CSS dinamis)
    ============================================================ */
 body.dark-mode {
-    background-color: #0b132b !important;
+    /* Dark: hijau gelap hangat (bukan hitam/biru polos), selaras palet */
+    background:
+        radial-gradient(circle at 18% 12%, rgba(41, 122, 75, 0.18), transparent 40%),
+        radial-gradient(circle at 82% 88%, rgba(226, 179, 86, 0.12), transparent 42%),
+        linear-gradient(180deg, #06150e 0%, #091b12 55%, #040e09 100%) !important;
+    background-attachment: fixed;
     color: #ffffff !important;
 }
 
@@ -212,17 +279,16 @@ body.dark-mode div.bg-olive:not([class*="bg-olive\\/"}) {
 }
 
 /* 3. BLOK PANEL HIJAU (bg-panel / bg-panel-2)
-   Light mode: blok hijau semi-transparan, teks gelap.
-   Dark mode: panel DIPECATKAN (gelap pekat #0f1b12) supaya tidak pucat,
-   cahaya orange TIDAK menembus, dan teks selalu kontras. */
+   Light: panel hijau mint-glass. Dark: panel DIPECATKAN jadi hijau gelap
+   hangat (#0d2417) supaya tidak pucat & teks selalu kontras. */
 body.dark-mode .bg-panel,
 body.dark-mode .bg-panel\/50,
 body.dark-mode .bg-panel\/60,
 body.dark-mode .bg-panel-2,
 body.dark-mode .bg-panel-2\/50,
 body.dark-mode .bg-panel-2\/70 {
-    background-color: #0f1b12 !important;
-    border-color: #1f3324 !important;
+    background-color: #0d2417 !important;
+    border-color: #1e4030 !important;
 }
 /* Teks di atas panel: HIJAU TUA → HIJAU MUDA, HITAM → PUTIH */
 body.dark-mode .bg-panel .text-oliveDark,
@@ -272,34 +338,42 @@ body.dark-mode input {
     border-color: #475569 !important;
 }
 
-/* 7. BACKGROUND LAYAR PENUH DI DARK MODE */
+/* 7. BACKGROUND LAYAR PENUH DI DARK MODE — hijau gelap hangat (bukan biru) */
 body.dark-mode {
-    background-color: #0b132b !important;
+    background:
+        radial-gradient(circle at 18% 12%, rgba(41, 122, 75, 0.18), transparent 40%),
+        radial-gradient(circle at 82% 88%, rgba(226, 179, 86, 0.12), transparent 42%),
+        linear-gradient(180deg, #06150e 0%, #091b12 55%, #040e09 100%) !important;
 }
 
-/* GAMBAR LATAR (e-zakat.jpg) DI DARK MODE → DIGELAPKAN SUPAYA TIDAK CAHAYA ORANGE
+/* GAMBAR LATAR (e-zakat.jpg) DI DARK MODE → DIGELAPKAN SUPAYA TIDAK MENJADI CAHAYA
    (Gambar blur di welcome & layout app/guest jadi gelap pekat di dark mode) */
 body.dark-mode img[src*="e-zakat.jpg"] {
-    filter: brightness(0.15) contrast(1.1) saturate(0.3) !important;
-    opacity: 0.25 !important;
+    filter: brightness(0.18) contrast(1.1) saturate(0.25) hue-rotate(60deg) !important;
+    opacity: 0.22 !important;
 }
-/* Overlay gelap di atas gambar latar agar background benar-benar gelap */
+/* Overlay gelap HIJAU HANGAT di atas gambar latar agar background gelap & konsisten */
 body.dark-mode::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: #0b132b;
-    opacity: 0.92;
+    background: #06150e;
+    opacity: 0.9;
     z-index: 1;
     pointer-events: none;
 }
 
 /* Orb ambient glow: DIHILANGKAN di dark mode (cahaya orange) */
 body.dark-mode .bg-olive\/20 { background-color: transparent !important; }
+body.dark-mode .bg-olive\/25 { background-color: transparent !important; }
+body.dark-mode .bg-olive3\/10 { background-color: transparent !important; }
 body.dark-mode .bg-earth\/15 { background-color: transparent !important; }
+body.dark-mode .bg-earth\/20 { background-color: transparent !important; }
 body.dark-mode .bg-earth\/10 { background-color: transparent !important; }
+body.dark-mode .bg-gold\/15 { background-color: transparent !important; }
+body.dark-mode .bg-gold\/20 { background-color: transparent !important; }
 
-/* BLOK PUCAT (bg-white, bg-cream, bg-cream2) DI DARK → DIGELAPKAN
+/* BLOK PUCAT (bg-white, bg-cream, bg-cream2) DI DARK → DIGELAPKAN jadi hijau hangat
    (Supaya panel & kartu tidak pucat dan teks tidak nabrak) */
 body.dark-mode .bg-white,
 body.dark-mode .bg-cream,
@@ -314,16 +388,19 @@ body.dark-mode .bg-panel\/60,
 body.dark-mode .bg-panel-2,
 body.dark-mode .bg-panel-2\/50,
 body.dark-mode .bg-panel-2\/70 {
-    background-color: #0f1b12 !important;
+    background-color: #0d2417 !important;
     color: #f8fafc !important;
-    border-color: #1f3324 !important;
+    border-color: #1e4030 !important;
 }
 
-/* ELEMEN KUNYAU (bg-earth) DI DARK → NADIRKAN AGAR TIDAK JADI CAHAYA */
-body.dark-mode .bg-earth { background-color: #4a3d20 !important; color: #f2c94c !important; }
-body.dark-mode .bg-earth\/20 { background-color: rgba(46,90,38,0.30) !important; }
-body.dark-mode .bg-earth\/15 { background-color: rgba(46,90,38,0.20) !important; }
-body.dark-mode .bg-earth\/10 { background-color: rgba(46,90,38,0.15) !important; }
+/* ELEMEN KUNYAU/EMAS (bg-earth) DI DARK → TETAP TERLIHAT SEBAGAI AKSEN EMAS, BUKAN CAHAYA */
+body.dark-mode .bg-earth { background-color: #d4a853 !important; color: #133221 !important; }
+body.dark-mode .bg-earth\/20 { background-color: rgba(212, 168, 83, 0.28) !important; color: #f8fafc !important; }
+body.dark-mode .bg-earth\/15 { background-color: rgba(212, 168, 83, 0.20) !important; color: #f8fafc !important; }
+body.dark-mode .bg-earth\/10 { background-color: rgba(212, 168, 83, 0.14) !important; color: #f8fafc !important; }
+body.dark-mode .bg-gold { background-color: #c89d44 !important; color: #133221 !important; }
+body.dark-mode .bg-gold\/15,
+body.dark-mode .bg-gold\/20 { background-color: rgba(200, 157, 68, 0.22) !important; }
 
 /* 8. TEKS DI LUAR PANEL DI DARK MODE → PUTIH TERANG (hanya teks yang sebelumnya
    gelap/black. Text putih, hijau, & kuning sudah di-cover aturan sebelumnya) */
