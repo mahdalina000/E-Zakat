@@ -126,7 +126,7 @@
             <rect width="100%" height="100%" fill="url(#zy-star-pat)" />
         </svg>
         <!-- MANDALA ROSETTE EMAS (atas tengah, ukuran SEDANG) -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[38%] w-[300px] md:w-[420px] lg:w-[520px] aspect-square pointer-events-none zy-mandala">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[70%] w-[300px] md:w-[420px] lg:w-[520px] aspect-square pointer-events-none zy-mandala">
             <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(200, 200)">
                     <!-- Lapisan terluar: 8 kelopak (outer petals) -->
