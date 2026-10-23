@@ -69,13 +69,11 @@
         color: #FFFFFF !important;
     }
 
-    /* MENYEMBUNYIKAN SEMUA CAHAYA/GLOW ORANYE KUNING DI BACKGROUND LAYOUT INDUK */
+    /* MENYEMBUNYIKAN SEMUA CAHAYA/GLOW ORANYE KUNING DI BACKGROUND LAYOUT INDUK
+       (tidak lagi menarget .absolute.right-0 agar lentera kanan tetap tampil) */
     body > div > div[class*="amber"],
     body > div > div[class*="yellow"],
     body > div > div[class*="earth"],
-    body > div > .absolute.right-0,
-    body > div > .absolute.top-0.right-0,
-    body > div > .absolute.bottom-0.right-0,
     [class*="bg-amber"],
     [class*="bg-yellow-500"],
     [class*="bg-gold"],
