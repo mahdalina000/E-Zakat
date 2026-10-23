@@ -128,13 +128,24 @@ body.dark-mode {
 .zy-zy-grad { background: var(--zy-grad); transition: background 0.4s ease; }
 .zy-star { color: var(--zy-orb); opacity: 0.05; transition: color .4s, opacity .4s; }
 body.dark-mode .zy-star { opacity: 0.08; }
-.zy-mandala { color: var(--zy-mandala); opacity: 0.20; transition: color .4s, opacity .4s; }
-body.dark-mode .zy-mandala { opacity: 0.85; }
+.zy-mandala { color: var(--zy-mandala); opacity: 0.85; transition: color .4s, opacity .4s; z-index: 5; position: relative; }
+body.dark-mode .zy-mandala { opacity: 0.95; }
+/* Bagian mandala baru (lapisan kelopak, cincin, bintang) — warna mengikuti CSS variables */
+.zy-md-outer path { fill: rgba(200,157,68,0.28); stroke: var(--zy-mandala); stroke-width: 2; }
+.zy-md-inner path { fill: rgba(200,157,68,0.42); stroke: var(--zy-mandala); stroke-width: 1.6; }
+.zy-md-ring { stroke: var(--zy-mandala); stroke-width: 1.6; fill: none; opacity: 0.95; }
+.zy-md-star path { fill: rgba(200,157,68,0.75); stroke: var(--zy-mandala); stroke-width: 1.4; }
+body.dark-mode .zy-md-outer path { fill: rgba(226,179,86,0.34); stroke: var(--zy-mandala); stroke-width: 2.2; }
+body.dark-mode .zy-md-inner path { fill: rgba(226,179,86,0.48); stroke: var(--zy-mandala); stroke-width: 1.8; }
+body.dark-mode .zy-md-star path { fill: rgba(226,179,86,0.85); stroke: var(--zy-mandala); stroke-width: 1.6; }
 .zy-mandala-core  { fill: var(--zy-mandala-core); }
 .zy-mandala-core2 { fill: var(--zy-mandala-core2); }
 .zy-mandala-core3 { fill: var(--zy-mandala-core3); }
 .zy-lantern-line { stroke: var(--zy-orb); }
 body.dark-mode .zy-lantern-line { stroke: #e0b553; }
+/* LENTERA KANAN: di depan konten agar terlihat (hanya di tampilan, pointer-events-none) */
+.zy-lantern-right { opacity: 0.85; z-index: 40; }
+body.dark-mode .zy-lantern-right { opacity: 0.95; }
 .zy-lantern { opacity: 0.60; }
 body.dark-mode .zy-lantern { opacity: 0.85; }
 
