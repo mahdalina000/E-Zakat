@@ -27,7 +27,7 @@
     
     /* Aksen emas di dark mode */
     body.dark-mode .text-gold,
-    body.dark-mode .text-gold2 { color: #D4AF37 !important; }
+    body.dark-mode .text-gold2 { color: #d46b37 !important; }
     body.dark-mode .bg-gold\/15 { background-color: rgba(212,175,55,0.20) !important; }
     body.dark-mode .border-gold\/40 { border-color: rgba(212,175,55,0.45) !important; }
     
@@ -65,14 +65,25 @@
         background-color: rgba(255, 255, 255, 0.10) !important;
         border-color: rgba(212, 175, 55, 0.40) !important;
     }
-    /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat. DI DARK: hijau muda terang. */
+    /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat (#0f2418) + latar hijau soft solid agar JELAS.
+       DI DARK: hijau terang. */
     .bg-niat-box .font-amiri {
-        color: #0c1f14 !important;
-        font-size: 1.35rem;
-        line-height: 2;
+        color: #0f2418 !important;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2.1;
+        letter-spacing: 0;
+    }
+    .bg-niat-box {
+        background-color: rgba(255,255,255,0.95) !important;
+        border: 1px solid rgba(29,91,55,0.35) !important;
+    }
+    body.dark-mode .bg-niat-box {
+        background-color: rgba(15,27,18,0.95) !important;
+        border-color: rgba(212,175,55,0.45) !important;
     }
     body.dark-mode .bg-niat-box .font-amiri {
-        color: #d7f0dc !important;
+        color: #e8f5e9 !important;
     }
 
     /* KONTROL UKURAN ORNAMEN */
