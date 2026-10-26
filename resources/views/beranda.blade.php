@@ -252,12 +252,12 @@
                         <!-- kiri: chip tanggal keagamaan -->
                         <div class="space-y-3">
                             <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-calendar-days mr-1"></i> Kalender Terdekat</div>
-                            <div class="flex flex-wrap gap-2" id="festivalChips">
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Ramadan 1448H</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Nuzulul Qur'an</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Idul Fitri</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Idul Adha</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Maulid Nabi</span>
+                            <div class="flex flex-wrap gap-2 p-3 rounded-2xl bg-white/[0.07] border border-white/20" id="festivalChips">
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Ramadan 1448H</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Nuzulul Qur'an</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Idul Fitri</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Idul Adha</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Maulid Nabi</span>
                             </div>
                             <a href="{{ url('/kalkulator') }}" class="inline-flex items-center gap-2 bg-gold2 hover:bg-gold text-oliveDark text-xs font-extrabold px-5 py-2.5 rounded-full transition active:scale-95 shadow-md">
                                 <i class="fa-solid fa-calculator"></i> Hitung Zakat Sekarang
@@ -267,18 +267,18 @@
                         <!-- kanan: 3 pengingat zakat -->
                         <div class="space-y-3">
                             <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-bell mr-1"></i> Pengingat Zakat</div>
-                            <div class="grid sm:grid-cols-3 gap-3">
-                                <div class="bg-white/10 border border-white/20 rounded-2xl p-3.5 backdrop-blur-sm hover:bg-white/15 transition">
+                            <div class="grid sm:grid-cols-3 gap-3 p-3 rounded-2xl bg-white/[0.07] border border-white/20">
+                                <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
                                     <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Fitrah</div>
                                     <div class="text-[10px] text-white/80 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
                                 </div>
-                                <div class="bg-white/10 border border-white/20 rounded-2xl p-3.5 backdrop-blur-sm hover:bg-white/15 transition">
+                                <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
                                     <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Penghasilan</div>
                                     <div class="text-[10px] text-white/80 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
                                 </div>
-                                <div class="bg-white/10 border border-white/20 rounded-2xl p-3.5 backdrop-blur-sm hover:bg-white/15 transition">
+                                <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
                                     <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-coins"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Maal &amp; Niaga</div>
                                     <div class="text-[10px] text-white/80 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
