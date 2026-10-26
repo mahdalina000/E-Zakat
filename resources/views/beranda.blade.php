@@ -71,13 +71,6 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto w-full px-4 py-4 flex-1 flex flex-col justify-center">
-<!-- ORNAMEN EMAS DI BAGIAN ATAS (POSISI DI BELAKANG TEKS) -->
-<div class="absolute top-0 left-0 w-full pointer-events-none z-0 overflow-hidden">
-    <img src="{{ asset('images/ornamen-emas.jpg') }}" 
-         alt="Ornamen Ramadhan" 
-         class="w-full h-[120px] md:h-[160px] object-cover object-top opacity-70">
-</div>
-
 
     <!-- CONTAINER UTAMA -->
     <main class="space-y-4 my-auto relative">
@@ -104,9 +97,6 @@
             
             <!-- KOLOM KIRI: HERO RINGKAS -->
             <div class="lg:col-span-7 space-y-3 relative overflow-hidden rounded-3xl p-2">
-                
-                <!-- ORNAMEN EMAS PAS DUA POJOKAN (UKURAN DIKUNCI KECIL) -->
-                <img src="{{ asset('images/ornamen-emas.png') }}" class="ornamen-medium top-0 right-0" alt="Ornamen">
 
                 <div class="inline-flex items-center gap-2 border border-gold/50 bg-gold/15 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark dark:text-gold2 anim-smooth delay-2">
                     <i class="fa-solid fa-sparkles text-gold2"></i> ZAKAT MEMBERSIHKAN HARTA & JIWA
@@ -149,9 +139,6 @@
 
             <!-- KOLOM KANAN: PENGUMUMAN CARD -->
             <div class="lg:col-span-5 bg-panel rounded-3xl p-5 border border-panel-border space-y-3 anim-smooth delay-3 shadow-md border-l-4 border-l-gold relative overflow-hidden">
-                
-                <!-- ORNAMEN EMAS KECIL DI KANAN ATAS KARTU PENGUMUMAN -->
-                <img src="{{ asset('images/ornamen-emas.png') }}" class="ornamen-small -top-2 -right-2" alt="Ornamen">
 
                 <div class="flex items-center gap-3 relative z-10">
                     <div class="w-9 h-9 bg-olive text-white rounded-xl flex items-center justify-center shrink-0 shadow-sm">
@@ -223,6 +210,74 @@
             </a>
         </div>
 
+        <!-- BANNER UCAPAN SELAMAT HARI RAYA & PENGINGAT ZAKAT -->
+        <section class="space-y-4 shrink-0 anim-smooth delay-5">
+            <div class="grid lg:grid-cols-2 gap-4">
+                <!-- Kartu ucapan selamat -->
+                <div class="relative overflow-hidden rounded-2xl p-5 shadow-md border border-panel-border bg-gradient-to-br from-olive to-olive2 text-white">
+                    <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-gold2/20 pointer-events-none"></div>
+                    <div class="absolute -right-2 bottom-0 w-20 h-20 rounded-full bg-white/10 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-hand-holding-heart"></i> Ucapan Berbahagia
+                        </div>
+                        <h3 class="font-black text-lg mt-1.5 leading-snug">
+                            Selamat Menunaikan Ibadah,<br class="hidden sm:block"> Maaf Lahir &amp; Batin
+                        </h3>
+                        <p class="text-xs text-white/85 mt-2 leading-relaxed">
+                            Semoga setiap zakat, infak &amp; sedekah Anda menyucikan harta, meluaskan rezeki,
+                            dan mendekatkan diri kepada Allah.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Ramadan 1448H</span>
+                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Idul Fitri</span>
+                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Idul Adha</span>
+                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Nuzulul Qur\u0027an</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu pengingat zakat -->
+                <div class="relative overflow-hidden rounded-2xl p-5 shadow-md border border-panel-border bg-panel">
+                    <div class="absolute -left-6 -bottom-6 w-28 h-28 rounded-full bg-gold/10 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bell"></i> Pengingat Zakat
+                        </div>
+                        <div class="mt-3 space-y-2.5 text-xs">
+                            <div class="flex items-center gap-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
+                                <div class="w-9 h-9 bg-olive text-white rounded-lg flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
+                                <div class="flex-1 leading-tight">
+                                    <div class="font-bold text-oliveDark">Zakat Fitrah menjelang Idul Fitri</div>
+                                    <div class="text-[10px] text-black/70 mt-0.5">2,5 kg beras / jiwa &mdash; BAZNAS 2026: <b>Rp50.000</b> per jiwa</div>
+                                </div>
+                                <span class="text-[9px] font-extrabold text-gold2 bg-gold/15 border border-gold/30 rounded-full px-2 py-0.5 shrink-0">YANG AKAN DATANG</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
+                                <div class="w-9 h-9 bg-olive text-white rounded-lg flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
+                                <div class="flex-1 leading-tight">
+                                    <div class="font-bold text-oliveDark">Zakat Penghasilan tiap bulan</div>
+                                    <div class="text-[10px] text-black/70 mt-0.5">Nisab <b>Rp7.640.144</b> / bulan &mdash; bagi <b>2,5%</b> dari selisih</div>
+                                </div>
+                                <span class="text-[9px] font-extrabold text-oliveDark bg-olive/10 border border-olive/30 rounded-full px-2 py-0.5 shrink-0">HARIAN</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
+                                <div class="w-9 h-9 bg-olive text-white rounded-lg flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-coins"></i></div>
+                                <div class="flex-1 leading-tight">
+                                    <div class="font-bold text-oliveDark">Zakat Maal &amp; Niaga setahun</div>
+                                    <div class="text-[10px] text-black/70 mt-0.5">Harta &ge; <b>85 gr emas</b> &amp; haul 1 tahun &mdash; keluarkan <b>2,5%</b></div>
+                                </div>
+                                <span class="text-[9px] font-extrabold text-gold2 bg-gold/15 border border-gold/30 rounded-full px-2 py-0.5 shrink-0">HARIAN</span>
+                            </div>
+                        </div>
+                        <a href="{{ url('/kalkulator') }}" class="block text-center mt-3 bg-olive hover:bg-olive2 text-white text-xs font-extrabold px-4 py-2 rounded-full transition active:scale-95 shadow-sm border border-gold/40">
+                            Hitung Zakat Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- HADIS HARIAN -->
         <div class="bg-olive/95 rounded-2xl px-4 py-2.5 text-white flex items-center justify-between gap-4 shrink-0 shadow-lg anim-smooth delay-5 border-l-4 border-l-gold2 relative overflow-hidden">
             <div class="flex items-center gap-3 overflow-hidden relative z-10">
@@ -254,26 +309,26 @@ document.getElementById('dailyHadith').textContent = '"' + list[new Date().getDa
 
 const HOLIDAYS = [
     {
-        key: 'ramadan-1448',
-        name: 'Bulan Suci Ramadan 1448H',
-        date: new Date(2027, 1, 8),
-        before: 30,
-        after: 0,
+        key: 'mawlid-1448',
+        name: 'Maulid Nabi Muhammad SAW 1448H',
+        date: new Date(2027, 5, 25),
+        before: 7,
+        after: 3,
         icon: 'fa-solid fa-star-and-crescent',
         color: 'olive',
-        title: 'Ramadan 1448H Akan Tiba!',
-        text: 'Bersyukurlah & siapkan fisik dan harta. Segera tunaikan zakat fitrah menjelang akhir Ramadan.',
+        title: 'Maulid Nabi SAW Mendekat!',
+        text: 'Peringatan kelahiran Rasulullah SAW. Mom\u017Bkan keutamaan sedekah & zakat sebagai sunnah beliau.',
     },
     {
-        key: 'idul-fitri-1447',
-        name: '1 Syawal 1447H (Idul Fitri)',
-        date: new Date(2026, 2, 21),
-        before: 15,
+        key: 'nuzulul-quran-1448',
+        name: 'Nuzulul Qur\'an 1448H',
+        date: new Date(2027, 2, 26),
+        before: 3,
         after: 3,
-        icon: 'fa-solid fa-mosque',
+        icon: 'fa-solid fa-book-quran',
         color: 'olive',
-        title: 'Idul Fitri Mendekat!',
-        text: 'Segera tunaikan zakat fitrah sebelum Sholat Id. 2,5 kg beras/jiwa (±Rp16.000).',
+        title: 'Malam Nuzulul Qur\'an',
+        text: 'Perkiraan 17 Ramadan — perbanyak tilawah & sedekah. Siapkan zakat fitrah untuk akhir Ramadan.',
     },
     {
         key: 'idul-fitri-1448',
@@ -283,8 +338,19 @@ const HOLIDAYS = [
         after: 3,
         icon: 'fa-solid fa-mosque',
         color: 'olive',
-        title: 'Selamat Hari Raya Idul Fitri 1448H!',
-        text: 'Semoga ibadah kita diterima dan zakat kita membersihkan harta. Maaf lahir dan batin.',
+        title: 'Idul Fitri Mendekat!',
+        text: 'Segera tunaikan zakat fitrah sebelum Sholat Id. 2,5 kg beras/jiwa (BAZNAS 2026: Rp50.000/jiwa).',
+    },
+    {
+        key: 'ramadan-1448',
+        name: 'Bulan Suci Ramadan 1448H',
+        date: new Date(2027, 1, 8),
+        before: 30,
+        after: 3,
+        icon: 'fa-solid fa-star-and-crescent',
+        color: 'olive',
+        title: 'Ramadan 1448H Akan Tiba!',
+        text: 'Bersyukurlah & siapkan fisik dan harta. Segera tunaikan zakat fitrah menjelang akhir Ramadan.',
     },
     {
         key: 'idul-adha-1448',
@@ -295,7 +361,7 @@ const HOLIDAYS = [
         icon: 'fa-solid fa-cow',
         color: 'olive',
         title: 'Idul Adha Mendekat!',
-        text: 'Waktunya kurban. Siapkan 1/7 bagian hewan kurban setara daging — minimal ±2,5 kg per jiwa.',
+        text: 'Waktunya kurban. Siapkan 1/7 bagian hewan kurban — minimal \u00B12,5 kg daging per jiwa.',
     },
 ];
 
