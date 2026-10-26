@@ -19,7 +19,6 @@
     @yield('head')
 
     <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
-    @if(!env('APP_DEBUG'))
     <script>
         if('serviceWorker' in navigator && location.protocol !== 'file:'){
             window.addEventListener('load', () => {
@@ -29,7 +28,6 @@
             });
         }
     </script>
-    @endif
 </head>
 <body class="bg-cream2 text-oliveDark min-h-screen relative">
 <div class="flex min-h-screen relative z-10">

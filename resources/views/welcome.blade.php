@@ -10,7 +10,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
-    @if(!env('APP_DEBUG'))
     <script>
         if('serviceWorker' in navigator && location.protocol !== 'file:'){
             window.addEventListener('load', () => {
@@ -20,7 +19,6 @@
             });
         }
     </script>
-    @endif
 
     <style>
         body { 

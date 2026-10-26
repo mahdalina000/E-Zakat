@@ -17,7 +17,6 @@
     @yield('head')
 
     <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
-    @if(!env('APP_DEBUG'))
     <script>
         if('serviceWorker' in navigator && location.protocol !== 'file:'){
             window.addEventListener('load', () => {
@@ -27,7 +26,6 @@
             });
         }
     </script>
-    @endif
 </head>
 <body class="bg-cream min-h-screen flex flex-col">
     <!-- BACKGROUND AESTHETIC — SAMA DENGAN WELCOME (gambar blur + glow + grid) -->

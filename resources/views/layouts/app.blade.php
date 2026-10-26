@@ -15,7 +15,6 @@
     @yield('head')
 
     <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
-    @if(!env('APP_DEBUG'))
     <script>
         if('serviceWorker' in navigator && location.protocol !== 'file:'){
             window.addEventListener('load', () => {
@@ -25,7 +24,6 @@
             });
         }
     </script>
-    @endif
 </head>
 <body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden bg-zy-bg">
     <!-- LATAR ORNAMEN ISLAMI (mandala + lentera + pola bintang) — hiasan, tidak menghalangi konten -->
