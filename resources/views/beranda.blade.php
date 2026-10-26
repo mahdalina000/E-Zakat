@@ -213,7 +213,7 @@
         <!-- BANNER UCAPAN SELAMAT HARI RAYA & PENGINGAT ZAKAT -->
         <section class="shrink-0 anim-smooth delay-5">
             <!-- PANEL PENUH: ucapan + pengingat zakat dalam satu hero -->
-            <div class="relative overflow-hidden rounded-3xl shadow-lg border border-olive/30 bg-gradient-to-br from-olive via-olive2 to-#143d28 text-white">
+            <div class="relative overflow-hidden rounded-3xl shadow-lg border border-olive/30 bg-gradient-to-br from-olive via-olive2 to-#143d28 text-oliveDark">
                 <!-- ornamen bintang islami halus di background -->
                 <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image:radial-gradient(circle at 25% 25%, #fff 2px, transparent 2.5px), radial-gradient(circle at 75% 65%, #fff 1.5px, transparent 2px); background-size: 90px 90px, 120px 120px;"></div>
                 <!-- bulan sabit dekoratif kanan -->
@@ -238,11 +238,11 @@
                         <div class="flex items-center gap-3 bg-white/10 border border-gold2/30 rounded-2xl px-4 py-2.5">
                             <div class="text-center">
                                 <div id="countdownDays" class="text-2xl font-black text-gold2 leading-none">--</div>
-                                <div class="text-[9px] text-white/70 font-bold uppercase tracking-wider mt-1">Hari</div>
+                                <div class="text-[9px] text-oliveDark/60 font-bold uppercase tracking-wider mt-1">Hari</div>
                             </div>
                             <div class="text-left">
                                 <div id="countdownName" class="text-[11px] font-extrabold leading-tight">Hari Raya Terdekat</div>
-                                <div id="countdownDate" class="text-[9px] text-white/70 mt-0.5">menunggu data&hellip;</div>
+                                <div id="countdownDate" class="text-[9px] text-oliveDark/60 mt-0.5">menunggu data&hellip;</div>
                             </div>
                         </div>
                     </div>
@@ -271,17 +271,17 @@
                                 <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
                                     <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Fitrah</div>
-                                    <div class="text-[10px] text-white/80 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
+                                    <div class="text-[10px] text-oliveDark/70 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
                                 </div>
                                 <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
                                     <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Penghasilan</div>
-                                    <div class="text-[10px] text-white/80 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
+                                    <div class="text-[10px] text-oliveDark/70 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
                                 </div>
                                 <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
                                     <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-coins"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Maal &amp; Niaga</div>
-                                    <div class="text-[10px] text-white/80 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
+                                    <div class="text-[10px] text-oliveDark/70 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
                                 </div>
                             </div>
                         </div>
