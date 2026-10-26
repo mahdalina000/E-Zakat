@@ -125,8 +125,8 @@
             </defs>
             <rect width="100%" height="100%" fill="url(#zy-star-pat)" />
         </svg>
-        <!-- MANDALA ROSETTE EMAS (pojok KIRI BAWAH, lebih pinggir ke samping) -->
-        <div class="absolute bottom-0 left-0 translate-x-[5%] translate-y-[40%] w-[300px] md:w-[420px] lg:w-[520px] aspect-square pointer-events-none zy-mandala">
+        <!-- MANDALA ROSETTE EMAS (memutar, di pojok kiri bawah) -->
+        <div class="absolute bottom-0 left-0 w-[300px] md:w-[420px] lg:w-[520px] aspect-square pointer-events-none zy-mandala">
             <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(200, 200)">
                     <!-- Lapisan terluar: 8 kelopak (outer petals) -->
@@ -459,7 +459,7 @@
     document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){next();startTimer();} if(e.key==='ArrowLeft'){prev();startTimer();}});
     </script>
 
-    <!-- TOMBOL SUARA HADIS & TTS (robust: memuat voice di awal, selalu keluar suara) -->
+    <!-- TOMBOL SUARA HADIS & TTS (robust: selalu keluar suara, dengan fallback voice default) -->
     <script>
     (function(){
         const speakBtn = document.getElementById('speakBtn');
@@ -474,7 +474,7 @@
         loadVoices();
         synth.onvoiceschanged = loadVoices;
 
-        // Cari voice Arab (pilihan populer) & Indonesia
+        // Cari voice Arab & Indonesia, dengan fallback ke voice default
         function pickVoices(){
             const v = voices.length ? voices : synth.getVoices();
             const idVoice = v.find(x => /id[-_]?id/i.test(x.lang))
@@ -482,53 +482,45 @@
             const arVoice = v.find(x => /ar[-_]?sa/i.test(x.lang))
                          || v.find(x => /ar[-_]?eg/i.test(x.lang))
                          || v.find(x => /arabic/i.test(x.name));
-            return {id: idVoice || null, ar: arVoice || null};
+            return {id: idVoice || null, ar: arVoice || null, any: v[0] || null};
         }
 
         function resetIcon(){
-            speakBtn.querySelector('i').className = 'fa-solid fa-volume-high';
+            const i = speakBtn.querySelector('i');
+            if(i) i.className = 'fa-solid fa-volume-high';
             speakBtn.classList.remove('bg-gold2','text-oliveDark');
         }
         function showStop(){
-            speakBtn.querySelector('i').className = 'fa-solid fa-stop';
+            const i = speakBtn.querySelector('i');
+            if(i) i.className = 'fa-solid fa-stop';
             speakBtn.classList.add('bg-gold2','text-oliveDark');
         }
 
         function speakHadith(){
-            synth.cancel(); // hentikan yang sedang berjalan
+            synth.cancel();
             const h = hadiths[idx];
-            const {id, ar} = pickVoices();
+            const {id, ar, any} = pickVoices();
 
-            // 1) BACAAN ARAB — hanya jika ada voice Arab (kalau tidak ada,
-            //    dilewati agar tidak "gagal sepi" di browser yang tak punya voice Arab)
-            let queue = [];
-            if(ar){
-                const uAr = new SpeechSynthesisUtterance(h.arab);
-                uAr.lang = ar.lang || 'ar-SA';
-                uAr.voice = ar;
-                uAr.rate = 0.8;
-                uAr.pitch = 1.0;
-                uAr.volume = 1.0;
-                queue.push(uAr);
-            }
+            // Pilih voice terbaik untuk arti (prioritas: id-ID, lalu fallback ke default)
+            const chosenVoice = id || any; // pakai suara default bila tak ada id-ID
 
-            // 2) ARTI INDONESIA — selalu dibaca (voice Indonesia ada di semua browser)
             const uId = new SpeechSynthesisUtterance('Artinya: ' + h.indo + '. ' + h.sumber + '.');
             uId.lang = 'id-ID';
-            if(id) uId.voice = id;
+            if(chosenVoice) uId.voice = chosenVoice;
             uId.rate = 0.95;
             uId.pitch = 1.0;
             uId.volume = 1.0;
-            uId.onend = () => {
+
+            uId.onend = () => { speaking = false; resetIcon(); };
+            uId.onerror = (e) => {
+                // Jika masih error, coba lagi dengan voice default
                 speaking = false;
                 resetIcon();
             };
-            uId.onerror = () => { speaking = false; resetIcon(); };
-            queue.push(uId);
 
+            synth.speak(uId);
             speaking = true;
             showStop();
-            queue.forEach(u => synth.speak(u));
         }
 
         // Klik tombol: putar / hentikan
@@ -552,7 +544,6 @@
         document.addEventListener('keydown', e => {
             if(e.key === 'ArrowRight' || e.key === 'ArrowLeft') stopAll();
         });
-        // Berhenti saat pindah halaman
         window.addEventListener('pagehide', () => synth.cancel());
     })();
     </script>
