@@ -3,8 +3,9 @@
 // TIDAK cache HTML halaman -> navigasi selalu fresh dari server,
 // tanpa efek "stale" service worker.
 
-const ASSET_CACHE = 'ezakat-assets-v3';
-const ASSET_RE = /\/(build|images)\/|\.(woff2?|ttf|eot|otf|css|js|png|jpe?g|webp|svg|ico)(\?|$)/i;
+const ASSET_CACHE = 'ezakat-assets-v4';
+// Tambah: /audio/ dan .mp3/.m4a/.aac supaya MP3 hadis ikut ter-cache
+const ASSET_RE = /\/(build|images|audio)\/|\.(woff2?|ttf|eot|otf|css|js|png|jpe?g|webp|svg|ico|mp3|m4a|aac)(\?|$)/i;
 
 self.addEventListener('install', () => self.skipWaiting());
 

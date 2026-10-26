@@ -459,79 +459,101 @@
     document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){next();startTimer();} if(e.key==='ArrowLeft'){prev();startTimer();}});
     </script>
 
-    <!-- TOMBOL SUARA HADIS & TTS -->
+    <!-- TOMBOL SUARA HADIS & TTS (robust: memuat voice di awal, selalu keluar suara) -->
     <script>
     (function(){
         const speakBtn = document.getElementById('speakBtn');
-        if(!speakBtn) return;
+        if(!speakBtn || !('speechSynthesis' in window)) return;
 
         let speaking = false;
-        let supported = 'speechSynthesis' in window;
+        const synth = window.speechSynthesis;
 
+        // ---- Muat daftar voice di awal (Chrome/Edge sering kosong saat script jalan) ----
+        let voices = [];
+        const loadVoices = () => { voices = synth.getVoices() || []; };
+        loadVoices();
+        synth.onvoiceschanged = loadVoices;
+
+        // Cari voice Arab (pilihan populer) & Indonesia
         function pickVoices(){
-            const v = window.speechSynthesis.getVoices();
-            const idVoice = v.find(x => /id[-_]ID/i.test(x.lang));
-            const arVoice = v.find(x => /ar[-_](SA|EG|AE)?/i.test(x.lang));
+            const v = voices.length ? voices : synth.getVoices();
+            const idVoice = v.find(x => /id[-_]?id/i.test(x.lang))
+                         || v.find(x => /indonesia/i.test(x.name));
+            const arVoice = v.find(x => /ar[-_]?sa/i.test(x.lang))
+                         || v.find(x => /ar[-_]?eg/i.test(x.lang))
+                         || v.find(x => /arabic/i.test(x.name));
             return {id: idVoice || null, ar: arVoice || null};
         }
 
-        function speakHadith(){
-            if(!supported) return;
-            window.speechSynthesis.cancel();
+        function resetIcon(){
+            speakBtn.querySelector('i').className = 'fa-solid fa-volume-high';
+            speakBtn.classList.remove('bg-gold2','text-oliveDark');
+        }
+        function showStop(){
+            speakBtn.querySelector('i').className = 'fa-solid fa-stop';
+            speakBtn.classList.add('bg-gold2','text-oliveDark');
+        }
 
+        function speakHadith(){
+            synth.cancel(); // hentikan yang sedang berjalan
             const h = hadiths[idx];
             const {id, ar} = pickVoices();
 
-            const uAr = new SpeechSynthesisUtterance(h.arab);
-            uAr.lang = 'ar-SA';
-            uAr.rate = 0.85;
-            uAr.pitch = 1.0;
-            if(ar) uAr.voice = ar;
+            // 1) BACAAN ARAB — hanya jika ada voice Arab (kalau tidak ada,
+            //    dilewati agar tidak "gagal sepi" di browser yang tak punya voice Arab)
+            let queue = [];
+            if(ar){
+                const uAr = new SpeechSynthesisUtterance(h.arab);
+                uAr.lang = ar.lang || 'ar-SA';
+                uAr.voice = ar;
+                uAr.rate = 0.8;
+                uAr.pitch = 1.0;
+                uAr.volume = 1.0;
+                queue.push(uAr);
+            }
 
-            const uId = new SpeechSynthesisUtterance('Artinya: ' + h.indo + ' (' + h.sumber + ')');
+            // 2) ARTI INDONESIA — selalu dibaca (voice Indonesia ada di semua browser)
+            const uId = new SpeechSynthesisUtterance('Artinya: ' + h.indo + '. ' + h.sumber + '.');
             uId.lang = 'id-ID';
+            if(id) uId.voice = id;
             uId.rate = 0.95;
             uId.pitch = 1.0;
-            if(id) uId.voice = id;
-
-            uAr.onend = () => {
-                window.speechSynthesis.speak(uId);
+            uId.volume = 1.0;
+            uId.onend = () => {
+                speaking = false;
+                resetIcon();
             };
-            uId.onend = () => { speaking = false; updateIcon(false); };
+            uId.onerror = () => { speaking = false; resetIcon(); };
+            queue.push(uId);
 
-            window.speechSynthesis.speak(uAr);
             speaking = true;
-            updateIcon(true);
+            showStop();
+            queue.forEach(u => synth.speak(u));
         }
 
-        function updateIcon(isSpeaking){
-            const icon = speakBtn.querySelector('i');
-            icon.className = isSpeaking ? 'fa-solid fa-stop' : 'fa-solid fa-volume-high';
-        }
+        // Klik tombol: putar / hentikan
+        speakBtn.addEventListener('click', () => {
+            if(speaking){
+                synth.cancel();
+                speaking = false;
+                resetIcon();
+            } else {
+                speakHadith();
+            }
+        });
 
-        speakBtn.addEventListener('click', speakHadith);
-
-        if(supported){
-            window.speechSynthesis.onvoiceschanged = () => {};
-        }
-
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        if(supported){
-            const stopIfSpeaking = () => {
-                if(speaking){
-                    window.speechSynthesis.cancel();
-                    speaking = false;
-                    updateIcon(false);
-                }
-            };
-            nextBtn?.addEventListener('click', stopIfSpeaking);
-            prevBtn?.addEventListener('click', stopIfSpeaking);
-            document.getElementById('dots')?.addEventListener('click', stopIfSpeaking);
-            document.addEventListener('keydown', e => {
-                if(e.key === 'ArrowRight' || e.key === 'ArrowLeft') stopIfSpeaking();
-            });
-        }
+        // Berhenti saat pindah hadis (next/prev/dots/keyboard)
+        const stopAll = () => {
+            if(speaking){ synth.cancel(); speaking = false; resetIcon(); }
+        };
+        document.getElementById('nextBtn')?.addEventListener('click', stopAll);
+        document.getElementById('prevBtn')?.addEventListener('click', stopAll);
+        document.getElementById('dots')?.addEventListener('click', stopAll);
+        document.addEventListener('keydown', e => {
+            if(e.key === 'ArrowRight' || e.key === 'ArrowLeft') stopAll();
+        });
+        // Berhenti saat pindah halaman
+        window.addEventListener('pagehide', () => synth.cancel());
     })();
     </script>
 </body>
