@@ -96,20 +96,53 @@
     }
     body.dark-mode .result-card-olive .bg-panel-2 .text-black { color: #f8fafc; }
 
-    /* KARTU HASIL PERHITUNGAN — HIJUA TUA SOLID (sama persis dengan bg-olive #246c42) */
+    /* KARTU HASIL PERHITUNGAN — profesional: gradient hijau + ornamen + aksen emas */
     .result-card-olive {
-        background-color: #246c42 !important;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-left: 4px solid #F59E0B !important;
+        position: relative;
+        background: linear-gradient(135deg, #1d5b37 0%, #246c42 55%, #143d28 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        border-left: 4px solid #e2b356 !important;
+        box-shadow: 0 18px 40px -18px rgba(20, 61, 40, 0.55) !important;
+        overflow: hidden;
+    }
+    /* ornamen bintang islami halus di belakang konten */
+    .result-card-olive::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle at 20% 18%, rgba(226,179,86,0.10) 2px, transparent 2.5px),
+                          radial-gradient(circle at 80% 82%, rgba(255,255,255,0.08) 1.5px, transparent 2px),
+                          radial-gradient(circle at 60% 40%, rgba(255,255,255,0.05) 2px, transparent 2.5px);
+        background-size: 110px 110px, 140px 140px, 170px 170px;
+        pointer-events: none;
+    }
+    .result-card-olive > * { position: relative; z-index: 1; }
+    /* sub-kartu di dalam hasil — kaca */
+    .result-card-olive .bg-panel-2 {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+    .result-card-olive .bg-black\/15 {
+        background-color: rgba(0, 0, 0, 0.18) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    }
+    .result-card-olive .bg-gold\/20 {
+        background-color: rgba(226, 179, 86, 0.16) !important;
+        border: 1px solid rgba(226, 179, 86, 0.35) !important;
+        box-shadow: 0 8px 24px -10px rgba(226,179,86,0.45) !important;
     }
     body.dark-mode .result-card-olive {
-        background-color: rgba(29, 91, 55, 0.85) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        border-left: 4px solid #F59E0B !important;
+        background: linear-gradient(135deg, #0d2417 0%, #123826 55%, #07160f 100%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        border-left: 4px solid #e2b356 !important;
+        box-shadow: 0 18px 44px -18px rgba(0,0,0,0.6) !important;
     }
-</style>
+    body.dark-mode .result-card-olive .bg-panel-2 {
+        background-color: rgba(255, 255, 255, 0.07) !important;
+        border-color: rgba(255, 255, 255, 0.14) !important;
+    }</style>
 @endsection
 
 @section('content')
