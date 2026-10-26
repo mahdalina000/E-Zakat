@@ -84,6 +84,42 @@
         background: radial-gradient(600px 220px at 85% -10%, rgba(226, 179, 86, 0.22), transparent 60%);
         pointer-events: none;
     }
+    /* LAPISAN BINTANG KAYA — beberapa lapis dengan ukuran & posisi berbeda agar tidak kosong */
+    .festive-stars {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            /* bintang kecil rapat */
+            radial-gradient(circle at 10% 20%, rgba(255,255,255,0.55) 1.2px, transparent 1.8px),
+            radial-gradient(circle at 28% 65%, rgba(255,255,255,0.40) 1px, transparent 1.6px),
+            radial-gradient(circle at 45% 15%, rgba(226,179,86,0.6) 1.4px, transparent 2px),
+            radial-gradient(circle at 62% 80%, rgba(255,255,255,0.45) 1.1px, transparent 1.7px),
+            radial-gradient(circle at 78% 30%, rgba(226,179,86,0.5) 1.3px, transparent 1.9px),
+            radial-gradient(circle at 92% 70%, rgba(255,255,255,0.50) 1.2px, transparent 1.8px),
+            /* kelompok bintang emas tersebar */
+            radial-gradient(circle at 17% 78%, rgba(226,179,86,0.55) 1.6px, transparent 2.2px),
+            radial-gradient(circle at 55% 45%, rgba(255,255,255,0.38) 1px, transparent 1.6px),
+            radial-gradient(circle at 85% 12%, rgba(226,179,86,0.45) 1.4px, transparent 2px),
+            radial-gradient(circle at 35% 40%, rgba(255,255,255,0.42) 1.2px, transparent 1.8px),
+            radial-gradient(circle at 70% 55%, rgba(255,255,255,0.36) 1px, transparent 1.6px),
+            radial-gradient(circle at 5% 50%, rgba(226,179,86,0.40) 1.3px, transparent 1.9px);
+        background-size: 140px 140px, 180px 180px, 120px 120px,
+                         200px 200px, 160px 160px, 130px 130px,
+                         220px 220px, 150px 150px, 240px 240px,
+                         170px 170px, 120px 120px, 190px 190px;
+        background-position: 0 0, 40px 60px, 80px 20px, 20px 90px,
+                             110px 40px, 60px 120px, 140px 80px,
+                             30px 140px, 160px 10px, 100px 100px,
+                             50px 30px, 120px 130px;
+        opacity: 0.7;
+        animation: festiveTwinkle 5s ease-in-out infinite;
+    }
+    @keyframes festiveTwinkle {
+        0%, 100% { opacity: 0.45; }
+        50% { opacity: 0.85; }
+    }
+    body.dark-mode .festive-stars { opacity: 0.5; }
     /* kartu sub premium */
     .festive-card {
         background: rgba(255, 255, 255, 0.06);
@@ -287,7 +323,7 @@
             <!-- PANEL PENUH: ucapan + pengingat zakat dalam satu hero -->
             <div class="festive-hero rounded-3xl text-white">
                 <!-- ornamen bintang islami halus di background -->
-                <div class="absolute inset-0 opacity-[0.09] pointer-events-none" style="background-image:radial-gradient(circle at 25% 25%, #fff 2px, transparent 2.5px), radial-gradient(circle at 75% 65%, #fff 1.5px, transparent 2px); background-size: 90px 90px, 120px 120px;"></div>
+                <div class="festive-stars"></div>
                 <!-- bulan sabit dekoratif kanan -->
                 <svg class="absolute right-6 top-6 w-24 h-24 text-gold2/40 pointer-events-none" viewBox="0 0 100 100" fill="currentColor"><path d="M62 8a46 46 0 1 0 0 84 52 52 0 0 1 0-84z"/></svg>
                 <!-- lentera gantung dekoratif kiri -->
