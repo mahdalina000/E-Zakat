@@ -27,7 +27,7 @@
     
     /* Aksen emas di dark mode */
     body.dark-mode .text-gold,
-    body.dark-mode .text-gold2 { color: #d46b37 !important; }
+    body.dark-mode .text-gold2 { color: #D4AF37 !important; }
     body.dark-mode .bg-gold\/15 { background-color: rgba(212,175,55,0.20) !important; }
     body.dark-mode .border-gold\/40 { border-color: rgba(212,175,55,0.45) !important; }
     
@@ -65,25 +65,14 @@
         background-color: rgba(255, 255, 255, 0.10) !important;
         border-color: rgba(212, 175, 55, 0.40) !important;
     }
-    /* TEKS ARAB (Amiri) — di LIGHT: hijau gelap tegas (#0c2e1c) di atas blok HIJAU solid.
-       DI DARK: hijau terang di atas blok hijau gelap. */
+    /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat. DI DARK: hijau muda terang. */
     .bg-niat-box .font-amiri {
-        color: #0c2e1c !important;
-        font-weight: 700;
-        font-size: 1.5rem;
-        line-height: 2.1;
-        letter-spacing: 0;
-    }
-    .bg-niat-box {
-        background-color: #dcefdc !important;
-        border: 1px solid rgba(29, 91, 55, 0.40) !important;
-    }
-    body.dark-mode .bg-niat-box {
-        background-color: rgba(15, 35, 24, 0.90) !important;
-        border-color: rgba(212, 175, 55, 0.45) !important;
+        color: #0c1f14 !important;
+        font-size: 1.35rem;
+        line-height: 2;
     }
     body.dark-mode .bg-niat-box .font-amiri {
-        color: #d9f2e0 !important;
+        color: #d7f0dc !important;
     }
 
     /* KONTROL UKURAN ORNAMEN */
@@ -123,26 +112,24 @@
     <div class="grid lg:grid-cols-[1fr_300px] gap-6">
         <div class="space-y-6">
             {{-- Niat --}}
-            <div id="niat" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2 border-l-4 border-l-gold relative overflow-hidden shadow-sm">
-                <img src="{{ asset('images/ornamen-emas.png') }}" class="ornamen-small -top-2 -right-2" alt="Ornamen">
-                
+            <div id="niat" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm font-black">1</span> Niat Zakat
                 </h2>
                 <p class="text-xs text-black/70 mt-1">Niat di dalam hati; melafalkan membantu menguatkan. Berikut lafal yang umum diajarkan ulama.</p>
-                
+
                 <div class="mt-4 grid md:grid-cols-2 gap-4">
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
                         <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT FITRAH UNTUK DIRI SENDIRI</div>
-                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنْ نَفْسِي فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُّ أُنْ أُخْرِجَ زَكَاةَ الِافْطِرِ عَنِ نَفْسِي فَرْضًا لِلهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakatal fitri 'an nafsi fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku niat mengeluarkan zakat fitrah untuk diriku sendiri, fardu karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat fitrah untuk diriku sendiri, fardu karena Allah Ta'ala.</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
                         <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT FITRAH UNTUK KELUARGA</div>
-                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنِّي وَعَنْ جَمِيعِ مَنْ تَلْزَمُنِي نَفَقَتُهُ فَرْضًا لِلَّهِ تَعَالَى</div>
-                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakatal fitri 'anni wa 'an jami'i man talzamuni nafaqatuhu fardhan lillahi ta'ala"</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُّ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنِّي وَعَنْ جَمِيعِ مَنْ تَلْزَمُنِي نَفَقَتُهُ فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakatal fitri 'anni wa 'an jami'i man talzmunni nafaqatuhu fardhan lillahi ta'ala"</div>
                         <div class="text-[11px] text-black/70 mt-1">Untuk kepala keluarga yang menanggung istri/anak.</div>
                     </div>
                 </div>
