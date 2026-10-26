@@ -45,7 +45,7 @@
 @keyframes smoothReveal {
     0% {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(6px);
     }
     100% {
         opacity: 1;
@@ -55,17 +55,17 @@
 
 /* anim-smooth — dipakai di semua layout publik (beranda, kalkulator,
    direktori, panduan, welcome). Stagger lewat .delay-1..5.
-   Dipercepat: durasi 0.4s -> 0.22s, tanpa blur agar halaman cepat "kebuka". */
+   Dipercepat maksimal: durasi 0.12s, tanpa blur, hampir instan. */
 .anim-smooth {
-    animation: smoothReveal 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: smoothReveal 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Delay — standalone agar bisa dipake di elemen apa pun (anim-smooth, anim-welcome, dll) */
-.delay-1 { animation-delay: 0.02s; }
-.delay-2 { animation-delay: 0.04s; }
-.delay-3 { animation-delay: 0.06s; }
-.delay-4 { animation-delay: 0.08s; }
-.delay-5 { animation-delay: 0.10s; }
+/* Delay — dirduksi nyaris nol agar konten segera muncul */
+.delay-1 { animation-delay: 0.005s; }
+.delay-2 { animation-delay: 0.01s; }
+.delay-3 { animation-delay: 0.015s; }
+.delay-4 { animation-delay: 0.02s; }
+.delay-5 { animation-delay: 0.025s; }
 
 /* Hover Float Soft Effect */
 .hover-smooth {
