@@ -87,22 +87,20 @@
         .quick-card-blue { border-left: 3px solid #2563EB !important; }
         .quick-card-emerald { border-left: 3px solid #10B981 !important; }
 
-        /* Animasi Ultra Smooth Reveal */
+        /* Animasi Ultra Smooth Reveal — dipercepat (0.85s -> 0.35s, tanpa blur) */
         @keyframes zyraSmoothWelcome {
             0% {
                 opacity: 0;
-                transform: translateY(20px) scale(0.98);
-                filter: blur(5px);
+                transform: translateY(12px) scale(0.99);
             }
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
-                filter: blur(0);
             }
         }
 
         .anim-welcome {
-            animation: zyraSmoothWelcome 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+            animation: zyraSmoothWelcome 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .turbolinks-progress-bar { display: none !important; }
