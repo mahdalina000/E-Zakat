@@ -56,13 +56,13 @@
         background: none !important;
     }
 
-    /* BLOK LAFAL NIAT — HIJAU (selaras panel lain), bukan putih */
+    /* BLOK LAFAL NIAT — HIJAU SOLID (menonjol sebagai blok hijau, bukan pucat/transparan) */
     .bg-niat-box {
-        background-color: rgba(36, 108, 66, 0.12) !important;
-        border: 1px solid rgba(36, 108, 66, 0.30) !important;
+        background-color: #d5e8d8 !important;
+        border: 1px solid rgba(36, 108, 66, 0.40) !important;
     }
     body.dark-mode .bg-niat-box {
-        background-color: rgba(255, 255, 255, 0.10) !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
         border-color: rgba(212, 175, 55, 0.40) !important;
     }
     /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat. DI DARK: hijau muda terang. */
