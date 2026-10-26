@@ -215,6 +215,9 @@
                                 <div>• Total beras: <b>2,5 kg</b> (2,5 kg/orang × 1 orang)</div>
                             </div>
                         </div>
+                        <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
+                            <b class="text-gold2">Cara pakai:</b> Atur jumlah jiwa, pilih jenis beras, dan sesuaikan harga per kg. Hasil berubah otomatis. Boleh setor dalam bentuk beras atau uang (sesuai harga beras lokal).
+                        </div>
                     </div>
                 </div>
                 <p class="text-[11px] text-white/80 mt-5 flex items-center gap-1.5 font-medium"><i class="fa-solid fa-clock text-xs text-gold2"></i> Waktu utama: akhir Ramadhan hingga sebelum shalat Id.</p>
@@ -295,6 +298,9 @@
                             <div id="maalZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 0</div>
                             <div id="maalZakatGram" class="text-[10px] text-white/80 mt-1">Setara 0,0 gram emas</div>
                         </div>
+                        <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
+                            <b class="text-gold2">Cara pakai:</b> Masukkan total harta (tabungan, deposito, emas, barang dagang). Gunakan kotak "Hitung Dari Gram Emas" untuk menambah nilai emas. Status berubah <b>Wajib</b> jika harta ≥ nisab (85 gr) &amp; sudah haul 1 tahun. Zakat = 2,5% dari harta.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -333,7 +339,10 @@
                     <div class="bg-gold/20 rounded-2xl p-4 text-center border border-gold/40">
                         <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Zakat / Bulan</div>
                         <div id="penghasilanZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 191.004</div>
-                        <div class="text-[10px] text-white/80 mt-1">Setara Rp 2.292.044 / tahun</div>
+                        <div id="penghasilanTahun" class="text-[10px] text-white/80 mt-1">Setara Rp 0 / tahun</div>
+                    </div>
+                    <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
+                        <b class="text-gold2">Cara pakai:</b> Isi penghasilan bersih bulanan Anda. Jika ≥ nisab (Rp 7.640.144), zakat 2,5% terhitung otomatis per bulan. Bisa ditunaikan bulanan atau digabung tahunan (×12).
                     </div>
                 </div>
             </div>
@@ -362,6 +371,17 @@
                     <span class="text-[10px] text-black/60">/gram</span>
                 </div>
                 <input id="niagaEmas" type="hidden" value="1300000">
+
+                <div class="mt-4 p-3.5 rounded-2xl border border-gold/30 bg-gold/5">
+                    <div class="text-xs font-bold text-gold2 flex items-center gap-1.5 mb-1.5">
+                        <i class="fa-solid fa-ring"></i> Punya Emas? Hitung Gramnya
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="niagaGramEmas" type="number" placeholder="Jumlah gram (mis. 200)" class="w-1/2 border border-cream3 rounded-full px-3 py-1.5 text-xs font-semibold">
+                        <button type="button" id="btnNiagaEmas" class="bg-gold hover:bg-gold text-white text-xs font-bold px-4 py-1.5 rounded-full transition shadow-sm active:scale-95">Tambah ke Modal</button>
+                    </div>
+                    <div class="text-[10px] text-black/60 mt-1.5">Gram × harga emas = nilai emas, otomatis ditambah ke "Modal + Keuntungan".</div>
+                </div>
             </div>
 
             <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
@@ -379,6 +399,9 @@
                     <div class="bg-gold/20 rounded-2xl p-4 text-center border border-gold/40">
                         <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Zakat (2,5%)</div>
                         <div id="niagaZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 0</div>
+                    </div>
+                    <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
+                        <b class="text-gold2">Cara pakai:</b> Masukkan total modal + keuntungan dagang, kurangi utang. Jika punya emas, isi gram lalu tekan "Tambah ke Modal" agar nilai emas ikut dihitung. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas).
                     </div>
                 </div>
             </div>
@@ -418,6 +441,9 @@
                     <div class="bg-gold/20 rounded-2xl p-4 text-center border border-gold/40">
                         <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Zakat Panen</div>
                         <div id="pertanianZakat" class="font-black text-2xl text-gold2 mt-0.5">50 kg</div>
+                    </div>
+                    <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
+                        <b class="text-gold2">Cara pakai:</b> Isi total hasil panen dalam kg. Pilih irigasi: <b>Tanpa Irigasi</b> = kadar 5%, <b>Dengan Irigasi</b> = 2,5%. Wajib jika panen ≥ nisab 960 kg (15,24 kuintal).
                     </div>
                 </div>
             </div>
@@ -489,6 +515,9 @@
                                 <li><b>Beras</b>: ±0,75 kg per hari puasa.</li>
                                 <li><b>Makanan siap saji</b>: 1 porsi lengkap dibagikan langsung.</li>
                             </ul>
+                        </div>
+                        <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
+                            <b class="text-gold2">Cara pakai:</b> Isi jumlah hari puasa yang ditinggalkan &amp; harga 1 porsi makan. Centang "Hitung juga dalam beras" untuk melihat konversi kg. Total fidyah otomatis terhitung.
                         </div>
                     </div>
                 </div>
@@ -676,8 +705,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('penghasilanOut').textContent = fmt(nilai);
         document.getElementById('penghasilanStatus').textContent = wajib ? 'Wajib Zakat' : 'Belum Mencapai Nisab';
         document.getElementById('penghasilanZakat').textContent = fmt(zakat);
-        document.querySelector('#panel-penghasilan .result-card-olive .bg-gold\\/20 .text-\\[10px\\]:last-child')
-            ?.replaceWith(Object.assign(document.createElement('div'), {className:'text-[10px] text-white/80 mt-1', textContent:'Setara ' + fmt(zakat*12) + ' / tahun'}));
+        document.getElementById('penghasilanTahun').textContent = fmt(zakat*12);
     }
     formatCurrencyInput('penghasilanFormatted','penghasilan');
     document.getElementById('penghasilan')?.addEventListener('input', calcPenghasilan);
@@ -703,6 +731,18 @@ document.addEventListener("DOMContentLoaded", function () {
     formatCurrencyInput('niagaModalFormatted','niagaModal');
     formatCurrencyInput('niagaUtangFormatted','niagaUtang');
     formatCurrencyInput('niagaEmasFormatted','niagaEmas');
+
+    document.getElementById('btnNiagaEmas')?.addEventListener('click', () => {
+        const gram = parseFloat(document.getElementById('niagaGramEmas').value || 0);
+        const hargaEmas = parseInt(document.getElementById('niagaEmas').value || 0);
+        const nilaiEmas = Math.round(gram * hargaEmas);
+        if(gram > 0) {
+            const modal = parseInt(document.getElementById('niagaModal').value || 0);
+            document.getElementById('niagaModal').value = modal + nilaiEmas;
+            document.getElementById('niagaModalFormatted').value = Number(modal + nilaiEmas).toLocaleString('id-ID');
+            calcNiaga();
+        }
+    });
 
     /* ================= ZAKAT PERTANIAN ================= */
     const nisabPertanian = 960; // kg (15,24 kuintal)
