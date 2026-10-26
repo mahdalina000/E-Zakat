@@ -211,68 +211,80 @@
         </div>
 
         <!-- BANNER UCAPAN SELAMAT HARI RAYA & PENGINGAT ZAKAT -->
-        <section class="space-y-4 shrink-0 anim-smooth delay-5">
-            <div class="grid lg:grid-cols-2 gap-4">
-                <!-- Kartu ucapan selamat -->
-                <div class="relative overflow-hidden rounded-2xl p-5 shadow-md border border-panel-border bg-gradient-to-br from-olive to-olive2 text-white">
-                    <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-gold2/20 pointer-events-none"></div>
-                    <div class="absolute -right-2 bottom-0 w-20 h-20 rounded-full bg-white/10 pointer-events-none"></div>
-                    <div class="relative z-10">
-                        <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2 flex items-center gap-1.5">
-                            <i class="fa-solid fa-hand-holding-heart"></i> Ucapan Berbahagia
-                        </div>
-                        <h3 class="font-black text-lg mt-1.5 leading-snug">
-                            Selamat Menunaikan Ibadah,<br class="hidden sm:block"> Maaf Lahir &amp; Batin
-                        </h3>
-                        <p class="text-xs text-white/85 mt-2 leading-relaxed">
-                            Semoga setiap zakat, infak &amp; sedekah Anda menyucikan harta, meluaskan rezeki,
-                            dan mendekatkan diri kepada Allah.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Ramadan 1448H</span>
-                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Idul Fitri</span>
-                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Idul Adha</span>
-                            <span class="text-[10px] font-bold bg-white/15 border border-white/25 rounded-full px-3 py-1">Nuzulul Qur\u0027an</span>
-                        </div>
-                    </div>
+        <section class="shrink-0 anim-smooth delay-5">
+            <!-- PANEL PENUH: ucapan + pengingat zakat dalam satu hero -->
+            <div class="relative overflow-hidden rounded-3xl shadow-lg border border-olive/30 bg-gradient-to-br from-olive via-olive2 to-#143d28 text-white">
+                <!-- ornamen bintang islami halus di background -->
+                <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image:radial-gradient(circle at 25% 25%, #fff 2px, transparent 2.5px), radial-gradient(circle at 75% 65%, #fff 1.5px, transparent 2px); background-size: 90px 90px, 120px 120px;"></div>
+                <!-- bulan sabit dekoratif kanan -->
+                <svg class="absolute right-6 top-6 w-24 h-24 text-gold2/40 pointer-events-none" viewBox="0 0 100 100" fill="currentColor"><path d="M62 8a46 46 0 1 0 0 84 52 52 0 0 1 0-84z"/></svg>
+                <!-- lentera gantung dekoratif kiri -->
+                <div class="absolute left-8 top-0 pointer-events-none opacity-70">
+                    <div class="w-1.5 h-10 bg-gold2/40 mx-auto"></div>
+                    <div class="w-8 h-11 bg-gold2/80 rounded-[45%] mx-auto shadow-[0_0_18px_rgba(226,179,86,0.5)]"></div>
                 </div>
 
-                <!-- Kartu pengingat zakat -->
-                <div class="relative overflow-hidden rounded-2xl p-5 shadow-md border border-panel-border bg-panel">
-                    <div class="absolute -left-6 -bottom-6 w-28 h-28 rounded-full bg-gold/10 pointer-events-none"></div>
-                    <div class="relative z-10">
-                        <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2 flex items-center gap-1.5">
-                            <i class="fa-solid fa-bell"></i> Pengingat Zakat
-                        </div>
-                        <div class="mt-3 space-y-2.5 text-xs">
-                            <div class="flex items-center gap-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                                <div class="w-9 h-9 bg-olive text-white rounded-lg flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
-                                <div class="flex-1 leading-tight">
-                                    <div class="font-bold text-oliveDark">Zakat Fitrah menjelang Idul Fitri</div>
-                                    <div class="text-[10px] text-black/70 mt-0.5">2,5 kg beras / jiwa &mdash; BAZNAS 2026: <b>Rp50.000</b> per jiwa</div>
-                                </div>
-                                <span class="text-[9px] font-extrabold text-gold2 bg-gold/15 border border-gold/30 rounded-full px-2 py-0.5 shrink-0">YANG AKAN DATANG</span>
-                            </div>
-                            <div class="flex items-center gap-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                                <div class="w-9 h-9 bg-olive text-white rounded-lg flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
-                                <div class="flex-1 leading-tight">
-                                    <div class="font-bold text-oliveDark">Zakat Penghasilan tiap bulan</div>
-                                    <div class="text-[10px] text-black/70 mt-0.5">Nisab <b>Rp7.640.144</b> / bulan &mdash; bagi <b>2,5%</b> dari selisih</div>
-                                </div>
-                                <span class="text-[9px] font-extrabold text-oliveDark bg-olive/10 border border-olive/30 rounded-full px-2 py-0.5 shrink-0">HARIAN</span>
-                            </div>
-                            <div class="flex items-center gap-3 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                                <div class="w-9 h-9 bg-olive text-white rounded-lg flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-coins"></i></div>
-                                <div class="flex-1 leading-tight">
-                                    <div class="font-bold text-oliveDark">Zakat Maal &amp; Niaga setahun</div>
-                                    <div class="text-[10px] text-black/70 mt-0.5">Harta &ge; <b>85 gr emas</b> &amp; haul 1 tahun &mdash; keluarkan <b>2,5%</b></div>
-                                </div>
-                                <span class="text-[9px] font-extrabold text-gold2 bg-gold/15 border border-gold/30 rounded-full px-2 py-0.5 shrink-0">HARIAN</span>
+                <div class="relative z-10 p-5 sm:p-7">
+                    <!-- baris atas: label + countdown ke hari raya terdekat -->
+                    <div class="flex items-center justify-between gap-4 flex-wrap">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 bg-white/15 border border-gold2/40 rounded-2xl flex items-center justify-center text-gold2"><i class="fa-solid fa-star-and-crescent"></i></div>
+                            <div>
+                                <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold2">Peringatan Hari Raya &amp; Keagamaan</div>
+                                <div class="text-sm font-black mt-0.5">Maaf Lahir &amp; Batin &mdash; Semoga Ibadah Kita Diterima</div>
                             </div>
                         </div>
-                        <a href="{{ url('/kalkulator') }}" class="block text-center mt-3 bg-olive hover:bg-olive2 text-white text-xs font-extrabold px-4 py-2 rounded-full transition active:scale-95 shadow-sm border border-gold/40">
-                            Hitung Zakat Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
-                        </a>
+                        <!-- COUNTDOWN dinamis -->
+                        <div class="flex items-center gap-3 bg-white/10 border border-gold2/30 rounded-2xl px-4 py-2.5">
+                            <div class="text-center">
+                                <div id="countdownDays" class="text-2xl font-black text-gold2 leading-none">--</div>
+                                <div class="text-[9px] text-white/70 font-bold uppercase tracking-wider mt-1">Hari</div>
+                            </div>
+                            <div class="text-left">
+                                <div id="countdownName" class="text-[11px] font-extrabold leading-tight">Hari Raya Terdekat</div>
+                                <div id="countdownDate" class="text-[9px] text-white/70 mt-0.5">menunggu data&hellip;</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- tag hari raya + pengingat zakat dalam satu grid -->
+                    <div class="grid lg:grid-cols-[1fr_1.2fr] gap-4 mt-5">
+                        <!-- kiri: chip tanggal keagamaan -->
+                        <div class="space-y-3">
+                            <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-calendar-days mr-1"></i> Kalender Terdekat</div>
+                            <div class="flex flex-wrap gap-2" id="festivalChips">
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Ramadan 1448H</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Nuzulul Qur'an</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Idul Fitri</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Idul Adha</span>
+                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5 backdrop-blur-sm">Maulid Nabi</span>
+                            </div>
+                            <a href="{{ url('/kalkulator') }}" class="inline-flex items-center gap-2 bg-gold2 hover:bg-gold text-oliveDark text-xs font-extrabold px-5 py-2.5 rounded-full transition active:scale-95 shadow-md">
+                                <i class="fa-solid fa-calculator"></i> Hitung Zakat Sekarang
+                            </a>
+                        </div>
+
+                        <!-- kanan: 3 pengingat zakat -->
+                        <div class="space-y-3">
+                            <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-bell mr-1"></i> Pengingat Zakat</div>
+                            <div class="grid sm:grid-cols-3 gap-3">
+                                <div class="bg-white/10 border border-white/20 rounded-2xl p-3.5 backdrop-blur-sm hover:bg-white/15 transition">
+                                    <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
+                                    <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Fitrah</div>
+                                    <div class="text-[10px] text-white/80 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
+                                </div>
+                                <div class="bg-white/10 border border-white/20 rounded-2xl p-3.5 backdrop-blur-sm hover:bg-white/15 transition">
+                                    <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
+                                    <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Penghasilan</div>
+                                    <div class="text-[10px] text-white/80 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
+                                </div>
+                                <div class="bg-white/10 border border-white/20 rounded-2xl p-3.5 backdrop-blur-sm hover:bg-white/15 transition">
+                                    <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-coins"></i></div>
+                                    <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Maal &amp; Niaga</div>
+                                    <div class="text-[10px] text-white/80 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -307,6 +319,26 @@ const list = [
 ];
 document.getElementById('dailyHadith').textContent = '"' + list[new Date().getDate() % list.length] + '"';
 
+/* COUNTDOWN HARI RAYA TERDEKAT (dipakai oleh banner bagian bawah) */
+function initCountdown() {
+    const now = new Date();
+    let next = null;
+    for(const h of HOLIDAYS){
+        if(h.date > now){
+            if(!next || h.date < next.date) next = h;
+        }
+    }
+    const dEl = document.getElementById('countdownDays');
+    const nEl = document.getElementById('countdownName');
+    const dtEl = document.getElementById('countdownDate');
+    if(!next){ dEl.textContent = '—'; return; }
+    const days = Math.max(0, Math.round((next.date - now) / 86400000));
+    dEl.textContent = days;
+    nEl.textContent = next.name.replace(' 1448H','').replace(' 1447H','');
+    dtEl.textContent = next.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+}
+window.addEventListener('load', initCountdown);
+
 const HOLIDAYS = [
     {
         key: 'mawlid-1448',
@@ -317,7 +349,7 @@ const HOLIDAYS = [
         icon: 'fa-solid fa-star-and-crescent',
         color: 'olive',
         title: 'Maulid Nabi SAW Mendekat!',
-        text: 'Peringatan kelahiran Rasulullah SAW. Mom\u017Bkan keutamaan sedekah & zakat sebagai sunnah beliau.',
+        text: 'Peringatan kelahiran Rasulullah SAW. Perbanyak keutamaan sedekah & zakat sebagai sunnah beliau.',
     },
     {
         key: 'nuzulul-quran-1448',
