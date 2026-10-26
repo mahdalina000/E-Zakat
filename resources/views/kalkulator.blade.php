@@ -40,6 +40,14 @@
         border-color: rgba(255, 255, 255, 0.2) !important; 
     }
 
+    /* PANEL BAZNAS RESMI — hijau solid di light, tetap kontras di dark */
+    body.dark-mode .baznas-panel { 
+        background-color: rgba(29, 91, 55, 0.92) !important; 
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        border-left: 4px solid #e2b356 !important;
+    }
+
     body.dark-mode input[type="number"],
     body.dark-mode input[type="text"] {
         background-color: rgba(255, 255, 255, 0.15) !important;
@@ -99,6 +107,44 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
+    <!-- DATA RESMI BAZNAS 2026 (penetapan nilai zakat) -->
+    <div class="bg-olive baznas-panel text-white rounded-[24px] p-5 lg:p-6 shadow-md border-l-4 border-l-gold2 relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div class="shrink-0">
+                <div class="flex items-center gap-2 text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">
+                    <i class="fa-solid fa-landmark"></i> Penetapan BAZNAS 2026
+                </div>
+                <div class="text-[10px] text-white/70 mt-0.5">SK Ketua BAZNAS No. 14 & 15 Tahun 2026</div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 flex-1">
+                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
+                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Zakat Fitrah</div>
+                    <div class="font-black text-gold2 text-lg mt-0.5">Rp 50.000</div>
+                    <div class="text-[10px] text-white/80">/ jiwa</div>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
+                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Fidyah</div>
+                    <div class="font-black text-gold2 text-lg mt-0.5">Rp 65.000</div>
+                    <div class="text-[10px] text-white/80">/ hari / jiwa</div>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
+                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Nisab Emas</div>
+                    <div class="font-black text-gold2 text-lg mt-0.5">85 gr</div>
+                    <div class="text-[10px] text-white/80">emas 14 karat</div>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
+                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Nisab Penghasilan</div>
+                    <div class="font-black text-gold2 text-lg mt-0.5">Rp 7.640.144</div>
+                    <div class="text-[10px] text-white/80">/ bulan</div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 text-[10px] text-white/60 flex items-center gap-1.5 flex-wrap">
+            <i class="fa-solid fa-circle-info text-gold2"></i>
+            Besaran nasional BAZNAS 1447 H/2026 M. Nilai zakat daerah bisa berbeda; harga beras & emas di bawah bisa disesuaikan.
+        </div>
+    </div>
+
     <!-- HEADER TAB TIPE ZAKAT DALAM BLOK TRANSPARAN DENGAN ORNAMEN SVG -->
     <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm relative overflow-hidden">
         <svg class="absolute right-4 top-2 w-20 h-20 opacity-15 pointer-events-none text-gold2" viewBox="0 0 24 24" fill="currentColor">
@@ -231,6 +277,10 @@
                         <button type="button" id="btnKonversiEmas" class="bg-gold hover:bg-gold text-white text-xs font-bold px-4 py-1.5 rounded-full transition shadow-sm active:scale-95">
                             Konversi ke Rp
                         </button>
+                    </div>
+                    <div class="text-[10px] text-black/60 mt-1.5">
+                        <i class="fa-solid fa-circle-info mr-1"></i>
+                        Nisab BAZNAS 2026: <b>85 gr emas</b>. Jika gram ≥ 85 &amp; harga emas &gt; 0, status menjadi <b>Wajib Zakat</b> (kadar 2,5%).
                     </div>
                 </div>
 
