@@ -89,6 +89,13 @@
         background: none !important;
     }
 
+    /* Sub-kartu hijau di dalam kartu hasil (bg-panel-2) — light: hijau pucat; dark: gelap */
+    body.dark-mode .result-card-olive .bg-panel-2 {
+        background-color: rgba(255, 255, 255, 0.10) !important;
+        border-color: rgba(255, 255, 255, 0.18) !important;
+    }
+    body.dark-mode .result-card-olive .bg-panel-2 .text-black { color: #f8fafc; }
+
     /* KARTU HASIL PERHITUNGAN — HIJUA TUA SOLID (sama persis dengan bg-olive #246c42) */
     .result-card-olive {
         background-color: #246c42 !important;
@@ -189,12 +196,12 @@
 
                     <div class="mt-5 space-y-3">
                         <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-white/15 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
+                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
                                 <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Total Beras</div>
                                 <div id="fitrahBeras" class="font-black text-white text-xl mt-0.5">2,5 kg</div>
                                 <div id="fitrahLiter" class="text-[10px] text-white/70 mt-0.5">≈ 3,5 liter</div>
                             </div>
-                            <div class="bg-white/15 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
+                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
                                 <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Jiwa</div>
                                 <div id="fitrahJiwaOut" class="font-black text-white text-xl mt-0.5">1</div>
                                 <div class="text-[10px] text-white/70 mt-0.5">orang</div>
@@ -281,7 +288,7 @@
                     <h3 class="font-black text-2xl mt-1 text-white">Zakat Harta</h3>
 
                     <div class="mt-5 space-y-3">
-                        <div class="bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20 space-y-2">
+                        <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-4 border border-white/20 space-y-2">
                             <div class="flex justify-between text-xs font-medium"><span class="text-white/80">Nisab (85 gr emas)</span><span id="maalNisab" class="font-bold text-gold2">Rp 110.500.000</span></div>
                             <div class="flex justify-between text-xs font-medium"><span class="text-white/80">Harta Anda</span><span id="maalHartaOut" class="font-bold text-white">Rp 100.000.000</span></div>
                         </div>
@@ -327,7 +334,7 @@
                 <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PENGHASILAN</div>
                 <h3 class="font-black text-2xl mt-1 text-white">2,5%</h3>
                 <div class="mt-5 space-y-3">
-                    <div class="bg-white/15 rounded-2xl p-4 border border-white/20 space-y-2">
+                    <div class="bg-panel-2 rounded-2xl p-4 border border-white/20 space-y-2">
                         <div class="flex justify-between text-xs"><span class="text-white/80">Nisab / bulan</span><span id="penghasilanNisab" class="font-bold text-gold2">Rp 7.640.144</span></div>
                         <div class="flex justify-between text-xs"><span class="text-white/80">Penghasilan Anda</span><span id="penghasilanOut" class="font-bold text-white">Rp 7.640.144</span></div>
                     </div>
@@ -387,7 +394,7 @@
                 <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PERNIAGAAN</div>
                 <h3 class="font-black text-2xl mt-1 text-white">2,5%</h3>
                 <div class="mt-5 space-y-3">
-                    <div class="bg-white/15 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
+                    <div class="bg-panel-2 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
                         <div class="flex justify-between"><span class="text-white/80">Nisab (85 gr × harga emas)</span><span id="niagaNisab" class="font-bold text-gold2">Rp 110.500.000</span></div>
                         <div class="flex justify-between"><span class="text-white/80">Harta Bersih (modal − utang)</span><span id="niagaBersih" class="font-bold text-white">Rp 40.000.000</span></div>
                     </div>
@@ -428,7 +435,7 @@
                 <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PERTANIAN</div>
                 <h3 class="font-black text-2xl mt-1 text-white">Panen</h3>
                 <div class="mt-5 space-y-3">
-                    <div class="bg-white/15 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
+                    <div class="bg-panel-2 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
                         <div class="flex justify-between"><span class="text-white/80">Nisab</span><span class="font-bold text-gold2">960 kg</span></div>
                         <div class="flex justify-between"><span class="text-white/80">Panen Anda</span><span id="pertanianPanen" class="font-bold text-white">1.000 kg</span></div>
                         <div class="flex justify-between"><span class="text-white/80">Kadar</span><span id="pertanianKadar" class="font-bold text-gold2">5%</span></div>
@@ -489,12 +496,12 @@
 
                     <div class="mt-5 space-y-3">
                         <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-white/15 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
+                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
                                 <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Hari</div>
                                 <div id="fidyahHariOut" class="font-black text-white text-xl mt-0.5">7</div>
                                 <div class="text-[10px] text-white/70 mt-0.5">hari</div>
                             </div>
-                            <div class="bg-white/15 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
+                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
                                 <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Per Hari</div>
                                 <div id="fidyahPerHari" class="font-black text-white text-base mt-0.5">Rp 45.000</div>
                                 <div class="text-[10px] text-white/70 mt-0.5">1 porsi</div>
