@@ -74,13 +74,13 @@
         color: #FFFFFF !important;
     }
 
-    /* HILANGKAN SEMUA ELEMEN GLOW ORANYE DI BACKGROUND */
+    /* HILANGKAN SEMUA ELEMEN GLOW ORANYE DI BACKGROUND
+       (hanya elemen amber/yellow; kotak bg-gold seperti "gram emas" TIDAK dihapus) */
     body > div > div[class*="amber"],
     body > div > div[class*="yellow"],
     body > div > div[class*="earth"],
     [class*="bg-amber"],
     [class*="bg-yellow-500"],
-    [class*="bg-gold/"],
     [class*="from-amber"],
     [class*="from-yellow"] {
         display: none !important;
@@ -238,26 +238,24 @@
 
                 <div class="mt-3 p-3.5 rounded-2xl border-2 border-gold/50 bg-gold/10">
                     <label class="block text-xs font-extrabold text-gold2 dark:text-gold2 mb-1">
-                        <i class="fa-solid fa-ring mr-1"></i> Saya Punya <span id="gramEmasLabel">0</span> Gram Emas — Berapa Nilainya?
+                        <i class="fa-solid fa-ring mr-1"></i> Emas Milik Pribadi — Hitung Otomatis ke Rupiah
                     </label>
                     <div class="flex items-center gap-2">
-                        <input id="gramEmasInput" type="number" min="0" step="0.1" placeholder="Jumlah gram emas (mis. 100)" class="flex-1 border border-cream3 rounded-full px-3.5 py-2 text-xs font-bold bg-panel-2">
-                        <button type="button" id="btnKonversiEmas" class="bg-gold hover:bg-gold text-white text-xs font-bold px-4 py-2 rounded-full transition shadow-sm active:scale-95 shrink-0">
-                            <i class="fa-solid fa-calculator mr-1"></i>Hitung
-                        </button>
+                        <input id="gramEmasInput" type="number" min="0" step="0.1" value="100" class="flex-1 border border-cream3 rounded-full px-3.5 py-2 text-xs font-bold bg-panel-2">
+                        <span class="text-[10px] text-black/60 shrink-0">gram</span>
                     </div>
-                    <div id="emasKonsiBox" class="mt-2.5 hidden rounded-xl bg-olive/10 border border-olive/25 p-3">
-                        <div class="text-[10px] text-black/70 font-semibold uppercase tracking-wider">Nilai Emas Anda</div>
-                        <div class="flex items-baseline gap-2 flex-wrap">
-                            <span class="text-sm font-black text-oliveDark" id="emasKonsiTotal">Rp 0</span>
-                            <span class="text-[10px] text-black/60">= <span id="emasKonsiGramLabel">0</span> gr × harga emas</span>
+                    <div id="emasKonsiBox" class="mt-2.5 rounded-xl bg-panel-2 border border-panel-border p-3">
+                        <div class="text-[10px] text-black/70 font-semibold uppercase tracking-wider">Nilai Emas Anda (otomatis, tanpa tombol)</div>
+                        <div class="flex items-baseline gap-2 flex-wrap mt-1">
+                            <span class="text-sm font-black text-oliveDark" id="emasKonsiTotal">Rp 130.000.000</span>
+                            <span class="text-[10px] text-black/60">= <span id="emasKonsiGramLabel">100</span> gr × <span id="emasKonsiHarga">Rp 1.300.000</span>/gr</span>
                         </div>
                         <div class="text-[10px] text-black/70 mt-1.5 leading-relaxed">
-                            Nilai ini otomatis masuk ke kolom <b>"Total Harta"</b> di atas. Kemudian cek status wajib zakat di panel hasil (kanan) — zakat-nya 2,5% dari total harta.
+                            Nilai ini otomatis masuk ke kolom <b>"Total Harta"</b> di atas. Ubah gram atau harga emas → nilai &amp; zakat-nya langsung terhitung. Cek status wajib di panel hasil (kanan).
                         </div>
                     </div>
                     <div class="text-[10px] text-black/60 mt-2">
-                        <i class="fa-solid fa-circle-info mr-1"></i> Nisab BAZNAS 2026: <b>85 gr emas</b>. Jika gram ≥ 85 &amp; harga emas &gt; 0 → <b>Wajib Zakat</b> (2,5%).
+                        <i class="fa-solid fa-circle-info mr-1"></i> Nisab BAZNAS 2026: <b>85 gr emas</b>. Gram ≥ 85 → <b>Wajib Zakat</b> (2,5%).
                     </div>
                 </div>
 
@@ -626,26 +624,24 @@ document.addEventListener("DOMContentLoaded", function () {
         calcFitrah();
     });
 
-    function liveGramEmas() {
-        const gram = parseFloat(document.getElementById('gramEmasInput').value || 0);
-        document.getElementById('gramEmasLabel').textContent = gram || 0;
-        document.getElementById('emasKonsiGramLabel').textContent = gram || 0;
-    }
-    document.getElementById('gramEmasInput')?.addEventListener('input', liveGramEmas);
-
-    document.getElementById('btnKonversiEmas')?.addEventListener('click', () => {
+    /* KONVERSI OTOMATIS gram emas → rupiah (tanpa tombol) */
+    function calcGramEmasOtomatis() {
         const gram = parseFloat(document.getElementById('gramEmasInput').value || 0);
         const hargaEmas = parseInt(document.getElementById('maalEmas').value || 0);
         const totalNilai = gram * hargaEmas;
-        if(gram > 0) {
-            document.getElementById('maalHarta').value = totalNilai;
-            document.getElementById('maalHartaFormatted').value = Number(totalNilai).toLocaleString('id-ID');
-            document.getElementById('emasKonsiTotal').textContent = fmt(totalNilai);
-            document.getElementById('emasKonsiBox').classList.remove('hidden');
-            calcMaal();
-        }
-    });
 
+        document.getElementById('emasKonsiTotal').textContent = fmt(totalNilai);
+        document.getElementById('emasKonsiGramLabel').textContent = gram || 0;
+        document.getElementById('emasKonsiHarga').textContent = 'Rp ' + Number(hargaEmas).toLocaleString('id-ID');
+        document.getElementById('emasKonsiBox').classList.remove('hidden');
+
+        document.getElementById('maalHarta').value = totalNilai;
+        document.getElementById('maalHartaFormatted').value = totalNilai ? Number(totalNilai).toLocaleString('id-ID') : '';
+        calcMaal();
+    }
+    document.getElementById('gramEmasInput')?.addEventListener('input', calcGramEmasOtomatis);
+    /* Saat harga emas diubah → konversi gram ulang otomatis */
+    document.getElementById('maalEmas')?.addEventListener('input', calcGramEmasOtomatis);
     document.getElementById('maalHartaFormatted')?.addEventListener('input', () => {
         document.getElementById('emasKonsiBox').classList.add('hidden');
     });
@@ -770,6 +766,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     calcFitrah();
     calcMaal();
+    calcGramEmasOtomatis();
     calcPenghasilan();
     calcNiaga();
     calcPertanian();

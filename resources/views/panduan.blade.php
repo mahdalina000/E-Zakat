@@ -41,13 +41,13 @@
         border-color: rgba(255, 255, 255, 0.2) !important; 
     }
 
-    /* MENYEMBUNYIKAN SEMUA GLOW ORANYE/KUNING DI BACKGROUND LAYOUT INDUK */
+    /* MENYEMBUNYIKAN SEMUA GLOW ORANYE/KUNING DI BACKGROUND LAYOUT INDUK
+       (kotak bg-gold seperti panel "gram emas" TIDAK dihapus) */
     body > div > div[class*="amber"],
     body > div > div[class*="yellow"],
     body > div > div[class*="earth"],
     [class*="bg-amber"],
     [class*="bg-yellow-500"],
-    [class*="bg-gold/"],
     [class*="from-amber"],
     [class*="from-yellow"] {
         display: none !important;
@@ -56,34 +56,23 @@
         background: none !important;
     }
 
-    /* AKSEN KHUSUS UNTUK KOTAK LAFAL NIAT ISLAMI */
+    /* BLOK LAFAL NIAT — HIJAU (selaras panel lain), bukan putih */
     .bg-niat-box {
-        background-color: rgba(212, 175, 55, 0.10) !important;
-        border: 1px solid rgba(212, 175, 55, 0.30) !important;
+        background-color: rgba(36, 108, 66, 0.12) !important;
+        border: 1px solid rgba(36, 108, 66, 0.30) !important;
     }
     body.dark-mode .bg-niat-box {
         background-color: rgba(255, 255, 255, 0.10) !important;
         border-color: rgba(212, 175, 55, 0.40) !important;
     }
-    /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat + latar solid agar TIDAK nabrak.
-       DI DARK: hijau muda terang. */
+    /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat. DI DARK: hijau muda terang. */
     .bg-niat-box .font-amiri {
         color: #0c1f14 !important;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
         font-size: 1.35rem;
         line-height: 2;
     }
-    .bg-niat-box {
-        background-color: #ffffff !important;
-        border: 1px solid rgba(29, 91, 55, 0.25) !important;
-    }
-    body.dark-mode .bg-niat-box {
-        background-color: rgba(255, 255, 255, 0.08) !important;
-        border-color: rgba(212, 175, 55, 0.40) !important;
-    }
     body.dark-mode .bg-niat-box .font-amiri {
         color: #d7f0dc !important;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
 
     /* KONTROL UKURAN ORNAMEN */
