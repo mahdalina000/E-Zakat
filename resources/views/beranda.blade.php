@@ -66,6 +66,78 @@
         position: relative;
         overflow-x: hidden;
     }
+
+    /* ===== BANNER PENGINGAT ZAKAT — DESAIN PREMIUM (glassmorphism + glow + hover-lift) ===== */
+    .festive-hero {
+        background: linear-gradient(135deg, #1d5b37 0%, #246c42 45%, #0e2a1c 100%);
+        border: 1px solid rgba(226, 179, 86, 0.35);
+        box-shadow: 0 30px 60px -24px rgba(8, 32, 20, 0.7),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    /* kilau emas menyapu diagonal */
+    .festive-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(600px 220px at 85% -10%, rgba(226, 179, 86, 0.22), transparent 60%);
+        pointer-events: none;
+    }
+    /* kartu sub premium */
+    .festive-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .festive-card:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.10);
+        border-color: rgba(226, 179, 86, 0.5);
+        box-shadow: 0 14px 30px -14px rgba(226, 179, 86, 0.45);
+    }
+    /* kartu emas menonjol (CTA value) */
+    .festive-gold-card {
+        background: linear-gradient(140deg, rgba(226, 179, 86, 0.28), rgba(226, 179, 86, 0.10));
+        border: 1px solid rgba(226, 179, 86, 0.55);
+        box-shadow: 0 10px 28px -12px rgba(226, 179, 86, 0.55);
+    }
+    /* chip kalender premium */
+    .festive-chip {
+        background: rgba(255, 255, 255, 0.10);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        transition: all 0.2s ease;
+    }
+    .festive-chip:hover {
+        background: rgba(226, 179, 86, 0.25);
+        border-color: rgba(226, 179, 86, 0.6);
+        color: #f6e3b0;
+        transform: translateY(-1px);
+    }
+    /* glow ikon emas */
+    .festive-ico {
+        background: linear-gradient(140deg, #e2b356, #c89d44);
+        box-shadow: 0 0 18px rgba(226, 179, 86, 0.55), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    /* tombol CTA emas premium */
+    .festive-cta {
+        background: linear-gradient(140deg, #f0cd7e, #d9a94f);
+        box-shadow: 0 12px 26px -10px rgba(226, 179, 86, 0.7), inset 0 1px 0 rgba(255,255,255,0.5);
+        transition: all 0.25s ease;
+    }
+    .festive-cta:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 18px 34px -12px rgba(226, 179, 86, 0.9);
+    }
+    /* dark mode: banner lebih pekat, teks tetap putih */
+    body.dark-mode .festive-hero {
+        background: linear-gradient(135deg, #0d2417 0%, #0f2f1e 45%, #05130c 100%);
+        border-color: rgba(226, 179, 86, 0.30);
+    }
 </style>
 @endsection
 
@@ -213,9 +285,9 @@
         <!-- BANNER UCAPAN SELAMAT HARI RAYA & PENGINGAT ZAKAT -->
         <section class="shrink-0 anim-smooth delay-5">
             <!-- PANEL PENUH: ucapan + pengingat zakat dalam satu hero -->
-            <div class="relative overflow-hidden rounded-3xl shadow-lg border border-olive/30 bg-gradient-to-br from-olive via-olive2 to-#143d28 text-oliveDark">
+            <div class="festive-hero rounded-3xl text-white">
                 <!-- ornamen bintang islami halus di background -->
-                <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image:radial-gradient(circle at 25% 25%, #fff 2px, transparent 2.5px), radial-gradient(circle at 75% 65%, #fff 1.5px, transparent 2px); background-size: 90px 90px, 120px 120px;"></div>
+                <div class="absolute inset-0 opacity-[0.09] pointer-events-none" style="background-image:radial-gradient(circle at 25% 25%, #fff 2px, transparent 2.5px), radial-gradient(circle at 75% 65%, #fff 1.5px, transparent 2px); background-size: 90px 90px, 120px 120px;"></div>
                 <!-- bulan sabit dekoratif kanan -->
                 <svg class="absolute right-6 top-6 w-24 h-24 text-gold2/40 pointer-events-none" viewBox="0 0 100 100" fill="currentColor"><path d="M62 8a46 46 0 1 0 0 84 52 52 0 0 1 0-84z"/></svg>
                 <!-- lentera gantung dekoratif kiri -->
@@ -228,21 +300,21 @@
                     <!-- baris atas: label + countdown ke hari raya terdekat -->
                     <div class="flex items-center justify-between gap-4 flex-wrap">
                         <div class="flex items-center gap-2.5">
-                            <div class="w-10 h-10 bg-white/15 border border-gold2/40 rounded-2xl flex items-center justify-center text-gold2"><i class="fa-solid fa-star-and-crescent"></i></div>
+                            <div class="w-11 h-11 festive-ico rounded-2xl flex items-center justify-center text-oliveDark text-lg"><i class="fa-solid fa-star-and-crescent"></i></div>
                             <div>
                                 <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold2">Peringatan Hari Raya &amp; Keagamaan</div>
                                 <div class="text-sm font-black mt-0.5">Maaf Lahir &amp; Batin &mdash; Semoga Ibadah Kita Diterima</div>
                             </div>
                         </div>
                         <!-- COUNTDOWN dinamis -->
-                        <div class="flex items-center gap-3 bg-white/10 border border-gold2/30 rounded-2xl px-4 py-2.5">
+                        <div class="flex items-center gap-3 festive-card rounded-2xl px-4 py-3">
                             <div class="text-center">
                                 <div id="countdownDays" class="text-2xl font-black text-gold2 leading-none">--</div>
-                                <div class="text-[9px] text-oliveDark/60 font-bold uppercase tracking-wider mt-1">Hari</div>
+                                <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Hari</div>
                             </div>
                             <div class="text-left">
                                 <div id="countdownName" class="text-[11px] font-extrabold leading-tight">Hari Raya Terdekat</div>
-                                <div id="countdownDate" class="text-[9px] text-oliveDark/60 mt-0.5">menunggu data&hellip;</div>
+                                <div id="countdownDate" class="text-[9px] text-white/60 mt-0.5">menunggu data&hellip;</div>
                             </div>
                         </div>
                     </div>
@@ -252,14 +324,14 @@
                         <!-- kiri: chip tanggal keagamaan -->
                         <div class="space-y-3">
                             <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-calendar-days mr-1"></i> Kalender Terdekat</div>
-                            <div class="flex flex-wrap gap-2 p-3 rounded-2xl bg-white/[0.07] border border-white/20" id="festivalChips">
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Ramadan 1448H</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Nuzulul Qur'an</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Idul Fitri</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Idul Adha</span>
-                                <span class="text-[11px] font-bold bg-white/15 border border-white/30 rounded-full px-3 py-1.5">Maulid Nabi</span>
+                            <div class="flex flex-wrap gap-2 p-3.5 festive-card rounded-2xl" id="festivalChips">
+                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Ramadan 1448H</span>
+                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Nuzulul Qur'an</span>
+                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Idul Fitri</span>
+                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Idul Adha</span>
+                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Maulid Nabi</span>
                             </div>
-                            <a href="{{ url('/kalkulator') }}" class="inline-flex items-center gap-2 bg-gold2 hover:bg-gold text-oliveDark text-xs font-extrabold px-5 py-2.5 rounded-full transition active:scale-95 shadow-md">
+                            <a href="{{ url('/kalkulator') }}" class="inline-flex items-center gap-2 bg-gold2 hover:bg-gold text-white text-xs font-extrabold px-5 py-2.5 rounded-full transition active:scale-95 shadow-md">
                                 <i class="fa-solid fa-calculator"></i> Hitung Zakat Sekarang
                             </a>
                         </div>
@@ -267,21 +339,21 @@
                         <!-- kanan: 3 pengingat zakat -->
                         <div class="space-y-3">
                             <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-bell mr-1"></i> Pengingat Zakat</div>
-                            <div class="grid sm:grid-cols-3 gap-3 p-3 rounded-2xl bg-white/[0.07] border border-white/20">
-                                <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
-                                    <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
+                            <div class="grid sm:grid-cols-3 gap-3 p-3.5 festive-card rounded-2xl">
+                                <div class="festive-card rounded-2xl p-4">
+                                    <div class="w-9 h-9 bg-gold2/90 text-white rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Fitrah</div>
-                                    <div class="text-[10px] text-oliveDark/70 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
+                                    <div class="text-[10px] text-white/70 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
                                 </div>
-                                <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
-                                    <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
+                                <div class="festive-card rounded-2xl p-4">
+                                    <div class="w-9 h-9 bg-gold2/90 text-white rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Penghasilan</div>
-                                    <div class="text-[10px] text-oliveDark/70 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
+                                    <div class="text-[10px] text-white/70 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
                                 </div>
-                                <div class="bg-white/10 border border-white/25 rounded-2xl p-3.5 hover:bg-white/15 transition">
-                                    <div class="w-9 h-9 bg-gold2/90 text-oliveDark rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-coins"></i></div>
+                                <div class="festive-card rounded-2xl p-4">
+                                    <div class="w-9 h-9 bg-gold2/90 text-white rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-coins"></i></div>
                                     <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Maal &amp; Niaga</div>
-                                    <div class="text-[10px] text-oliveDark/70 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
+                                    <div class="text-[10px] text-white/70 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
                                 </div>
                             </div>
                         </div>
