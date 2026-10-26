@@ -65,25 +65,25 @@
         background-color: rgba(255, 255, 255, 0.10) !important;
         border-color: rgba(212, 175, 55, 0.40) !important;
     }
-    /* TEKS ARAB (Amiri) — di LIGHT: hitam pekat (#0f2418) + latar hijau soft solid agar JELAS.
-       DI DARK: hijau terang. */
+    /* TEKS ARAB (Amiri) — di LIGHT: hijau gelap tegas (#0c2e1c) di atas blok HIJAU solid.
+       DI DARK: hijau terang di atas blok hijau gelap. */
     .bg-niat-box .font-amiri {
-        color: #0f2418 !important;
+        color: #0c2e1c !important;
         font-weight: 700;
         font-size: 1.5rem;
         line-height: 2.1;
         letter-spacing: 0;
     }
     .bg-niat-box {
-        background-color: rgba(255,255,255,0.95) !important;
-        border: 1px solid rgba(29,91,55,0.35) !important;
+        background-color: #dcefdc !important;
+        border: 1px solid rgba(29, 91, 55, 0.40) !important;
     }
     body.dark-mode .bg-niat-box {
-        background-color: rgba(15,27,18,0.95) !important;
-        border-color: rgba(212,175,55,0.45) !important;
+        background-color: rgba(15, 35, 24, 0.90) !important;
+        border-color: rgba(212, 175, 55, 0.45) !important;
     }
     body.dark-mode .bg-niat-box .font-amiri {
-        color: #e8f5e9 !important;
+        color: #d9f2e0 !important;
     }
 
     /* KONTROL UKURAN ORNAMEN */
