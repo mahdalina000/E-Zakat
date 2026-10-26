@@ -43,8 +43,8 @@
             </defs>
             <rect width="100%" height="100%" fill="url(#zy-star-pat)" />
         </svg>
-        <!-- MANDALA ROSETTE EMAS (di POJOK KIRI BAWAH, separuhnya terpotong di tepi) -->
-        <div class="absolute -bottom-[15%] -left-[15%] w-[340px] md:w-[460px] lg:w-[540px] aspect-square pointer-events-none zy-mandala">
+        <!-- MANDALA ROSETTE EMAS (di POJOK KIRI BAWAH, turun & pinggir, tidak menyentuh lampion) -->
+        <div class="zy-mandala-wrap absolute bottom-0 left-0 w-[340px] md:w-[420px] lg:w-[480px] aspect-square pointer-events-none zy-mandala">
             <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(200, 200)">
                     <!-- Lapisan terluar: 8 kelopak (outer petals) -->

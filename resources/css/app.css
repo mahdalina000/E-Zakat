@@ -128,9 +128,8 @@ body.dark-mode {
 .zy-zy-grad { background: var(--zy-grad); transition: background 0.4s ease; }
 .zy-star { color: var(--zy-orb); opacity: 0.05; transition: color .4s, opacity .4s; }
 body.dark-mode .zy-star { opacity: 0.08; }
-.zy-mandala { color: var(--zy-mandala); opacity: 0.85; transition: color .4s, opacity .4s; z-index: 5; position: relative; }
-/* Putar perlahan (sekitar 90 detik per putaran) — transform-origin di tengah,
-   tidak mengganggu animasi geser/translate posisi */
+.zy-mandala { color: var(--zy-mandala); opacity: 0.85; transition: color .4s, opacity .4s; z-index: 5; }
+/* Putar perlahan (sekitar 90 detik per putaran) */
 @keyframes zyMandalaSpin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
@@ -144,6 +143,18 @@ body.dark-mode .zy-star { opacity: 0.08; }
     .zy-mandala svg { animation: none; }
 }
 body.dark-mode .zy-mandala { opacity: 0.95; }
+/* Mandala di POJOK KIRI BAWAH (fixed): turun & pinggir, tidak menyentuh lampion.
+   Tetap di pojok saat di-scroll. */
+.zy-mandala-wrap {
+    position: fixed;
+    bottom: -18%;
+    left: -6%;
+    z-index: 5;
+    pointer-events: none;
+}
+@media (min-width: 768px) {
+    .zy-mandala-wrap { bottom: -22%; left: -4%; }
+}
 /* Bagian mandala baru (lapisan kelopak, cincin, bintang) — warna mengikuti CSS variables */
 .zy-md-outer path { fill: rgba(200,157,68,0.28); stroke: var(--zy-mandala); stroke-width: 2; }
 .zy-md-inner path { fill: rgba(200,157,68,0.42); stroke: var(--zy-mandala); stroke-width: 1.6; }

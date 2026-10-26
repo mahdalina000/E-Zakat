@@ -107,44 +107,6 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
-    <!-- DATA RESMI BAZNAS 2026 (penetapan nilai zakat) -->
-    <div class="bg-olive baznas-panel text-white rounded-[24px] p-5 lg:p-6 shadow-md border-l-4 border-l-gold2 relative overflow-hidden">
-        <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-            <div class="shrink-0">
-                <div class="flex items-center gap-2 text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">
-                    <i class="fa-solid fa-landmark"></i> Penetapan BAZNAS 2026
-                </div>
-                <div class="text-[10px] text-white/70 mt-0.5">SK Ketua BAZNAS No. 14 & 15 Tahun 2026</div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 flex-1">
-                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
-                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Zakat Fitrah</div>
-                    <div class="font-black text-gold2 text-lg mt-0.5">Rp 50.000</div>
-                    <div class="text-[10px] text-white/80">/ jiwa</div>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
-                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Fidyah</div>
-                    <div class="font-black text-gold2 text-lg mt-0.5">Rp 65.000</div>
-                    <div class="text-[10px] text-white/80">/ hari / jiwa</div>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
-                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Nisab Emas</div>
-                    <div class="font-black text-gold2 text-lg mt-0.5">85 gr</div>
-                    <div class="text-[10px] text-white/80">emas 14 karat</div>
-                </div>
-                <div class="bg-white/10 rounded-2xl p-3 border border-white/15 text-center">
-                    <div class="text-[10px] text-white/70 font-semibold uppercase tracking-wider">Nisab Penghasilan</div>
-                    <div class="font-black text-gold2 text-lg mt-0.5">Rp 7.640.144</div>
-                    <div class="text-[10px] text-white/80">/ bulan</div>
-                </div>
-            </div>
-        </div>
-        <div class="mt-3 text-[10px] text-white/60 flex items-center gap-1.5 flex-wrap">
-            <i class="fa-solid fa-circle-info text-gold2"></i>
-            Besaran nasional BAZNAS 1447 H/2026 M. Nilai zakat daerah bisa berbeda; harga beras & emas di bawah bisa disesuaikan.
-        </div>
-    </div>
-
     <!-- HEADER TAB TIPE ZAKAT DALAM BLOK TRANSPARAN DENGAN ORNAMEN SVG -->
     <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm relative overflow-hidden">
         <svg class="absolute right-4 top-2 w-20 h-20 opacity-15 pointer-events-none text-gold2" viewBox="0 0 24 24" fill="currentColor">
@@ -158,6 +120,9 @@
         <div class="mt-4 flex flex-wrap gap-2">
             <button data-tab="fitrah" class="tab-btn bg-olive text-white px-5 py-2 rounded-full text-xs lg:text-sm font-bold shadow transition active:scale-95">Zakat Fitrah</button>
             <button data-tab="maal" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Maal</button>
+            <button data-tab="penghasilan" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Penghasilan</button>
+            <button data-tab="perniagaan" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Perniagaan</button>
+            <button data-tab="pertanian" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Zakat Pertanian</button>
             <button data-tab="fidyah" class="tab-btn border border-cream3 text-black px-5 py-2 rounded-full text-xs lg:text-sm font-bold transition active:scale-95">Fidyah</button>
         </div>
     </div>
@@ -330,6 +295,129 @@
                             <div id="maalZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 0</div>
                             <div id="maalZakatGram" class="text-[10px] text-white/80 mt-1">Setara 0,0 gram emas</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- PENGHASILAN --}}
+    <div id="panel-penghasilan" class="tab-panel hidden">
+        <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-briefcase text-black"></i> Zakat Penghasilan</h2>
+                <p class="text-xs text-black/70 mt-1">2,5% dari penghasilan bulanan yang mencapai nisab. Nisab: <b>Rp 7.640.144/bulan</b> (BAZNAS 2026, setara 85 gr emas).</p>
+
+                <label class="block mt-5 text-xs font-bold text-oliveDark">Penghasilan Bersih / Bulan (Rp)</label>
+                <input id="penghasilanFormatted" type="text" value="7.640.144" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                <input id="penghasilan" type="hidden" value="7640144">
+
+                <div class="mt-4 p-3 rounded-2xl border border-gold/30 bg-gold/5 text-[11px] text-black/80 leading-relaxed">
+                    <i class="fa-solid fa-circle-info text-gold2 mr-1"></i>
+                    Zakat penghasilan dapat ditunaikan <b>setiap bulan</b> (Rp 7.640.144 nisab bulanan) atau <b>akhir tahun</b> (Rp 91.681.728 nisab tahunan).
+                </div>
+            </div>
+
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
+                <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PENGHASILAN</div>
+                <h3 class="font-black text-2xl mt-1 text-white">2,5%</h3>
+                <div class="mt-5 space-y-3">
+                    <div class="bg-white/15 rounded-2xl p-4 border border-white/20 space-y-2">
+                        <div class="flex justify-between text-xs"><span class="text-white/80">Nisab / bulan</span><span id="penghasilanNisab" class="font-bold text-gold2">Rp 7.640.144</span></div>
+                        <div class="flex justify-between text-xs"><span class="text-white/80">Penghasilan Anda</span><span id="penghasilanOut" class="font-bold text-white">Rp 7.640.144</span></div>
+                    </div>
+                    <div class="bg-black/15 rounded-2xl p-3.5 text-center border border-white/15">
+                        <div class="text-[10px] text-white/80 uppercase tracking-wider font-semibold">Status</div>
+                        <div id="penghasilanStatus" class="font-extrabold text-white text-base mt-0.5">Wajib Zakat</div>
+                    </div>
+                    <div class="bg-gold/20 rounded-2xl p-4 text-center border border-gold/40">
+                        <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Zakat / Bulan</div>
+                        <div id="penghasilanZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 191.004</div>
+                        <div class="text-[10px] text-white/80 mt-1">Setara Rp 2.292.044 / tahun</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- PERNIAGAAN --}}
+    <div id="panel-perniagaan" class="tab-panel hidden">
+        <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-store text-black"></i> Zakat Perniagaan</h2>
+                <p class="text-xs text-black/70 mt-1">2,5% dari total harta niaga (modal + keuntungan) setelah mencapai nisab <b>85 gr emas</b>.</p>
+
+                <label class="block mt-5 text-xs font-bold text-oliveDark">Total Modal + Keuntungan (Rp)</label>
+                <input id="niagaModalFormatted" type="text" value="50.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                <input id="niagaModal" type="hidden" value="50000000">
+
+                <label class="block mt-4 text-xs font-bold text-oliveDark">Total Utang / Hutang (Rp)</label>
+                <input id="niagaUtangFormatted" type="text" value="10.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                <input id="niagaUtang" type="hidden" value="10000000">
+
+                <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas / gram (Rp)</label>
+                <div class="mt-1.5 flex items-center gap-2">
+                    <span class="text-xs font-bold text-black">Rp</span>
+                    <input id="niagaEmasFormatted" type="text" value="1.300.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                    <span class="text-[10px] text-black/60">/gram</span>
+                </div>
+                <input id="niagaEmas" type="hidden" value="1300000">
+            </div>
+
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
+                <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PERNIAGAAN</div>
+                <h3 class="font-black text-2xl mt-1 text-white">2,5%</h3>
+                <div class="mt-5 space-y-3">
+                    <div class="bg-white/15 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
+                        <div class="flex justify-between"><span class="text-white/80">Nisab (85 gr × harga emas)</span><span id="niagaNisab" class="font-bold text-gold2">Rp 110.500.000</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Harta Bersih (modal − utang)</span><span id="niagaBersih" class="font-bold text-white">Rp 40.000.000</span></div>
+                    </div>
+                    <div class="bg-black/15 rounded-2xl p-3.5 text-center border border-white/15">
+                        <div class="text-[10px] text-white/80 uppercase tracking-wider font-semibold">Status</div>
+                        <div id="niagaStatus" class="font-extrabold text-white text-base mt-0.5">Belum Wajib</div>
+                    </div>
+                    <div class="bg-gold/20 rounded-2xl p-4 text-center border border-gold/40">
+                        <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Zakat (2,5%)</div>
+                        <div id="niagaZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- PERTANIAN --}}
+    <div id="panel-pertanian" class="tab-panel hidden">
+        <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+                <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-black"></i> Zakat Pertanian</h2>
+                <p class="text-xs text-black/70 mt-1">Nisab: <b>15,24 kuintal (960 kg)</b> hasil panen. Kadar: <b>5%</b> (tanpa irigasi) atau <b>2,5%</b> (dengan irigasi).</p>
+
+                <label class="block mt-5 text-xs font-bold text-oliveDark">Total Panen (kg)</label>
+                <input id="panenKg" type="number" value="1000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold text-center">
+
+                <label class="block mt-4 text-xs font-bold text-oliveDark">Sistem Irigasi</label>
+                <div class="mt-2 flex gap-2">
+                    <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="tidak" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Tanpa Irigasi (5%)</div></label>
+                    <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="ada" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Dengan Irigasi (2,5%)</div></label>
+                </div>
+            </div>
+
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
+                <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PERTANIAN</div>
+                <h3 class="font-black text-2xl mt-1 text-white">Panen</h3>
+                <div class="mt-5 space-y-3">
+                    <div class="bg-white/15 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
+                        <div class="flex justify-between"><span class="text-white/80">Nisab</span><span class="font-bold text-gold2">960 kg</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Panen Anda</span><span id="pertanianPanen" class="font-bold text-white">1.000 kg</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Kadar</span><span id="pertanianKadar" class="font-bold text-gold2">5%</span></div>
+                    </div>
+                    <div class="bg-black/15 rounded-2xl p-3.5 text-center border border-white/15">
+                        <div class="text-[10px] text-white/80 uppercase tracking-wider font-semibold">Status</div>
+                        <div id="pertanianStatus" class="font-extrabold text-white text-base mt-0.5">Wajib Zakat</div>
+                    </div>
+                    <div class="bg-gold/20 rounded-2xl p-4 text-center border border-gold/40">
+                        <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Zakat Panen</div>
+                        <div id="pertanianZakat" class="font-black text-2xl text-gold2 mt-0.5">50 kg</div>
                     </div>
                 </div>
             </div>
@@ -579,8 +667,64 @@ document.addEventListener("DOMContentLoaded", function () {
         calcFidyah();
     });
 
+    /* ================= ZAKAT PENGHASILAN ================= */
+    const nisabPenghasilanBulan = 7640144; // BAZNAS 2026
+    function calcPenghasilan() {
+        const nilai = parseInt(document.getElementById('penghasilan').value || 0);
+        const wajib = nilai >= nisabPenghasilanBulan;
+        const zakat = wajib ? Math.round(nilai * 0.025) : 0;
+        document.getElementById('penghasilanOut').textContent = fmt(nilai);
+        document.getElementById('penghasilanStatus').textContent = wajib ? 'Wajib Zakat' : 'Belum Mencapai Nisab';
+        document.getElementById('penghasilanZakat').textContent = fmt(zakat);
+        document.querySelector('#panel-penghasilan .result-card-olive .bg-gold\\/20 .text-\\[10px\\]:last-child')
+            ?.replaceWith(Object.assign(document.createElement('div'), {className:'text-[10px] text-white/80 mt-1', textContent:'Setara ' + fmt(zakat*12) + ' / tahun'}));
+    }
+    formatCurrencyInput('penghasilanFormatted','penghasilan');
+    document.getElementById('penghasilan')?.addEventListener('input', calcPenghasilan);
+
+    /* ================= ZAKAT PERNIAGAAN ================= */
+    function calcNiaga() {
+        const modal = parseInt(document.getElementById('niagaModal').value || 0);
+        const utang = parseInt(document.getElementById('niagaUtang').value || 0);
+        const emas  = parseInt(document.getElementById('niagaEmas').value || 0);
+        const nisab = 85 * emas;
+        const bersih = modal - utang;
+        const wajib = bersih >= nisab;
+        const zakat = wajib ? Math.round(bersih * 0.025) : 0;
+        document.getElementById('niagaNisab').textContent = fmt(nisab);
+        document.getElementById('niagaBersih').textContent = fmt(bersih);
+        document.getElementById('niagaStatus').textContent = wajib ? 'Wajib Zakat' : 'Belum Wajib';
+        document.getElementById('niagaZakat').textContent = fmt(zakat);
+    }
+    ['niagaModal','niagaUtang','niagaEmas'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.addEventListener('input', calcNiaga);
+    });
+    formatCurrencyInput('niagaModalFormatted','niagaModal');
+    formatCurrencyInput('niagaUtangFormatted','niagaUtang');
+    formatCurrencyInput('niagaEmasFormatted','niagaEmas');
+
+    /* ================= ZAKAT PERTANIAN ================= */
+    const nisabPertanian = 960; // kg (15,24 kuintal)
+    function calcPertanian() {
+        const panen = parseFloat(document.getElementById('panenKg').value || 0);
+        const irigasi = document.querySelector('input[name="irigasi"]:checked');
+        const kadar = irigasi?.value === 'ada' ? 0.025 : 0.05;
+        const wajib = panen >= nisabPertanian;
+        const zakat = wajib ? panen * kadar : 0;
+        document.getElementById('pertanianPanen').textContent = Number(panen).toLocaleString('id-ID') + ' kg';
+        document.getElementById('pertanianKadar').textContent = (kadar*100).toLocaleString('id-ID') + '%';
+        document.getElementById('pertanianStatus').textContent = wajib ? 'Wajib Zakat' : 'Belum Mencapai Nisab';
+        document.getElementById('pertanianZakat').textContent = fmtKg(zakat) + ' kg';
+    }
+    document.getElementById('panenKg')?.addEventListener('input', calcPertanian);
+    document.querySelectorAll('input[name="irigasi"]').forEach(r => r.addEventListener('change', calcPertanian));
+
     calcFitrah();
     calcMaal();
+    calcPenghasilan();
+    calcNiaga();
+    calcPertanian();
     calcFidyah();
 });
 </script>
