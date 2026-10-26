@@ -105,15 +105,30 @@
         box-shadow: 0 18px 40px -18px rgba(20, 61, 40, 0.55) !important;
         overflow: hidden;
     }
-    /* ornamen bintang islami halus di belakang konten */
+    /* ornamen bintang islami halus di belakang konten (kaya & tersebar agar tidak polos) */
     .result-card-olive::before {
         content: '';
         position: absolute;
         inset: 0;
-        background-image: radial-gradient(circle at 20% 18%, rgba(226,179,86,0.10) 2px, transparent 2.5px),
-                          radial-gradient(circle at 80% 82%, rgba(255,255,255,0.08) 1.5px, transparent 2px),
-                          radial-gradient(circle at 60% 40%, rgba(255,255,255,0.05) 2px, transparent 2.5px);
-        background-size: 110px 110px, 140px 140px, 170px 170px;
+        background-image:
+            radial-gradient(circle at 15% 22%, rgba(226,179,86,0.18) 2px, transparent 2.6px),
+            radial-gradient(circle at 82% 78%, rgba(255,255,255,0.14) 1.6px, transparent 2.2px),
+            radial-gradient(circle at 55% 15%, rgba(226,179,86,0.14) 1.8px, transparent 2.4px),
+            radial-gradient(circle at 70% 45%, rgba(255,255,255,0.10) 1.5px, transparent 2.1px),
+            radial-gradient(circle at 30% 85%, rgba(226,179,86,0.15) 1.9px, transparent 2.5px),
+            radial-gradient(circle at 90% 20%, rgba(255,255,255,0.11) 1.4px, transparent 2px),
+            radial-gradient(circle at 8% 60%, rgba(255,255,255,0.08) 1.3px, transparent 1.9px),
+            radial-gradient(circle at 45% 55%, rgba(226,179,86,0.10) 1.7px, transparent 2.3px),
+            radial-gradient(circle at 25% 40%, rgba(255,255,255,0.07) 1.2px, transparent 1.8px),
+            radial-gradient(circle at 62% 90%, rgba(226,179,86,0.12) 1.5px, transparent 2.1px);
+        background-size: 150px 150px, 190px 190px, 130px 130px,
+                         220px 220px, 170px 170px, 140px 140px,
+                         200px 200px, 160px 160px, 180px 180px,
+                         240px 240px;
+        background-position: 0 0, 50px 70px, 90px 20px, 30px 100px,
+                             120px 50px, 70px 130px, 150px 90px,
+                             40px 160px, 110px 10px, 160px 120px;
+        opacity: 0.85;
         pointer-events: none;
     }
     .result-card-olive > * { position: relative; z-index: 1; }
