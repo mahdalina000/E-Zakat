@@ -26,6 +26,11 @@
     </script>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden bg-zy-bg">
+
+    <!-- VEIL TRANSISI HALAMAN — menutup layar dengan warna tema saat pindah halaman,
+         agar tidak ada kedipan putih/kosong. Dibuat + dihapus via JS. -->
+    <div id="pageVeil" class="page-veil" aria-hidden="true"></div>
+
     <!-- LATAR ORNAMEN ISLAMI (mandala + lentera + pola bintang) — hiasan, tidak menghalangi konten -->
     <div class="absolute inset-0 w-full h-full pointer-events-none select-none z-0" aria-hidden="true">
         <!-- GRADIENT HANGAT (hijau lembut, bukan cream) -->
@@ -234,30 +239,48 @@
             }, {timeout: 2000});
         });
 
-        // ===== TRANSISI HALAMAN HALUS (View Transition API) =====
-        // Menangkap klik pada tautan internal, lalu memakai document.startViewTransition()
-        // agar perpindahan halaman melebur dengan mulus (bukan kedipan reload).
-        // Jika browser tidak mendukungnya, navigasi normal tetap berjalan.
+        // ===== TRANSISI HALAMAN HALUS (universal — jalan di semua browser) =====
+        // Menangkap klik tautan internal, menutup layar dengan "veil" berwarna tema
+        // (fade 0.25s), lalu navigasi, lalu veil memudar membuka halaman baru.
+        // Ini menyamarkan waktu proses server sehingga TIDAK ada kedipan putih/kosong.
         (function () {
-            if (!document.startViewTransition) return; // fallback: navigasi biasa
+            var veil = document.getElementById('pageVeil');
+            if (!veil) return;
+
+            var veilBg = {};
+            var cs = getComputedStyle(document.body);
+            veilBg.light = 'linear-gradient(135deg, #d5e2d3, #becfbe)';
+            veilBg.dark  = 'linear-gradient(135deg, #06150e, #040e09)';
+
+            function applyVeilBg() {
+                veil.style.background = document.body.classList.contains('dark-mode')
+                    ? veilBg.dark : veilBg.light;
+            }
+            applyVeilBg();
+
+            function go(url) {
+                applyVeilBg();
+                veil.classList.add('veil-on');          // fade-in penutup
+                setTimeout(function () { location.href = url; }, 260); // tunggu fade selesai
+            }
 
             document.addEventListener('click', function (e) {
-                const a = e.target.closest('a[href]');
+                var a = e.target.closest('a[href]');
                 if (!a) return;
-
-                const href = a.getAttribute('href');
+                var href = a.getAttribute('href');
                 if (!href || href.charAt(0) === '#') return;
                 if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                 if (a.target && a.target !== '_self') return;
-
-                let target;
-                try { target = new URL(href, location.href); } catch (err) { return; }
-                if (target.origin !== location.origin) return;
-
+                var t;
+                try { t = new URL(href, location.href); } catch (err) { return; }
+                if (t.origin !== location.origin) return;
                 e.preventDefault();
-                document.startViewTransition(function () {
-                    location.href = target.href;
-                });
+                go(t.href);
+            });
+
+            // Saat halaman baru selesai dimuat: fade-out penutup
+            window.addEventListener('load', function () {
+                setTimeout(function () { veil.classList.remove('veil-on'); }, 30);
             });
         })();
     </script>

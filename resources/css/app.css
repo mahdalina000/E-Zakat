@@ -79,19 +79,23 @@
 }
 
 /* ============================================================
-   TRANSISI HALAMAN HALUS (View Transition API)
+   TRANSISI HALAMAN HALUS (veil universal — jalan di semua browser)
    ============================================================ */
-::view-transition-old(root) {
-    animation: vtFadeOut 0.3s ease both;
+.page-veil {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: linear-gradient(135deg, #d5e2d3, #becfbe);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
 }
-::view-transition-new(root) {
-    animation: vtFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+.page-veil.veil-on {
+    opacity: 1;
+    pointer-events: auto;
 }
-@keyframes vtFadeOut {
-    to { opacity: 0; transform: scale(0.99); }
-}
-@keyframes vtFadeIn {
-    from { opacity: 0; transform: translateY(8px) scale(0.995); }
+body.dark-mode .page-veil {
+    background: linear-gradient(135deg, #06150e, #040e09);
 }
 
 /* ============================================================

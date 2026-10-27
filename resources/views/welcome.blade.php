@@ -106,6 +106,10 @@
 </head>
 <body class="h-screen w-screen flex flex-col justify-between p-3 lg:p-5 box-border relative overflow-hidden bg-zy-bg">
 
+    <!-- VEIL TRANSISI HALAMAN -->
+    <div id="pageVeil" class="page-veil" aria-hidden="true"></div>
+
+
     <!-- LATAR ORNAMEN ISLAMI (mandala + lentera + pola bintang) — hiasan, di belakang konten -->
     <div class="absolute inset-0 w-full h-full pointer-events-none select-none z-0" aria-hidden="true">
         <!-- GRADIENT HANGAT -->
@@ -501,21 +505,36 @@
         window.addEventListener('pagehide', () => synth.cancel());
     })();
 
-    // ===== TRANSISI HALAMAN HALUS (View Transition API) =====
+    // ===== TRANSISI HALAMAN HALUS (universal — jalan di semua browser) =====
     (function () {
-        if (!document.startViewTransition) return;
+        var veil = document.getElementById('pageVeil');
+        if (!veil) return;
+        function applyVeilBg() {
+            veil.style.background = document.body.classList.contains('dark-mode')
+                ? 'linear-gradient(135deg, #06150e, #040e09)'
+                : 'linear-gradient(135deg, #d5e2d3, #becfbe)';
+        }
+        applyVeilBg();
+        function go(url) {
+            applyVeilBg();
+            veil.classList.add('veil-on');
+            setTimeout(function () { location.href = url; }, 260);
+        }
         document.addEventListener('click', function (e) {
-            const a = e.target.closest('a[href]');
+            var a = e.target.closest('a[href]');
             if (!a) return;
-            const href = a.getAttribute('href');
+            var href = a.getAttribute('href');
             if (!href || href.charAt(0) === '#') return;
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
             if (a.target && a.target !== '_self') return;
-            let target;
-            try { target = new URL(href, location.href); } catch (err) { return; }
-            if (target.origin !== location.origin) return;
+            var t;
+            try { t = new URL(href, location.href); } catch (err) { return; }
+            if (t.origin !== location.origin) return;
             e.preventDefault();
-            document.startViewTransition(function () { location.href = target.href; });
+            go(t.href);
+        });
+        window.addEventListener('load', function () {
+            setTimeout(function () { veil.classList.remove('veil-on'); }, 30);
         });
     })();
     </script>
