@@ -98,6 +98,14 @@
                 document.body.classList.add(dir === 'b' ? 'zy-dir-b' : 'zy-dir-f');
             }
         });
+
+        // Fade-out dekoratif saat mulai navigasi & bersihkan setelah render
+        document.addEventListener('turbo:visit', function () {
+            document.body.classList.add('zy-exit');
+        });
+        document.addEventListener('turbo:render', function () {
+            document.body.classList.remove('zy-exit');
+        });
     }
 
     // Deteksi tombol kembali/maju browser (popstate)

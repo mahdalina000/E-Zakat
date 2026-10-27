@@ -312,7 +312,7 @@ body.dark-mode button.bg-earth {
 /* TOMBOL HIJAU — teks putih */
 body.dark-mode a.bg-olive,
 body.dark-mode button.bg-olive,
-body.dark-mode div.bg-olive:not([class*="bg-olive\\/"}) {
+body.dark-mode div.bg-olive:not([class*="bg-olive\/"]) {
     background-color: #4B8B3B !important;
     color: #ffffff !important;
 }
@@ -458,3 +458,112 @@ body.dark-mode .text-black\/40 {
    TEKS HIJAU (olive) tetap jadi hijau muda; TEKS HITAM/NAVY → putih. */
 body.dark-mode .text-oliveDark,
 body.dark-mode .text-black { color: #f8fafc !important; }
+
+
+/* ============================================================
+   SISTEM ANIMASI MASUK SEARAH (E-Zakat)
+   Elemen sisi kiri masuk dari KIRI, sisi kanan masuk dari KANAN,
+   blok bawah naik ke atas. Stagger otomatis per-elemen.
+   Hanya aktif saat body memuat .zy-nav-in (setelah JS siap) —
+   bila JS mati, konten tetap terlihat.
+   ============================================================ */
+body.zy-nav-in .eze-col-left > *,
+body.zy-nav-in .eze-col-right > *,
+body.zy-nav-in .eze-up > * {
+    opacity: 0;
+}
+body.zy-nav-in .eze-col-left > * {
+    animation: ezeInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+body.zy-nav-in .eze-col-right > * {
+    animation: ezeInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+body.zy-nav-in .eze-up > * {
+    animation: ezeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+/* Stagger berjenjang (delay naik bertahap) */
+body.zy-nav-in .eze-col-left > *:nth-child(1),
+body.zy-nav-in .eze-col-right > *:nth-child(1),
+body.zy-nav-in .eze-up > *:nth-child(1) { animation-delay: 0.04s; }
+body.zy-nav-in .eze-col-left > *:nth-child(2),
+body.zy-nav-in .eze-col-right > *:nth-child(2),
+body.zy-nav-in .eze-up > *:nth-child(2) { animation-delay: 0.11s; }
+body.zy-nav-in .eze-col-left > *:nth-child(3),
+body.zy-nav-in .eze-col-right > *:nth-child(3),
+body.zy-nav-in .eze-up > *:nth-child(3) { animation-delay: 0.18s; }
+body.zy-nav-in .eze-col-left > *:nth-child(4),
+body.zy-nav-in .eze-col-right > *:nth-child(4),
+body.zy-nav-in .eze-up > *:nth-child(4) { animation-delay: 0.25s; }
+body.zy-nav-in .eze-col-left > *:nth-child(5),
+body.zy-nav-in .eze-col-right > *:nth-child(5),
+body.zy-nav-in .eze-up > *:nth-child(5) { animation-delay: 0.32s; }
+body.zy-nav-in .eze-col-left > *:nth-child(6),
+body.zy-nav-in .eze-col-right > *:nth-child(6),
+body.zy-nav-in .eze-up > *:nth-child(6) { animation-delay: 0.39s; }
+body.zy-nav-in .eze-col-left > *:nth-child(7),
+body.zy-nav-in .eze-col-right > *:nth-child(7),
+body.zy-nav-in .eze-up > *:nth-child(7) { animation-delay: 0.46s; }
+body.zy-nav-in .eze-col-left > *:nth-child(8),
+body.zy-nav-in .eze-col-right > *:nth-child(8),
+body.zy-nav-in .eze-up > *:nth-child(8) { animation-delay: 0.53s; }
+
+@keyframes ezeInLeft {
+    from { opacity: 0; transform: translateX(-42px) scale(0.985); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes ezeInRight {
+    from { opacity: 0; transform: translateX(42px) scale(0.985); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes ezeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* Kalkulator: kolom form (kiri) & kolom hasil (kanan) per tab */
+body.zy-nav-in .tab-panel > .grid > div:nth-child(1) {
+    opacity: 0;
+    animation: ezeInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+body.zy-nav-in .tab-panel > .grid > div:nth-child(2) {
+    opacity: 0;
+    animation: ezeInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+body.zy-nav-in .tab-panel > .grid > div:nth-child(2) { animation-delay: 0.10s; }
+@media (prefers-reduced-motion: reduce) {
+    body.zy-nav-in .eze-col-left > *,
+    body.zy-nav-in .eze-col-right > *,
+    body.zy-nav-in .eze-up > *,
+    body.zy-nav-in .tab-panel > .grid > div {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+
+
+/* Kembalikan latar halaman DARK seperti sebelum perbaikan CSS:
+   rata #121816 (bukan gradient hijau) & tanpa overlay gelap.
+   (Perbaikan kurung tetap dipertahankan agar CSS utuh.) */
+body.dark-mode {
+    background: #121816 !important;
+}
+body.dark-mode::before {
+    content: none !important;
+}
+
+/* Fade-out cepat elemen dekoratif saat mulai navigasi (Turbo) — tanpa memperlambat */
+body.zy-exit .zy-lantern-left,
+body.zy-exit .zy-lantern-right {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: translateY(-64px) !important;
+    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+body.zy-exit .zy-star {
+    animation: none !important;
+    opacity: 0 !important;
+    transition: opacity 0.18s ease !important;
+}
+
+/* Cegah kedip putih saat ganti halaman: background stabil di <html> */
+html { background-color: #e7ebe4; }
+html:has(body.dark-mode) { background-color: #121816; }

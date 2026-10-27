@@ -35,7 +35,6 @@
         body { 
             font-family: 'Poppins', sans-serif; 
             background-color: #EAEAEA;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         img { max-width: 100%; height: auto; }
@@ -129,13 +128,43 @@
             }
         }
 
-        .anim-welcome {
-            animation: zyraSmoothWelcome 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        body.zy-dir-f .anim-welcome { animation: welcomeSlideForward 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        body.zy-dir-b .anim-welcome { animation: welcomeSlideBack 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .anim-welcome { opacity: 1; }
 
         .turbolinks-progress-bar { display: none !important; }
+
+        /* ===== HIASAN DEKORATIF — animasi masuk & hidup ===== */
+        @keyframes zyLanternIn {
+            0% { opacity: 0; transform: translateY(-70px) rotate(-4deg) scale(0.94); }
+            55% { opacity: 1; transform: translateY(6px) rotate(2deg) scale(1.02); }
+            100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+        }
+        @keyframes zyLanternSway {
+            0% { transform: rotate(0deg) translateX(0px); }
+            50% { transform: rotate(2.2deg) translateX(6px); }
+            100% { transform: rotate(-1.8deg) translateX(-4px); }
+        }
+        @keyframes zyStarFadeIn { 0% { opacity: 0; } 100% { opacity: 0.6; } }
+        @keyframes zyGlowPulse {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(1.07); }
+        }
+        @keyframes zyCardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .zy-star { animation: zyStarFadeIn 1.4s ease-out 0.15s both; }
+        .zy-lantern-left {
+            transform-origin: 50% 0%;
+            animation: zyLanternIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both,
+                       zyLanternSway 7s ease-in-out 1.4s infinite;
+        }
+        .zy-lantern-right {
+            transform-origin: 50% 0%;
+            animation: zyLanternIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both,
+                       zyLanternSway 8s ease-in-out 1.8s infinite;
+        }
+        main.anim-welcome .eze-col-right { animation: zyCardFloat 6s ease-in-out 1.3s infinite; }
+
     </style>
 </head>
 <body class="min-h-screen w-full flex flex-col justify-between p-3 lg:p-5 box-border relative bg-zy-bg">
@@ -281,7 +310,7 @@
         <div class="grid lg:grid-cols-12 gap-8 items-center w-full my-auto">
             
             <!-- KOLOM KIRI: UCAPAN SELAMAT DATANG -->
-            <div class="lg:col-span-7 space-y-4">
+            <div class="lg:col-span-7 space-y-4 eze-col-left">
                 <div class="inline-flex items-center gap-2 bg-panel-welcome border border-gold/40 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark shadow-sm">
                     <i class="fa-solid fa-sparkles text-gold2"></i> PLATFORM ZAKAT DIGITAL TERPERCAYA
                 </div>
@@ -306,7 +335,7 @@
             </div>
 
             <!-- KOLOM KANAN: HADIS SLIDER (HIJAU OLIVE CARD) -->
-            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+            <div class="lg:col-span-5 flex justify-center lg:justify-end eze-col-right">
                 <div class="w-full bg-olive text-white p-6 rounded-3xl shadow-2xl relative border border-white/20 flex flex-col justify-between min-h-[260px] backdrop-blur-sm border-l-4 border-l-gold2">
                     
                     <!-- Badge Hadis -->
@@ -340,7 +369,7 @@
         </div>
 
         <!-- QUICK ACTION FLOATING BAR (BAGIAN BAWAH) -->
-        <div class="quick-action-bar bg-panel-welcome rounded-2xl p-3 border border-panel-border shadow-lg grid md:grid-cols-3 gap-3 items-center shrink-0">
+        <div class="quick-action-bar bg-panel-welcome rounded-2xl p-3 border border-panel-border shadow-lg grid md:grid-cols-3 gap-3 items-center shrink-0 eze-up">
             <div class="flex items-center gap-3 px-3 py-1 md:border-r border-panel-border quick-card-gold">
                 <i class="fa-solid fa-calculator text-gold2 text-lg shrink-0"></i>
                 <div>

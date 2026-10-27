@@ -90,7 +90,7 @@
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
 
     <!-- HEADER PANDUAN DENGAN BLOK TRANSPARAN SERTA AKSELERASI ORNAMEN -->
-    <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm relative overflow-hidden anim-smooth delay-1">
+    <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm relative overflow-hidden anim-smooth delay-1 eze-up">
         <svg class="absolute right-4 top-2 w-20 h-20 opacity-15 pointer-events-none text-gold2" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z"/>
         </svg>
@@ -110,7 +110,7 @@
     </div>
 
     <div class="grid lg:grid-cols-[1fr_300px] gap-6">
-        <div class="space-y-6">
+        <div class="space-y-6 eze-col-left">
             {{-- Niat --}}
             <div id="niat" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
@@ -250,7 +250,7 @@
         </div>
 
         {{-- Sidebar sticky --}}
-        <div class="space-y-4 anim-smooth delay-3">
+        <div class="space-y-4 anim-smooth delay-3 eze-col-right">
             <div class="bg-olive rounded-[24px] p-5 text-white lg:sticky lg:top-[80px] shadow-xl hover-smooth border border-white/20 border-l-4 border-l-gold2 relative overflow-hidden">
                 <div class="w-10 h-10 bg-gold2 text-oliveDark rounded-xl flex items-center justify-center font-black shadow-sm"><i class="fa-solid fa-lightbulb text-base"></i></div>
                 <div class="font-bold text-sm mt-3">Butuh Hitung Cepat?</div>

@@ -161,7 +161,7 @@
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
 
     <!-- BLOK 1: HEADER JUDUL & KARTU STATISTIK PENYALURAN -->
-    <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm space-y-5">
+    <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm space-y-5 eze-up">
         <div>
             <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
                 <i class="fa-solid fa-map-location-dot text-black"></i> Lokasi Penyaluran Zakat — Banjarbaru
@@ -206,7 +206,7 @@
     </div>
 
     <!-- BLOK 2: BAR FILTER PETA TERPISAH -->
-    <div class="bg-panel rounded-2xl p-3.5 border border-panel-border flex flex-wrap items-center justify-between gap-3 shadow-sm">
+    <div class="bg-panel rounded-2xl p-3.5 border border-panel-border flex flex-wrap items-center justify-between gap-3 shadow-sm eze-up">
         <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-oliveDark">Filter:</span>
             <button data-filter="all" class="filter-btn bg-olive text-white px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95 shadow-sm">Semua</button>
@@ -223,7 +223,7 @@
     <div class="fix-grid-layout">
         
         <!-- KOLOM PETA (KIRI) -->
-        <div class="fix-col-map bg-panel rounded-[24px] border border-panel-border p-3.5 shadow-md w-full flex flex-col justify-between space-y-3">
+        <div class="fix-col-map bg-panel rounded-[24px] border border-panel-border p-3.5 shadow-md w-full flex flex-col justify-between space-y-3 eze-col-left">
             <div class="map-wrapper">
                 <div id="map"></div>
             </div>
@@ -251,7 +251,7 @@
         </div>
 
         <!-- KOLOM DAFTAR LOKASI (KANAN) -->
-        <div class="fix-col-list bg-panel rounded-[24px] border border-panel-border p-5 shadow-md flex flex-col justify-between space-y-4 w-full">
+        <div class="fix-col-list bg-panel rounded-[24px] border border-panel-border p-5 shadow-md flex flex-col justify-between space-y-4 w-full eze-col-right">
             <div>
                 <div class="flex items-center justify-between gap-2 mb-3">
                     <h2 class="font-black text-xs uppercase tracking-wider text-oliveDark">DAFTAR LOKASI</h2>

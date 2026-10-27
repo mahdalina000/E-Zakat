@@ -204,7 +204,7 @@
         <div class="grid lg:grid-cols-12 gap-6 items-center w-full">
             
             <!-- KOLOM KIRI: HERO RINGKAS -->
-            <div class="lg:col-span-7 space-y-3 relative overflow-hidden rounded-3xl p-2">
+            <div class="lg:col-span-7 space-y-3 relative overflow-hidden rounded-3xl p-2 eze-col-left">
 
                 <div class="inline-flex items-center gap-2 border border-gold/50 bg-gold/15 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark dark:text-gold2 anim-smooth delay-2">
                     <i class="fa-solid fa-sparkles text-gold2"></i> ZAKAT MEMBERSIHKAN HARTA & JIWA
@@ -246,7 +246,7 @@
             </div>
 
             <!-- KOLOM KANAN: PENGUMUMAN CARD -->
-            <div class="lg:col-span-5 bg-panel rounded-3xl p-5 border border-panel-border space-y-3 anim-smooth delay-3 shadow-md border-l-4 border-l-gold relative overflow-hidden">
+            <div class="lg:col-span-5 bg-panel rounded-3xl p-5 border border-panel-border space-y-3 anim-smooth delay-3 shadow-md border-l-4 border-l-gold relative overflow-hidden eze-col-right">
 
                 <div class="flex items-center gap-3 relative z-10">
                     <div class="w-9 h-9 bg-olive text-white rounded-xl flex items-center justify-center shrink-0 shadow-sm">
@@ -292,7 +292,7 @@
         </div>
 
         <!-- 3 MENU CARDS RINGKAS -->
-        <div class="grid md:grid-cols-3 gap-3 shrink-0 anim-smooth delay-4">
+        <div class="grid md:grid-cols-3 gap-3 shrink-0 anim-smooth delay-4 eze-up">
             <a href="{{ url('/kalkulator') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden">
                 <div class="w-10 h-10 bg-gold/20 text-gold rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-calculator"></i></div>
                 <div class="leading-tight">
@@ -319,7 +319,7 @@
         </div>
 
         <!-- BANNER UCAPAN SELAMAT HARI RAYA & PENGINGAT ZAKAT -->
-        <section class="shrink-0 anim-smooth delay-5">
+        <section class="shrink-0 anim-smooth delay-5 eze-up">
             <!-- PANEL PENUH: ucapan + pengingat zakat dalam satu hero -->
             <div class="festive-hero rounded-3xl text-white">
                 <!-- ornamen bintang islami halus di background -->
@@ -399,7 +399,7 @@
         </section>
 
         <!-- HADIS HARIAN -->
-        <div class="bg-olive/95 rounded-2xl px-4 py-2.5 text-white flex items-center justify-between gap-4 shrink-0 shadow-lg anim-smooth delay-5 border-l-4 border-l-gold2 relative overflow-hidden">
+        <div class="bg-olive/95 rounded-2xl px-4 py-2.5 text-white flex items-center justify-between gap-4 shrink-0 shadow-lg anim-smooth delay-5 border-l-4 border-l-gold2 relative overflow-hidden eze-up">
             <div class="flex items-center gap-3 overflow-hidden relative z-10">
                 <div class="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center shrink-0 text-gold2 text-[10px]"><i class="fa-solid fa-quote-left"></i></div>
                 <div class="truncate text-xs">
