@@ -42,6 +42,7 @@
 /* ============================================================
    ANIMASI KONSISTEN
    ============================================================ */
+/* Reveal dasar (fresh load): cepat & halus */
 @keyframes smoothReveal {
     0% {
         opacity: 0.85;
@@ -56,10 +57,46 @@
 /* anim-smooth — dipakai di semua layout publik (beranda, kalkulator,
    direktori, panduan, welcome). Stagger lewat .delay-1..5.
    Reveal dibuat SANGAT halus (mulai opacity 0.85, geser kecil) supaya
-   tidak terlihat seperti kedipan per-elemen. —akan halus
-   berasal dari View Transition API di tingkat halaman. */
+   tidak terlihat seperti kedipan per-elemen. */
 .anim-smooth {
-    animation: smoothReveal 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: smoothReveal 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ============================================================
+   TRANSISI ARAH HALAMAN (kreatif + cepat)
+   - Maju (klik link): halaman masuk meluncur dari kanan, dengan
+     sentuhan elevasi (naik) + fade — terasa "slide maju".
+   - Kembali (tombol back): masuk dari kiri — terasa "slide mundur".
+   Durasi pendek (0.25s) agar tetap cepat; easing meluncur lembut.
+   ============================================================ */
+@keyframes pageSlideForward {
+    0% {
+        opacity: 0.6;
+        transform: translateX(28px) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@keyframes pageSlideBack {
+    0% {
+        opacity: 0.6;
+        transform: translateX(-28px) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+/* Kelas penanda arah dipasang di <body> oleh transition.js */
+body.zy-dir-f .anim-smooth {
+    animation: pageSlideForward 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+body.zy-dir-b .anim-smooth {
+    animation: pageSlideBack 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Delay — sangat kecil agar tidak ada elemen yang "menunggu tak terlihat" */

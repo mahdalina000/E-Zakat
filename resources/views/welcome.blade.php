@@ -97,9 +97,33 @@
             }
         }
 
-        .anim-welcome {
-            animation: zyraSmoothWelcome 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+        @keyframes welcomeSlideForward {
+            0% {
+                opacity: 0.6;
+                transform: translateX(32px) scale(0.99);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
         }
+
+        @keyframes welcomeSlideBack {
+            0% {
+                opacity: 0.6;
+                transform: translateX(-32px) scale(0.99);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        .anim-welcome {
+            animation: zyraSmoothWelcome 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        body.zy-dir-f .anim-welcome { animation: welcomeSlideForward 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        body.zy-dir-b .anim-welcome { animation: welcomeSlideBack 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
         .turbolinks-progress-bar { display: none !important; }
     </style>

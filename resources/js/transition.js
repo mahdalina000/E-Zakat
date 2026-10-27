@@ -41,6 +41,12 @@
     }
 
     // ---- 3. Interceptor klik link internal ----
+    // Simpan arah navigasi agar animasi masuk bisa disesuaikan
+    // (maju: slide dari kanan; kembali: slide dari kiri).
+    function markNav(dir) {
+        sessionStorage.setItem('zy_dir', dir);
+    }
+
     document.addEventListener('click', function (e) {
         const a = e.target.closest('a[href]');
         if (!a || e.defaultPrevented) return;
@@ -61,7 +67,8 @@
         // Link dalam form
         if (a.closest('form')) return;
 
-        // Tandai navigasi + animasi keluar (cepat: 0.16s)
+        // Tandai navigasi maju + animasi keluar (cepat: 0.14s)
+        markNav('f');
         sessionStorage.setItem('zy_nav', '1');
         document.body.classList.add('zy-nav-out');
 
@@ -70,6 +77,12 @@
         bar.style.opacity = '1';
         setTimeout(() => { bar.style.width = '70%'; }, 20);
     }, false);
+
+    // Deteksi tombol kembali/maju browser (popstate)
+    window.addEventListener('popstate', function () {
+        markNav('b');
+        sessionStorage.setItem('zy_nav', '1');
+    });
 
     // ---- 4. Saat halaman baru siap ----
     window.addEventListener('DOMContentLoaded', function () {
@@ -80,6 +93,17 @@
 
         // Mark konten utama
         markContent();
+
+        // Pasang arah navigasi agar animasi slide masuk sesuai arah
+        if (isNav) {
+            const dir = sessionStorage.getItem('zy_dir');
+            document.body.classList.remove('zy-dir-f', 'zy-dir-b');
+            if (dir === 'b') {
+                document.body.classList.add('zy-dir-b');
+            } else {
+                document.body.classList.add('zy-dir-f');
+            }
+        }
 
         if (isNav && !prefersReduced) {
             // Release overflow:hidden dari halaman sebelumnya (mis. welcome)

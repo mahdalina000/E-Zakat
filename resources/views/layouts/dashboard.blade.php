@@ -14,7 +14,7 @@
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .anim-dashboard { animation: slideUpSmooth 0.4s ease-out forwards; }
+        .anim-dashboard { animation: slideUpSmooth 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     </style>
     @yield('head')
 
