@@ -5,8 +5,8 @@
 //    dari cache (instan), lalu di-refresh di latar belakang agar tetap segar.
 //  - API: network-only (tidak pernah di-cache).
 
-const ASSET_CACHE = 'ezakat-assets-v5';
-const NAV_CACHE = 'ezakat-nav-v5';
+const ASSET_CACHE = 'ezakat-assets-v6';
+const NAV_CACHE = 'ezakat-nav-v6';
 
 // Aset statis yang di-cache-first
 const ASSET_RE = /\/(build|images|audio)\/|\\.(woff2?|ttf|eot|otf|css|js|png|jpe?g|webp|svg|ico|mp3|m4a|aac)(\?|$)/i;
