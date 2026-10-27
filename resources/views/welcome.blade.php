@@ -132,38 +132,6 @@
 
         .turbolinks-progress-bar { display: none !important; }
 
-        /* ===== HIASAN DEKORATIF — animasi masuk & hidup ===== */
-        @keyframes zyLanternIn {
-            0% { opacity: 0; transform: translateY(-70px) rotate(-4deg) scale(0.94); }
-            55% { opacity: 1; transform: translateY(6px) rotate(2deg) scale(1.02); }
-            100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
-        }
-        @keyframes zyLanternSway {
-            0% { transform: rotate(0deg) translateX(0px); }
-            50% { transform: rotate(2.2deg) translateX(6px); }
-            100% { transform: rotate(-1.8deg) translateX(-4px); }
-        }
-        @keyframes zyStarFadeIn { 0% { opacity: 0; } 100% { opacity: 0.6; } }
-        @keyframes zyGlowPulse {
-            0%, 100% { opacity: 0.55; transform: scale(1); }
-            50% { opacity: 0.95; transform: scale(1.07); }
-        }
-        @keyframes zyCardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .zy-star { animation: zyStarFadeIn 1.4s ease-out 0.15s both; }
-        .zy-lantern-left {
-            transform-origin: 50% 0%;
-            animation: zyLanternIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both,
-                       zyLanternSway 7s ease-in-out 1.4s infinite;
-        }
-        .zy-lantern-right {
-            transform-origin: 50% 0%;
-            animation: zyLanternIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both,
-                       zyLanternSway 8s ease-in-out 1.8s infinite;
-        }
-        main.anim-welcome .eze-col-right { animation: zyCardFloat 6s ease-in-out 1.3s infinite; }
 
     </style>
 </head>

@@ -550,20 +550,9 @@ body.dark-mode::before {
     content: none !important;
 }
 
-/* Fade-out cepat elemen dekoratif saat mulai navigasi (Turbo) — tanpa memperlambat */
-body.zy-exit .zy-lantern-left,
-body.zy-exit .zy-lantern-right {
-    animation: none !important;
-    opacity: 0 !important;
-    transform: translateY(-64px) !important;
-    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-body.zy-exit .zy-star {
-    animation: none !important;
-    opacity: 0 !important;
-    transition: opacity 0.18s ease !important;
-}
-
 /* Cegah kedip putih saat ganti halaman: background stabil di <html> */
 html { background-color: #e7ebe4; }
 html:has(body.dark-mode) { background-color: #121816; }
+
+/* Lampion/lentera statis — tanpa animasi (sesuai permintaan user) */
+.zy-lantern-left, .zy-lantern-right { animation: none !important; }

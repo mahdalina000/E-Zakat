@@ -292,9 +292,9 @@
                 <input id="maalHarta" type="hidden" value="100000000">
 
                 <div class="mt-3 p-3.5 rounded-2xl border-2 border-gold/50 bg-gold/10">
-                    <label class="block text-xs font-extrabold text-gold2 dark:text-gold2 mb-1">
-                        <i class="fa-solid fa-ring mr-1"></i> Emas Milik Pribadi — Hitung Otomatis ke Rupiah
-                    </label>
+                    <label class="block text-xs font-extrabold text-oliveDark dark:text-gold2 mb-1">
+                                            <i class="fa-solid fa-ring mr-1 text-oliveDark dark:text-gold2"></i> Emas Milik Pribadi — Hitung Otomatis ke Rupiah
+                                        </label>
                     <div class="flex items-center gap-2">
                         <input id="gramEmasInput" type="number" min="0" step="0.1" value="100" class="flex-1 border border-cream3 rounded-full px-3.5 py-2 text-xs font-bold bg-panel-2">
                         <span class="text-[10px] text-black/60 shrink-0">gram</span>
