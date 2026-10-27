@@ -85,11 +85,11 @@
         .quick-card-blue { border-left: 3px solid #2563EB !important; }
         .quick-card-emerald { border-left: 3px solid #10B981 !important; }
 
-        /* Animasi Ultra Smooth Reveal — durasi seimbang + easing lembut */
+        /* Animasi Ultra Smooth Reveal — mulai tidak nol + geseran jauh agar meluncur, bukan kedipan */
         @keyframes zyraSmoothWelcome {
             0% {
-                opacity: 0;
-                transform: translateY(14px) scale(0.985);
+                opacity: 0.4;
+                transform: translateY(22px) scale(0.97);
             }
             100% {
                 opacity: 1;
@@ -98,7 +98,7 @@
         }
 
         .anim-welcome {
-            animation: zyraSmoothWelcome 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation: zyraSmoothWelcome 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .turbolinks-progress-bar { display: none !important; }
