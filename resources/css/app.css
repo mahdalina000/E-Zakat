@@ -79,8 +79,9 @@
 }
 
 /* Sembunyikan progress bar bawaan Turbo — muncul sebagai garis biru
-   di bawah address bar saat pindah halaman dan terasa mengganggu. */
-#turbo-progress-bar {
+   di bawah address bar saat pindah halaman dan terasa mengganggu.
+   Elemennya adalah custom element <turbo-progress-bar> (bukan #id). */
+turbo-progress-bar {
     display: none !important;
     visibility: hidden !important;
 }
