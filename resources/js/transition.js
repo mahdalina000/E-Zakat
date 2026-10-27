@@ -11,6 +11,7 @@
     // ---- 0. State & Util ----
     const isNav = sessionStorage.getItem('zy_nav') === '1';
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasTurbo = !!(window.Turbo);
 
     // ---- 1. Progress bar ----
     let progressEl = null;
@@ -40,43 +41,53 @@
         return document.body;
     }
 
-    // ---- 3. Interceptor klik link internal ----
+    // ---- 3. Interceptor klik link internal (HANYA tanpa Turbo) ----
+    // Jika Turbo aktif, Turbo-lah yang menangani klik & navigasi; interceptor
+    // ini dinonaktifkan agar tidak duplikat dengan Turbo.
     // Simpan arah navigasi agar animasi masuk bisa disesuaikan
     // (maju: slide dari kanan; kembali: slide dari kiri).
     function markNav(dir) {
         sessionStorage.setItem('zy_dir', dir);
     }
 
-    document.addEventListener('click', function (e) {
-        const a = e.target.closest('a[href]');
-        if (!a || e.defaultPrevented) return;
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        if (a.target === '_blank' || a.hasAttribute('download')) return;
-        const href = a.getAttribute('href');
-        if (!href) return;
-        // Skip anchor, mailto, tel, javascript
-        if (href.startsWith('#') || href.startsWith('mailto') ||
-            href.startsWith('tel:') || href.startsWith('javascript:')) return;
-        // Skip eksternal (non-origin)
-        if (href.startsWith('http')) {
-            try {
-                const u = new URL(href, location.href);
-                if (u.origin !== location.origin) return;
-            } catch (_) { return; }
-        }
-        // Link dalam form
-        if (a.closest('form')) return;
+    if (!hasTurbo) {
+        document.addEventListener('click', function (e) {
+            const a = e.target.closest('a[href]');
+            if (!a || e.defaultPrevented) return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            if (a.target === '_blank' || a.hasAttribute('download')) return;
+            const href = a.getAttribute('href');
+            if (!href) return;
+            // Skip anchor, mailto, tel, javascript
+            if (href.startsWith('#') || href.startsWith('mailto') ||
+                href.startsWith('tel:') || href.startsWith('javascript:')) return;
+            // Skip eksternal (non-origin)
+            if (href.startsWith('http')) {
+                try {
+                    const u = new URL(href, location.href);
+                    if (u.origin !== location.origin) return;
+                } catch (_) { return; }
+            }
+            // Link dalam form
+            if (a.closest('form')) return;
 
-        // Tandai navigasi maju + animasi keluar (cepat: 0.14s)
-        markNav('f');
-        sessionStorage.setItem('zy_nav', '1');
-        document.body.classList.add('zy-nav-out');
+            // Tandai navigasi maju + animasi keluar (cepat: 0.14s)
+            markNav('f');
+            sessionStorage.setItem('zy_nav', '1');
+            document.body.classList.add('zy-nav-out');
 
-        // Progress bar langsung tampil
-        const bar = ensureProgress();
-        bar.style.opacity = '1';
-        setTimeout(() => { bar.style.width = '70%'; }, 20);
-    }, false);
+            // Progress bar langsung tampil
+            const bar = ensureProgress();
+            bar.style.opacity = '1';
+            setTimeout(() => { bar.style.width = '70%'; }, 20);
+        }, false);
+    } else {
+        // Turbo: tandai arah maju saat Turbo mulai navigate
+        document.addEventListener('turbo:click', function () {
+            markNav('f');
+            sessionStorage.setItem('zy_nav', '1');
+        });
+    }
 
     // Deteksi tombol kembali/maju browser (popstate)
     window.addEventListener('popstate', function () {
@@ -85,7 +96,9 @@
     });
 
     // ---- 4. Saat halaman baru siap ----
-    window.addEventListener('DOMContentLoaded', function () {
+    // Dengan Turbo, pemicunya adalah turbo:load / turbo:render (bukan
+    // DOMContentLoaded). Tanpa Turbo, tetap DOMContentLoaded.
+    function onPageReady() {
         const bar = document.getElementById('zy-progress');
 
         // Smooth scroll
@@ -95,7 +108,7 @@
         markContent();
 
         // Pasang arah navigasi agar animasi slide masuk sesuai arah
-        if (isNav) {
+        if (sessionStorage.getItem('zy_nav') === '1') {
             const dir = sessionStorage.getItem('zy_dir');
             document.body.classList.remove('zy-dir-f', 'zy-dir-b');
             if (dir === 'b') {
@@ -105,34 +118,39 @@
             }
         }
 
-        if (isNav && !prefersReduced) {
+        if (!prefersReduced) {
             // Release overflow:hidden dari halaman sebelumnya (mis. welcome)
             document.body.style.overflow = '';
 
             document.body.classList.add('zy-nav-in');
-            window.scrollTo(0, 0);
 
             // Fade out progress bar SETELAH konten masuk (cepat)
-            setTimeout(() => {
-                if (bar) {
-                    bar.style.width = '100%';
-                    setTimeout(() => {
-                        bar.style.opacity = '0';
-                        setTimeout(() => { bar.style.width = '0%'; }, 200);
-                    }, 120);
-                }
-            }, 60);
+            if (bar) {
+                bar.style.width = '100%';
+                setTimeout(() => {
+                    bar.style.opacity = '0';
+                    setTimeout(() => { bar.style.width = '0%'; }, 200);
+                }, 120);
+            }
 
             // Bersihkan flag
             sessionStorage.removeItem('zy_nav');
-            document.body.classList.remove('zy-nav-out');
 
             // Reveal HANYA konten di bawah layar (biar scroll smooth)
             initBelowFoldReveal();
         }
         // Fresh load: tidak perlu reveal — animasi CSS bawaan (anim-smooth,
         // anim-welcome, anim-auth, anim-dashboard) sudah handle tampil.
-    });
+    }
+
+    if (hasTurbo) {
+        // Jalankan saat halaman dirender oleh Turbo
+        document.addEventListener('turbo:render', onPageReady);
+        // Fallback untuk kunjungan pertama (full load) sebelum Turbo aktif
+        window.addEventListener('DOMContentLoaded', onPageReady);
+    } else {
+        window.addEventListener('DOMContentLoaded', onPageReady);
+    }
 
     // ---- 5. Reveal KONTEN DI BAWAH LAYAR SAJA ----
     // Tidak ada elemen yang di-hide sampai di-scroll — konten di atas

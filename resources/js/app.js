@@ -13,8 +13,26 @@ window.Chart = Chart;
 // Leaflet CSS — Vite akan auto-bundle
 import 'leaflet/dist/leaflet.css';
 
-// Smooth page transition (SPA-feel)
+// Turbo (Hotwire) — navigasi instan tanpa full reload
+// (side-effect import: langsung aktif; expose window.Turbo oleh Turbo sendiri)
+import '@hotwired/turbo';
+// Sekali render, handler SPA kita adalah Turbo; nonaktifkan yang duplikat
+document.documentElement.setAttribute('data-turbo-progress-bar', 'false');
+
+// Helper universal: jalankan fn setelah DOM siap, BAIK fresh load maupun
+// navigasi Turbo (terpicu ulang tiap halaman).
+window.ezOnReady = function (fn) {
+    if (typeof fn !== 'function') return;
+    if (document.readyState !== 'loading') {
+        // Sudah siap: jalankan mikro-moment berikutnya
+        requestAnimationFrame(fn);
+        return;
+    }
+    document.addEventListener('DOMContentLoaded', fn, { once: true });
+};
+
+// Page transition (SPA-feel) — berjalan bersama Turbo
 import './transition.js';
 
-console.log('[E-Zakat] JS bundle: Leaflet + Chart.js + Transition loaded');
+console.log('[E-Zakat] JS bundle: Turbo + Leaflet + Chart.js loaded');
 

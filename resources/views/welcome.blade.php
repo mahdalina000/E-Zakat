@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-turbo-progress-bar="false">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -368,7 +368,7 @@
 
     <!-- SCRIPT DARK MODE TOGGLE -->
     <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    window.ezOnReady(function(){
         const toggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         if(localStorage.getItem('theme') === 'dark'){

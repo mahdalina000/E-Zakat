@@ -42,6 +42,13 @@
 /* ============================================================
    ANIMASI KONSISTEN
    ============================================================ */
+/* Sembunyikan progress bar bawaan Turbo (jaring pengaman ganda) */
+turbo-progress-bar {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
 /* Reveal dasar (fresh load): cepat & halus */
 @keyframes smoothReveal {
     0% {
