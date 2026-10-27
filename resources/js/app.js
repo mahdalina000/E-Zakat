@@ -31,5 +31,19 @@ window.ezOnReady = function (fn) {
     }
 };
 
+// ---- Transisi halus setelah Turbo mengganti konten ----
+// Dipicu pada SETIAP render Turbo sehingga animasi fade-in selalu
+// main lagi (bukan hanya sekali). Berlaku untuk semua halaman.
+function playTurboIn() {
+    const b = document.body;
+    b.classList.remove('zy-turbo-in');
+    // Paksa reflow supaya animasi bisa main lagi tiap render.
+    void b.offsetWidth;
+    b.classList.add('zy-turbo-in');
+}
+
+document.addEventListener('turbo:render', playTurboIn);
+document.addEventListener('turbo:load', playTurboIn);
+
 console.log('[E-Zakat] JS bundle: Turbo + Leaflet + Chart.js + Transition loaded');
 

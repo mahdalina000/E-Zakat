@@ -79,6 +79,33 @@
 }
 
 /* ============================================================
+   TRANSISI TURBO — fade-in halus setelah konten diganti
+   Berlaku di SEMUA halaman (welcome → panduan).
+   Mulai opacity tidak nol (0.88) agar tidak terasa "kedipan",
+   geser kecil 10px, durasi pendek — terasa meluncur, tetap cepat.
+   ============================================================ */
+.zy-turbo-in {
+    animation: zyTurboIn 0.30s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes zyTurboIn {
+    from {
+        opacity: 0.88;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zy-turbo-in {
+        animation: none;
+    }
+}
+
+/* ============================================================
    BASE BODY — font & background
    ============================================================ */
 body {
