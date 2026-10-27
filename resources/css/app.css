@@ -44,8 +44,8 @@
    ============================================================ */
 @keyframes smoothReveal {
     0% {
-        opacity: 0.45;
-        transform: translateY(18px);
+        opacity: 0.85;
+        transform: translateY(8px);
     }
     100% {
         opacity: 1;
@@ -55,18 +55,19 @@
 
 /* anim-smooth — dipakai di semua layout publik (beranda, kalkulator,
    direktori, panduan, welcome). Stagger lewat .delay-1..5.
-   Mulai dari opacity TIDAK nol (0.45) + geseran cukup jauh sehingga
-   terasa "meluncur" elegan, BUKAN kedipan (blink). Durasi tetap cepat. */
+   Reveal dibuat SANGAT halus (mulai opacity 0.85, geser kecil) supaya
+   tidak terlihat seperti kedipan per-elemen. —akan halus
+   berasal dari View Transition API di tingkat halaman. */
 .anim-smooth {
-    animation: smoothReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: smoothReveal 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Delay — sangat kecil agar tidak ada elemen yang "menunggu tak terlihat" */
-.delay-1 { animation-delay: 0.02s; }
-.delay-2 { animation-delay: 0.04s; }
-.delay-3 { animation-delay: 0.06s; }
-.delay-4 { animation-delay: 0.08s; }
-.delay-5 { animation-delay: 0.10s; }
+.delay-1 { animation-delay: 0.01s; }
+.delay-2 { animation-delay: 0.02s; }
+.delay-3 { animation-delay: 0.03s; }
+.delay-4 { animation-delay: 0.04s; }
+.delay-5 { animation-delay: 0.05s; }
 
 /* Hover Float Soft Effect */
 .hover-smooth {
@@ -81,13 +82,13 @@
    TRANSISI HALAMAN HALUS (View Transition API)
    ============================================================ */
 ::view-transition-old(root) {
-    animation: vtFadeOut 0.18s ease both;
+    animation: vtFadeOut 0.3s ease both;
 }
 ::view-transition-new(root) {
-    animation: vtFadeIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: vtFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes vtFadeOut {
-    to { opacity: 0; transform: scale(0.985); }
+    to { opacity: 0; transform: scale(0.99); }
 }
 @keyframes vtFadeIn {
     from { opacity: 0; transform: translateY(8px) scale(0.995); }
