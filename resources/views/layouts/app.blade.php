@@ -198,7 +198,7 @@
 
     <!-- DARK MODE + PREFETCH (transition.js handle progress bar & smooth reveal) -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        window.ezOnReady(function () {
             // Dark Mode Logic
             const toggleBtn = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');

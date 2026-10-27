@@ -344,7 +344,7 @@
 
     <!-- SCRIPT DARK MODE TOGGLE -->
     <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    window.ezOnReady(function () {
         const toggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         if(localStorage.getItem('theme') === 'dark'){

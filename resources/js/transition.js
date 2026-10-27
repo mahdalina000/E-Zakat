@@ -8,6 +8,10 @@
 (function () {
     'use strict';
 
+    // Saat Turbo aktif, biarkan Turbo menangani navigasi — nonaktifkan
+    // seluruh interceptor manual (progress bar, kelas kelas, reveal).
+    if (window.Turbo) return;
+
     // ---- 0. State & Util ----
     const isNav = sessionStorage.getItem('zy_nav') === '1';
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
