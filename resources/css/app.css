@@ -78,6 +78,13 @@
     box-shadow: 0 16px 32px -8px rgba(0, 31, 63, 0.12);
 }
 
+/* Sembunyikan progress bar bawaan Turbo — muncul sebagai garis biru
+   di bawah address bar saat pindah halaman dan terasa mengganggu. */
+#turbo-progress-bar {
+    display: none !important;
+    visibility: hidden !important;
+}
+
 /* ============================================================
    TRANSISI TURBO — fade-in halus setelah konten diganti
    Berlaku di SEMUA halaman (welcome → panduan).
