@@ -78,6 +78,22 @@
 }
 
 /* ============================================================
+   TRANSISI HALAMAN HALUS (View Transition API)
+   ============================================================ */
+::view-transition-old(root) {
+    animation: vtFadeOut 0.18s ease both;
+}
+::view-transition-new(root) {
+    animation: vtFadeIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes vtFadeOut {
+    to { opacity: 0; transform: scale(0.985); }
+}
+@keyframes vtFadeIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.995); }
+}
+
+/* ============================================================
    BASE BODY — font & background
    ============================================================ */
 body {

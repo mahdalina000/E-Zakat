@@ -233,6 +233,33 @@
                 if (mainCss) prefetch(mainCss.getAttribute('href'));
             }, {timeout: 2000});
         });
+
+        // ===== TRANSISI HALAMAN HALUS (View Transition API) =====
+        // Menangkap klik pada tautan internal, lalu memakai document.startViewTransition()
+        // agar perpindahan halaman melebur dengan mulus (bukan kedipan reload).
+        // Jika browser tidak mendukungnya, navigasi normal tetap berjalan.
+        (function () {
+            if (!document.startViewTransition) return; // fallback: navigasi biasa
+
+            document.addEventListener('click', function (e) {
+                const a = e.target.closest('a[href]');
+                if (!a) return;
+
+                const href = a.getAttribute('href');
+                if (!href || href.charAt(0) === '#') return;
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                if (a.target && a.target !== '_self') return;
+
+                let target;
+                try { target = new URL(href, location.href); } catch (err) { return; }
+                if (target.origin !== location.origin) return;
+
+                e.preventDefault();
+                document.startViewTransition(function () {
+                    location.href = target.href;
+                });
+            });
+        })();
     </script>
 </body>
 </html>

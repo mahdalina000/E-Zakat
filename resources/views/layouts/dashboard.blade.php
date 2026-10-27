@@ -27,6 +27,24 @@
                     .catch(err => console.warn('[SW] Registration failed:', err));
             });
         }
+
+        // ===== TRANSISI HALAMAN HALUS (View Transition API) =====
+        (function () {
+            if (!document.startViewTransition) return;
+            document.addEventListener('click', function (e) {
+                const a = e.target.closest('a[href]');
+                if (!a) return;
+                const href = a.getAttribute('href');
+                if (!href || href.charAt(0) === '#') return;
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                if (a.target && a.target !== '_self') return;
+                let target;
+                try { target = new URL(href, location.href); } catch (err) { return; }
+                if (target.origin !== location.origin) return;
+                e.preventDefault();
+                document.startViewTransition(function () { location.href = target.href; });
+            });
+        })();
     </script>
 </head>
 <body class="bg-cream2 text-oliveDark min-h-screen relative">
