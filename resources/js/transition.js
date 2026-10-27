@@ -87,6 +87,17 @@
             markNav('f');
             sessionStorage.setItem('zy_nav', '1');
         });
+
+        // Pasang kelas arah ke <body> SEBELUM render, agar animasi
+        // masuk (body.zy-dir-f/b .anim-smooth) langsung berlaku saat
+        // konten baru di-inject.
+        document.addEventListener('turbo:before-render', function () {
+            if (sessionStorage.getItem('zy_nav') === '1') {
+                const dir = sessionStorage.getItem('zy_dir');
+                document.body.classList.remove('zy-dir-f', 'zy-dir-b');
+                document.body.classList.add(dir === 'b' ? 'zy-dir-b' : 'zy-dir-f');
+            }
+        });
     }
 
     // Deteksi tombol kembali/maju browser (popstate)

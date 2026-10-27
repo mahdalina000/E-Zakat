@@ -49,69 +49,72 @@ turbo-progress-bar {
     height: 0 !important;
 }
 
-/* Reveal dasar (fresh load): cepat & halus */
+/* Reveal dasar (fresh load) — terinspirasi video referensi:
+   fade + slide naik lembut + scale halus, easing eksponensial
+   yang "mengalir" (bukan tajam). */
 @keyframes smoothReveal {
     0% {
-        opacity: 0.85;
-        transform: translateY(8px);
+        opacity: 0.72;
+        transform: translateY(16px) scale(0.995);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 /* anim-smooth — dipakai di semua layout publik (beranda, kalkulator,
    direktori, panduan, welcome). Stagger lewat .delay-1..5.
-   Reveal dibuat SANGAT halus (mulai opacity 0.85, geser kecil) supaya
-   tidak terlihat seperti kedipan per-elemen. */
+   Reveal dibuat mengalir (mulai opacity 0.72, geser 16px) supaya
+   terasa lembut dan elegan, bukan kedipan per-elemen. */
 .anim-smooth {
-    animation: smoothReveal 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: smoothReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ============================================================
-   TRANSISI ARAH HALAMAN (kreatif + cepat)
-   - Maju (klik link): halaman masuk meluncur dari kanan, dengan
-     sentuhan elevasi (naik) + fade — terasa "slide maju".
-   - Kembali (tombol back): masuk dari kiri — terasa "slide mundur".
-   Durasi pendek (0.25s) agar tetap cepat; easing meluncur lembut.
+   TRANSISI ARAH HALAMAN (sinematik, seperti video referensi)
+   - Maju (klik link): konten meluncur dari kanan + sedikit zoom-in
+     (skala 0.985→1) + fade — terasa "mendorong maju".
+   - Kembali (tombol back): dari kiri + zoom-out lembut.
+   Durasi nyaman (0.45s) dengan easing meluncur yang halus, agar
+   terasa mengalir dan enak dipandang (bukan kaku).
    ============================================================ */
 @keyframes pageSlideForward {
     0% {
-        opacity: 0.6;
-        transform: translateX(28px) translateY(0);
+        opacity: 0.55;
+        transform: translateX(42px) scale(0.985);
     }
     100% {
         opacity: 1;
-        transform: translateX(0) translateY(0);
+        transform: translateX(0) scale(1);
     }
 }
 
 @keyframes pageSlideBack {
     0% {
-        opacity: 0.6;
-        transform: translateX(-28px) translateY(0);
+        opacity: 0.55;
+        transform: translateX(-42px) scale(0.985);
     }
     100% {
         opacity: 1;
-        transform: translateX(0) translateY(0);
+        transform: translateX(0) scale(1);
     }
 }
 
 /* Kelas penanda arah dipasang di <body> oleh transition.js */
 body.zy-dir-f .anim-smooth {
-    animation: pageSlideForward 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: pageSlideForward 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 body.zy-dir-b .anim-smooth {
-    animation: pageSlideBack 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: pageSlideBack 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Delay — sangat kecil agar tidak ada elemen yang "menunggu tak terlihat" */
-.delay-1 { animation-delay: 0.01s; }
-.delay-2 { animation-delay: 0.02s; }
-.delay-3 { animation-delay: 0.03s; }
-.delay-4 { animation-delay: 0.04s; }
-.delay-5 { animation-delay: 0.05s; }
+/* Delay berurutan (stagger) — lebih terasa "mengalir" dari atas ke bawah */
+.delay-1 { animation-delay: 0.06s; }
+.delay-2 { animation-delay: 0.12s; }
+.delay-3 { animation-delay: 0.18s; }
+.delay-4 { animation-delay: 0.24s; }
+.delay-5 { animation-delay: 0.30s; }
 
 /* Hover Float Soft Effect */
 .hover-smooth {

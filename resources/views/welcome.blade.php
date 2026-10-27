@@ -85,11 +85,11 @@
         .quick-card-blue { border-left: 3px solid #2563EB !important; }
         .quick-card-emerald { border-left: 3px solid #10B981 !important; }
 
-        /* Animasi Ultra Smooth Reveal — dibuat sangat halus agar tidak kedipan per-elemen */
+        /* Animasi Ultra Smooth Reveal — mengalir, seamless (seperti video) */
         @keyframes zyraSmoothWelcome {
             0% {
-                opacity: 0.85;
-                transform: translateY(10px) scale(0.995);
+                opacity: 0.72;
+                transform: translateY(18px) scale(0.995);
             }
             100% {
                 opacity: 1;
@@ -99,8 +99,8 @@
 
         @keyframes welcomeSlideForward {
             0% {
-                opacity: 0.6;
-                transform: translateX(32px) scale(0.99);
+                opacity: 0.55;
+                transform: translateX(46px) scale(0.99);
             }
             100% {
                 opacity: 1;
@@ -110,8 +110,8 @@
 
         @keyframes welcomeSlideBack {
             0% {
-                opacity: 0.6;
-                transform: translateX(-32px) scale(0.99);
+                opacity: 0.55;
+                transform: translateX(-46px) scale(0.99);
             }
             100% {
                 opacity: 1;
@@ -120,10 +120,10 @@
         }
 
         .anim-welcome {
-            animation: zyraSmoothWelcome 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation: zyraSmoothWelcome 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
-        body.zy-dir-f .anim-welcome { animation: welcomeSlideForward 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
-        body.zy-dir-b .anim-welcome { animation: welcomeSlideBack 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        body.zy-dir-f .anim-welcome { animation: welcomeSlideForward 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        body.zy-dir-b .anim-welcome { animation: welcomeSlideBack 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
         .turbolinks-progress-bar { display: none !important; }
     </style>
