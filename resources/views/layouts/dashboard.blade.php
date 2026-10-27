@@ -28,44 +28,10 @@
             });
         }
 
-        // ===== TRANSISI HALAMAN HALUS (universal — jalan di semua browser) =====
-        (function () {
-            var veil = document.getElementById('pageVeil');
-            if (!veil) return;
-            function applyVeilBg() {
-                veil.style.background = document.body.classList.contains('dark-mode')
-                    ? 'linear-gradient(135deg, #06150e, #040e09)'
-                    : 'linear-gradient(135deg, #d5e2d3, #becfbe)';
-            }
-            applyVeilBg();
-            function go(url) {
-                applyVeilBg();
-                veil.classList.add('veil-on');
-                setTimeout(function () { location.href = url; }, 260);
-            }
-            document.addEventListener('click', function (e) {
-                var a = e.target.closest('a[href]');
-                if (!a) return;
-                var href = a.getAttribute('href');
-                if (!href || href.charAt(0) === '#') return;
-                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-                if (a.target && a.target !== '_self') return;
-                var t;
-                try { t = new URL(href, location.href); } catch (err) { return; }
-                if (t.origin !== location.origin) return;
-                e.preventDefault();
-                go(t.href);
-            });
-            window.addEventListener('load', function () {
-                setTimeout(function () { veil.classList.remove('veil-on'); }, 30);
-            });
-        })();
     </script>
 </head>
 <body class="bg-cream2 text-oliveDark min-h-screen relative">
 
-    <!-- VEIL TRANSISI HALAMAN -->
-    <div id="pageVeil" class="page-veil" aria-hidden="true"></div>
 
 <div class="flex min-h-screen relative z-10">
     {{-- Sidebar --}}
