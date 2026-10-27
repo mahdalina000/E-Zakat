@@ -583,7 +583,7 @@
 
 @section('scripts')
 <script>
-window.ezOnReady(function () {
+document.addEventListener("DOMContentLoaded", function () {
     const fmt = n => 'Rp ' + Number(n).toLocaleString('id-ID');
     const fmtKg = n => Number(n).toLocaleString('id-ID', {minimumFractionDigits:1, maximumFractionDigits:1});
 
