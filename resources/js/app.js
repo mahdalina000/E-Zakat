@@ -21,15 +21,23 @@ document.documentElement.setAttribute('data-turbo-progress-bar', 'false');
 
 // Helper universal: jalankan fn setelah DOM siap, BAIK fresh load maupun
 // navigasi Turbo (terpicu ulang tiap halaman).
-window.ezOnReady = function (fn) {
-    if (typeof fn !== 'function') return;
-    if (document.readyState !== 'loading') {
-        // Sudah siap: jalankan mikro-moment berikutnya
-        requestAnimationFrame(fn);
-        return;
+// Jika inline polyfill <head> sudah mengantri callback (window.ezOnReady),
+// flush antrian tersebut begitu implementasi asli siap.
+(function () {
+    const polyfillQueue = window.ezOnReady; // stub antrian dari <head>
+    window.ezOnReady = function (fn) {
+        if (typeof fn !== 'function') return;
+        if (document.readyState !== 'loading') {
+            // Sudah siap: jalankan mikro-moment berikutnya
+            requestAnimationFrame(fn);
+            return;
+        }
+        document.addEventListener('DOMContentLoaded', fn, { once: true });
+    };
+    if (polyfillQueue && typeof polyfillQueue.flush === 'function') {
+        polyfillQueue.flush();
     }
-    document.addEventListener('DOMContentLoaded', fn, { once: true });
-};
+})();
 
 // Page transition (SPA-feel) — berjalan bersama Turbo
 import './transition.js';

@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'E-Zakat Banjarbaru')</title>
 
+    <!-- Polyfill awal untuk window.ezOnReady — antri callback sampai bundle JS siap -->
+    <script>
+        window.ezOnReady = window.ezOnReady || (function () {
+            var queue = [];
+            function ready(fn) { if (typeof fn === 'function') queue.push(fn); }
+            ready.flush = function () { while (queue.length) { requestAnimationFrame(queue.shift()); } };
+            return ready;
+        })();
+    </script>
+
     <!-- OPTIMASI PRECONNECT CDN AGAR LOADING INSTAN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

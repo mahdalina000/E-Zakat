@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Dashboard — E-Zakat')</title>
+    <!-- Polyfill awal untuk window.ezOnReady — antri callback sampai bundle JS siap -->
+    <script>
+        window.ezOnReady = window.ezOnReady || (function () {
+            var queue = [];
+            function ready(fn) { if (typeof fn === 'function') queue.push(fn); }
+            ready.flush = function () { while (queue.length) { requestAnimationFrame(queue.shift()); } };
+            return ready;
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap">
