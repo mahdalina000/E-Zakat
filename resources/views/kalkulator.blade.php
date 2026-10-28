@@ -674,6 +674,7 @@
 @section('scripts')
 <script>
 window.ezOnReady(function () {
+    try {
     const fmt = n => 'Rp ' + Number(n).toLocaleString('id-ID');
     const fmtKg = n => Number(n).toLocaleString('id-ID', {minimumFractionDigits:1, maximumFractionDigits:1});
 
@@ -920,6 +921,7 @@ window.ezOnReady(function () {
     calcNiaga();
     calcPertanian();
     calcFidyah();
-});
+
+    } catch (e) { console.error('[Kalkulator] init error:', e); }});
 </script>
 @endsection
