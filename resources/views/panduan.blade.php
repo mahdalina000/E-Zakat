@@ -101,10 +101,8 @@
         <p class="text-xs lg:text-sm text-black/70 mt-1 font-medium">Pahami niat, syarat, waktu, besaran, 8 asnaf, dalil, dan tanya jawab — ringkas dan sesuai rujukan syariat.</p>
         <div class="mt-4 flex flex-wrap gap-2 text-xs">
             <a href="#niat" class="bg-olive text-white border border-olive px-3.5 py-1.5 rounded-full font-bold shadow-sm hover-smooth">Niat</a>
-            <a href="#fitrah" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">Zakat Fitrah</a>
             <a href="#asnaf" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">8 Asnaf</a>
-            <a href="#maal" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">Zakat Maal</a>
-            <a href="#fidyah" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">Fidyah</a>
+            <a href="#waris" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">Waris</a>
             <a href="#faq" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">FAQ</a>
         </div>
     </div>
@@ -132,26 +130,40 @@
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakatal fitri 'anni wa 'an jami'i man talzmunni nafaqatuhu fardhan lillahi ta'ala"</div>
                         <div class="text-[11px] text-black/70 mt-1">Untuk kepala keluarga yang menanggung istri/anak.</div>
                     </div>
-                </div>
-            </div>
 
-            {{-- Zakat Fitrah --}}
-            <div id="fitrah" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-3 shadow-sm border-l-4 border-l-gold">
-                <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">2</span> Zakat Fitrah
-                </h2>
-                <div class="mt-4 grid md:grid-cols-2 gap-4 text-xs">
-                    <div class="space-y-2.5">
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Hukum</div><div class="text-black/70 mt-0.5">Wajib bagi setiap muslim — laki/perempuan, dewasa/anak, merdeka/budak — yang memiliki kelebihan makanan pokok di malam & hari Id.</div></div>
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Besaran</div><div class="text-black/70 mt-0.5">1 sha' = <b>2,5 kg beras</b> (atau 3,5 liter) per jiwa. Di Banjarbaru default <b>Beras Banjar</b>; boleh beras lain dengan harga setara.</div></div>
+                    <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT MAAL</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata mali fardhan lillahi ta'ala"</div>
+                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat harta kekayaanku, fardu karena Allah Ta'ala.</div>
                     </div>
-                    <div class="bg-olive text-white rounded-2xl p-4 flex flex-col justify-between shadow-md border-l-4 border-l-gold2">
-                        <div>
-                            <div class="text-[10px] text-gold2 font-extrabold uppercase tracking-wider">CONTOH CEPAT</div>
-                            <div class="font-bold mt-1">Keluarga 4 jiwa × Beras Banjar Rp16.500/kg</div>
-                            <div class="text-white/80 text-xs mt-1">4 × 2,5 kg × Rp16.500 = <b class="text-gold2">Rp165.000</b> atau 10 kg beras.</div>
-                        </div>
-                        <a href="{{ url('/kalkulator') }}" class="inline-block mt-3 bg-gold2 text-oliveDark text-xs font-extrabold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-gold transition active:scale-95">Hitung di Kalkulator →</a>
+
+                    <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT PENGHASILAN</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ دَخْلِي فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata dakhli fardhan lillahi ta'ala"</div>
+                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat penghasilanku, fardu karena Allah Ta'ala.</div>
+                    </div>
+
+                    <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT PERNIAGAAAN</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ تِجَارَتِي فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata tijarati fardhan lillahi ta'ala"</div>
+                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat perniagaan (dagang)ku, fardu karena Allah Ta'ala.</div>
+                    </div>
+
+                    <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT PERTANIAN</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ زَرْعِي فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata zar'i fardhan lillahi ta'ala"</div>
+                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat hasil pertanianku, fardu karena Allah Ta'ala.</div>
+                    </div>
+
+                    <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT FIDYAH</div>
+                        <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ الْفِدْيَةَ عَنْ تَرْكِ الصَّوْمِ فَرْضًا لِلَّهِ تَعَالَى</div>
+                        <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija al-fidyah 'an tarki ash-shaum fardhan lillahi ta'ala"</div>
+                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan fidyah karena meninggalkan puasa, karena Allah Ta'ala.</div>
                     </div>
                 </div>
             </div>
@@ -159,7 +171,7 @@
             {{-- 8 Asnaf --}}
             <div id="asnaf" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">3</span> 8 Asnaf Penerima Zakat
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">2</span> 8 Asnaf Penerima Zakat
                 </h2>
                 <p class="text-xs text-black/70 mt-1">QS. At-Taubah: 60 — Sesungguhnya zakat itu hanyalah untuk...</p>
                 <div class="mt-4 grid sm:grid-cols-2 gap-3 text-xs">
@@ -182,43 +194,24 @@
                 </div>
             </div>
 
-            {{-- Zakat Maal --}}
-            <div id="maal" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm border-l-4 border-l-gold">
+            {{-- Waris --}}
+            <div id="waris" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm border-l-4 border-l-gold">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> Zakat Maal
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">3</span> Waris (Faraidh)
                 </h2>
+                <p class="text-xs text-black/70 mt-1">QS. An-Nisa': 11–12 — Pembagian harta warisan menurut syariat (faraidh) agar adil dan sesuai ketentuan.</p>
                 <div class="mt-4 grid md:grid-cols-2 gap-4 text-xs">
                     <div class="space-y-2.5">
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Hukum</div><div class="text-black/70 mt-0.5">Wajib atas harta yang mencapai nisab (85 gr emas) dan haul (genap 1 tahun hijriah).</div></div>
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Besaran</div><div class="text-black/70 mt-0.5">2,5% dari total harta yang memenuhi syarat.</div></div>
+                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Apa itu?</div><div class="text-black/70 mt-0.5">Ketentuan ahli waris yang berhak dan bagian masing-masing, bersumber dari Al-Qur'an, Sunnah, dan ijma' ulama.</div></div>
+                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Ahli waris utama</div><div class="text-black/70 mt-0.5">Anak, suami/istri, ayah, dan ibu — serta saudara ketika tidak ada anak.</div></div>
                     </div>
                     <div class="bg-olive text-white rounded-2xl p-4 flex flex-col justify-between shadow-md border-l-4 border-l-gold2">
                         <div>
-                            <div class="text-[10px] text-gold2 font-extrabold uppercase tracking-wider">CONTOH CEPAT</div>
-                            <div class="font-bold mt-1">Harta Rp200.000.000 (sudah haul)</div>
-                            <div class="text-white/80 text-xs mt-1">2,5% × 200.000.000 = <b class="text-gold2">Rp5.000.000</b> zakat maal.</div>
+                            <div class="text-[10px] text-gold2 font-extrabold uppercase tracking-wider">HITUNG WARIS</div>
+                            <div class="font-bold mt-1">Butuh simulasi pembagian waris?</div>
+                            <div class="text-white/80 text-xs mt-1">Fitur penghitungan waris tersedia setelah Anda masuk.</div>
                         </div>
-                        <a href="{{ url('/kalkulator') }}" class="inline-block mt-3 bg-gold2 text-oliveDark text-xs font-extrabold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-gold transition active:scale-95">Hitung di Kalkulator →</a>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Fidyah --}}
-            <div id="fidyah" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm border-l-4 border-l-gold">
-                <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">5</span> Fidyah
-                </h2>
-                <div class="mt-4 grid md:grid-cols-2 gap-4 text-xs">
-                    <div class="space-y-2.5">
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Syarat</div><div class="text-black/70 mt-0.5">Bagi yang tidak mampu berpuasa (sakit menahun, lansia).</div></div>
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Besaran</div><div class="text-black/70 mt-0.5">1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan per hari yang ditinggalkan.</div></div>
-                    </div>
-                    <div class="bg-olive text-white rounded-2xl p-4 flex flex-col justify-between shadow-md border-l-4 border-l-gold2">
-                        <div>
-                            <div class="text-[10px] text-gold2 font-extrabold uppercase tracking-wider">BENTUK FIDYAH</div>
-                            <div class="text-white/80 text-xs mt-1">Uang tunai, beras (0,75 kg/hari), atau <b class="text-gold2">porsi makanan siap saji</b> (nasi + lauk + sayur) yang dibagikan ke fakir/miskin.</div>
-                        </div>
-                        <a href="{{ url('/kalkulator') }}" class="inline-block mt-3 bg-gold2 text-oliveDark text-xs font-extrabold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-gold transition active:scale-95">Hitung Fidyah →</a>
+                        <a href="{{ url('/login') }}" class="inline-block mt-3 bg-gold2 text-oliveDark text-xs font-extrabold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-gold transition active:scale-95">Masuk untuk Menghitung →</a>
                     </div>
                 </div>
             </div>
@@ -226,7 +219,7 @@
             {{-- FAQ --}}
             <div id="faq" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">6</span> FAQ Zakat
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> FAQ Zakat
                 </h2>
                 <div class="mt-4 space-y-3 text-xs">
                     <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
