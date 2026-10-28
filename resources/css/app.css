@@ -557,8 +557,7 @@ html:has(body.dark-mode) { background-color: #121816; }
 /* Lampion/lentera statis — tanpa animasi (sesuai permintaan user) */
 .zy-lantern-left, .zy-lantern-right { animation: none !important; }
 
-/* Kelas khusus teks Emas Milik Pribadi — dijamin tidak terbalik:
-   light = hijau, dark (kelas & media) = emas */
+/* Kelas khusus teks Emas Milik Pribadi — ikut tema situs (kelas dark-mode):
+   light = hijau, dark = emas. TIDAK bergantung pada preferensi sistem. */
 .emas-label { color: #1d5b37; }
 body.dark-mode .emas-label, .emas-label.dark-mode { color: #D4AF37; }
-@media (prefers-color-scheme: dark) { .emas-label { color: #D4AF37; } }

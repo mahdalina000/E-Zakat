@@ -88,6 +88,8 @@
             sessionStorage.setItem('zy_nav', '1');
         });
 
+
+
         // Pasang kelas arah ke <body> SEBELUM render, agar animasi
         // masuk (body.zy-dir-f/b .anim-smooth) langsung berlaku saat
         // konten baru di-inject.
@@ -106,6 +108,29 @@
         document.addEventListener('turbo:render', function () {
             document.body.classList.remove('zy-exit');
         });
+
+        // Turbo: aktifkan prefetch resmi (data-turbo-prefetch) pada link
+        // internal. Turbo yang menangani — aman & tidak mengganti halaman.
+        function enablePrefetch() {
+            if (!window.Turbo) return;
+            document.querySelectorAll('a[href]').forEach(function (a) {
+                if (a.dataset.prefetchEnabled) return;
+                const href = a.getAttribute('href');
+                if (!href) return;
+                if (href.startsWith('#') || href.startsWith('mailto') ||
+                    href.startsWith('tel:') || href.startsWith('javascript:')) return;
+                if (href.startsWith('http')) {
+                    try {
+                        const u = new URL(href, location.href);
+                        if (u.origin !== location.origin) return;
+                    } catch (_) { return; }
+                }
+                a.setAttribute('data-turbo-prefetch', 'true');
+                a.dataset.prefetchEnabled = '1';
+            });
+        }
+        document.addEventListener('turbo:render', enablePrefetch);
+        window.addEventListener('DOMContentLoaded', enablePrefetch);
     }
 
     // Deteksi tombol kembali/maju browser (popstate)
