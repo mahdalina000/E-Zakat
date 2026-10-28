@@ -281,9 +281,12 @@ window.ezOnReady(function () {
     const mapEl = document.getElementById('map');
     if (!mapEl) return;
 
-    // Pakai kembali peta yang sudah ada (mis. saat kembali ke halaman ini
-    // via Turbo) agar tidak terjadi error "Map container is already initialized".
-    let map = window.__ezDirMap || null;
+    // Pakai kembali peta yang sudah ada HANYA jika container-nya masih elemen
+    // yang sama (mis. saat kembali ke halaman ini via Turbo tanpa ganti #map).
+    // Jika Turbo mengganti #map dengan elemen baru, buat peta baru agar tidak
+    // kosong dan tidak memicu error "Map container is already initialized".
+    let map = (window.__ezDirMap && window.__ezDirMap.getContainer() === mapEl)
+        ? window.__ezDirMap : null;
     if (!map) {
         map = L.map(mapEl, {
             center: banjarbaruCoords,
