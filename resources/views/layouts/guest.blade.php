@@ -1,59 +1,61 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-turbo-progress-bar="false">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title','E-Zakat Banjarbaru')</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Polyfill awal untuk window.ezOnReady — antri callback sampai bundle JS siap -->
     <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    // Pemetaan Palet Warna Baru
-                    cream: '#EAEAEA',       // Background dasar / light gray
-                    cream2: '#F4F4F4',      // Background secondary / off-white
-                    cream3: '#D6D6D6',      // Border & divider
-                    olive: '#4B8B3B',       // Hijau utama (Header, Button, Accent)
-                    olive2: '#3D7330',      // Hijau gelap (Hover states)
-                    olive3: '#A8D5BA',      // Hijau mint (Highlight / Badge)
-                    oliveDark: '#001F3F',   // Navy gelap (Teks utama, Footer)
-                    earth: '#F2C94C',       // Kuning emas (Aksen khusus, Quote, Icon)
-                },
-                fontFamily: {
-                    poppins: ['Poppins', 'sans-serif'],
-                    amiri: ['Amiri', 'serif'],
-                }
-            }
-        }
-    }
-</script>
+        window.ezOnReady = window.ezOnReady || (function () {
+            var queue = [];
+            function ready(fn) { if (typeof fn === 'function') queue.push(fn); }
+            ready.flush = function () { while (queue.length) { requestAnimationFrame(queue.shift()); } };
+            return ready;
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body{font-family:'Poppins',sans-serif}
 
         /* Mencegah gambar logo/asset meluap besar */
         img { max-width: 100%; height: auto; }
-
-        /* Animasi Zoom Smooth */
-        @keyframes zoomInAuth {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .anim-auth { animation: zoomInAuth 0.4s ease-out forwards; }
     </style>
+    @yield('head')
+
+    <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
+    <script>
+        if('serviceWorker' in navigator && location.protocol !== 'file:'){
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('[SW] Registered:', reg.scope))
+                    .catch(err => console.warn('[SW] Registration failed:', err));
+            });
+        }
+
+    </script>
 </head>
 <body class="bg-cream min-h-screen flex flex-col">
 
-<header class="bg-olive text-white shadow-sm">
+
+    <!-- BACKGROUND AESTHETIC — SAMA DENGAN WELCOME (gambar blur + glow + grid) -->
+    <div class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+        <img src="{{ asset('images/e-zakat.jpg') }}" alt="E-Zakat Background Aesthetic"
+             class="w-full h-full object-cover object-center scale-105 blur-[6px] opacity-30" fetchpriority="low">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-olive/25 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 -right-32 w-[500px] h-[500px] bg-gold/15 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-olive3/10 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#3A8C44_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.08]"></div>
+    </div>
+
+<header class="bg-olive text-white shadow-sm relative z-10 anim-smooth delay-1">
     <div class="max-w-6xl mx-auto px-4 lg:px-6 h-[60px] flex items-center justify-between">
       {{-- Logo E-Zakat --}}
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-            <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-sm transition-transform group-hover:scale-105 overflow-hidden shrink-0">
-                <img src="{{ asset('images/logo.png') }}" 
-                     alt="E-Zakat Logo" 
-                     class="w-full h-full object-contain">
+            <div class="w-10 h-10 rounded-xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-sm transition-transform group-hover:scale-105 overflow-hidden shrink-0">
+                <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain" fetchpriority="high" decoding="async">
             </div>
             <div class="leading-tight">
                 <div class="font-extrabold text-sm tracking-wide text-white">E-ZAKAT</div>
@@ -67,11 +69,11 @@
     </div>
 </header>
 
-<main class="flex-1 flex items-center justify-center p-4 py-10 anim-auth">
+<main class="flex-1 flex items-center justify-center p-4 py-10 relative z-10 anim-auth">
     @yield('content')
 </main>
 
-<footer class="bg-oliveDark text-cream/70 text-center text-xs py-3 border-t border-white/10">
+<footer class="bg-oliveDark text-cream/70 text-center text-xs py-3 border-t border-white/10 anim-smooth delay-3">
     © {{ date('Y') }} E-Zakat Banjarbaru
 </footer>
 

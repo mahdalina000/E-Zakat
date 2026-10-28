@@ -3,7 +3,7 @@
 @section('page-title','Dashboard Super Admin')
 @section('page-sub','Monitoring sistem E-Zakat Kota Banjarbaru')
 @section('head')
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{{-- Chart.js sudah di-bundle Vite di resources/js/app.js --}}
 @endsection
 @section('content')
 
@@ -18,7 +18,7 @@
         ];
     @endphp
     @foreach($cards as $c)
-    <div class="bg-white rounded-[20px] border border-cream3 p-4">
+    <div class="rounded-[20px] border border-cream3/30 p-4">
         <div class="flex items-center justify-between">
             <div class="w-10 h-10 bg-{{ $c[3] }}/10 text-{{ $c[3] }} rounded-xl flex items-center justify-center"><i class="fa-solid {{ $c[2] }}"></i></div>
             <i class="fa-solid fa-arrow-trend-up text-emerald-500 text-xs"></i>
@@ -32,7 +32,7 @@
 
 {{-- Charts --}}
 <div class="grid lg:grid-cols-2 gap-4 mt-4">
-    <div class="bg-white rounded-[20px] border border-cream3 p-5">
+    <div class="rounded-[20px] border border-cream3/30 p-5">
         <div class="flex items-center justify-between">
             <div>
                 <div class="font-bold text-oliveDark text-sm">Aktivitas Login — 7 Hari Terakhir</div>
@@ -42,7 +42,7 @@
         </div>
         <div class="mt-4"><canvas id="loginChart" height="110"></canvas></div>
     </div>
-    <div class="bg-white rounded-[20px] border border-cream3 p-5">
+    <div class="rounded-[20px] border border-cream3/30 p-5">
         <div class="flex items-center justify-between">
             <div>
                 <div class="font-bold text-oliveDark text-sm">Komposisi Pengguna</div>
@@ -64,7 +64,7 @@
 
 <div class="grid lg:grid-cols-3 gap-4 mt-4">
     {{-- Statistik sistem --}}
-    <div class="bg-white rounded-[20px] border border-cream3 p-5">
+    <div class="rounded-[20px] border border-cream3/30 p-5">
         <div class="font-bold text-oliveDark text-sm mb-3"><i class="fa-solid fa-chart-simple text-olive mr-2"></i> Ringkasan Sistem</div>
         <div class="space-y-3 text-sm">
             <div class="flex justify-between border-b border-cream3 pb-2"><span class="text-olive/60">Total semua akun</span><b>{{ \App\Models\User::count() }}</b></div>
@@ -89,7 +89,7 @@
     </div>
 
     {{-- User terbaru --}}
-    <div class="bg-white rounded-[20px] border border-cream3 p-5">
+    <div class="rounded-[20px] border border-cream3/30 p-5">
         <div class="font-bold text-oliveDark text-sm mb-3"><i class="fa-solid fa-user-plus text-olive mr-2"></i> Pengguna Terbaru</div>
         <div class="space-y-2">
             @foreach($latestUsers as $lu)
@@ -107,7 +107,7 @@
 </div>
 
 {{-- Aktivitas terbaru --}}
-<div class="bg-white rounded-[20px] border border-cream3 p-5 mt-4">
+<div class="rounded-[20px] border border-cream3/30 p-5 mt-4">
     <div class="flex items-center justify-between mb-3">
         <div class="font-bold text-oliveDark text-sm"><i class="fa-solid fa-list-check text-olive mr-2"></i> Aktivitas Login Terbaru</div>
         <a href="{{ route('super.activity') }}" class="text-xs text-olive font-semibold hover:underline">Lihat semua →</a>

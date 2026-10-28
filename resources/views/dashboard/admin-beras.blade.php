@@ -13,7 +13,7 @@
             <div class="text-xs text-cream/70"><i class="fa-solid fa-user-pen mr-1"></i> {{ $current?->updater?->name ?? 'Sistem' }}</div>
         </div>
 
-        <form method="POST" action="{{ route('admin.beras.update') }}" class="bg-white rounded-[20px] border border-cream3 p-5 space-y-4">
+        <form method="POST" action="{{ route('admin.beras.update') }}" class="rounded-[20px] border border-cream3/30 p-5 space-y-4">
             @csrf
             <div class="font-bold text-oliveDark text-sm"><i class="fa-solid fa-pen-to-square text-olive mr-2"></i> Perbarui Harga</div>
             <div>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="lg:col-span-2">
-        <div class="bg-white rounded-[20px] border border-cream3 p-5">
+        class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4"
             <div class="font-bold text-oliveDark text-sm mb-3"><i class="fa-solid fa-clock-rotate-left text-olive mr-2"></i> Riwayat Perubahan Harga</div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">

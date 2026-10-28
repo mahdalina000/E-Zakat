@@ -4,7 +4,7 @@
 @section('page-sub','Lengkapi data lokasi penyaluran zakat')
 @section('content')
 <div class="max-w-3xl">
-    <form method="POST" action="{{ $location->exists ? route('admin.locations.update', $location) : route('admin.locations.store') }}" class="bg-white rounded-[20px] border border-cream3 p-5 lg:p-6 space-y-4">
+    <form method="POST" action="{{ $location->exists ? route('admin.locations.update', $location) : route('admin.locations.store') }}" class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4">
         @csrf
         @if($location->exists) @method('PUT') @endif
 

@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-turbo-progress-bar="false">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Dashboard — E-Zakat')</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Polyfill awal untuk window.ezOnReady — antri callback sampai bundle JS siap -->
     <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    // Pemetaan Palet Warna Baru
-                    cream: '#EAEAEA',       // Background dasar / light gray
-                    cream2: '#F4F4F4',      // Background secondary / off-white
-                    cream3: '#D6D6D6',      // Border & divider
-                    olive: '#4B8B3B',       // Hijau utama (Header, Button, Accent)
-                    olive2: '#3D7330',      // Hijau gelap (Hover states)
-                    olive3: '#A8D5BA',      // Hijau mint (Highlight / Badge)
-                    oliveDark: '#001F3F',   // Navy gelap (Teks utama, Footer)
-                    earth: '#F2C94C',       // Kuning emas (Aksen khusus, Quote, Icon)
-                },
-                fontFamily: {
-                    poppins: ['Poppins', 'sans-serif'],
-                    amiri: ['Amiri', 'serif'],
-                }
-            }
-        }
-    }
-</script>
-    <style>body{font-family:'Poppins',sans-serif}</style>
+        window.ezOnReady = window.ezOnReady || (function () {
+            var queue = [];
+            function ready(fn) { if (typeof fn === 'function') queue.push(fn); }
+            ready.flush = function () { while (queue.length) { requestAnimationFrame(queue.shift()); } };
+            return ready;
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-    @keyframes slideUpSmooth {
-        from { opacity: 0; transform: translateY(25px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .anim-dashboard { animation: slideUpSmooth 0.4s ease-out forwards; }
-</style>
+        body{font-family:'Poppins',sans-serif}
+        @keyframes slideUpSmooth {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-dashboard { animation: slideUpSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
     @yield('head')
+
+    <!-- REGISTER SERVICE WORKER (hanya jika produksi) -->
+    <script>
+        if('serviceWorker' in navigator && location.protocol !== 'file:'){
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('[SW] Registered:', reg.scope))
+                    .catch(err => console.warn('[SW] Registration failed:', err));
+            });
+        }
+
+    </script>
 </head>
-<body class="bg-cream2 text-oliveDark min-h-screen">
-<div class="flex min-h-screen">
+<body class="bg-cream2 text-oliveDark min-h-screen relative">
+
+
+<div class="flex min-h-screen relative z-10">
     {{-- Sidebar --}}
     <aside id="sidebar" class="fixed lg:sticky top-0 z-50 w-[260px] h-screen bg-olive text-white flex flex-col -translate-x-full lg:translate-x-0 transition-transform">
         <div class="h-[64px] flex items-center gap-3 px-5 border-b border-white/10">
             <!-- Logo Baru E-Zakat -->
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-white p-1 flex items-center justify-center ring-2 ring-white/80 shadow-md overflow-hidden shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-md overflow-hidden shrink-0">
                     <img src="{{ asset('images/logo.png') }}" 
                          alt="E-Zakat Logo" 
-                         class="w-full h-full object-contain">
+                         class="w-full h-full object-contain" fetchpriority="high" decoding="async">
                 </div>
                 <div class="leading-tight">
                     <div class="font-extrabold text-sm tracking-wide">E-ZAKAT</div>
@@ -91,8 +92,12 @@
             @if($u->isUser())
                 <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">WARGA</div>
                 <a href="{{ route('user.profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.profile*') ? 'bg-white text-olive font-semibold' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-id-card w-4"></i> Profil & Data Diri</a>
-                <a href="{{ route('user.waris') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.waris*') ? 'bg-white text-olive font-semibold' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-scale-balanced w-4"></i> Kalkulator Waris</a>
+                <a href="{{ route('user.calculators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.calculators*') ? 'bg-white text-olive font-semibold' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-calculator w-4"></i> Kalkulator Zakat & Waris</a>
                 <a href="{{ route('user.histories') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.histories*') ? 'bg-white text-olive font-semibold' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-clock-rotate-left w-4"></i> Riwayat Perhitungan</a>
+
+                <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">INFORMASI</div>
+                <a href="{{ url('/direktori') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-map-location-dot w-4"></i> Lokasi Penyaluran</a>
+                <a href="{{ url('/panduan') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-book-open w-4"></i> Panduan Zakat</a>
             @endif
 
             <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">PUBLIK</div>

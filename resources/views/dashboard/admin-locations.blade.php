@@ -8,7 +8,7 @@
     <a href="{{ route('admin.locations.create') }}" class="bg-olive text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-olive2"><i class="fa-solid fa-plus mr-1"></i> Tambah Lokasi</a>
 </div>
 
-<div class="bg-white rounded-[20px] border border-cream3 overflow-hidden">
+<div class="rounded-[20px] border border-cream3/30 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-xs text-olive/50 bg-cream">

@@ -7,6 +7,7 @@
         "dev": "vite"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^7.3.1",
         "@tailwindcss/vite": "^4.0.0",
         "concurrently": "^10.0.3",
         "laravel-vite-plugin": "^3.1",
@@ -15,5 +16,10 @@
     },
     "optionalDependencies": {
         "@laravel/multiplex": "^0.4.1"
+    },
+    "dependencies": {
+        "@hotwired/turbo": "^8.0.23",
+        "chart.js": "^4.5.1",
+        "leaflet": "^1.9.4"
     }
 }
