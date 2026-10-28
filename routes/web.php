@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', [UserProfileController::class, 'update'])->name('profile.update');
         Route::post('/records', [UserProfileController::class, 'storeRecord'])->name('records.store');
         Route::delete('/records/{record}', [UserProfileController::class, 'destroyRecord'])->name('records.destroy');
-        Route::get('/waris', fn () => redirect()->route('user.calculators', ['tab' => 'wariq']))->name('waris');
+        Route::get('/waris', fn () => redirect('/user/calculators?tab=wariq'))->name('waris');
         Route::get('/histories', [UserProfileController::class, 'histories'])->name('histories');
         Route::get('/export', [UserProfileController::class, 'export'])->name('export');
 
