@@ -122,48 +122,54 @@
     // Dengan Turbo, pemicunya adalah turbo:load / turbo:render (bukan
     // DOMContentLoaded). Tanpa Turbo, tetap DOMContentLoaded.
     function onPageReady() {
-        const bar = document.getElementById('zy-progress');
+        // Bungkus seluruhnya dengan try/catch: error apa pun di sini TIDAK
+        // boleh membuat Turbo jatuh ke fallback full-load (refresh ganda).
+        try {
+            const bar = document.getElementById('zy-progress');
 
-        // Smooth scroll
-        document.documentElement.classList.add('zy-smooth-scroll');
+            // Smooth scroll
+            document.documentElement.classList.add('zy-smooth-scroll');
 
-        // Mark konten utama
-        markContent();
+            // Mark konten utama
+            markContent();
 
-        // Pasang arah navigasi agar animasi slide masuk sesuai arah
-        if (sessionStorage.getItem('zy_nav') === '1') {
-            const dir = sessionStorage.getItem('zy_dir');
-            document.body.classList.remove('zy-dir-f', 'zy-dir-b');
-            if (dir === 'b') {
-                document.body.classList.add('zy-dir-b');
-            } else {
-                document.body.classList.add('zy-dir-f');
-            }
-        }
-
-        if (!prefersReduced) {
-            // Release overflow:hidden dari halaman sebelumnya (mis. welcome)
-            document.body.style.overflow = '';
-
-            document.body.classList.add('zy-nav-in');
-
-            // Fade out progress bar SETELAH konten masuk (cepat)
-            if (bar) {
-                bar.style.width = '100%';
-                setTimeout(() => {
-                    bar.style.opacity = '0';
-                    setTimeout(() => { bar.style.width = '0%'; }, 200);
-                }, 120);
+            // Pasang arah navigasi agar animasi slide masuk sesuai arah
+            if (sessionStorage.getItem('zy_nav') === '1') {
+                const dir = sessionStorage.getItem('zy_dir');
+                document.body.classList.remove('zy-dir-f', 'zy-dir-b');
+                if (dir === 'b') {
+                    document.body.classList.add('zy-dir-b');
+                } else {
+                    document.body.classList.add('zy-dir-f');
+                }
             }
 
-            // Bersihkan flag
-            sessionStorage.removeItem('zy_nav');
+            if (!prefersReduced) {
+                // Release overflow:hidden dari halaman sebelumnya (mis. welcome)
+                document.body.style.overflow = '';
 
-            // Reveal HANYA konten di bawah layar (biar scroll smooth)
-            initBelowFoldReveal();
+                document.body.classList.add('zy-nav-in');
+
+                // Fade out progress bar SETELAH konten masuk (cepat)
+                if (bar) {
+                    bar.style.width = '100%';
+                    setTimeout(() => {
+                        bar.style.opacity = '0';
+                        setTimeout(() => { bar.style.width = '0%'; }, 200);
+                    }, 120);
+                }
+
+                // Bersihkan flag
+                sessionStorage.removeItem('zy_nav');
+
+                // Reveal HANYA konten di bawah layar (biar scroll smooth)
+                initBelowFoldReveal();
+            }
+            // Fresh load: tidak perlu reveal — animasi CSS bawaan (anim-smooth,
+            // anim-welcome, anim-auth, anim-dashboard) sudah handle tampil.
+        } catch (e) {
+            console.error('[Transition] onPageReady error:', e);
         }
-        // Fresh load: tidak perlu reveal — animasi CSS bawaan (anim-smooth,
-        // anim-welcome, anim-auth, anim-dashboard) sudah handle tampil.
     }
 
     if (hasTurbo) {
@@ -181,41 +187,45 @@
     function initBelowFoldReveal() {
         if (prefersReduced) return;
 
-        const targets = document.querySelectorAll(
-            ['.grid > *', '.space-y-6 > *', '.anim-dashboard > *'].join(',')
-        );
-        if (!targets.length) return;
+        try {
+            const targets = document.querySelectorAll(
+                ['.grid > *', '.space-y-6 > *', '.anim-dashboard > *'].join(',')
+            );
+            if (!targets.length) return;
 
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('zy-in');
-                    io.unobserve(entry.target);
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('zy-in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+            targets.forEach((el, i) => {
+                // Lewati elemen yang sudah punya animasi sendiri
+                if (el.classList.contains('anim-smooth') ||
+                    el.classList.contains('anim-welcome') ||
+                    el.classList.contains('anim-auth') ||
+                    el.classList.contains('anim-dashboard') ||
+                    el.hasAttribute('data-page-transition')) return;
+
+                // Elemen yang SUDAH terlihat di viewport: langsung reveal,
+                // tanpa jeda — biar tidak ada "lambat muncul"
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('zy-reveal', 'zy-in');
+                    return;
                 }
+
+                const delay = Math.min(i * 40, 300);
+                el.style.setProperty('--zy-delay', delay + 'ms');
+                el.classList.add('zy-reveal');
+                io.observe(el);
             });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-
-        targets.forEach((el, i) => {
-            // Lewati elemen yang sudah punya animasi sendiri
-            if (el.classList.contains('anim-smooth') ||
-                el.classList.contains('anim-welcome') ||
-                el.classList.contains('anim-auth') ||
-                el.classList.contains('anim-dashboard') ||
-                el.hasAttribute('data-page-transition')) return;
-
-            // Elemen yang SUDAH terlihat di viewport: langsung reveal,
-            // tanpa jeda — biar tidak ada "lambat muncul"
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.classList.add('zy-reveal', 'zy-in');
-                return;
-            }
-
-            const delay = Math.min(i * 40, 300);
-            el.style.setProperty('--zy-delay', delay + 'ms');
-            el.classList.add('zy-reveal');
-            io.observe(el);
-        });
+        } catch (e) {
+            console.error('[Transition] reveal error:', e);
+        }
     }
 
 })();
