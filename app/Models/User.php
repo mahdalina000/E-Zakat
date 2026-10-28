@@ -87,4 +87,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(LoginActivity::class);
     }
+
+    public function wargaProfile()
+    {
+        return $this->hasOne(WargaProfile::class, 'user_id');
+    }
+
+    public function zakatRecords()
+    {
+        return $this->hasMany(ZakatRecord::class, 'user_id');
+    }
+
+    public function calculationHistories()
+    {
+        return $this->hasMany(CalculationHistory::class, 'user_id');
+    }
+
+    public function heirs()
+    {
+        return $this->hasMany(Heir::class, 'user_id');
+    }
 }

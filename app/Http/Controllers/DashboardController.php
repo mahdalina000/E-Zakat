@@ -101,7 +101,9 @@ class DashboardController extends Controller
         $totalLocations = Location::where('is_active', true)->count();
         $totalUpz = Location::where('type', 'upz')->count();
         $totalBaznas = Location::where('type', 'baznas')->count();
+        $profile = $u->wargaProfile;
+        $totalRecords = $u->zakatRecords()->count();
 
-        return view('dashboard.user', compact('u', 'beras', 'totalLocations', 'totalUpz', 'totalBaznas'));
+        return view('dashboard.user', compact('u', 'beras', 'totalLocations', 'totalUpz', 'totalBaznas', 'profile', 'totalRecords'));
     }
 }

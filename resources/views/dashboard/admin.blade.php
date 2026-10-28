@@ -27,6 +27,22 @@
     </div>
 </div>
 
+{{-- QUICK LINKS --}}
+<div class="grid sm:grid-cols-3 gap-3 mt-4">
+    <a href="{{ route('admin.baznas') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
+        <i class="fa-solid fa-users text-olive text-lg"></i>
+        <div class="text-xs font-bold text-oliveDark mt-1">Kelola Warga Zakat</div>
+    </a>
+    <a href="{{ route('admin.export') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
+        <i class="fa-solid fa-file-excel text-olive text-lg"></i>
+        <div class="text-xs font-bold text-oliveDark mt-1">Export Catatan</div>
+    </a>
+    <a href="{{ route('admin.locations.create') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
+        <i class="fa-solid fa-map-location-dot text-olive text-lg"></i>
+        <div class="text-xs font-bold text-oliveDark mt-1">Tambah Lokasi</div>
+    </a>
+</div>
+
 <div class="grid lg:grid-cols-2 gap-4 mt-4">
     <div class="bg-white rounded-[20px] border border-cream3 p-5">
         <div class="flex items-center justify-between mb-3">
