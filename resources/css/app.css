@@ -71,6 +71,16 @@ turbo-progress-bar {
     animation: smoothReveal 1.15s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
+/* Login: seluruh kartu naik BERSAMA dari bawah sebagai satu kesatuan
+   (jelas terlihat namun tetap lembut — dipakai oleh halaman login). */
+.rise-in {
+    animation: riseIn 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@keyframes riseIn {
+    from { opacity: 0.4; transform: translateY(60px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ============================================================
    TRANSISI ARAH HALAMAN (sinematik, seperti video referensi)
    - Maju (klik link): konten meluncur dari kanan + sedikit zoom-in
@@ -533,7 +543,8 @@ body.zy-nav-in .tab-panel > .grid > div:nth-child(2) { animation-delay: 0.15s; }
     body.zy-nav-in .eze-col-left > *,
     body.zy-nav-in .eze-col-right > *,
     body.zy-nav-in .eze-up > *,
-    body.zy-nav-in .tab-panel > .grid > div {
+    body.zy-nav-in .tab-panel > .grid > div,
+    .rise-in {
         animation: none !important;
         opacity: 1 !important;
     }

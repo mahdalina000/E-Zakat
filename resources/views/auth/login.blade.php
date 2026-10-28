@@ -3,8 +3,8 @@
 
 @section('content')
 <div class="w-full max-w-lg mx-auto">
-    <!-- CARD UTAMA LOGIN (animasi masuk eze-up: anak-anaknya naik berjenjang) -->
-    <div class="rounded-[28px] border border-cream3/40 p-6 sm:p-7 eze-up">
+    <!-- CARD UTAMA LOGIN (seluruh kartu naik bersama dari bawah — rise-in) -->
+    <div class="rounded-[28px] border border-cream3/40 p-6 sm:p-7 rise-in">
         
         <!-- HEADER LOGIN -->
         <div class="text-center">
