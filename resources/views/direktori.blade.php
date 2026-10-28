@@ -278,23 +278,33 @@
 <script>
 window.ezOnReady(function () {
     const banjarbaruCoords = [-3.4402, 114.8302];
-    
-    const map = L.map('map', {
-        center: banjarbaruCoords,
-        zoom: 13
-    });
+    const mapEl = document.getElementById('map');
+    if (!mapEl) return;
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+    // Pakai kembali peta yang sudah ada (mis. saat kembali ke halaman ini
+    // via Turbo) agar tidak terjadi error "Map container is already initialized".
+    let map = window.__ezDirMap || null;
+    if (!map) {
+        map = L.map(mapEl, {
+            center: banjarbaruCoords,
+            zoom: 13
+        });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+        window.__ezDirMap = map;
+    }
 
     function fixMapSize() {
         setTimeout(() => { map.invalidateSize(); }, 200);
         setTimeout(() => { map.invalidateSize(); }, 600);
     }
     fixMapSize();
-    window.addEventListener('resize', fixMapSize);
+    if (!window.__ezDirResizeBound) {
+        window.__ezDirResizeBound = true;
+        window.addEventListener('resize', fixMapSize);
+    }
 
     function createCustomIcon(category) {
         let pinClass = 'pin-baznas';
