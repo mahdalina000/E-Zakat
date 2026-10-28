@@ -13,11 +13,8 @@ window.Chart = Chart;
 // Leaflet CSS — Vite akan auto-bundle
 import 'leaflet/dist/leaflet.css';
 
-// Turbo (Hotwire) — navigasi instan tanpa full reload
-// (side-effect import: langsung aktif; expose window.Turbo oleh Turbo sendiri)
-import '@hotwired/turbo';
-// Sekali render, handler SPA kita adalah Turbo; nonaktifkan yang duplikat
-document.documentElement.setAttribute('data-turbo-progress-bar', 'false');
+// NOTE: Navigasi SPA (Turbo) DINONAKTIFKAN — kembali ke navigasi penuh
+// standar (satu full-load per klik) agar andal & tanpa refresh ganda.
 
 // Helper universal: jalankan fn setelah DOM siap, BAIK fresh load maupun
 // navigasi Turbo (terpicu ulang tiap halaman).
