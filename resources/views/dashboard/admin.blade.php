@@ -5,23 +5,36 @@
 @section('content')
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+        </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $myLocations->count() }}</div>
         <div class="text-xs font-semibold text-oliveDark">Lokasi Saya Kelola</div>
     </div>
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+        </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['baznas'] }}</div>
         <div class="text-xs font-semibold text-oliveDark">Total BAZNAS</div>
     </div>
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-gold/15 text-gold rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-gold/15 text-gold rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+        </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['upz'] }}</div>
         <div class="text-xs font-semibold text-oliveDark">Total UPZ/Masjid</div>
     </div>
-    <div class="bg-olive rounded-[20px] p-4 text-white">
-        <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-olive to-olive2 p-4 text-white shadow-md relative overflow-hidden">
+        <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/80"></div>
+        </div>
         <div class="text-2xl font-black mt-3">Rp {{ number_format($beras->price ?? 16000,0,',','.') }}</div>
         <div class="text-xs text-cream/80">Harga Beras Banjar /kg</div>
     </div>

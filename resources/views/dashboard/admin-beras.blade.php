@@ -19,8 +19,9 @@
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Harga baru (Rp / kg) *</label>
                 <div class="mt-1 flex items-center border border-cream3 rounded-full px-4 py-2.5 bg-cream2">
-                    <span class="text-sm text-olive">Rp</span>
+                    <span class="text-sm text-olive font-bold">Rp</span>
                     <input name="price" type="number" min="5000" max="100000" value="{{ $current->price ?? 16000 }}" required class="w-full bg-transparent outline-none text-sm ml-2">
+                    <span class="text-xs text-olive/60 font-semibold ml-2 whitespace-nowrap">/&nbsp;kg</span>
                 </div>
                 <p class="text-[11px] text-olive/50 mt-1">Valid: Rp5.000 – Rp100.000 per kg.</p>
             </div>

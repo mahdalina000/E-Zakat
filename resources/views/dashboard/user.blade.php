@@ -18,34 +18,49 @@
 </div>
 @endif
 
-<div class="rounded-[20px] border border-cream3/40 p-5 lg:p-6">
-    <div class="flex flex-col lg:flex-row items-start lg:items-center gap-4 justify-between">
+<div class="rounded-[20px] bg-gradient-to-br from-olive via-olive to-olive2 text-white p-5 lg:p-6 shadow-md relative overflow-hidden">
+    <div class="absolute -right-8 -top-10 w-44 h-44 rounded-full bg-white/10"></div>
+    <div class="absolute -bottom-12 -left-6 w-36 h-36 rounded-full border-4 border-white/10"></div>
+    <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-4 justify-between">
         <div>
-            <div class="font-extrabold text-oliveDark text-lg">Tunaikan Zakat Anda</div>
-            <p class="text-sm text-olive/60 mt-1 max-w-lg">Hitung zakat fitrah, maal, fidyah, dan waris dalam satu tempat; hasil perhitungan tersimpan otomatis di riwayat Anda.</p>
+            <div class="font-extrabold text-lg">Tunaikan Zakat Anda</div>
+            <p class="text-sm text-cream/85 mt-1 max-w-lg">Hitung zakat fitrah, maal, fidyah, dan waris dalam satu tempat; hasil perhitungan tersimpan otomatis di riwayat Anda.</p>
         </div>
-        <a href="{{ route('user.calculators') }}" class="bg-olive text-white font-semibold px-6 py-3 rounded-full hover:bg-olive2 whitespace-nowrap"><i class="fa-solid fa-calculator mr-2"></i> Hitung Zakat</a>
+        <a href="{{ route('user.calculators') }}" class="bg-gold text-oliveDark font-bold px-6 py-3 rounded-full hover:brightness-105 whitespace-nowrap shadow-lg"><i class="fa-solid fa-calculator mr-2"></i> Hitung Zakat</a>
     </div>
 </div>
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+        </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $totalBaznas }}</div>
         <div class="text-xs font-semibold text-oliveDark">Titik BAZNAS</div>
     </div>
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-gold/15 text-gold rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-gold/15 text-gold rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+        </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $totalUpz }}</div>
         <div class="text-xs font-semibold text-oliveDark">UPZ / Masjid</div>
     </div>
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+        </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $totalRecords }}</div>
         <div class="text-xs font-semibold text-oliveDark">Catatan Zakat</div>
     </div>
-    <div class="bg-olive rounded-[20px] p-4 text-white shadow-md">
-        <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
+    <div class="rounded-[20px] bg-gradient-to-br from-olive to-olive2 p-4 text-white shadow-md relative overflow-hidden">
+        <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
+            <div class="h-7 w-1 rounded-full bg-gold/80"></div>
+        </div>
         <div class="text-2xl font-black mt-3">Rp {{ number_format($beras,0,',','.') }}</div>
         <div class="text-xs text-cream/80">Beras Banjar /kg</div>
     </div>
