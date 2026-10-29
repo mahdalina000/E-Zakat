@@ -31,39 +31,39 @@
 </div>
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-    <div class="group rounded-[20px] bg-gradient-to-br from-olive/10 via-white to-cream2 border border-olive/15 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <div class="stat-card sc-olive">
         <div class="flex items-start justify-between">
-            <div class="w-11 h-11 bg-gradient-to-br from-olive to-olive2 text-white rounded-xl flex items-center justify-center shadow-sm"><i class="fa-solid fa-building-columns"></i></div>
-            <span class="text-[9px] tracking-widest uppercase font-bold text-olive/50">BAZNAS</span>
+            <div class="sc-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <span class="sc-label">BAZNAS</span>
         </div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $totalBaznas }}</div>
-        <div class="text-xs font-semibold text-oliveDark mt-0.5">Titik BAZNAS</div>
+        <div class="sc-num">{{ $totalBaznas }}</div>
+        <div class="sc-sub">Titik BAZNAS</div>
     </div>
-    <div class="group rounded-[20px] bg-gradient-to-br from-gold/15 via-white to-cream2 border border-gold/30 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <div class="stat-card sc-gold">
         <div class="flex items-start justify-between">
-            <div class="w-11 h-11 bg-gradient-to-br from-gold to-earth text-white rounded-xl flex items-center justify-center shadow-sm"><i class="fa-solid fa-mosque"></i></div>
-            <span class="text-[9px] tracking-widest uppercase font-bold text-gold/60">UPZ</span>
+            <div class="sc-icon"><i class="fa-solid fa-mosque"></i></div>
+            <span class="sc-label">UPZ</span>
         </div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $totalUpz }}</div>
-        <div class="text-xs font-semibold text-oliveDark mt-0.5">UPZ / Masjid</div>
+        <div class="sc-num">{{ $totalUpz }}</div>
+        <div class="sc-sub">UPZ / Masjid</div>
     </div>
-    <div class="group rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-emerald-500/30 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <div class="stat-card sc-emerald">
         <div class="flex items-start justify-between">
-            <div class="w-11 h-11 bg-emerald-500 text-white rounded-xl flex items-center justify-center shadow-sm"><i class="fa-solid fa-map-location-dot"></i></div>
-            <span class="text-[9px] tracking-widest uppercase font-bold text-emerald-600/60">CATATAN</span>
+            <div class="sc-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <span class="sc-label">CATATAN</span>
         </div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $totalRecords }}</div>
-        <div class="text-xs font-semibold text-oliveDark mt-0.5">Catatan Zakat</div>
+        <div class="sc-num">{{ $totalRecords }}</div>
+        <div class="sc-sub">Catatan Zakat</div>
     </div>
-    <div class="rounded-[20px] bg-gradient-to-br from-olive to-olive2 p-4 text-white shadow-md relative overflow-hidden">
+    <div class="stat-solid">
         <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
         <div class="absolute right-6 bottom-2 text-white/10 text-3xl"><i class="fa-solid fa-wheat-awn"></i></div>
         <div class="flex items-center justify-between">
-            <div class="w-11 h-11 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
-            <span class="text-[9px] tracking-widest uppercase font-bold text-gold">HARGA</span>
+            <div class="sc-icon bg-white/15"><i class="fa-solid fa-wheat-awn"></i></div>
+            <span class="sc-label">HARGA</span>
         </div>
-        <div class="text-2xl font-black mt-3 text-gold">Rp {{ number_format($beras,0,',','.') }}</div>
-        <div class="text-xs text-cream/80">Beras Banjar /kg</div>
+        <div class="sc-num text-gold">Rp {{ number_format($beras,0,',','.') }}</div>
+        <div class="sc-sub">Beras Banjar /kg</div>
     </div>
 </div>
 

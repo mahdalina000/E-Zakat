@@ -142,6 +142,7 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2 text-xs">
+                    <button id="themeToggleDash" type="button" class="w-9 h-9 rounded-full bg-white/15 border border-white/20 text-white hover:bg-white/25 transition flex items-center justify-center" title="Mode gelap / terang"><i id="themeIconDash" class="fa-solid fa-moon"></i></button>
                     <span class="hidden sm:inline bg-white/15 border border-white/20 px-3 py-1.5 rounded-full text-white"><i class="fa-regular fa-calendar mr-1"></i> {{ now()->translatedFormat('d M Y') }}</span>
                     <span class="bg-gold2 text-oliveDark px-3 py-1.5 rounded-full font-bold">{{ $u->roleLabel() }}</span>
                 </div>
@@ -169,6 +170,19 @@
         const s=document.getElementById('sidebar'), o=document.getElementById('overlay');
         s.classList.toggle('-translate-x-full'); o.classList.toggle('hidden');
     }
+    (function(){
+        const btn = document.getElementById('themeToggleDash'), icon = document.getElementById('themeIconDash');
+        function applyTheme(){
+            const dark = localStorage.getItem('theme') === 'dark';
+            document.body.classList.toggle('dark-mode', dark);
+            if (icon) icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+        applyTheme();
+        btn?.addEventListener('click', function(){
+            localStorage.setItem('theme', localStorage.getItem('theme') === 'dark' ? 'light' : 'dark');
+            applyTheme();
+        });
+    })();
 </script>
 @yield('scripts')
 </body>

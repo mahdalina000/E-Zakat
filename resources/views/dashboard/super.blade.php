@@ -12,22 +12,22 @@
     @php
         $cards = [
             ['Total Admin UPZ/BAZNAS', $totalAdmins, 'fa-user-tie', 'olive', 'BAZNAS '.$totalBaznasAdmin.' • UPZ '.$totalUpz],
-            ['Total User Terdaftar', $totalUsers, 'fa-users', 'earth', $activeUsers.' akun aktif'],
-            ['Total Lokasi', $totalLocations, 'fa-map-location-dot', 'olive2', 'BAZNAS '.$locationsByType['baznas'].' • UPZ '.$locationsByType['upz'].' • Warga '.$locationsByType['warga']],
-            ['Aktivitas Login', $loginsWeek, 'fa-clock-rotate-left', 'olive3', $loginsToday.' login hari ini'],
+            ['Total User Terdaftar', $totalUsers, 'fa-users', 'gold', $activeUsers.' akun aktif'],
+            ['Total Lokasi', $totalLocations, 'fa-map-location-dot', 'sky', 'BAZNAS '.$locationsByType['baznas'].' • UPZ '.$locationsByType['upz'].' • Warga '.$locationsByType['warga']],
+            ['Aktivitas Login', $loginsWeek, 'fa-clock-rotate-left', 'rose', $loginsToday.' login hari ini'],
         ];
     @endphp
     @foreach($cards as $c)
-    <div class="group rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <div class="stat-card sc-{{ $c[3] }}">
         <div class="flex items-center justify-between">
-            <div class="w-10 h-10 bg-{{ $c[3] }}/10 text-{{ $c[3] }} rounded-xl flex items-center justify-center"><i class="fa-solid {{ $c[2] }"></i></div>
+            <div class="sc-icon"><i class="fa-solid {{ $c[2] }}"></i></div>
             <i class="fa-solid fa-arrow-trend-up text-gold text-xs"></i>
         </div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $c[1] }}</div>
-        <div class="text-xs font-semibold text-oliveDark mt-1">{{ $c[0] }}</div>
-        <div class="text-[11px] text-olive/50">{{ $c[4] }}</div>
+        <div class="sc-num">{{ $c[1] }}</div>
+        <div class="sc-sub">{{ $c[0] }}</div>
+        <div class="sc-foot">{{ $c[4] }}</div>
     </div>
-    @endforeach
+@endforeach
 </div>
 
 {{-- Charts --}}

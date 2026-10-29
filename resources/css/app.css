@@ -572,3 +572,87 @@ html:has(body.dark-mode) { background-color: #121816; }
    light = hijau, dark = emas. TIDAK bergantung pada preferensi sistem. */
 .emas-label { color: #1d5b37; }
 body.dark-mode .emas-label, .emas-label.dark-mode { color: #D4AF37; }
+
+/* ============================================================
+   KOMPONEN KARTU STATISTIK DASHBOARD (light + dark)
+   ============================================================ */
+.stat-card{
+    position:relative; border-radius:20px; padding:1rem; overflow:hidden;
+    background:linear-gradient(135deg,#ffffff,#f2edde);
+    border:1px solid rgba(24,116,58,.16);
+    box-shadow:0 12px 28px -14px rgba(18,60,32,.22);
+    transition:transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease;
+}
+.stat-card:hover{ transform:translateY(-3px); box-shadow:0 18px 34px -16px rgba(18,60,32,.32); }
+.stat-card .sc-icon{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.stat-card .sc-label{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+.stat-card .sc-num{ font-size:26px; font-weight:900; margin-top:12px; color:#133a24; line-height:1.05; }
+.stat-card .sc-sub{ font-size:12px; font-weight:600; color:#133a24; opacity:.88; margin-top:2px; }
+.stat-card .sc-foot{ font-size:11px; color:#246c42; opacity:.6; margin-top:2px; }
+
+.sc-emerald{ border-color:rgba(16,185,129,.30); }
+.sc-emerald .sc-icon{ background:#d1fae5; color:#047857; }
+.sc-emerald .sc-label{ color:#059669; }
+.sc-gold{ border-color:rgba(197,155,82,.45); }
+.sc-gold .sc-icon{ background:#fef3c7; color:#b45309; }
+.sc-gold .sc-label{ color:#b45309; }
+.sc-olive{ border-color:rgba(36,108,66,.30); }
+.sc-olive .sc-icon{ background:#dcefe0; color:#246c42; }
+.sc-olive .sc-label{ color:#246c42; }
+.sc-sky{ border-color:rgba(14,165,233,.32); }
+.sc-sky .sc-icon{ background:#e0f2fe; color:#0284c7; }
+.sc-sky .sc-label{ color:#0369a1; }
+.sc-rose{ border-color:rgba(244,63,94,.32); }
+.sc-rose .sc-icon{ background:#ffe4e6; color:#be123c; }
+.sc-rose .sc-label{ color:#be123c; }
+
+.stat-solid{
+    border-radius:20px; padding:1rem; color:#fff; position:relative; overflow:hidden;
+    background:linear-gradient(135deg,#246c42,#1d5b37);
+    box-shadow:0 14px 30px -14px rgba(18,60,32,.45);
+}
+.stat-solid .sc-num{ color:#fff; }
+.stat-solid .sc-sub{ color:rgba(255,255,255,.92); }
+.stat-solid .sc-label{ color:rgba(255,255,255,.85); }
+
+/* ---- DARK MODE ---- */
+body.dark-mode .stat-card{
+    background:linear-gradient(135deg,#0d2417,#0a1711);
+    border-color:#1e4030;
+    box-shadow:0 12px 28px -14px rgba(0,0,0,.6);
+}
+body.dark-mode .stat-card .sc-num,
+body.dark-mode .stat-card .sc-sub{ color:#f8fafc; }
+body.dark-mode .stat-card .sc-foot{ color:#8fc7a2; }
+body.dark-mode .sc-emerald{ border-color:rgba(16,185,129,.38); }
+body.dark-mode .sc-emerald .sc-icon{ background:rgba(16,185,129,.16); color:#6ee7b7; }
+body.dark-mode .sc-emerald .sc-label{ color:#6ee7b7; }
+body.dark-mode .sc-gold{ border-color:rgba(200,157,68,.42); }
+body.dark-mode .sc-gold .sc-icon{ background:rgba(200,157,68,.18); color:#fbbf24; }
+body.dark-mode .sc-gold .sc-label{ color:#fbbf24; }
+body.dark-mode .sc-olive{ border-color:rgba(36,108,66,.42); }
+body.dark-mode .sc-olive .sc-icon{ background:rgba(36,108,66,.22); color:#a8d5ba; }
+body.dark-mode .sc-olive .sc-label{ color:#a8d5ba; }
+body.dark-mode .sc-sky{ border-color:rgba(14,165,233,.38); }
+body.dark-mode .sc-sky .sc-icon{ background:rgba(14,165,233,.18); color:#7dd3fc; }
+body.dark-mode .sc-sky .sc-label{ color:#7dd3fc; }
+body.dark-mode .sc-rose{ border-color:rgba(244,63,94,.38); }
+body.dark-mode .sc-rose .sc-icon{ background:rgba(244,63,94,.18); color:#fda4af; }
+body.dark-mode .sc-rose .sc-label{ color:#fda4af; }
+body.dark-mode .stat-solid{ background:linear-gradient(135deg,#1d5b37,#143f28); }
+
+.stat-solid .sc-num.text-gold{ color:#e8c547; }
+
+
+/* ---- DARK: override gradien global (kartu/permukaan yang pakai gradien terang) ---- */
+body.dark-mode .from-white { --tw-gradient-from: #0d2417; }
+body.dark-mode .via-white { --tw-gradient-via: #0a1711; }
+body.dark-mode .to-cream2 { --tw-gradient-to: #0f1b12; }
+body.dark-mode .from-gold\/15 { --tw-gradient-from: rgba(200,157,68,0.20); }
+body.dark-mode .from-gold\/10 { --tw-gradient-from: rgba(200,157,68,0.16); }
+body.dark-mode .from-olive\/10 { --tw-gradient-from: rgba(75,139,59,0.18); }
+body.dark-mode .from-olive { --tw-gradient-from: #3a7d50; }
+body.dark-mode .to-olive2 { --tw-gradient-to: #27603a; }
+body.dark-mode .from-gold { --tw-gradient-from: #8a6a2f; }
+body.dark-mode .to-earth { --tw-gradient-to: #a1762e; }
+body.dark-mode .border-olive\/15 { border-color: rgba(110,165,126,0.55); }
