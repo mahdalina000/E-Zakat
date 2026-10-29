@@ -248,6 +248,18 @@
         font-weight: 900 !important;
         letter-spacing: 0.05em !important;
     }
+
+    /* RESPONSIF: di layar kecil (HP) form tampil PENUH 100%;
+       panel overlay/geser disembunyikan agar tidak menutupi form */
+    @media (max-width: 640px) {
+        .sign-in-container,
+        .sign-up-container {
+            width: 100% !important;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+        .overlay-container { display: none !important; }
+    }
 </style>
 @endsection
 
@@ -352,6 +364,9 @@
     <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
         <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
     </a>
+    <a href="{{ route('register') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
+        Belum punya akun? <span class="text-gold">Daftar →</span>
+    </a>
 </div>
 
         <!-- ================= FORM DAFTAR (REGISTER) ================= -->
@@ -412,6 +427,9 @@
             <div class="pb-3">
                 <a href="{{ url('/') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
+                </a>
+                <a href="{{ route('login') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
+                    Sudah punya akun? <span class="text-gold">Masuk →</span>
                 </a>
             </div>
         </div>
