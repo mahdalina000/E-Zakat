@@ -5,54 +5,55 @@
 @section('content')
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
-        <div class="flex items-center justify-between">
-            <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
-            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+    <div class="group rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-emerald-500/30 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+        <div class="flex items-start justify-between">
+            <div class="w-11 h-11 bg-emerald-500 text-white rounded-xl flex items-center justify-center shadow-sm"><i class="fa-solid fa-map-location-dot"></i></div>
+            <span class="text-[9px] tracking-widest uppercase font-bold text-emerald-600/60">LOKASI</span>
         </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $myLocations->count() }}</div>
-        <div class="text-xs font-semibold text-oliveDark">Lokasi Saya Kelola</div>
+        <div class="text-xs font-semibold text-oliveDark mt-0.5">Lokasi Saya Kelola</div>
     </div>
-    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
-        <div class="flex items-center justify-between">
-            <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
-            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+    <div class="group rounded-[20px] bg-gradient-to-br from-olive/10 via-white to-cream2 border border-olive/15 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+        <div class="flex items-start justify-between">
+            <div class="w-11 h-11 bg-gradient-to-br from-olive to-olive2 text-white rounded-xl flex items-center justify-center shadow-sm"><i class="fa-solid fa-building-columns"></i></div>
+            <span class="text-[9px] tracking-widest uppercase font-bold text-olive/50">BAZNAS</span>
         </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['baznas'] }}</div>
-        <div class="text-xs font-semibold text-oliveDark">Total BAZNAS</div>
+        <div class="text-xs font-semibold text-oliveDark mt-0.5">Total BAZNAS</div>
     </div>
-    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
-        <div class="flex items-center justify-between">
-            <div class="w-10 h-10 bg-gold/15 text-gold rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
-            <div class="h-7 w-1 rounded-full bg-gold/70"></div>
+    <div class="group rounded-[20px] bg-gradient-to-br from-gold/15 via-white to-cream2 border border-gold/30 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+        <div class="flex items-start justify-between">
+            <div class="w-11 h-11 bg-gradient-to-br from-gold to-earth text-white rounded-xl flex items-center justify-center shadow-sm"><i class="fa-solid fa-mosque"></i></div>
+            <span class="text-[9px] tracking-widest uppercase font-bold text-gold/60">UPZ</span>
         </div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['upz'] }}</div>
-        <div class="text-xs font-semibold text-oliveDark">Total UPZ/Masjid</div>
+        <div class="text-xs font-semibold text-oliveDark mt-0.5">Total UPZ/Masjid</div>
     </div>
     <div class="rounded-[20px] bg-gradient-to-br from-olive to-olive2 p-4 text-white shadow-md relative overflow-hidden">
         <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
+        <div class="absolute right-6 bottom-2 text-white/10 text-3xl"><i class="fa-solid fa-wheat-awn"></i></div>
         <div class="flex items-center justify-between">
-            <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
-            <div class="h-7 w-1 rounded-full bg-gold/80"></div>
+            <div class="w-11 h-11 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
+            <span class="text-[9px] tracking-widest uppercase font-bold text-gold">HARGA</span>
         </div>
-        <div class="text-2xl font-black mt-3">Rp {{ number_format($beras->price ?? 16000,0,',','.') }}</div>
-        <div class="text-xs text-cream/80">Harga Beras Banjar /kg</div>
+        <div class="text-2xl font-black mt-3 text-gold">Rp {{ number_format($beras->price ?? 16000,0,',','.') }}</div>
+        <div class="text-xs text-cream/80">Beras Banjar /kg</div>
     </div>
 </div>
 
 {{-- QUICK LINKS --}}
 <div class="grid sm:grid-cols-3 gap-3 mt-4">
-    <a href="{{ route('admin.baznas') }}" class="bg-white/70 border border-gold/30 rounded-xl p-4 text-center hover:bg-gold/10 transition shadow-sm">
-        <i class="fa-solid fa-users text-gold text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Kelola Warga Zakat</div>
+    <a href="{{ route('admin.baznas') }}" class="group bg-gradient-to-br from-gold/15 via-white to-cream2 border border-gold/30 rounded-2xl p-4 text-center hover:-translate-y-0.5 hover:shadow-md transition shadow-sm">
+        <div class="w-11 h-11 mx-auto bg-gradient-to-br from-gold to-earth text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
+        <div class="text-xs font-bold text-oliveDark mt-2">Kelola Warga Zakat</div>
     </a>
-    <a href="{{ route('admin.export') }}" class="bg-white/70 border border-gold/30 rounded-xl p-4 text-center hover:bg-gold/10 transition shadow-sm">
-        <i class="fa-solid fa-file-excel text-gold text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Export Catatan</div>
+    <a href="{{ route('admin.export') }}" class="group bg-gradient-to-br from-white to-cream2 border border-emerald-500/30 rounded-2xl p-4 text-center hover:-translate-y-0.5 hover:shadow-md transition shadow-sm">
+        <div class="w-11 h-11 mx-auto bg-emerald-500 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-file-excel"></i></div>
+        <div class="text-xs font-bold text-oliveDark mt-2">Export Catatan</div>
     </a>
-    <a href="{{ route('admin.locations.create') }}" class="bg-white/70 border border-gold/30 rounded-xl p-4 text-center hover:bg-gold/10 transition shadow-sm">
-        <i class="fa-solid fa-map-location-dot text-gold text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Tambah Lokasi</div>
+    <a href="{{ route('admin.locations.create') }}" class="group bg-gradient-to-br from-olive/10 via-white to-cream2 border border-olive/15 rounded-2xl p-4 text-center hover:-translate-y-0.5 hover:shadow-md transition shadow-sm">
+        <div class="w-11 h-11 mx-auto bg-gradient-to-br from-olive to-olive2 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+        <div class="text-xs font-bold text-oliveDark mt-2">Tambah Lokasi</div>
     </a>
 </div>
 

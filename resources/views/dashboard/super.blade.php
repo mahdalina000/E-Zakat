@@ -18,7 +18,7 @@
         ];
     @endphp
     @foreach($cards as $c)
-    <div class="rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm">
+    <div class="group rounded-[20px] bg-gradient-to-br from-white to-cream2 border border-gold/25 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
         <div class="flex items-center justify-between">
             <div class="w-10 h-10 bg-{{ $c[3] }}/10 text-{{ $c[3] }} rounded-xl flex items-center justify-center"><i class="fa-solid {{ $c[2] }"></i></div>
             <i class="fa-solid fa-arrow-trend-up text-gold text-xs"></i>

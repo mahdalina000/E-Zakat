@@ -331,13 +331,13 @@
 {{--  TAB: WARIS --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-wariq" class="calc-panel hidden">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="space-y-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-scale-balanced text-olive"></i> Waris (Faraidh)</h2>
         <p class="text-xs text-olive/70 mt-1">Pembagian harta warisan berdasarkan hukum Islam.</p>
 
-        <div class="grid sm:grid-cols-2 gap-4 mt-4">
-    <div class="space-y-4">
+        <div class="mt-4 space-y-4">
+        <div>
         <div>
             <label class="block text-xs font-bold text-oliveDark"><span class="text-red-500">*</span> Total Harta Warisan (Rp)</label>
             <div class="relative mt-1.5">
@@ -345,105 +345,110 @@
                 <input id="wariqHarta" type="text" inputmode="numeric" data-money value="120.000.000" class="w-full border border-cream3 rounded-full pl-10 pr-4 py-2 text-xs bg-cream2 font-bold">
             </div>
         </div>
+        </div>
 
         <div class="grid grid-cols-3 gap-2">
-            <div>
-                <label class="text-[10px] font-bold text-oliveDark">Hutang</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60">Rp</span>
-                    <input id="wariqHutang" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-8 pr-2 py-1.5 text-xs bg-cream2">
-                </div>
-            </div>
-            <div>
-                <label class="text-[10px] font-bold text-oliveDark">Pemakaman</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60">Rp</span>
-                    <input id="wariqPemakaman" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-8 pr-2 py-1.5 text-xs bg-cream2">
-                </div>
-            </div>
-            <div>
-                <label class="text-[10px] font-bold text-oliveDark">Wasiat (1/3)</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60">Rp</span>
-                    <input id="wariqWasiat" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-8 pr-2 py-1.5 text-xs bg-cream2">
-                </div>
-            </div>
+                  <div class="grid grid-cols-3 gap-2">
+                      <div>
+                          <label class="text-[10px] font-bold text-oliveDark">Hutang</label>
+                          <div class="relative mt-1">
+                              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60">Rp</span>
+                              <input id="wariqHutang" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-8 pr-2 py-1.5 text-xs bg-cream2">
+                          </div>
+                      </div>
+                      <div>
+                          <label class="text-[10px] font-bold text-oliveDark">Pemakaman</label>
+                          <div class="relative mt-1">
+                              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60">Rp</span>
+                              <input id="wariqPemakaman" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-8 pr-2 py-1.5 text-xs bg-cream2">
+                          </div>
+                      </div>
+                      <div>
+                          <label class="text-[10px] font-bold text-oliveDark">Wasiat (1/3)</label>
+                          <div class="relative mt-1">
+                              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60">Rp</span>
+                              <input id="wariqWasiat" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-8 pr-2 py-1.5 text-xs bg-cream2">
+                          </div>
+                      </div>
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-oliveDark"><span class="text-red-500">*</span> Jenis Kelamin Pewaris</label>
-            <div class="mt-2 flex gap-2">
-                <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="L" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Laki-laki</div></label>
-                <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="P" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Perempuan</div></label>
-            </div>
-            <p class="text-[10px] text-olive/50 mt-1"><span class="text-red-500">*</span> wajib diisi</p>
+                  <div>
+                      <label class="block text-xs font-bold text-oliveDark"><span class="text-red-500">*</span> Jenis Kelamin Pewaris</label>
+                      <div class="mt-2 flex gap-2">
+                          <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="L" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Laki-laki</div></label>
+                          <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="P" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Perempuan</div></label>
+                      </div>
+                      <p class="text-[10px] text-olive/50 mt-1"><span class="text-red-500">*</span> wajib diisi</p>
         </div>
 
         <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
-            <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">PASANGAN</div>
-            <div class="grid grid-cols-2 gap-3">
-                <label id="wariqIstriLabel" class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqIstri" class="accent-olive"> Ada Istri</label>
-                <label id="wariqSuamiLabel" class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqSuami" class="accent-olive"> Ada Suami</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="space-y-4">
-        <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
-            <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">ANAK & CUCU</div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Anak Laki-laki</label>
-                    <input id="wariqAnakL" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Anak Perempuan</label>
-                    <input id="wariqAnakP" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Cucu Laki-laki</label>
-                    <input id="wariqCucuL" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Cucu Perempuan</label>
-                    <input id="wariqCucuP" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-            </div>
-            <p class="text-[10px] text-olive/50 mt-2">Cucu hanya berhak bila tidak ada anak.</p>
+                  <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
+                      <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">PASANGAN</div>
+                      <div class="grid grid-cols-2 gap-3">
+                          <label id="wariqIstriLabel" class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqIstri" class="accent-olive"> Ada Istri</label>
+                          <label id="wariqSuamiLabel" class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqSuami" class="accent-olive"> Ada Suami</label>
+                      </div>
         </div>
 
         <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
-            <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">ORANG TUA, KAKEK & NENEK</div>
-            <div class="grid grid-cols-2 gap-2">
-                <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqAyah" class="accent-olive"> Ada Ayah</label>
-                <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqIbu" class="accent-olive"> Ada Ibu</label>
-                <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqKakek" class="accent-olive"> Ada Kakek</label>
-                <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqNenekIbu" class="accent-olive"> Nenek dari Ibu</label>
-                <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqNenekAyah" class="accent-olive"> Nenek dari Ayah</label>
-            </div>
-            <p class="text-[10px] text-olive/50 mt-2">Kakek hanya berhak bila ayah tidak ada. Nenek hanya bila ibu tidak ada.</p>
+                  <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
+                      <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">ANAK & CUCU</div>
+                      <div class="grid grid-cols-2 gap-3">
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Anak Laki-laki</label>
+                              <input id="wariqAnakL" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Anak Perempuan</label>
+                              <input id="wariqAnakP" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Cucu Laki-laki</label>
+                              <input id="wariqCucuL" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Cucu Perempuan</label>
+                              <input id="wariqCucuP" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                      </div>
+                      <p class="text-[10px] text-olive/50 mt-2">Cucu hanya berhak bila tidak ada anak.</p>
         </div>
 
         <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
-            <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">SAUDARA</div>
-            <div class="grid grid-cols-3 gap-2">
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Kandung L</label>
-                    <input id="wariqSaudaraL" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Kandung P</label>
-                    <input id="wariqSaudaraP" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-oliveDark">Seibu</label>
-                    <input id="wariqSaudaraSeibu" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
-                </div>
-            </div>
-            <p class="text-[10px] text-olive/50 mt-2">Saudara terhalang bila ada anak, ayah, atau kakek.</p>
+                  <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
+                      <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">ORANG TUA, KAKEK & NENEK</div>
+                      <div class="grid grid-cols-2 gap-2">
+                          <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqAyah" class="accent-olive"> Ada Ayah</label>
+                          <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqIbu" class="accent-olive"> Ada Ibu</label>
+                          <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqKakek" class="accent-olive"> Ada Kakek</label>
+                          <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqNenekIbu" class="accent-olive"> Nenek dari Ibu</label>
+                          <label class="flex items-center gap-2 text-xs font-semibold"><input type="checkbox" id="wariqNenekAyah" class="accent-olive"> Nenek dari Ayah</label>
+                      </div>
+                      <p class="text-[10px] text-olive/50 mt-2">Kakek hanya berhak bila ayah tidak ada. Nenek hanya bila ibu tidak ada.</p>
         </div>
-    </div>
-</div>
+
+        <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
+                  <div class="bg-cream2/70 rounded-2xl p-3 border border-cream3/70">
+                      <div class="text-[10px] font-extrabold tracking-wider text-olive mb-2">SAUDARA</div>
+                      <div class="grid grid-cols-3 gap-2">
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Kandung L</label>
+                              <input id="wariqSaudaraL" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Kandung P</label>
+                              <input id="wariqSaudaraP" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                          <div>
+                              <label class="text-[10px] font-bold text-oliveDark">Seibu</label>
+                              <input id="wariqSaudaraSeibu" type="number" min="0" max="100" value="0" class="mt-1 w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white font-bold">
+                          </div>
+                      </div>
+                      <p class="text-[10px] text-olive/50 mt-2">Saudara terhalang bila ada anak, ayah, atau kakek.</p>
+        </div>
+        </div>
+
 
         <button type="button" id="wariqHitung" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-calculator mr-2"></i>Hitung & Simpan Pembagian</button>
         <p class="text-[10px] text-olive/50 mt-2 text-center"><i class="fa-solid fa-lock mr-1"></i> Versi login: hasil langsung tersimpan ke riwayat (pembeda kalkulator publik).</p>
