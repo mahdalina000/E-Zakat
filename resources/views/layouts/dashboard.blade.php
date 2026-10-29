@@ -20,10 +20,10 @@
     <style>
         body{font-family:'Poppins',sans-serif}
         @keyframes slideUpSmooth {
-            from { opacity: 0; transform: translateY(25px); }
+            from { opacity: 0.6; transform: translateY(26px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .anim-dashboard { animation: slideUpSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .anim-dashboard { animation: slideUpSmooth 1s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
     </style>
     @yield('head')
 
@@ -39,8 +39,24 @@
 
     </script>
 </head>
-<body class="bg-cream2 text-oliveDark min-h-screen relative">
+<body class="min-h-screen text-oliveDark relative overflow-x-hidden bg-zy-bg">
 
+<!-- LATAR ORNAMEN ISLAMI — sama seperti halaman publik (hijau + bintang + lentera), statis -->
+<div class="absolute inset-0 w-full h-full pointer-events-none select-none z-0" aria-hidden="true">
+    <div class="absolute inset-0 zy-zy-grad"></div>
+    <svg class="absolute inset-0 w-full h-full zy-star" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <defs>
+            <pattern id="zy-star-pat-db" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 40,0 L 48,16 L 64,8 L 56,24 L 72,32 L 56,40 L 72,48 L 56,56 L 64,72 L 48,64 L 40,80 L 32,64 L 16,72 L 24,56 L 8,48 L 24,40 L 8,32 L 24,24 L 16,8 L 32,16 Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+                <path d="M 0,0 L 12,6 L 6,12 Z M 80,0 L 68,6 L 74,12 Z M 0,80 L 12,74 L 6,68 Z M 80,80 L 68,74 L 74,68 Z" fill="none" stroke="currentColor" stroke-width="0.8"/>
+                <circle cx="40" cy="40" r="7" fill="none" stroke="currentColor" stroke-width="0.7"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#zy-star-pat-db)" />
+    </svg>
+    <div class="absolute top-0 left-6 sm:left-12 md:left-20 lg:left-28 xl:left-36 zy-lantern zy-lantern-left"></div>
+    <div class="hidden sm:block absolute top-0 right-0 sm:right-2 md:right-4 lg:right-6 xl:right-10 zy-lantern zy-lantern-right"></div>
+</div>
 
 <div class="flex min-h-screen relative z-10">
     {{-- Sidebar --}}
@@ -116,18 +132,18 @@
 
     {{-- Main --}}
     <div class="flex-1 min-w-0">
-        <header class="sticky top-0 z-30 bg-cream2/90 backdrop-blur border-b border-cream3">
+        <header class="sticky top-0 z-30 bg-olive/95 backdrop-blur border-b border-gold/30 shadow-sm">
             <div class="px-4 lg:px-8 h-[64px] flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <button onclick="toggleSidebar()" class="lg:hidden w-10 h-10 bg-white border border-cream3 rounded-xl flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
                     <div>
-                        <div class="font-bold text-oliveDark text-sm lg:text-base">@yield('page-title','Dashboard')</div>
-                        <div class="text-xs text-olive/50 hidden sm:block">@yield('page-sub','')</div>
+                        <div class="font-bold text-white text-sm lg:text-base">@yield('page-title','Dashboard')</div>
+                        <div class="text-xs text-cream/70 hidden sm:block">@yield('page-sub','')</div>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 text-xs">
-                    <span class="hidden sm:inline bg-white border border-cream3 px-3 py-1.5 rounded-full text-olive"><i class="fa-regular fa-calendar mr-1"></i> {{ now()->translatedFormat('d M Y') }}</span>
-                    <span class="bg-olive text-cream px-3 py-1.5 rounded-full">{{ $u->roleLabel() }}</span>
+                    <span class="hidden sm:inline bg-white/15 border border-white/20 px-3 py-1.5 rounded-full text-white"><i class="fa-regular fa-calendar mr-1"></i> {{ now()->translatedFormat('d M Y') }}</span>
+                    <span class="bg-gold2 text-oliveDark px-3 py-1.5 rounded-full font-bold">{{ $u->roleLabel() }}</span>
                 </div>
             </div>
         </header>

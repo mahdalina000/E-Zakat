@@ -349,11 +349,10 @@
             </div>
 
             <div class="pb-3 px-5 sm:px-6">
-                <a href="{{ url('/') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
-                    <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
-                </a>
-            </div>
-        </div>
+    <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
+        <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
+    </a>
+</div>
 
         <!-- ================= FORM DAFTAR (REGISTER) ================= -->
         <div class="form-container sign-up-container p-5 sm:p-6 flex flex-col justify-between bg-cream2/60">

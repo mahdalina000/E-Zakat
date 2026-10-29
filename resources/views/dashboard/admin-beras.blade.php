@@ -34,7 +34,7 @@
     </div>
 
     <div class="lg:col-span-2">
-        class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4"
+        <div class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4">
             <div class="font-bold text-oliveDark text-sm mb-3"><i class="fa-solid fa-clock-rotate-left text-olive mr-2"></i> Riwayat Perubahan Harga</div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">

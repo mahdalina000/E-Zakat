@@ -16,7 +16,7 @@
         <div class="text-xs font-semibold text-oliveDark">Total BAZNAS</div>
     </div>
     <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
+        <div class="w-10 h-10 bg-gold/15 text-gold rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
         <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['upz'] }}</div>
         <div class="text-xs font-semibold text-oliveDark">Total UPZ/Masjid</div>
     </div>
@@ -29,16 +29,16 @@
 
 {{-- QUICK LINKS --}}
 <div class="grid sm:grid-cols-3 gap-3 mt-4">
-    <a href="{{ route('admin.baznas') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
-        <i class="fa-solid fa-users text-olive text-lg"></i>
+    <a href="{{ route('admin.baznas') }}" class="bg-white/70 border border-gold/30 rounded-xl p-4 text-center hover:bg-gold/10 transition shadow-sm">
+        <i class="fa-solid fa-users text-gold text-lg"></i>
         <div class="text-xs font-bold text-oliveDark mt-1">Kelola Warga Zakat</div>
     </a>
-    <a href="{{ route('admin.export') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
-        <i class="fa-solid fa-file-excel text-olive text-lg"></i>
+    <a href="{{ route('admin.export') }}" class="bg-white/70 border border-gold/30 rounded-xl p-4 text-center hover:bg-gold/10 transition shadow-sm">
+        <i class="fa-solid fa-file-excel text-gold text-lg"></i>
         <div class="text-xs font-bold text-oliveDark mt-1">Export Catatan</div>
     </a>
-    <a href="{{ route('admin.locations.create') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
-        <i class="fa-solid fa-map-location-dot text-olive text-lg"></i>
+    <a href="{{ route('admin.locations.create') }}" class="bg-white/70 border border-gold/30 rounded-xl p-4 text-center hover:bg-gold/10 transition shadow-sm">
+        <i class="fa-solid fa-map-location-dot text-gold text-lg"></i>
         <div class="text-xs font-bold text-oliveDark mt-1">Tambah Lokasi</div>
     </a>
 </div>
