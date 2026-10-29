@@ -656,3 +656,8 @@ body.dark-mode .to-olive2 { --tw-gradient-to: #27603a; }
 body.dark-mode .from-gold { --tw-gradient-from: #8a6a2f; }
 body.dark-mode .to-earth { --tw-gradient-to: #a1762e; }
 body.dark-mode .border-olive\/15 { border-color: rgba(110,165,126,0.55); }
+
+/* Dark: permukaan kalkulator (varian opacity) -- kartu formulir & panel hasil */
+body.dark-mode .bg-white\/90 { background-color:#0d2417; }
+body.dark-mode .bg-cream2\/70 { background-color:rgba(13,34,23,.82); }
+body.dark-mode .bg-cream2\/60 { background-color:rgba(13,34,23,.72); }

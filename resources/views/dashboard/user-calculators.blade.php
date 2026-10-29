@@ -72,11 +72,11 @@
             <input id="namaBerasLain" placeholder="Nama beras (opsional)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-3 text-[11px] text-oliveDark leading-relaxed">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Atur jumlah jiwa, pilih jenis beras, dan sesuaikan harga per kg. Hasil berubah otomatis. Boleh setor dalam bentuk beras atau uang (sesuai harga beras lokal).</p>
             <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-1 space-y-1 text-olive/70">
+            <div class="mt-2 space-y-2 text-olive/70">
                 <div>• <b>Besaran Standar</b>: Sesuai Peraturan BAZNAS RI, zakat fitrah ditunaikan sebesar <b>2,5 kg atau 3,5 liter beras</b> (makanan pokok) per jiwa.</div>
                 <div>• <b>Konversi Nilai Uang</b>: Ditentukan berdasarkan standar harga beras yang dikonsumsi sehari-hari dikalikan dengan besaran zakat per jiwa (2,5 kg × harga beras/kg).</div>
                 <div>• <b>Kewajiban Jiwa</b>: Wajib dibayarkan untuk seluruh anggota keluarga yang menjadi tanggungan hidup sebelum shalat Idul Fitri.</div>
@@ -137,11 +137,11 @@
             <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
         </div>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-3 text-[11px] text-oliveDark leading-relaxed">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Masukkan total harta (tabungan, deposito, emas, barang dagang). Status berubah <b>Wajib</b> jika harta ≥ nisab (85 gr) &amp; sudah haul 1 tahun. Zakat = 2,5% dari harta.</p>
             <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-1 space-y-1 text-olive/70">
+            <div class="mt-2 space-y-2 text-olive/70">
                 <div>• <b>Nisab Harta</b>: Mengikuti standar BAZNAS, nisab zakat maal adalah senilai <b>85 gram emas murni</b> (85 gram × harga pasaran emas per gram).</div>
                 <div>• <b>Syarat Haul</b>: Kepemilikan harta harus sudah mencapai <b>1 tahun hijriah (haul)</b> dan bebas dari hutang jangka pendek yang jatuh tempo.</div>
                 <div>• <b>Kadar Zakat</b>: Jika total gabungan simpanan/harta melebihi nisab dan sudah haul, dikenakan zakat sebesar <b>2,5%</b> dari total harta.</div>
@@ -190,11 +190,11 @@
         <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp)</label>
         <input id="fidyahHarga" type="text" data-money value="{{ number_format(45000,0,'','.') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-3 text-[11px] text-oliveDark leading-relaxed">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Isi jumlah hari puasa yang ditinggalkan &amp; harga 1 porsi makan. Total fidyah otomatis terhitung. Boleh disalurkan berupa uang, beras (±0,75 kg/hari), atau makanan siap saji.</p>
             <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-1 space-y-1 text-olive/70">
+            <div class="mt-2 space-y-2 text-olive/70">
                 <div>• <b>Kewajiban Per Hari</b>: Setiap 1 hari utang puasa Ramadhan yang ditinggalkan dibayar dengan <b>1 mud makanan pokok (±0,75 kg beras)</b> atau setara 1 porsi makan lengkap.</div>
                 <div>• <b>Rumus Total</b>: (Jumlah Hari Utang Puasa) × (Harga 1 Porsi Makan Standar Lokal).</div>
                 <div>• <b>Penyaluran Resmi</b>: Dikelola dan disalurkan kepada fakir miskin berupa paket makanan siap saji atau bahan makanan pokok.</div>
@@ -235,11 +235,11 @@
         <input id="penghasilanBulan" type="text" data-money value="" placeholder="cth: 8500000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
         <p class="text-[10px] text-olive/50 mt-1">Ketik angka biasa — akan otomatis dipisah ribuan.</p>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-3 text-[11px] text-oliveDark leading-relaxed">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Isi penghasilan bersih per bulan (Rp). Wajib zakat jika penghasilan ≥ <b>Rp 7.640.144/bulan</b>. Zakat = 2,5% dari penghasilan per bulan, dibayarkan langsung setiap bulan tanpa menunggu haul.</p>
             <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-1 space-y-1 text-olive/70">
+            <div class="mt-2 space-y-2 text-olive/70">
                 <div>• <b>Penentuan Nisab</b>: Mengikuti Keputusan Ketua BAZNAS RI Nomor 9 Tahun 2026, yaitu setara nilai 85 gram emas per tahun (Rp 91.681.728) atau <b>Rp 7.640.144 per bulan</b>.</div>
                 <div>• <b>Pemeriksaan Syarat Wajib</b>: Jika penghasilan bersih bulanan Anda mencapai atau melebihi Rp 7.640.144, maka <b>Wajib Zakat</b>. Jika di bawah nisab, maka tidak wajib.</div>
                 <div>• <b>Kadar Zakat</b>: Sebesar <b>2,5%</b> dari total penghasilan kotor/bersih per bulan tanpa menunggu haul 1 tahun (dikeluarkan langsung saat menerima gaji/penghasilan).</div>
@@ -277,7 +277,7 @@
 <div class="grid lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-seedling text-olive"></i> Zakat Pertanian</h2>
-        <p class="text-xs text-olive/70 mt-1">Dihitung dari hasil panen. Dengan irigasi: nisab 1.000 kg, zakat 5%. Tanpa irigasi: nisab 653 kg, zakat 10%.</p>
+        <p class="text-xs text-olive/70 mt-1">Dihitung dari hasil panen yang mencapai nisab. Dengan irigasi (sarana air berbiaya): zakat 2,5%. Tanpa irigasi: zakat 5%.</p>
 
         <label class="block mt-5 text-xs font-bold text-oliveDark">Hasil Panen (kg)</label>
         <input id="pertanianPanen" type="text" data-money value="" placeholder="cth: 1500" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
@@ -288,11 +288,11 @@
             <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="tidak" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Tanpa irigasi (5%)</div></label>
         </div>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-3 text-[11px] text-oliveDark leading-relaxed">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Isi total hasil panen dalam kg. Pilih irigasi: <b>Tanpa Irigasi</b> = kadar 5%, <b>Dengan Irigasi</b> = 2,5%. Wajib jika panen ≥ nisab 960 kg (15,24 kuintal).</p>
             <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-1 space-y-1 text-olive/70">
+            <div class="mt-2 space-y-2 text-olive/70">
                 <div>• <b>Nisab Panen</b>: Ditetapkan sebesar 5 wasaq atau setara <b>960 kg gabah/hasil panen</b> (atau ±653 kg jika makanan pokok bersih).</div>
                 <div>• <b>Penentuan Kadar Zakat</b>: Sebesar <b>5%</b> apabila menggunakan sarana irigasi berbiaya/pompa, dan <b>10%</b> (atau 5% sesuai penyesuaian biaya operasional) jika mengandalkan air hujan alami.</div>
                 <div>• <b>Tanpa Haul</b>: Zakat pertanian wajib dikeluarkan <b>langsung setiap kali masa panen</b> tanpa menunggu 1 tahun.</div>
@@ -353,11 +353,11 @@
 
         <label class="flex items-center gap-2 text-xs font-semibold mt-3"><input type="checkbox" id="dagHaul" checked class="accent-olive"> Sudah genap haul 1 tahun</label>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-3 text-[11px] text-oliveDark leading-relaxed">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Masukkan total modal dagang, kurangi utang. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas) &amp; sudah haul 1 tahun.</p>
             <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-1 space-y-1 text-olive/70">
+            <div class="mt-2 space-y-2 text-olive/70">
                 <div>• <b>Rumus Harta Bersih Niaga</b>: (Modal Diputar + Keuntungan + Piutang Lancar) dikurangi (Utang Jatuh Tempo).</div>
                 <div>• <b>Standar Nisab</b>: Setara nilai <b>85 gram emas</b> yang berlaku pada akhir tahun pembukuan usaha (haul 1 tahun).</div>
                 <div>• <b>Kadar Zakat</b>: Apabila Nilai Harta Bersih ≥ Nisab (85 gr Emas), maka zakat yang wajib dikeluarkan sebesar <b>2,5%</b>.</div>
