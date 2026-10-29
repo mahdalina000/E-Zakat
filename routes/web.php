@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', fn () => view('welcome'))->name('welcome');
-Route::get('/beranda', fn () => view('beranda'))->name('beranda.publik');
+Route::get('/beranda', fn () => view('beranda'))->name('beranda');
 Route::get('/kalkulator', fn () => view('kalkulator', ['hargaBeras' => \App\Models\BerasPrice::currentPrice()]))->name('kalkulator');
 Route::get('/direktori', function () {
     $locations = \App\Models\Location::where('is_active', true)->orderBy('type')->orderBy('name')->get();
