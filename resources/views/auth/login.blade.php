@@ -85,22 +85,20 @@
     .sign-up-container {
         grid-column: 1;
         grid-row: 1;
-    }
-
-    .sign-in-container {
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.55s ease;
     }
 
-    .sign-up-container {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+    .sign-in-container { transform: translateX(0); opacity: 1; z-index: 2; }
+    .sign-up-container { transform: translateX(64px); opacity: 0; z-index: 1; pointer-events: none; }
 
-    .neu-container.right-panel-active .sign-in-container { display: none; }
-    .neu-container.right-panel-active .sign-up-container { display: flex; }
+    .neu-container.right-panel-active .sign-in-container { transform: translateX(-64px); opacity: 0; z-index: 1; pointer-events: none; }
+    .neu-container.right-panel-active .sign-up-container { transform: translateX(0); opacity: 1; z-index: 2; pointer-events: auto; }
 
     /* PANEL HIJAU (KANAN) — STATIS, SELALU TERLIHAT */
     .overlay-container {
@@ -129,13 +127,13 @@
         flex-direction: column;
         padding: 0 30px;
         text-align: center;
-        transition: opacity 0.5s ease;
+        transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.55s ease;
     }
 
-    .overlay-left { opacity: 0; pointer-events: none; }
-    .overlay-right { opacity: 1; }
-    .neu-container.right-panel-active .overlay-left { opacity: 1; pointer-events: auto; }
-    .neu-container.right-panel-active .overlay-right { opacity: 0; pointer-events: none; }
+    .overlay-left { transform: translateX(64px); opacity: 0; pointer-events: none; }
+    .overlay-right { transform: translateX(0); opacity: 1; }
+    .neu-container.right-panel-active .overlay-left { transform: translateX(0); opacity: 1; pointer-events: auto; }
+    .neu-container.right-panel-active .overlay-right { transform: translateX(-64px); opacity: 0; pointer-events: none; }
 
     /* ANIMASI MASUK — naik dari bawah lembut (seperti video) */
     @keyframes riseInLogin {
@@ -225,6 +223,7 @@
         .sign-up-container {
             grid-column: 1;
             grid-row: 1;
+            width: 100%;
             padding-left: 1.25rem;
             padding-right: 1.25rem;
         }
