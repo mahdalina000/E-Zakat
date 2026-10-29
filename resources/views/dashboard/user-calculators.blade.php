@@ -2,6 +2,97 @@
 @section('title','Kalkulator Zakat & Waris — E-Zakat')
 @section('page-title','Kalkulator Zakat & Waris')
 @section('page-sub','Hitung dan simpan semua jenis perhitungan zakat & waris dalam satu halaman')
+
+@section('head')
+<style>
+    /* ============================================================ */
+    /* KHUSUS DARK MODE (TIDAK MENGUBAH TAMPILAN LIGHT MODE)        */
+    /* ============================================================ */
+    
+    /* Container/Card Form Kiri */
+    body.dark-mode .calc-panel .bg-white\/90,
+    body.dark-mode .calc-panel .bg-cream2\/60,
+    body.dark-mode .calc-panel .bg-white {
+        background-color: rgba(255, 255, 255, 0.07) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        backdrop-filter: blur(10px);
+    }
+
+   /* Card Hasil Kanan — Warna Hijau Sama Persis dengan Sidebar Kiri (#1d5b37) */
+body.dark-mode div.bg-olive,
+body.dark-mode .calc-panel div.bg-olive {
+    background-color: #1d5b37 !important; /* Hijau sidebar */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: none !important;
+}
+
+/* Kotak Inner Dalam Card Hasil (Dibuat Hijau Sedikit Lebih Gelap Agar Kontras) */
+body.dark-mode div.bg-olive .bg-white,
+body.dark-mode div.bg-olive .bg-cream2 {
+    background-color: #144227 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+    /* Judul Setiap Zakat/Kalkulator diubah ke Warna Orange Web */
+    body.dark-mode .calc-panel h2,
+    body.dark-mode .calc-panel h2 i {
+        color: #f59e0b !important; /* Amber/Orange khas web */
+    }
+
+    /* Warna Teks & Label Umum */
+    body.dark-mode .calc-panel .text-oliveDark,
+    body.dark-mode .calc-panel label {
+        color: #f8fafc !important; 
+    }
+
+    /* Subteks / Penjelasan */
+    body.dark-mode .calc-panel .text-olive\/70,
+    body.dark-mode .calc-panel .text-olive\/60,
+    body.dark-mode .calc-panel .text-olive\/50 {
+        color: #cbd5e1 !important; 
+    }
+
+    /* Input Fields */
+    body.dark-mode .calc-panel input[type="text"],
+    body.dark-mode .calc-panel input[type="number"],
+    body.dark-mode .calc-panel input[type="email"],
+    body.dark-mode .calc-panel select {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.18) !important;
+        color: #ffffff !important;
+    }
+
+    body.dark-mode .calc-panel input::placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /* Box / Card Kecil Dalam Form & Hasil */
+    body.dark-mode .calc-panel .bg-cream2 {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* Tab yang Tidak Aktif */
+    body.dark-mode .calc-tab:not(.bg-olive) {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        color: #f1f5f9 !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Teks Status Belum Wajib (Warna Orange/Kuning Jelas & Tidak Menabrak) */
+    body.dark-mode .calc-panel .text-amber-600 {
+        color: #fbbf24 !important; /* Yellow-amber terang */
+        font-weight: 800 !important;
+    }
+
+    /* Teks Status Wajib Zakat */
+    body.dark-mode .calc-panel .text-emerald-600 {
+        color: #34d399 !important; /* Hijau terang */
+        font-weight: 800 !important;
+    }
+</style>
+@endsection
+
 @section('content')
 
 @php $csrf = csrf_token(); @endphp
@@ -587,16 +678,13 @@ document.querySelectorAll('[data-adjust]').forEach(btn=>{
 });
 
 // ===================== HELPERS =====================
-// Format ribuan tanpa koma di dalam (100000000 -> 100.000.000)
 function formatRupiah(num){
     const n = Math.round(Number(num)||0);
     return n.toLocaleString('id-ID');
 }
-// Parser input terformat ribuan (100.000.000 -> 100000000)
 function parseRupiah(str){
     return parseInt(String(str||'').replace(/\D/g,''),10)||0;
 }
-// Auto-format ribuan saat mengetik
 function attachThousandSeparator(input){
     input.addEventListener('input', function(){
         const raw = input.value.replace(/\D/g,'');
@@ -606,13 +694,11 @@ function attachThousandSeparator(input){
 document.querySelectorAll('input[data-money]').forEach(attachThousandSeparator);
 
 // ===================== KALKULATOR BARU (server) =====================
-// 3 kalkulator baru + waris dihitung di server (endpoint calculate).
 const ROUTE_CALC = @json(route('user.calculators.calculate', ':type'));
 
 async function calcServer(type, params) {
     const body = new URLSearchParams();
     body.append('_token', CSRF);
-    // Laravel rule 'boolean' hanya menerima 0/1/"0"/"1" — ubah boolean JS jadi angka.
     Object.entries(params).forEach(([k,v]) => {
         if (typeof v === 'boolean') body.append(k, v ? '1' : '0');
         else body.append(k, v);
@@ -628,7 +714,7 @@ async function calcServer(type, params) {
             const j = await res.json();
             if (j.message) msg = j.message;
             if (j.errors) msg += ': ' + Object.values(j.errors).flat().join(', ');
-        } catch (e) { /* respons bukan JSON */ }
+        } catch (e) { }
         throw new Error(msg);
     }
     return res.json();
@@ -645,7 +731,7 @@ function renderPenghasilan(r) {
 }
 function calcPenghasilan() {
     const nilai = parseRupiah($('penghasilanBulan').value);
-    const nisab = 7640144; // BAZNAS 2026 (85 gr emas)
+    const nisab = 7640144; // BAZNAS 2026
     const wajib = nilai >= nisab;
     const zakat = wajib ? Math.round(nilai * 0.025) : 0;
     const zakatTahun = zakat * 12;
@@ -669,9 +755,8 @@ function renderPertanian(r) {
 function calcPertanian() {
     const panen = parseRupiah($('pertanianPanen').value);
     const irigasi = document.querySelector('input[name=irigasi]:checked').value;
-    // 'ya' = Dengan Irigasi (2,5%), 'tidak' = Tanpa Irigasi (5%)
     const kadar = irigasi === 'ya' ? 0.025 : 0.05;
-    const nisab = 960; // kg (15,24 kuintal)
+    const nisab = 960;
     const wajib = panen >= nisab;
     const zakat = wajib ? panen * kadar : 0;
     $('pertanianNisab').textContent = nisab.toLocaleString('id-ID') + ' kg';
@@ -707,7 +792,7 @@ function calcPerdagangan() {
     $('dagZakat').textContent = fmt(zakat);
 }
 
-// ---- WARIS (server) — versi login: OTOMATIS TERSIMPAN ----
+// ---- WARIS (server) ----
 async function calcWariq() {
     const jk = document.querySelector('input[name=pewarisJk]:checked').value;
     const params = {
@@ -730,7 +815,7 @@ async function calcWariq() {
         ada_nenek_ayah: $('wariqNenekAyah').checked,
         ada_istri: $('wariqIstri').checked,
         ada_suami: $('wariqSuami').checked,
-        save: 1 // versi login → simpan otomatis ke riwayat
+        save: 1
     };
     try {
         const btn = $('wariqHitung');
@@ -779,7 +864,6 @@ async function calcWariq() {
 }
 $('wariqHitung').addEventListener('click', calcWariq);
 
-// Tampilkan hanya checkbox pasangan yang relevan sesuai jenis kelamin pewaris
 function syncPasangan() {
     const jk = document.querySelector('input[name=pewarisJk]:checked').value;
     $('wariqIstriLabel').classList.toggle('hidden', jk !== 'L');
@@ -795,7 +879,7 @@ document.querySelectorAll('input[name=irigasi]').forEach(r => r.addEventListener
 ['dagModal','dagPiutang','dagPersediaan','dagUtang','dagEmas'].forEach(id => $(id).addEventListener('input', calcPerdagangan));
 $('dagHaul').addEventListener('change', calcPerdagangan);
 
-// ===================== KALKULATOR LAMA (client) =====================
+// ===================== KALKULATOR LAMA =====================
 function calcFitrah() {
     const jiwa = Math.max(1, parseInt($('fitrahJiwa').value||1));
     const jenis = document.querySelector('input[name=beras]:checked').value;
@@ -918,7 +1002,6 @@ document.querySelectorAll('[data-save-calc]').forEach(btn => {
             resultData = { total_harta: r.total_harta, nisab: r.nisab, zakat: r.zakat, total: r.zakat };
         }
 
-        // kirim ke endpoint simpan
         const body = new URLSearchParams();
         body.append('_token', CSRF);
         Object.entries(inputData).forEach(([k,v]) => body.append('input_data['+k+']', v));
@@ -944,7 +1027,6 @@ document.querySelectorAll('[data-save-calc]').forEach(btn => {
     });
 });
 
-// init: kalkulasi awal
 calcFitrah(); calcMaal(); calcFidyah();
 calcPenghasilan(); calcPertanian(); calcPerdagangan();
 </script>

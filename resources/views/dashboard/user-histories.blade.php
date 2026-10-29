@@ -23,6 +23,15 @@
                 <div class="font-black text-oliveDark text-lg">Rp {{ number_format($h->result_data['total'], 0, ',', '.') }}</div>
             </div>
             @endif
+            <div class="flex items-center gap-2">
+                <form action="{{ route('user.histories.destroy', $h->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat perhitungan ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" title="Hapus riwayat" class="w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-100 flex items-center justify-center transition">
+                        <i class="fa-solid fa-trash-can text-sm"></i>
+                    </button>
+                </form>
+            </div>
         </div>
 
         {{-- Detail input --}}

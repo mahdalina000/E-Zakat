@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/records/{record}', [UserProfileController::class, 'destroyRecord'])->name('records.destroy');
         Route::get('/waris', fn () => redirect('/user/calculators?tab=wariq'))->name('waris');
         Route::get('/histories', [UserProfileController::class, 'histories'])->name('histories');
+        Route::delete('/histories/{history}', [UserProfileController::class, 'destroyHistory'])->name('histories.destroy');
         Route::get('/export', [UserProfileController::class, 'export'])->name('export');
 
         // Hub kalkulator (semua kalkulator dalam satu halaman, hasil disimpan ke riwayat)
