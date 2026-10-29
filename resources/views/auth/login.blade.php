@@ -69,113 +69,81 @@
         box-shadow: 0 6px 16px rgba(29, 91, 55, 0.3);
     }
 
-    /* KONTROL SLIDING FORM LAYER */
+    /* KONTROL FORM & PANEL — LAYOUT STATIS 2 KOLOM (sesuai gambar 2)
+       kiri: form, kanan: panel hijau; keduanya selalu terlihat, tidak saling menutupi */
+    .neu-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .form-container {
-        position: absolute;
-        top: 0;
+        position: relative;
         height: 100%;
-        transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .sign-in-container,
+    .sign-up-container {
+        grid-column: 1;
+        grid-row: 1;
     }
 
     .sign-in-container {
-        left: 0;
-        width: 50%;
-        z-index: 2;
-        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .sign-up-container {
-        left: 0;
-        width: 50%;
-        opacity: 0;
-        z-index: 1;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    /* POSISI SAAT SLIDE KE REGISTER */
-    .neu-container.right-panel-active .sign-in-container {
-        transform: translateX(100%);
-        opacity: 0;
-        z-index: 1;
-    }
+    .neu-container.right-panel-active .sign-in-container { display: none; }
+    .neu-container.right-panel-active .sign-up-container { display: flex; }
 
-    .neu-container.right-panel-active .sign-up-container {
-        transform: translateX(100%);
-        opacity: 1;
-        z-index: 5;
-        animation: show 0.6s;
-    }
-
-    @keyframes show {
-        0%, 49.99% { opacity: 0; z-index: 1; }
-        50%, 100% { opacity: 1; z-index: 5; }
-    }
-
-    /* OVERLAY PANEL HIJAU BERGESER */
+    /* PANEL HIJAU (KANAN) — STATIS, SELALU TERLIHAT */
     .overlay-container {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-        z-index: 100;
-    }
-
-    .neu-container.right-panel-active .overlay-container {
-        transform: translateX(-100%);
+        grid-column: 2;
+        grid-row: 1;
+        position: relative;
     }
 
     .overlay {
+        position: relative;
+        height: 100%;
         background: linear-gradient(135deg, #1d5b37 0%, #246c42 50%, #0e2a1c 100%);
         color: #FFFFFF;
-        position: relative;
-        left: -100%;
-        height: 100%;
-        width: 200%;
-        transform: translateX(0);
-        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    /* PANEL HIJAU MODE GELAP (HANGAT & BERSIH) */
     body.dark-mode .overlay {
         background: linear-gradient(135deg, #144729 0%, #1e5e37 50%, #0c331c 100%) !important;
     }
 
-    .neu-container.right-panel-active .overlay {
-        transform: translateX(50%);
-    }
-
     .overlay-panel {
         position: absolute;
+        inset: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
         padding: 0 30px;
         text-align: center;
-        top: 0;
-        height: 100%;
-        width: 50%;
-        transform: translateX(0);
-        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        transition: opacity 0.5s ease;
     }
 
-    .overlay-left {
-        transform: translateX(-20%);
-    }
+    .overlay-left { opacity: 0; pointer-events: none; }
+    .overlay-right { opacity: 1; }
+    .neu-container.right-panel-active .overlay-left { opacity: 1; pointer-events: auto; }
+    .neu-container.right-panel-active .overlay-right { opacity: 0; pointer-events: none; }
 
-    .neu-container.right-panel-active .overlay-left {
-        transform: translateX(0);
+    /* ANIMASI MASUK — naik dari bawah lembut (seperti video) */
+    @keyframes riseInLogin {
+        from { opacity: 0.4; transform: translateY(60px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-
-    .overlay-right {
-        right: 0;
-        transform: translateX(0);
-    }
-
-    .neu-container.right-panel-active .overlay-right {
-        transform: translateX(20%);
+    .neu-container {
+        animation: riseInLogin 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
     }
 
     .overlay-stars {
@@ -252,9 +220,11 @@
     /* RESPONSIF: di layar kecil (HP) form tampil PENUH 100%;
        panel overlay/geser disembunyikan agar tidak menutupi form */
     @media (max-width: 640px) {
+        .neu-container { grid-template-columns: 1fr; }
         .sign-in-container,
         .sign-up-container {
-            width: 100% !important;
+            grid-column: 1;
+            grid-row: 1;
             padding-left: 1.25rem;
             padding-right: 1.25rem;
         }
@@ -367,6 +337,7 @@
     <a href="{{ route('register') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
         Belum punya akun? <span class="text-gold">Daftar →</span>
     </a>
+</div>
 </div>
 
         <!-- ================= FORM DAFTAR (REGISTER) ================= -->
