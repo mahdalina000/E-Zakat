@@ -171,7 +171,7 @@ function renderSuperCharts() {
         options: {
             plugins:{legend:{display:false}},
             cutout:'65%',
-            animation: { animateRotate: true, animateScale: true, duration: 2000, easing: 'easeOutQuart' }
+            animation: { animateRotate: true, animateScale: false, duration: 2000, easing: 'easeOutQuart' }
         }
     });
 }
