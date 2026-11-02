@@ -165,43 +165,7 @@
                 </div>
             </a>
             <button onclick="toggleSidebar()" class="lg:hidden ml-auto w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-xmark text-sm"></i></button>
-        </div><!-- LAMPION KECIL DI BAWAH LOGO -->
-<div class="flex justify-center pt-1 pointer-events-none select-none -mt-1">
-<svg width="46" height="147" viewBox="0 0 135 430" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-md">
-                <defs>
-                    <radialGradient id="zy-glow-l" cx="50%" cy="48%" r="48%">
-                        <stop offset="0%" stop-color="#fffcf0" stop-opacity="0.95"/>
-                        <stop offset="42%" stop-color="#f5c74e" stop-opacity="0.75"/>
-                        <stop offset="85%" stop-color="#bf801a" stop-opacity="0.2"/>
-                        <stop offset="100%" stop-color="#8a5606" stop-opacity="0"/>
-                    </radialGradient>
-                    <linearGradient id="zy-brass-side" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#8c661c"/>
-                        <stop offset="25%" stop-color="#d4a742"/>
-                        <stop offset="50%" stop-color="#fadb82"/>
-                        <stop offset="75%" stop-color="#c99732"/>
-                        <stop offset="100%" stop-color="#7a5512"/>
-                    </linearGradient>
-                </defs>
-                <line x1="67" y1="0" x2="67" y2="110" class="zy-lantern-line" stroke-width="1.6" stroke-dasharray="3.5 3.5"/>
-                <g transform="translate(67, 52)">
-                    <polygon points="0,-13 3.8,-3.8 13,-3.8 5.5,2.5 8.5,12 0,6.5 -8.5,12 -5.5,2.5 -13,-3.8 -3.8,-3.8" fill="url(#zy-brass-side)"/>
-                    <circle cx="0" cy="0" r="2.5" fill="#fff8e7"/>
-                </g>
-                <circle cx="67" cy="110" r="7.5" stroke="url(#zy-brass-side)" stroke-width="2.2" fill="none"/>
-                <path d="M 44 133 C 44 119, 90 119, 90 133 L 86 145 L 48 145 Z" fill="url(#zy-brass-side)"/>
-                <path d="M 66 117 C 69 115, 69 111, 65 109 C 70 109, 72 114, 68 118 Z" fill="#ffe494"/>
-                <ellipse cx="67" cy="205" rx="30" ry="48" fill="url(#zy-glow-l)"/>
-                <path d="M 48 145 L 28 193 L 38 257 L 67 279 L 96 257 L 106 193 L 86 145 Z" fill="none" stroke="url(#zy-brass-side)" stroke-width="2.5"/>
-                <line x1="67" y1="145" x2="67" y2="279" stroke="url(#zy-brass-side)" stroke-width="2.2"/>
-                <path d="M 35 180 Q 67 195 99 180 M 32 220 Q 67 239 102 220 M 36 245 Q 67 259 98 245" stroke="#fadb82" stroke-width="1.2" fill="none" opacity="0.9"/>
-                <g transform="translate(67, 205)">
-                    <polygon points="0,-8 2,-2 8,-2 3,1 5,7 0,4 -5,7 -3,1 -8,-2 -2,-2" fill="#ffffff" opacity="0.85"/>
-                </g>
-                <path d="M 38 257 L 48 285 L 86 285 L 96 257 Z" fill="url(#zy-brass-side)"/>
-                <path d="M 67 285 L 67 310 M 67 310 C 63 320, 71 320, 67 330 C 63 320, 71 320, 67 310" stroke="url(#zy-brass-side)" stroke-width="2" fill="#f5ce62"/>
-            </svg>
-</div>
+        </div>
 
         @php $u = auth()->user(); @endphp
         <div class="px-4 py-4 border-b border-white/10 relative z-10">
