@@ -93,6 +93,11 @@ class User extends Authenticatable
         return $this->hasOne(WargaProfile::class, 'user_id');
     }
 
+    public function institutionProfile()
+    {
+        return $this->hasOne(InstitutionProfile::class, 'user_id');
+    }
+
     public function zakatRecords()
     {
         return $this->hasMany(ZakatRecord::class, 'user_id');

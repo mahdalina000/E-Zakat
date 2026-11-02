@@ -34,6 +34,9 @@
         <a href="{{ route('admin.export') }}" class="bg-cream border border-cream3 text-olive text-xs font-semibold px-4 py-2 rounded-full hover:bg-cream3">
             <i class="fa-solid fa-file-excel mr-1"></i> Export Excel
         </a>
+        <a href="{{ route('admin.settings') }}" class="bg-olive/10 border border-olive/30 text-olive text-xs font-semibold px-4 py-2 rounded-full hover:bg-olive/20">
+            <i class="fa-solid fa-gear mr-1"></i> Pengaturan
+        </a>
     </div>
 </div>
 
@@ -176,7 +179,27 @@
                     <input name="address_line1" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2" placeholder="Jalan, RT/RW, kelurahan, kecamatan">
                 </div>
             </div>
-            <div class="flex gap-3 pt-2">
+            <div class="rounded-xl border border-cream3/60 p-3 space-y-2">
+                <div class="text-xs font-bold text-oliveDark"><i class="fa-solid fa-location-dot mr-1"></i> Lokasi Penyaluran</div>
+                <label class="flex items-center gap-2 text-xs text-olive/80"><input type="radio" name="location_mode" value="existing" checked onchange="document.getElementById('locNew').classList.add('hidden');document.getElementById('locExisting').classList.remove('hidden')"> Pakai lokasi yang ada</label>
+                <div id="locExisting">
+                    <select name="location_id" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                        <option value="">Pilih lokasi...</option>
+                        @foreach($locations as $loc)
+                        <option value="{{ $loc->id }}">{{ $loc->name }} — {{ $loc->typeLabel() }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <label class="flex items-center gap-2 text-xs text-olive/80"><input type="radio" name="location_mode" value="new" onchange="document.getElementById('locNew').classList.remove('hidden');document.getElementById('locExisting').classList.add('hidden')"> Buat lokasi baru sekaligus</label>
+                <div id="locNew" class="hidden grid sm:grid-cols-2 gap-2">
+                    <div class="sm:col-span-2"><input name="new_location_name" placeholder="Nama lokasi (mis. Masjid Al-Falah)" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2"></div>
+                    <div class="sm:col-span-2"><input name="new_location_address" placeholder="Alamat lokasi" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2"></div>
+                    <div><input name="new_location_kelurahan" placeholder="Kelurahan" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2"></div>
+                    <div><input name="new_location_kecamatan" placeholder="Kecamatan" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2"></div>
+                    <div class="sm:col-span-2"><input name="new_location_phone" placeholder="No. telepon lokasi (opsional)" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2"></div>
+                </div>
+            </div>
+<div class="flex gap-3 pt-2">
                 <button class="bg-olive text-white font-semibold px-6 py-2 rounded-full text-xs hover:bg-olive2">Simpan Warga</button>
                 <button type="button" onclick="document.getElementById('wargaModal').classList.add('hidden')" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2 rounded-full text-xs">Batal</button>
             </div>

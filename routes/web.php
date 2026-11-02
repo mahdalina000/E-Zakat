@@ -82,12 +82,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/warga/{user}', [AdminBaznasController::class, 'showWarga'])->name('warga.show');
         Route::get('/warga/{user}/edit', [AdminBaznasController::class, 'editWarga'])->name('warga.edit');
         Route::put('/warga/{user}', [AdminBaznasController::class, 'updateWarga'])->name('warga.update');
-        Route::post('/warga/{user}/records', [AdminBaznasController::class, 'storeRecord'])->name('records.store');
-        Route::delete('/records/{record}', [AdminBaznasController::class, 'destroyRecord'])->name('records.destroy');
         Route::get('/export', [AdminBaznasController::class, 'export'])->name('export');
+        Route::get('/settings', [AdminBaznasController::class, 'settings'])->name('settings');
+        Route::put('/settings', [AdminBaznasController::class, 'updateSettings'])->name('settings.update');
 
         // Lokasi (existing)
-        Route::resource('locations', LocationController::class)->except(['show']);
+        Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+        Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+        Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
+        Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
+        Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
+        Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
         Route::get('/beras', [BerasPriceController::class, 'index'])->name('beras.index');
         Route::post('/beras', [BerasPriceController::class, 'update'])->name('beras.update');
     });
@@ -97,5 +102,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/users', [SuperAdminController::class, 'users'])->name('users');
         Route::get('/locations', [SuperAdminController::class, 'locations'])->name('locations');
         Route::get('/activity', [SuperAdminController::class, 'activity'])->name('activity');
+        Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+        Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
+        Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
+        Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
+        Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
     });
 });

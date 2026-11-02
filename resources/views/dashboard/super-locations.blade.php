@@ -13,12 +13,17 @@
     @endforeach
 </div>
 
+<div class="flex items-center justify-between mb-4">
+    <div class="text-sm text-olive/60">{{ $locations->total() }} lokasi</div>
+    <a href="{{ route('super.locations.create') }}" class="bg-olive text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-olive2"><i class="fa-solid fa-plus mr-1"></i> Tambah Lokasi</a>
+</div>
+
 <div class="rounded-[20px] border border-cream3/30 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-xs text-olive/50 bg-cream">
                 <th class="px-4 py-3">Nama</th><th class="px-4 py-3">Wilayah</th><th class="px-4 py-3">Tipe</th>
-                <th class="px-4 py-3">Dikelola oleh</th><th class="px-4 py-3">Status</th>
+                <th class="px-4 py-3">Dikelola oleh</th><th class="px-4 py-3">Status</th><th class="px-4 py-3 text-right">Aksi</th>
             </tr></thead>
             <tbody>
             @forelse($locations as $l)
@@ -32,6 +37,13 @@
                     <td class="px-4 py-3"><span class="text-[11px] px-2 py-1 rounded-full text-white" style="background: {{ $l->typeColor() }}">{{ $l->typeLabel() }}</span></td>
                     <td class="px-4 py-3 text-xs">{{ $l->creator->name ?? '—' }}</td>
                     <td class="px-4 py-3"><span class="text-[11px] {{ $l->is_active ? 'text-emerald-600' : 'text-gray-400' }}"><i class="fa-solid fa-circle text-[7px] mr-1"></i>{{ $l->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
+       <td class="px-4 py-3 text-right whitespace-nowrap">
+                        <a href="{{ route('super.locations.edit', $l) }}" class="inline-flex w-8 h-8 items-center justify-center rounded-lg bg-cream text-olive hover:bg-cream3" title="Edit"><i class="fa-solid fa-pen text-xs"></i></a>
+                        <form method="POST" action="{{ route('super.locations.destroy', $l) }}" class="inline" onsubmit="return confirm('Yakin hapus lokasi {{ $l->name }}?')">
+                            @csrf @method('DELETE')
+                            <button class="w-8 h-8 rounded-lg bg-red-50 text-red-500 hover:bg-red-100" title="Hapus"><i class="fa-solid fa-trash text-xs"></i></button>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <tr><td colspan="5" class="px-4 py-10 text-center text-olive/40">Belum ada data lokasi.</td></tr>

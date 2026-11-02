@@ -11,7 +11,7 @@ class WargaProfile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'full_name', 'nik', 'gender', 'birth_date', 'birth_place',
+        'user_id', 'location_id', 'full_name', 'nik', 'gender', 'birth_date', 'birth_place',
         'marital_status', 'blood_type', 'phone', 'occupation', 'employment_status',
         'address_line1', 'address_line2', 'rt', 'rw', 'kelurahan', 'kecamatan',
         'city', 'province', 'postal_code',
@@ -137,5 +137,10 @@ class WargaProfile extends Model
             'widowed' => 'Duda/Janda',
             default => 'Belum diisi',
         };
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 }
