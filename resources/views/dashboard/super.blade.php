@@ -152,7 +152,11 @@ function renderSuperCharts() {
                 fill: true, tension: 0.4, pointBackgroundColor:'#5A6B33', pointRadius: 4
             }]
         },
-        options: {plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}}}
+        options: {
+            plugins:{legend:{display:false}},
+            scales:{y:{beginAtZero:true, ticks:{precision:0}}},
+            animation: { duration: 1200, easing: 'easeOutQuart' }
+        }
     });
 
     new Chart(document.getElementById('roleChart'), {
@@ -164,7 +168,11 @@ function renderSuperCharts() {
                 backgroundColor: ['#8b5cf6','#10b981','#f97316','#0ea5e9'], borderWidth: 0
             }]
         },
-        options: {plugins:{legend:{display:false}}, cutout:'65%'}
+        options: {
+            plugins:{legend:{display:false}},
+            cutout:'65%',
+            animation: { animateRotate: true, animateScale: true, duration: 1200, easing: 'easeOutQuart' }
+        }
     });
 }
 if (document.readyState !== 'complete') {
