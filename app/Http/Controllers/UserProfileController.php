@@ -102,6 +102,17 @@ class UserProfileController extends Controller
             'location_id' => ['nullable', 'exists:locations,id'],
         ]);
 
+        // Wajib minimal satu isi nyata (jumlah jiwa / beras / total nilai) > 0
+        $isEmpty = ($data['jiwa_count'] ?? 0) <= 0
+            && empty($data['beras_kg'])
+            && empty($data['total_amount']);
+
+        if ($isEmpty) {
+            return back()->withErrors([
+                'jumlah' => 'Isi minimal salah satu: Jumlah Jiwa, Beras (kg), atau Total Nilai (Rp).',
+            ])->withInput();
+        }
+
         $data['user_id'] = $u->id;
         $data['is_confirmed'] = false;
         ZakatRecord::create($data);

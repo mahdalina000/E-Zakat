@@ -772,3 +772,14 @@ body.dark-mode .stat-card {
     background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.03)) !important;
     border: 1px solid rgba(218,180,96,0.34) !important;
 }
+
+
+/* ============================================================
+   SEMBUNYIKAN IKON KALENDER NATIVE DI INPUT TANGGAL
+   (pakai .no-calendar-icon + showPicker() saat diklik)
+   ============================================================ */
+.no-calendar-icon::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    appearance: none;
+}

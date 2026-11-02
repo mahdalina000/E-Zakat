@@ -8,6 +8,19 @@
     /* ============================================================ */
     /* KHUSUS DARK MODE (TIDAK MENGUBAH TAMPILAN LIGHT MODE)        */
     /* ============================================================ */
+    /* Fix khusus Light Mode untuk Radio Button Jenis Kelamin Pewaris */
+body:not(.dark-mode) .calc-panel input[name="pewarisJk"] + div {
+    background-color: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    color: #334155 !important;
+}
+
+body:not(.dark-mode) .calc-panel input[name="pewarisJk"]:checked + div {
+    background-color: #5A6B33 !important; /* Warna hijau khas web */
+    border-color: #5A6B33 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
     
     /* Container/Card Form Kiri */
     body.dark-mode .calc-panel .bg-white\/90,
