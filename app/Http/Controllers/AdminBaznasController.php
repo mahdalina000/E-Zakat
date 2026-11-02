@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Location;
+use App\Models\InstitutionProfile;
 use App\Models\WargaProfile;
 use App\Models\ZakatRecord;
 use App\Services\ZakatRecordExport;
@@ -32,7 +34,10 @@ class AdminBaznasController extends Controller
 
         $totalRecords = ZakatRecord::count();
 
-        return view('dashboard.admin-baznas', compact('warga', 'totalPenerima', 'totalPemberi', 'totalRecords'));
+        $locations = ($u->isAdminUpz() ? Location::where('created_by', $u->id) : Location::query())
+            ->orderBy('name')->get();
+
+        return view('dashboard.admin-baznas', compact('warga', 'totalPenerima', 'totalPemberi', 'totalRecords', 'locations'));
     }
 
     /**
@@ -40,6 +45,8 @@ class AdminBaznasController extends Controller
      */
     public function storeWarga(Request $request)
     {
+        $u = Auth::user();
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
@@ -56,6 +63,14 @@ class AdminBaznasController extends Controller
             'debt_amount' => ['required', 'numeric', 'min:0'],
             'asset_value' => ['required', 'numeric', 'min:0'],
             'address_line1' => ['required', 'string', 'max:255'],
+            // Lokasi (sekaligus menambah lokasi)
+            'location_mode' => ['nullable', 'string', 'in:existing,new'],
+            'location_id' => ['nullable', 'integer', 'exists:locations,id'],
+            'new_location_name' => ['nullable', 'string', 'max:255'],
+            'new_location_address' => ['nullable', 'string', 'max:255'],
+            'new_location_kelurahan' => ['nullable', 'string', 'max:100'],
+            'new_location_kecamatan' => ['nullable', 'string', 'max:100'],
+            'new_location_phone' => ['nullable', 'string', 'max:30'],
         ]);
 
         $user = User::create([
@@ -82,6 +97,28 @@ class AdminBaznasController extends Controller
             'asset_value' => $data['asset_value'],
             'address_line1' => $data['address_line1'],
         ]);
+
+        // ==== Lokasi: pilih yang ada / buat baru ====
+        $locationId = null;
+        if (($request->input('location_mode') ?? '') === 'new' && $request->filled('new_location_name')) {
+            $loc = Location::create([
+                'name' => $request->input('new_location_name'),
+                'address' => $request->input('new_location_address') ?: $data['address_line1'],
+                'kelurahan' => $request->input('new_location_kelurahan') ?: 'Banjarbaru',
+                'kecamatan' => $request->input('new_location_kecamatan') ?: '',
+                'latitude' => -3.4420,
+                'longitude' => 114.8310,
+                'type' => $u->isAdminBaznas() ? 'baznas' : 'upz',
+                'phone' => $request->input('new_location_phone'),
+                'is_active' => true,
+                'created_by' => $u->id,
+            ]);
+            $locationId = $loc->id;
+        } elseif ($request->filled('location_id')) {
+            $locationId = $request->input('location_id');
+        }
+
+        $profile->location_id = $locationId;
 
         // Kategorisasi otomatis
         $result = $profile->autoCategorize();
@@ -204,5 +241,39 @@ class AdminBaznasController extends Controller
             new ZakatRecordExport($userIds, $jenis),
             'pencatatan-zakat-admin-' . now()->format('Y-m-d') . '.xlsx'
         );
+    }
+
+    /** Pengaturan profil lembaga (UPZ / BAZNAS). */
+    public function settings()
+    {
+        $u = Auth::user();
+        $profile = $u->institutionProfile ?? InstitutionProfile::firstOrCreate(
+            ['user_id' => $u->id],
+            [
+                'institution_type' => $u->admin_type ?? ($u->isAdminBaznas() ? 'baznas' : 'upz'),
+                'institution_name' => $u->name,
+            ]
+        );
+        return view('dashboard.admin-settings', compact('u', 'profile'));
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $request->validate([
+            'institution_name' => ['required', 'string', 'max:255'],
+            'alias' => ['nullable', 'string', 'max:50'],
+            'address' => ['nullable', 'string', 'max:500'],
+            'phone' => ['nullable', 'string', 'max:30'],
+            'public_email' => ['nullable', 'email', 'max:255'],
+            'website' => ['nullable', 'url', 'max:255'],
+            'description' => ['nullable', 'string', 'max:2000'],
+        ]);
+
+        InstitutionProfile::updateOrCreate(
+            ['user_id' => Auth::id()],
+            $request->only(['institution_type', 'institution_name', 'alias', 'address', 'phone', 'public_email', 'website', 'description'])
+        );
+
+        return back()->with('success', 'Pengaturan lembaga berhasil disimpan.');
     }
 }

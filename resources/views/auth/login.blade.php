@@ -10,7 +10,7 @@
         overflow: hidden;
         width: 100%;
         max-width: 768px; /* max-w-3xl */
-        min-height: 450px;
+        min-height: 480px;
         border-radius: 28px;
         transition: background-color 0.3s ease, border-color 0.3s ease;
     }
@@ -69,7 +69,7 @@
         box-shadow: 0 6px 16px rgba(29, 91, 55, 0.3);
     }
 
-    /* KONTROL SLIDING FORM LAYER */
+    /* ================= KONTROL SLIDING SMOOTH TRANSITION ================= */
     .form-container {
         position: absolute;
         top: 0;
@@ -102,15 +102,15 @@
         transform: translateX(100%);
         opacity: 1;
         z-index: 5;
-        animation: show 0.6s;
+        animation: showForm 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    @keyframes show {
+    @keyframes showForm {
         0%, 49.99% { opacity: 0; z-index: 1; }
         50%, 100% { opacity: 1; z-index: 5; }
     }
 
-    /* OVERLAY PANEL HIJAU BERGESER */
+    /* OVERLAY PANEL HIJAU BERGESER (SLIDING OVERLAY) */
     .overlay-container {
         position: absolute;
         top: 0;
@@ -137,7 +137,6 @@
         transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    /* PANEL HIJAU MODE GELAP (HANGAT & BERSIH) */
     body.dark-mode .overlay {
         background: linear-gradient(135deg, #144729 0%, #1e5e37 50%, #0c331c 100%) !important;
     }
@@ -176,6 +175,15 @@
 
     .neu-container.right-panel-active .overlay-right {
         transform: translateX(20%);
+    }
+
+    /* ANIMASI MASUK KARTU AWAL */
+    @keyframes riseInLogin {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .neu-container {
+        animation: riseInLogin 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
     }
 
     .overlay-stars {
@@ -247,6 +255,23 @@
         color: #0d2417 !important;
         font-weight: 900 !important;
         letter-spacing: 0.05em !important;
+    }
+
+    /* RESPONSIF HP */
+    @media (max-width: 640px) {
+        .neu-container { min-height: auto; }
+        .sign-in-container,
+        .sign-up-container {
+            position: relative;
+            width: 100%;
+        }
+        .neu-container.right-panel-active .sign-in-container {
+            display: none;
+        }
+        .neu-container.right-panel-active .sign-up-container {
+            transform: none;
+        }
+        .overlay-container { display: none !important; }
     }
 </style>
 @endsection
@@ -349,8 +374,11 @@
             </div>
 
             <div class="pb-3 px-5 sm:px-6">
-                <a href="{{ url('/') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
+                <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
+                </a>
+                <a href="{{ route('register') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
+                    Belum punya akun? <span class="text-gold">Daftar →</span>
                 </a>
             </div>
         </div>
@@ -411,8 +439,11 @@
             </div>
 
             <div class="pb-3">
-                <a href="{{ url('/') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
+                <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
+                </a>
+                <a href="{{ route('login') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
+                    Sudah punya akun? <span class="text-gold">Masuk →</span>
                 </a>
             </div>
         </div>

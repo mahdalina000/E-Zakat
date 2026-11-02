@@ -24,7 +24,7 @@
         <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">NIK</div><div class="font-bold text-oliveDark">{{ $profile->nik ?? '-' }}</div></div>
         <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Jenis Kelamin</div><div class="font-bold text-oliveDark">{{ $profile->genderLabel() }}</div></div>
         <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Tanggal Lahir</div><div class="font-bold text-oliveDark">{{ $profile->birth_date?->translatedFormat('d M Y') ?? '-' }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Status Keluarga</div><div class="font-bold text-oliveDark">{{ $profile->statusPernikahanLabel() }}</div></div>
+        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Status Pernikahan</div><div class="font-bold text-oliveDark">{{ $profile->statusPernikahanLabel() }}</div></div>
         <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Pekerjaan</div><div class="font-bold text-oliveDark">{{ $profile->occupation ?? '-' }}</div></div>
         <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Tanggungan</div><div class="font-bold text-oliveDark">{{ $profile->dependents_count ?? 0 }} jiwa</div></div>
         <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Penghasilan/Bulan</div><div class="font-bold text-oliveDark">Rp {{ number_format($profile->monthly_income ?? 0, 0, ',', '.') }}</div></div>
@@ -120,7 +120,7 @@
             @csrf
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Jenis Zakat *</label>
-                <select name="zakat_type" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                <select name="zakat_type" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                     <option value="zakat_fitrah">Zakat Fitrah</option>
                     <option value="zakat_maal">Zakat Maal</option>
                     <option value="fidyah">Fidyah</option>
@@ -131,25 +131,37 @@
             <div class="grid grid-cols-2 gap-3">
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Jumlah Jiwa</label>
-                    <input name="jiwa_count" type="number" min="1" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                    <input name="jiwa_count" type="number" min="1" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                 </div>
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Beras (kg)</label>
-                    <input name="beras_kg" type="number" step="0.01" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                    <input name="beras_kg" type="number" step="0.01" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                 </div>
             </div>
+
+            {{-- TOTAL NILAI (RP) DENGAN FORMAT TITIK RIBUAN --}}
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Total Nilai (Rp)</label>
-                <input name="total_amount" type="number" step="0.01" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                <input type="text" 
+                       id="total_amount_formatted" 
+                       placeholder="0" 
+                       class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none" 
+                       oninput="formatRupiahDirect(this)">
+                <input type="hidden" name="total_amount" id="total_amount">
             </div>
+
             <div class="grid grid-cols-2 gap-3">
+                {{-- TANGGAL BAYAR DENGAN ICON KALENDER & TRIGGER POPUP --}}
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Tanggal Bayar</label>
-                    <input name="payment_date" type="date" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                    <div class="relative mt-1">
+                        <input name="payment_date" type="date" onclick="this.showPicker()" class="w-full border border-cream3 rounded-full pl-4 pr-9 py-2 text-xs bg-cream2 outline-none cursor-pointer">
+                        <i class="fa-solid fa-calendar-days absolute right-3.5 top-1/2 -translate-y-1/2 text-olive/50 pointer-events-none text-xs"></i>
+                    </div>
                 </div>
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Metode Pembayaran</label>
-                    <select name="payment_method" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+                    <select name="payment_method" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                         <option value="tunai">Tunai</option>
                         <option value="transfer">Transfer</option>
                         <option value="qris">QRIS</option>
@@ -160,11 +172,11 @@
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark">No. Referensi</label>
-                <input name="reference_number" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2" placeholder="mis. No. transfer">
+                <input name="reference_number" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none" placeholder="mis. No. transfer">
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Keterangan</label>
-                <textarea name="notes" rows="2" class="mt-1 w-full border border-cream3 rounded-xl px-4 py-2 text-xs bg-cream2" placeholder="mis. Zakat fitrah keluarga, 4 jiwa × 2.5 kg"></textarea>
+                <textarea name="notes" rows="2" class="mt-1 w-full border border-cream3 rounded-xl px-4 py-2 text-xs bg-cream2 outline-none" placeholder="mis. Zakat fitrah keluarga, 4 jiwa × 2.5 kg"></textarea>
             </div>
             <div class="flex gap-3 pt-2">
                 <button class="bg-olive text-white font-semibold px-6 py-2 rounded-full text-xs hover:bg-olive2">Simpan Catatan</button>
@@ -185,4 +197,26 @@
     </a>
 </div>
 
+{{-- SCRIPT FORMAT TERPISAH DAN PASTI DIEKSEKUSI --}}
+<script>
+function formatRupiahDirect(el) {
+    let val = el.value.replace(/[^0-9]/g, '');
+    let hiddenInput = document.getElementById('total_amount');
+    if (hiddenInput) {
+        hiddenInput.value = val;
+    }
+    if (val) {
+        el.value = new Intl.NumberFormat('id-ID').format(val);
+    } else {
+        el.value = '';
+    }
+}
+</script>
+
+@endsection
+
+@section('scripts')
+<script>
+// Script tambahan jika menggunakan section scripts
+</script>
 @endsection

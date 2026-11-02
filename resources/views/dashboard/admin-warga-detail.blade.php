@@ -42,9 +42,7 @@
     <div class="bg-white rounded-[20px] border border-cream3 p-5">
         <div class="flex items-center justify-between mb-3">
             <div class="font-bold text-oliveDark text-sm"><i class="fa-solid fa-clipboard-list text-olive mr-2"></i> Catatan Zakat</div>
-            <button onclick="document.getElementById('adminRecordModal').classList.remove('hidden')" class="bg-olive text-white text-xs font-semibold px-3 py-1.5 rounded-full">
-                <i class="fa-solid fa-plus mr-1"></i> Tambah
-            </button>
+            <a href="{{ route('admin.export') }}" class="bg-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full"><i class="fa-solid fa-file-excel mr-1"></i> Export Excel</a>
         </div>
 
         <div class="space-y-2 max-h-[400px] overflow-auto">
@@ -63,79 +61,13 @@
                 @endif
                 <div class="flex items-center justify-between mt-2">
                     <span class="text-[10px] text-olive/50">Metode: {{ $r->paymentMethodLabel() }}</span>
-                    <form method="POST" action="{{ route('admin.records.destroy', $r) }}" onsubmit="return confirm('Hapus catatan ini?')" class="inline">
-                        @csrf @method('DELETE')
-                        <button class="text-red-400 hover:text-red-600 text-xs"><i class="fa-solid fa-trash"></i></button>
-                    </form>
+                    <span class="text-[10px] text-olive/40">Baca saja</span>
                 </div>
             </div>
             @empty
             <div class="text-center py-6 text-olive/40 text-xs">Belum ada catatan zakat untuk warga ini.</div>
             @endforelse
         </div>
-    </div>
-</div>
-
-{{-- MODAL TAMBAH CATATAN --}}
-<div id="adminRecordModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl p-5 w-full max-w-lg max-h-[90vh] overflow-auto">
-        <h3 class="font-bold text-oliveDark text-sm mb-4">Tambah Catatan Zakat — {{ $user->name }}</h3>
-        <form method="POST" action="{{ route('admin.records.store', $user) }}" class="space-y-3">
-            @csrf
-            <div>
-                <label class="text-xs font-semibold text-oliveDark">Jenis Zakat *</label>
-                <select name="zakat_type" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-                    <option value="zakat_fitrah">Zakat Fitrah</option>
-                    <option value="zakat_maal">Zakat Maal</option>
-                    <option value="fidyah">Fidyah</option>
-                    <option value="infak_sedekah">Infak & Sedekah</option>
-                    <option value="wariq">Waris (Wariq)</option>
-                </select>
-            </div>
-            <div>
-                <label class="text-xs font-semibold text-oliveDark">Keterangan</label>
-                <input name="notes" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-xs font-semibold text-oliveDark">Jumlah Jiwa</label>
-                    <input name="jiwa_count" type="number" min="1" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-                </div>
-                <div>
-                    <label class="text-xs font-semibold text-oliveDark">Total Nilai (Rp)</label>
-                    <input name="total_amount" type="number" step="0.01" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-xs font-semibold text-oliveDark">Tanggal</label>
-                    <input name="payment_date" type="date" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-                </div>
-                <div>
-                    <label class="text-xs font-semibold text-oliveDark">Metode</label>
-                    <select name="payment_method" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-                        <option value="tunai">Tunai</option>
-                        <option value="transfer">Transfer</option>
-                        <option value="qris">QRIS</option>
-                        <option value="beras_fisik">Beras Fisik</option>
-                        <option value="makanan">Makanan</option>
-                    </select>
-                </div>
-            </div>
-            <div>
-                <label class="text-xs font-semibold text-oliveDark">Lokasi Penyaluran</label>
-                <select name="location_id" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
-                    <option value="">Pilih lokasi...</option>
-                    @foreach($locations as $loc)
-                    <option value="{{ $loc->id }}">{{ $loc->name }} — {{ $loc->typeLabel() }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="flex gap-3 pt-2">
-                <button class="bg-olive text-white font-semibold px-6 py-2 rounded-full text-xs">Simpan</button>
-                <button type="button" onclick="document.getElementById('adminRecordModal').classList.add('hidden')" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2 rounded-full text-xs">Batal</button>
-            </div>
-        </form>
     </div>
 </div>
 

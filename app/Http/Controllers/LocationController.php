@@ -49,7 +49,8 @@ class LocationController extends Controller
             $data['type'] = 'upz';
         }
         Location::create($data);
-        return redirect()->route('admin.locations.index')->with('success', 'Lokasi berhasil ditambahkan.');
+        $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
+        return redirect()->route($home)->with('success', 'Lokasi berhasil ditambahkan.');
     }
 
     public function edit(Location $location)
@@ -66,14 +67,16 @@ class LocationController extends Controller
             $data['type'] = $location->type;
         }
         $location->update($data);
-        return redirect()->route('admin.locations.index')->with('success', 'Lokasi berhasil diperbarui.');
+        $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
+        return redirect()->route($home)->with('success', 'Lokasi berhasil diperbarui.');
     }
 
     public function destroy(Location $location)
     {
         $this->authorizeOwn($location);
         $location->delete();
-        return redirect()->route('admin.locations.index')->with('success', 'Lokasi berhasil dihapus.');
+        $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
+        return redirect()->route($home)->with('success', 'Lokasi berhasil dihapus.');
     }
 
     private function validated(Request $request): array

@@ -5,41 +5,56 @@
 @section('content')
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-olive/10 text-olive rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $myLocations->count() }}</div>
-        <div class="text-xs font-semibold text-oliveDark">Lokasi Saya Kelola</div>
+    <div class="stat-card sc-sky">
+        <div class="flex items-start justify-between">
+            <div class="sc-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <span class="sc-label">LOKASI</span>
+        </div>
+        <div class="sc-num">{{ $myLocations->count() }}</div>
+        <div class="sc-sub">Lokasi Saya Kelola</div>
     </div>
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-building-columns"></i></div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['baznas'] }}</div>
-        <div class="text-xs font-semibold text-oliveDark">Total BAZNAS</div>
+    <div class="stat-card sc-olive">
+        <div class="flex items-start justify-between">
+            <div class="sc-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <span class="sc-label">BAZNAS</span>
+        </div>
+        <div class="sc-num">{{ $locationsByType['baznas'] }}</div>
+        <div class="sc-sub">Total BAZNAS</div>
     </div>
-    <div class="rounded-[20px] border border-cream3/30 p-4">
-        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center"><i class="fa-solid fa-mosque"></i></div>
-        <div class="text-3xl font-black text-oliveDark mt-3">{{ $locationsByType['upz'] }}</div>
-        <div class="text-xs font-semibold text-oliveDark">Total UPZ/Masjid</div>
+    <div class="stat-card sc-gold">
+        <div class="flex items-start justify-between">
+            <div class="sc-icon"><i class="fa-solid fa-mosque"></i></div>
+            <span class="sc-label">UPZ</span>
+        </div>
+        <div class="sc-num">{{ $locationsByType['upz'] }}</div>
+        <div class="sc-sub">Total UPZ/Masjid</div>
     </div>
-    <div class="bg-olive rounded-[20px] p-4 text-white">
-        <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center"><i class="fa-solid fa-wheat-awn"></i></div>
-        <div class="text-2xl font-black mt-3">Rp {{ number_format($beras->price ?? 16000,0,',','.') }}</div>
-        <div class="text-xs text-cream/80">Harga Beras Banjar /kg</div>
+    <div class="stat-solid">
+        <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
+        <div class="absolute right-6 bottom-2 text-white/10 text-3xl"><i class="fa-solid fa-wheat-awn"></i></div>
+        <div class="flex items-center justify-between">
+            <div class="sc-icon bg-white/15"><i class="fa-solid fa-wheat-awn"></i></div>
+            <span class="sc-label">HARGA</span>
+        </div>
+        <div class="sc-num text-gold">Rp {{ number_format($beras->price ?? 16000,0,',','.') }}</div>
+        <div class="sc-sub">Beras Banjar /kg</div>
     </div>
 </div>
 
+
 {{-- QUICK LINKS --}}
 <div class="grid sm:grid-cols-3 gap-3 mt-4">
-    <a href="{{ route('admin.baznas') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
-        <i class="fa-solid fa-users text-olive text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Kelola Warga Zakat</div>
+    <a href="{{ route('admin.baznas') }}" class="group bg-gradient-to-br from-gold/15 via-white to-cream2 border border-gold/30 rounded-2xl p-4 text-center hover:-translate-y-0.5 hover:shadow-md transition shadow-sm">
+        <div class="w-11 h-11 mx-auto bg-gradient-to-br from-gold to-earth text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-users"></i></div>
+        <div class="text-xs font-bold text-oliveDark mt-2">Kelola Warga Zakat</div>
     </a>
-    <a href="{{ route('admin.export') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
-        <i class="fa-solid fa-file-excel text-olive text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Export Catatan</div>
+    <a href="{{ route('admin.export') }}" class="group bg-gradient-to-br from-white to-cream2 border border-emerald-500/30 rounded-2xl p-4 text-center hover:-translate-y-0.5 hover:shadow-md transition shadow-sm">
+        <div class="w-11 h-11 mx-auto bg-emerald-500 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-file-excel"></i></div>
+        <div class="text-xs font-bold text-oliveDark mt-2">Export Catatan</div>
     </a>
-    <a href="{{ route('admin.locations.create') }}" class="bg-cream border border-cream3 rounded-xl p-4 text-center hover:bg-olive/10 transition">
-        <i class="fa-solid fa-map-location-dot text-olive text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Tambah Lokasi</div>
+    <a href="{{ route('admin.locations.create') }}" class="group bg-gradient-to-br from-olive/10 via-white to-cream2 border border-olive/15 rounded-2xl p-4 text-center hover:-translate-y-0.5 hover:shadow-md transition shadow-sm">
+        <div class="w-11 h-11 mx-auto bg-gradient-to-br from-olive to-olive2 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-map-location-dot"></i></div>
+        <div class="text-xs font-bold text-oliveDark mt-2">Tambah Lokasi</div>
     </a>
 </div>
 

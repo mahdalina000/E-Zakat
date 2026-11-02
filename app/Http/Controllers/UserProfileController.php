@@ -131,6 +131,17 @@ class UserProfileController extends Controller
     }
 
     /**
+     * Hapus satu riwayat perhitungan (hanya milik user sendiri).
+     */
+    public function destroyHistory(CalculationHistory $history)
+    {
+        $u = Auth::user();
+        abort_unless($history->user_id === $u->id, 403);
+        $history->delete();
+        return redirect()->route('user.histories')->with('success', 'Riwayat perhitungan dihapus.');
+    }
+
+    /**
      * Ekspor catatan zakat ke Excel.
      */
     public function export(Request $request)

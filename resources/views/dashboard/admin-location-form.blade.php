@@ -3,8 +3,9 @@
 @section('page-title', $location->exists ? 'Edit Lokasi' : 'Tambah Lokasi Baru')
 @section('page-sub','Lengkapi data lokasi penyaluran zakat')
 @section('content')
+@php $locPrefix = auth()->user()->isSuperAdmin() ? 'super.locations' : 'admin.locations'; $locIndex = auth()->user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index'; @endphp
 <div class="max-w-3xl">
-    <form method="POST" action="{{ $location->exists ? route('admin.locations.update', $location) : route('admin.locations.store') }}" class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4">
+    <form method="POST" action="{{ $location->exists ? route("$locPrefix.update", $location) : route("$locPrefix.store") }}" class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4">
         @csrf
         @if($location->exists) @method('PUT') @endif
 
@@ -44,7 +45,7 @@
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Tipe Lokasi *</label>
                 <select name="type" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
-                    @php $types = ['upz'=>'UPZ / Masjid']; if(auth()->user()->isAdminBaznas()) $types = ['baznas'=>'BAZNAS','upz'=>'UPZ / Masjid','warga'=>'Rumah Warga']; @endphp
+                    @php $types = ['upz'=>'UPZ / Masjid']; if(auth()->user()->isAdminBaznas() || auth()->user()->isSuperAdmin()) $types = ['baznas'=>'BAZNAS','upz'=>'UPZ / Masjid','warga'=>'Rumah Warga']; @endphp
                     @foreach($types as $k=>$v)
                         <option value="{{ $k }}" @selected(old('type',$location->type)===$k)>{{ $v }}</option>
                     @endforeach
@@ -75,7 +76,7 @@
 
         <div class="flex gap-3 pt-2">
             <button class="bg-olive text-white font-semibold px-6 py-2.5 rounded-full hover:bg-olive2"><i class="fa-solid fa-floppy-disk mr-1"></i> {{ $location->exists ? 'Simpan Perubahan' : 'Simpan Lokasi' }}</button>
-            <a href="{{ route('admin.locations.index') }}" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2.5 rounded-full hover:bg-cream3">Batal</a>
+            <a href="{{ route($locIndex) }}" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2.5 rounded-full hover:bg-cream3">Batal</a>
         </div>
     </form>
 </div>

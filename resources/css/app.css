@@ -162,9 +162,9 @@ body {
    ============================================================ */
 :root {
     --zy-orb: #6b8a5f;             /* garis pola bintang (light) */
-    --zy-grad: radial-gradient(circle at 20% 10%, rgba(36,108,66,0.10), transparent 40%),
-               radial-gradient(circle at 80% 90%, rgba(200,157,68,0.10), transparent 45%),
-               linear-gradient(180deg, #d5e2d3 0%, #cbd8ca 55%, #becfbe 100%);
+    --zy-grad: radial-gradient(circle at 18% 8%, rgba(38,110,70,0.12), transparent 40%),
+               radial-gradient(circle at 85% 92%, rgba(200,157,68,0.18), transparent 46%),
+               linear-gradient(160deg, #f0e9d8 0%, #e6ecd9 50%, #ccdec8 100%);
 }
 body.dark-mode {
     --zy-orb: #e6c374;
@@ -572,3 +572,203 @@ html:has(body.dark-mode) { background-color: #121816; }
    light = hijau, dark = emas. TIDAK bergantung pada preferensi sistem. */
 .emas-label { color: #1d5b37; }
 body.dark-mode .emas-label, .emas-label.dark-mode { color: #D4AF37; }
+
+/* ============================================================
+   KOMPONEN KARTU STATISTIK DASHBOARD (light + dark)
+   ============================================================ */
+.stat-card{
+    position:relative; border-radius:20px; padding:1rem; overflow:hidden;
+    background:linear-gradient(135deg,#ffffff,#f2edde);
+    border:1px solid rgba(24,116,58,.16);
+    box-shadow:0 12px 28px -14px rgba(18,60,32,.22);
+    transition:transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease;
+}
+.stat-card:hover{ transform:translateY(-3px); box-shadow:0 18px 34px -16px rgba(18,60,32,.32); }
+.stat-card .sc-icon{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.stat-card .sc-label{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+.stat-card .sc-num{ font-size:26px; font-weight:900; margin-top:12px; color:#133a24; line-height:1.05; }
+.stat-card .sc-sub{ font-size:12px; font-weight:600; color:#133a24; opacity:.88; margin-top:2px; }
+.stat-card .sc-foot{ font-size:11px; color:#246c42; opacity:.6; margin-top:2px; }
+
+.sc-emerald{ border-color:rgba(16,185,129,.30); }
+.sc-emerald .sc-icon{ background:#d1fae5; color:#047857; }
+.sc-emerald .sc-label{ color:#059669; }
+.sc-gold{ border-color:rgba(197,155,82,.45); }
+.sc-gold .sc-icon{ background:#fef3c7; color:#b45309; }
+.sc-gold .sc-label{ color:#b45309; }
+.sc-olive{ border-color:rgba(36,108,66,.30); }
+.sc-olive .sc-icon{ background:#dcefe0; color:#246c42; }
+.sc-olive .sc-label{ color:#246c42; }
+.sc-sky{ border-color:rgba(14,165,233,.32); }
+.sc-sky .sc-icon{ background:#e0f2fe; color:#0284c7; }
+.sc-sky .sc-label{ color:#0369a1; }
+.sc-rose{ border-color:rgba(244,63,94,.32); }
+.sc-rose .sc-icon{ background:#ffe4e6; color:#be123c; }
+.sc-rose .sc-label{ color:#be123c; }
+
+.stat-solid{
+    border-radius:20px; padding:1rem; color:#fff; position:relative; overflow:hidden;
+    background:linear-gradient(135deg,#246c42,#1d5b37);
+    box-shadow:0 14px 30px -14px rgba(18,60,32,.45);
+}
+.stat-solid .sc-num{ color:#fff; }
+.stat-solid .sc-sub{ color:rgba(255,255,255,.92); }
+.stat-solid .sc-label{ color:rgba(255,255,255,.85); }
+
+/* ---- DARK MODE ---- */
+body.dark-mode .stat-card{
+    background:linear-gradient(135deg,#0d2417,#0a1711);
+    border-color:#1e4030;
+    box-shadow:0 12px 28px -14px rgba(0,0,0,.6);
+}
+body.dark-mode .stat-card .sc-num,
+body.dark-mode .stat-card .sc-sub{ color:#f8fafc; }
+body.dark-mode .stat-card .sc-foot{ color:#8fc7a2; }
+body.dark-mode .sc-emerald{ border-color:rgba(16,185,129,.38); }
+body.dark-mode .sc-emerald .sc-icon{ background:rgba(16,185,129,.16); color:#6ee7b7; }
+body.dark-mode .sc-emerald .sc-label{ color:#6ee7b7; }
+body.dark-mode .sc-gold{ border-color:rgba(200,157,68,.42); }
+body.dark-mode .sc-gold .sc-icon{ background:rgba(200,157,68,.18); color:#fbbf24; }
+body.dark-mode .sc-gold .sc-label{ color:#fbbf24; }
+body.dark-mode .sc-olive{ border-color:rgba(36,108,66,.42); }
+body.dark-mode .sc-olive .sc-icon{ background:rgba(36,108,66,.22); color:#a8d5ba; }
+body.dark-mode .sc-olive .sc-label{ color:#a8d5ba; }
+body.dark-mode .sc-sky{ border-color:rgba(14,165,233,.38); }
+body.dark-mode .sc-sky .sc-icon{ background:rgba(14,165,233,.18); color:#7dd3fc; }
+body.dark-mode .sc-sky .sc-label{ color:#7dd3fc; }
+body.dark-mode .sc-rose{ border-color:rgba(244,63,94,.38); }
+body.dark-mode .sc-rose .sc-icon{ background:rgba(244,63,94,.18); color:#fda4af; }
+body.dark-mode .sc-rose .sc-label{ color:#fda4af; }
+body.dark-mode .stat-solid{ background:linear-gradient(135deg,#1d5b37,#143f28); }
+
+.stat-solid .sc-num.text-gold{ color:#e8c547; }
+
+
+/* ---- DARK: override gradien global (kartu/permukaan yang pakai gradien terang) ---- */
+body.dark-mode .from-white { --tw-gradient-from: #0d2417; }
+body.dark-mode .via-white { --tw-gradient-via: #0a1711; }
+body.dark-mode .to-cream2 { --tw-gradient-to: #0f1b12; }
+body.dark-mode .from-gold\/15 { --tw-gradient-from: rgba(200,157,68,0.20); }
+body.dark-mode .from-gold\/10 { --tw-gradient-from: rgba(200,157,68,0.16); }
+body.dark-mode .from-olive\/10 { --tw-gradient-from: rgba(75,139,59,0.18); }
+body.dark-mode .from-olive { --tw-gradient-from: #3a7d50; }
+body.dark-mode .to-olive2 { --tw-gradient-to: #27603a; }
+body.dark-mode .from-gold { --tw-gradient-from: #8a6a2f; }
+body.dark-mode .to-earth { --tw-gradient-to: #a1762e; }
+body.dark-mode .border-olive\/15 { border-color: rgba(110,165,126,0.55); }
+
+/* Dark: permukaan kalkulator (varian opacity) -- kartu formulir & panel hasil */
+body.dark-mode .bg-white\/90 { background-color:#0d2417; }
+body.dark-mode .bg-cream2\/70 { background-color:rgba(13,34,23,.82); }
+body.dark-mode .bg-cream2\/60 { background-color:rgba(13,34,23,.72); }
+
+
+
+/* ===== Penyempurnaan light: border emas kartu terang + kontras ===== */
+body:not(.dark-mode) [class*="rounded-[20px]"]:not([class*="bg-olive"]) {
+    border: 1px solid rgba(200,157,68,0.35);
+}
+body:not(.dark-mode) [class*="rounded-2xl"]:not([class*="bg-olive"]) {
+    border: 1px solid rgba(200,157,68,0.30);
+}
+body:not(.dark-mode) #sidebar [class*="text-white/40"] { color: rgba(255,255,255,0.68) !important; }
+body:not(.dark-mode) .text-gray-400, body:not(.dark-mode) .text-slate-400 { color: #6a7568 !important; }
+body:not(.dark-mode) .text-gray-500, body:not(.dark-mode) .text-neutral-400, body:not(.dark-mode) .text-zinc-400 { color: #5c6659 !important; }
+/* ===== MODE TERANG PREMIUM (default) — emas + hijau sage ===== */
+.stat-card {
+    border: 1px solid rgba(200,157,68,0.35);
+    box-shadow: 0 12px 28px rgba(120,100,50,0.10);
+}
+#sidebar { border-right: 1px solid rgba(200,157,68,0.30); }
+header { border-bottom: 1px solid rgba(200,157,68,0.40); }
+body .bg-white { background: #fffdf6; }
+/* ==========================================================
+   TEMA GELAP MEWAH — emas + hijau tua (dashboard)
+   ========================================================== */
+body.dark-mode {
+    --zy-grad: radial-gradient(circle at 18% 6%, rgba(41,122,75,0.30), transparent 40%),
+               radial-gradient(circle at 86% 94%, rgba(226,179,86,0.20), transparent 46%),
+               linear-gradient(155deg, #06120b 0%, #0b2115 48%, #040c08 100%);
+    background-color: #07110c;
+}
+
+/* Kartu utama (rounded-[20px]) -> glass gelap + border emas */
+body.dark-mode [class*="rounded-[20px]"] {
+    background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)) !important;
+    border: 1px solid rgba(200,157,68,0.22) !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.42);
+}
+
+/* Kartu cream kecil */
+body.dark-mode .bg-cream {
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) !important;
+    border: 1px solid rgba(200,157,68,0.18) !important;
+}
+
+/* Header atas */
+body.dark-mode header {
+    background: linear-gradient(180deg, rgba(5,15,10,0.94), rgba(8,24,16,0.90)) !important;
+    border-bottom: 1px solid rgba(218,180,96,0.45) !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Sidebar */
+body.dark-mode #sidebar {
+    background: linear-gradient(180deg, #050d09, #081a10) !important;
+    border-right: 1px solid rgba(218,180,96,0.32);
+}
+body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.5; }
+body.dark-mode #sidebar a { color: #cfd8cd; }
+body.dark-mode #sidebar a:hover { background: rgba(218,180,96,0.14); color: #f4ead0; }
+/* item menu aktif -> emas */
+body.dark-mode #sidebar .nav-active,
+body.dark-mode #sidebar .bg-white {
+    background: linear-gradient(90deg, rgba(222,184,100,0.95), rgba(222,184,100,0.60)) !important;
+    color: #08150d !important;
+}
+
+/* Teks */
+body.dark-mode .text-oliveDark { color: #f2e9d2 !important; }
+body.dark-mode .text-olive { color: #cbbd94 !important; }
+body.dark-mode .text-cream, body.dark-mode .text-cream2 { color: #e6dcc4 !important; }
+
+/* Tabel & pill */
+body.dark-mode thead { color: #e2c57f !important; }
+body.dark-mode table { border-color: rgba(218,180,96,0.15) !important; }
+body.dark-mode tr { border-color: rgba(218,180,96,0.15) !important; }
+body.dark-mode [class*="rounded-full"] { border-color: rgba(218,180,96,0.30) !important; }
+
+/* Komponen kartu statistik: sentuhan emas di dark */
+body.dark-mode .stat-card {
+    border: 1px solid rgba(200,157,68,0.28) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+/* ===== Penyempurnaan kontras & keselarasan dark ===== */
+/* Kartu info Harga Beras -> senada dengan tema gelap mewah */
+body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] {
+    background: linear-gradient(160deg, #0e2418, #09170f) !important;
+    border: 1px solid rgba(218,180,96,0.40) !important;
+}
+body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] .bg-white\/10 {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(218,180,96,0.18);
+}
+
+/* Sub-label sekunder lebih terbaca */
+body.dark-mode [class*="text-olive/60"] { color: #dcd2b2 !important; }
+body.dark-mode [class*="text-cream/70"] { color: #cfc6aE !important; }
+body.dark-mode [class*="text-cream/80"] { color: #e2d8bf !important; }
+
+/* Label section sidebar (MENU / PUBLIK) */
+body.dark-mode #sidebar [class*="text-white/40"] { color: rgba(255,255,255,0.70) !important; }
+
+/* Pill role hijau pucat -> kontras */
+body.dark-mode [class*="bg-emerald-50"] { background: rgba(111,158,124,0.16) !important; color: #9fc7ae !important; border: 1px solid rgba(111,158,124,0.35); }
+body.dark-mode [class*="bg-emerald-100"] { background: rgba(111,158,124,0.20) !important; color: #b3d6bf !important; border: 1px solid rgba(111,158,124,0.40); }
+
+/* Kartu statistik: pisah lebih jelas dari background */
+body.dark-mode .stat-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.03)) !important;
+    border: 1px solid rgba(218,180,96,0.34) !important;
+}
