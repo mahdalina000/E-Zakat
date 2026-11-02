@@ -88,62 +88,60 @@
     </svg>
 </div>
 
-<!-- LAMPION DENGAN POSISI LEBIH TURUN & RANTAI GANTUNG KELIHATAN PENUH -->
+<!-- LAMPION KANAN ATAS (disamakan dengan lampion beranda) -->
 <div class="header-lantern-behind hidden sm:block">
-    <svg width="48" height="135" viewBox="0 0 60 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Rantai Panjang Dari Atas -->
-        <line x1="30" y1="0" x2="30" y2="45" stroke="#d97706" stroke-width="2.2" stroke-dasharray="4 2"/>
-        <circle cx="30" cy="48" r="4" stroke="#fbbf24" stroke-width="2" fill="none"/>
-        
-        <!-- Bintang Kilau Atas Ring -->
-        <path d="M30 38 L32 41 L35 41 L33 43 L34 46 L30 44 L26 46 L27 43 L25 41 L28 41 Z" fill="#fef08a"/>
-
-        <!-- Kubah Atas Lampion -->
-        <path d="M30 52 C22 60, 16 68, 14 72 H46 C44 68, 38 60, 30 52 Z" fill="url(#goldDomeGrad5)" stroke="#f59e0b" stroke-width="1"/>
-        <rect x="25" y="51" width="10" height="2" rx="1" fill="#fbbf24"/>
-
-        <!-- Badan Utama Lampion -->
-        <rect x="13" y="72" width="34" height="34" rx="2" fill="url(#bodyGoldGrad5)" stroke="#d97706" stroke-width="1.5"/>
-        
-        <!-- Inti Cahaya Lilin Bersinar -->
-        <circle cx="30" cy="89" r="12" fill="url(#candleLightGrad5)" class="candle-flicker"/>
-        
-        <!-- Tingkap Lengkung Islam -->
-        <path d="M16 75 C16 73, 22 73, 22 75 V102 H16 Z" fill="url(#windowGlass5)" stroke="#b45309" stroke-width="1"/>
-        <path d="M25 74 C25 70, 35 70, 35 74 V102 H25 Z" fill="url(#windowGlass5)" stroke="#b45309" stroke-width="1.2"/>
-        <path d="M38 75 C38 73, 44 73, 44 75 V102 H38 Z" fill="url(#windowGlass5)" stroke="#b45309" stroke-width="1"/>
-
-        <!-- Tapak Bawah Lampion -->
-        <path d="M12 106 H48 L42 112 H18 Z" fill="url(#goldDomeGrad5)" stroke="#d97706" stroke-width="1"/>
-        <path d="M18 112 C20 124, 40 124, 42 112 Z" fill="url(#goldDomeGrad5)" stroke="#d97706" stroke-width="1"/>
-        
-        <!-- Gantungan Rumbai Bawah -->
-        <circle cx="30" cy="126" r="3" stroke="#fbbf24" stroke-width="1.5" fill="none"/>
-
-        <defs>
-            <linearGradient id="goldDomeGrad5" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#fef08a"/>
-                <stop offset="40%" stop-color="#f59e0b"/>
-                <stop offset="100%" stop-color="#78350f"/>
-            </linearGradient>
-            <linearGradient id="bodyGoldGrad5" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#fbbf24"/>
-                <stop offset="50%" stop-color="#d97706"/>
-                <stop offset="100%" stop-color="#92400e"/>
-            </linearGradient>
-            <radialGradient id="candleLightGrad5" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="40%" stop-color="#fef08a"/>
-                <stop offset="80%" stop-color="#f59e0b" stop-opacity="0.95"/>
-                <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
-            </radialGradient>
-            <linearGradient id="windowGlass5" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-                <stop offset="60%" stop-color="#fef08a" stop-opacity="0.75"/>
-                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.85"/>
-            </linearGradient>
-        </defs>
-    </svg>
+<svg width="150" height="312" viewBox="0 0 260 540" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-md">
+                <defs>
+                    <radialGradient id="zy-glow-r" cx="50%" cy="48%" r="48%">
+                        <stop offset="0%" stop-color="#fffcf0" stop-opacity="0.98"/>
+                        <stop offset="42%" stop-color="#f5c74e" stop-opacity="0.8"/>
+                        <stop offset="88%" stop-color="#bf801a" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#8a5606" stop-opacity="0"/>
+                    </radialGradient>
+                    <linearGradient id="zy-brass2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#8c661c"/>
+                        <stop offset="25%" stop-color="#d4a742"/>
+                        <stop offset="50%" stop-color="#fadb82"/>
+                        <stop offset="75%" stop-color="#c99732"/>
+                        <stop offset="100%" stop-color="#7a5512"/>
+                    </linearGradient>
+                </defs>
+                <line x1="65" y1="0" x2="65" y2="95" class="zy-lantern-line" stroke-width="1.6" stroke-dasharray="3.5 3.5"/>
+                <g transform="translate(65, 45)">
+                    <polygon points="0,-13 3.8,-3.8 13,-3.8 5.5,2.5 8.5,12 0,6.5 -8.5,12 -5.5,2.5 -13,-3.8 -3.8,-3.8" fill="url(#zy-brass2)"/>
+                    <circle cx="0" cy="0" r="2.5" fill="#fff8e7"/>
+                </g>
+                <circle cx="65" cy="95" r="7" stroke="url(#zy-brass2)" stroke-width="2.2" fill="none"/>
+                <path d="M 42 118 C 42 104, 88 104, 88 118 L 84 130 L 46 130 Z" fill="url(#zy-brass2)"/>
+                <ellipse cx="65" cy="190" rx="30" ry="48" fill="url(#zy-glow-r)"/>
+                <path d="M 46 130 L 26 178 L 36 242 L 65 264 L 94 242 L 104 178 L 84 130 Z" fill="none" stroke="url(#zy-brass2)" stroke-width="2.5"/>
+                <line x1="65" y1="130" x2="65" y2="264" stroke="url(#zy-brass2)" stroke-width="2.2"/>
+                <path d="M 33 165 Q 65 180 97 165 M 30 205 Q 65 224 100 205 M 34 230 Q 65 244 96 230" stroke="#fadb82" stroke-width="1.2" fill="none" opacity="0.9"/>
+                <g transform="translate(65, 190)">
+                    <polygon points="0,-8 2,-2 8,-2 3,1 5,7 0,4 -5,7 -3,1 -8,-2 -2,-2" fill="#ffffff" opacity="0.85"/>
+                </g>
+                <path d="M 36 242 L 46 270 L 84 270 L 94 242 Z" fill="url(#zy-brass2)"/>
+                <line x1="185" y1="0" x2="185" y2="230" class="zy-lantern-line" stroke-width="1.6" stroke-dasharray="3.5 3.5"/>
+                <g transform="translate(185, 75)">
+                    <polygon points="0,-14 4,-4 14,-4 6,3 9,13 0,7 -9,13 -6,3 -14,-4 -4,-4" fill="url(#zy-brass2)"/>
+                    <circle cx="0" cy="0" r="3" fill="#fff8e7"/>
+                </g>
+                <g transform="translate(185, 160)">
+                    <polygon points="0,-12 3.5,-3.5 12,-3.5 5,2.5 8,11 0,6 -8,11 -5,2.5 -12,-3.5 -3.5,-3.5" fill="url(#zy-brass2)"/>
+                    <circle cx="0" cy="0" r="2.5" fill="#fff8e7"/>
+                </g>
+                <circle cx="185" cy="230" r="7.5" stroke="url(#zy-brass2)" stroke-width="2.2" fill="none"/>
+                <path d="M 160 254 C 160 238, 210 238, 210 254 L 205 268 L 165 268 Z" fill="url(#zy-brass2)"/>
+                <ellipse cx="185" cy="335" rx="34" ry="54" fill="url(#zy-glow-r)"/>
+                <path d="M 165 268 L 142 320 L 153 392 L 185 416 L 217 392 L 228 320 L 205 268 Z" fill="none" stroke="url(#zy-brass2)" stroke-width="2.6"/>
+                <line x1="185" y1="268" x2="185" y2="416" stroke="url(#zy-brass2)" stroke-width="2.2"/>
+                <path d="M 150 305 Q 185 322 220 305 M 146 350 Q 185 370 224 350 M 151 380 Q 185 395 219 380" stroke="#fadb82" stroke-width="1.2" fill="none" opacity="0.9"/>
+                <g transform="translate(185, 335)">
+                    <polygon points="0,-9 2.5,-2.5 9,-2.5 4,1.5 6,8 0,4.5 -6,8 -4,1.5 -9,-2.5 -2.5,-2.5" fill="#ffffff" opacity="0.9"/>
+                </g>
+                <path d="M 153 392 L 164 424 L 206 424 L 217 392 Z" fill="url(#zy-brass2)"/>
+                <path d="M 185 424 L 185 452 M 185 452 C 180 464, 190 464, 185 476 C 180 464, 190 464, 185 452" stroke="url(#zy-brass2)" stroke-width="2.2" fill="#f5ce62"/>
+            </svg>
 </div>
 
 <div class="flex min-h-screen relative z-10">
