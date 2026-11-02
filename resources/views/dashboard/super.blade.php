@@ -167,8 +167,8 @@ function renderSuperCharts() {
                 labels: loginData.map(d => d.label),
                 datasets: [{
                     data: loginData.map(d => d.count),
-                    borderColor: '#5A6B33',
-                    backgroundColor: 'rgba(90,107,51,0.12)',
+                    borderColor: '#c89d44',
+                    backgroundColor: 'rgba(200,157,68,0.14)',
                     fill: true,
                     tension: 0.4,
                     pointBackgroundColor: '#5A6B33',
@@ -204,7 +204,7 @@ function renderSuperCharts() {
                         {{ $totalUpz }},
                         {{ $totalUsers }}
                     ],
-                    backgroundColor: ['#8b5cf6', '#10b981', '#f97316', '#0ea5e9'],
+                    backgroundColor: ['#e2c57f', '#6f9e7c', '#bf975f', '#87a7ab'],
                     borderWidth: 0
                 }]
             },

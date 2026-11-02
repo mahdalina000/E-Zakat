@@ -661,3 +661,94 @@ body.dark-mode .border-olive\/15 { border-color: rgba(110,165,126,0.55); }
 body.dark-mode .bg-white\/90 { background-color:#0d2417; }
 body.dark-mode .bg-cream2\/70 { background-color:rgba(13,34,23,.82); }
 body.dark-mode .bg-cream2\/60 { background-color:rgba(13,34,23,.72); }
+
+/* ==========================================================
+   TEMA GELAP MEWAH — emas + hijau tua (dashboard)
+   ========================================================== */
+body.dark-mode {
+    --zy-grad: radial-gradient(circle at 18% 6%, rgba(41,122,75,0.30), transparent 40%),
+               radial-gradient(circle at 86% 94%, rgba(226,179,86,0.20), transparent 46%),
+               linear-gradient(155deg, #06120b 0%, #0b2115 48%, #040c08 100%);
+    background-color: #07110c;
+}
+
+/* Kartu utama (rounded-[20px]) -> glass gelap + border emas */
+body.dark-mode [class*="rounded-[20px]"] {
+    background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)) !important;
+    border: 1px solid rgba(200,157,68,0.22) !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.42);
+}
+
+/* Kartu cream kecil */
+body.dark-mode .bg-cream {
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) !important;
+    border: 1px solid rgba(200,157,68,0.18) !important;
+}
+
+/* Header atas */
+body.dark-mode header {
+    background: linear-gradient(180deg, rgba(5,15,10,0.94), rgba(8,24,16,0.90)) !important;
+    border-bottom: 1px solid rgba(218,180,96,0.45) !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Sidebar */
+body.dark-mode #sidebar {
+    background: linear-gradient(180deg, #050d09, #081a10) !important;
+    border-right: 1px solid rgba(218,180,96,0.32);
+}
+body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.5; }
+body.dark-mode #sidebar a { color: #cfd8cd; }
+body.dark-mode #sidebar a:hover { background: rgba(218,180,96,0.14); color: #f4ead0; }
+/* item menu aktif -> emas */
+body.dark-mode #sidebar .nav-active,
+body.dark-mode #sidebar .bg-white {
+    background: linear-gradient(90deg, rgba(222,184,100,0.95), rgba(222,184,100,0.60)) !important;
+    color: #08150d !important;
+}
+
+/* Teks */
+body.dark-mode .text-oliveDark { color: #f2e9d2 !important; }
+body.dark-mode .text-olive { color: #cbbd94 !important; }
+body.dark-mode .text-cream, body.dark-mode .text-cream2 { color: #e6dcc4 !important; }
+
+/* Tabel & pill */
+body.dark-mode thead { color: #e2c57f !important; }
+body.dark-mode table { border-color: rgba(218,180,96,0.15) !important; }
+body.dark-mode tr { border-color: rgba(218,180,96,0.15) !important; }
+body.dark-mode [class*="rounded-full"] { border-color: rgba(218,180,96,0.30) !important; }
+
+/* Komponen kartu statistik: sentuhan emas di dark */
+body.dark-mode .stat-card {
+    border: 1px solid rgba(200,157,68,0.28) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+/* ===== Penyempurnaan kontras & keselarasan dark ===== */
+/* Kartu info Harga Beras -> senada dengan tema gelap mewah */
+body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] {
+    background: linear-gradient(160deg, #0e2418, #09170f) !important;
+    border: 1px solid rgba(218,180,96,0.40) !important;
+}
+body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] .bg-white\/10 {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(218,180,96,0.18);
+}
+
+/* Sub-label sekunder lebih terbaca */
+body.dark-mode [class*="text-olive/60"] { color: #dcd2b2 !important; }
+body.dark-mode [class*="text-cream/70"] { color: #cfc6aE !important; }
+body.dark-mode [class*="text-cream/80"] { color: #e2d8bf !important; }
+
+/* Label section sidebar (MENU / PUBLIK) */
+body.dark-mode #sidebar [class*="text-white/40"] { color: rgba(255,255,255,0.70) !important; }
+
+/* Pill role hijau pucat -> kontras */
+body.dark-mode [class*="bg-emerald-50"] { background: rgba(111,158,124,0.16) !important; color: #9fc7ae !important; border: 1px solid rgba(111,158,124,0.35); }
+body.dark-mode [class*="bg-emerald-100"] { background: rgba(111,158,124,0.20) !important; color: #b3d6bf !important; border: 1px solid rgba(111,158,124,0.40); }
+
+/* Kartu statistik: pisah lebih jelas dari background */
+body.dark-mode .stat-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.03)) !important;
+    border: 1px solid rgba(218,180,96,0.34) !important;
+}
