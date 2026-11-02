@@ -5,6 +5,10 @@
 @section('head')
 {{-- Chart.js sudah di-bundle Vite di resources/js/app.js --}}
 @endsection
+<style>
+@keyframes hermSpinOnce { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.role-spin { animation: hermSpinOnce 1.8s ease-in-out 1; }
+</style>
 @section('content')
 
 {{-- Stat Cards --}}
@@ -51,7 +55,11 @@
             <span class="bg-cream text-olive text-xs px-3 py-1 rounded-full font-semibold">{{ $activeUsers }} aktif</span>
         </div>
         <div class="mt-4 flex items-center gap-4">
-            <div class="w-1/2"><canvas id="roleChart" height="150"></canvas></div>
+            <div class="w-1/2">
+                <div class="role-spin rounded-full overflow-hidden aspect-square mx-auto max-w-[190px]">
+                    <canvas id="roleChart" height="150"></canvas>
+                </div>
+            </div>
             <div class="w-1/2 space-y-2 text-xs">
                 <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-violet-500"></span> Super Admin <b class="ml-auto">{{ \App\Models\User::where('role','super_admin')->count() }}</b></div>
                 <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Admin BAZNAS <b class="ml-auto">{{ $totalBaznasAdmin }}</b></div>
@@ -136,53 +144,106 @@
 @section('scripts')
 <script>
 function renderSuperCharts() {
-    // Tunggu Chart.js (dari module app.js) benar-benar siap sebelum render.
     if (typeof Chart === 'undefined') {
-        setTimeout(renderSuperCharts, 120);
+        setTimeout(renderSuperCharts, 100);
         return;
     }
-    const loginData = @json($loginSeries);
-    new Chart(document.getElementById('loginChart'), {
-        type: 'line',
-        data: {
-            labels: loginData.map(d=>d.label),
-            datasets: [{
-                data: loginData.map(d=>d.count),
-                borderColor: '#5A6B33', backgroundColor: 'rgba(90,107,51,0.12)',
-                fill: true, tension: 0.4, pointBackgroundColor:'#5A6B33', pointRadius: 4
-            }]
-        },
-        options: {
-            plugins:{legend:{display:false}},
-            scales:{y:{beginAtZero:true, ticks:{precision:0}}},
-            animation: { duration: 3000, easing: 'easeInOutCubic' }
-        }
-    });
 
-    new Chart(document.getElementById('roleChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Super Admin','Admin BAZNAS','Admin UPZ','User'],
-            datasets: [{
-                data: [{{ \App\Models\User::where('role','super_admin')->count() }}, {{ $totalBaznasAdmin }}, {{ $totalUpz }}, {{ $totalUsers }}],
-                backgroundColor: ['#8b5cf6','#10b981','#f97316','#0ea5e9'], borderWidth: 0
-            }]
-        },
-        options: {
-            plugins:{legend:{display:false}},
-            cutout:'65%',
-            animation: { animateRotate: true, animateScale: false, duration: 3000, easing: 'easeInOutCubic' }
-        }
-    });
+    // Paksa Chart.js mengabaikan pengaturan Reduced Motion dari OS/Browser
+    if (Chart.defaults) {
+        Chart.defaults.animation = true;
+    }
+
+    // 1. Render Grafik Login (Line Chart)
+    const loginCanvas = document.getElementById('loginChart');
+    if (loginCanvas) {
+        const existingLogin = Chart.getChart(loginCanvas);
+        if (existingLogin) existingLogin.destroy();
+
+        const loginData = @json($loginSeries);
+        new Chart(loginCanvas, {
+            type: 'line',
+            data: {
+                labels: loginData.map(d => d.label),
+                datasets: [{
+                    data: loginData.map(d => d.count),
+                    borderColor: '#5A6B33',
+                    backgroundColor: 'rgba(90,107,51,0.12)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#5A6B33',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+    }
+
+    // 2. Render Grafik Komposisi Pengguna (Doughnut Chart Berputar)
+    const roleCanvas = document.getElementById('roleChart');
+    if (roleCanvas) {
+        const existingRole = Chart.getChart(roleCanvas);
+        if (existingRole) existingRole.destroy();
+
+        new Chart(roleCanvas, {
+            type: 'doughnut',
+            data: {
+                labels: ['Super Admin', 'Admin BAZNAS', 'Admin UPZ', 'User'],
+                datasets: [{
+                    data: [
+                        {{ \App\Models\User::where('role','super_admin')->count() }},
+                        {{ $totalBaznasAdmin }},
+                        {{ $totalUpz }},
+                        {{ $totalUsers }}
+                    ],
+                    backgroundColor: ['#8b5cf6', '#10b981', '#f97316', '#0ea5e9'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '65%',
+                plugins: { legend: { display: false } },
+                animation: {
+                    animateRotate: true,
+                    animateScale: true,
+                    duration: 2500,
+                    easing: 'easeOutQuart'
+                },
+                animations: {
+                    numbers: {
+                        type: 'number',
+                        properties: ['circumference', 'endAngle', 'startAngle', 'outerRadius', 'innerRadius']
+                    }
+                }
+            }
+        });
+    }
 }
-function startSuperCharts() {
-    // Beri jeda singkat setelah halaman tampil agar animasi chart terlihat jelas.
-    setTimeout(renderSuperCharts, 300);
-}
-if (document.readyState !== 'complete') {
-    window.addEventListener('load', startSuperCharts);
-} else {
-    startSuperCharts();
-}
+
+// Gunakan IntersectionObserver agar animasi BARU BERJALAN saat grafik masuk ke layar pengguna
+document.addEventListener('DOMContentLoaded', function () {
+    const target = document.getElementById('roleChart');
+    if (!target) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                renderSuperCharts();
+                observer.disconnect(); // Hanya jalankan sekali saat masuk layar
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(target);
+});
 </script>
 @endsection
