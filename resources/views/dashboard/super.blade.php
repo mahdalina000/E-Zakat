@@ -155,7 +155,7 @@ function renderSuperCharts() {
         options: {
             plugins:{legend:{display:false}},
             scales:{y:{beginAtZero:true, ticks:{precision:0}}},
-            animation: { duration: 1200, easing: 'easeOutQuart' }
+            animation: { duration: 2000, easing: 'easeOutQuart' }
         }
     });
 
@@ -171,14 +171,18 @@ function renderSuperCharts() {
         options: {
             plugins:{legend:{display:false}},
             cutout:'65%',
-            animation: { animateRotate: true, animateScale: true, duration: 1200, easing: 'easeOutQuart' }
+            animation: { animateRotate: true, animateScale: true, duration: 2000, easing: 'easeOutQuart' }
         }
     });
 }
+function startSuperCharts() {
+    // Beri jeda singkat setelah halaman tampil agar animasi chart terlihat jelas.
+    setTimeout(renderSuperCharts, 650);
+}
 if (document.readyState !== 'complete') {
-    window.addEventListener('load', renderSuperCharts);
+    window.addEventListener('load', startSuperCharts);
 } else {
-    renderSuperCharts();
+    startSuperCharts();
 }
 </script>
 @endsection
