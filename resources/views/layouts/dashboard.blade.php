@@ -167,7 +167,7 @@
             <button onclick="toggleSidebar()" class="lg:hidden ml-auto w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-xmark text-sm"></i></button>
         </div><!-- LAMPION KECIL DI BAWAH LOGO -->
 <div class="flex justify-center pt-1 pointer-events-none select-none -mt-1">
-<svg width="30" height="96" viewBox="0 0 135 430" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-md">
+<svg width="46" height="147" viewBox="0 0 135 430" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-md">
                 <defs>
                     <radialGradient id="zy-glow-l" cx="50%" cy="48%" r="48%">
                         <stop offset="0%" stop-color="#fffcf0" stop-opacity="0.95"/>
