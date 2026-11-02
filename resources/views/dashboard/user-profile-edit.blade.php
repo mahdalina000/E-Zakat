@@ -72,17 +72,35 @@
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Penghasilan Bulanan (Rp)</label>
-                <input name="monthly_income" type="number" step="0.01" min="0" value="{{ old('monthly_income', $profile->monthly_income ?? '') }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="0">
+                <input type="text" 
+                       value="{{ old('monthly_income', $profile->monthly_income) !== null && old('monthly_income', $profile->monthly_income) !== '' ? number_format((float)old('monthly_income', $profile->monthly_income), 0, ',', '.') : '' }}" 
+                       required 
+                       class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                       placeholder="0" 
+                       oninput="formatRupiahField(this, 'monthly_income')">
+                <input type="hidden" name="monthly_income" id="monthly_income" value="{{ old('monthly_income', $profile->monthly_income ?? '') }}">
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Pengeluaran Bulanan (Rp)</label>
-                <input name="monthly_expense" type="number" step="0.01" min="0" value="{{ old('monthly_expense', $profile->monthly_expense ?? 0) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="0">
+                <input type="text" 
+                       value="{{ number_format((float)old('monthly_expense', $profile->monthly_expense ?? 0), 0, ',', '.') }}" 
+                       required 
+                       class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                       placeholder="0" 
+                       oninput="formatRupiahField(this, 'monthly_expense')">
+                <input type="hidden" name="monthly_expense" id="monthly_expense" value="{{ old('monthly_expense', $profile->monthly_expense ?? 0) }}">
                 <p class="text-[10px] text-olive/50 mt-0.5">Isi 0 jika tidak ada pengeluaran rutin.</p>
             </div>
         </div>
         <div>
             <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Total Hutang (Rp)</label>
-            <input name="debt_amount" type="number" step="0.01" min="0" value="{{ old('debt_amount', $profile->debt_amount ?? 0) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="0">
+            <input type="text" 
+                   value="{{ number_format((float)old('debt_amount', $profile->debt_amount ?? 0), 0, ',', '.') }}" 
+                   required 
+                   class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                   placeholder="0" 
+                   oninput="formatRupiahField(this, 'debt_amount')">
+            <input type="hidden" name="debt_amount" id="debt_amount" value="{{ old('debt_amount', $profile->debt_amount ?? 0) }}">
             <p class="text-[10px] text-olive/50 mt-0.5">Isi 0 jika tidak punya hutang.</p>
         </div>
 
@@ -92,23 +110,44 @@
 
         <div>
             <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Perkiraan Total Aset (Rp)</label>
-            <input name="asset_value" type="number" step="0.01" min="0" value="{{ old('asset_value', $profile->asset_value ?? 0) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="0">
+            <input type="text" 
+                   value="{{ number_format((float)old('asset_value', $profile->asset_value ?? 0), 0, ',', '.') }}" 
+                   required 
+                   class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                   placeholder="0" 
+                   oninput="formatRupiahField(this, 'asset_value')">
+            <input type="hidden" name="asset_value" id="asset_value" value="{{ old('asset_value', $profile->asset_value ?? 0) }}">
             <p class="text-[10px] text-olive/50 mt-0.5">Gabungan kas, emas, investasi, properti, kendaraan. Isi 0 jika tidak ada. Boleh dikosongkan rinciannya di bawah.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4">
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Kas / Tabungan (Rp)</label>
-                <input name="cash_value" type="number" step="0.01" min="0" value="{{ old('cash_value', $profile->cash_value ?? '') }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
+                <input type="text" 
+                       value="{{ old('cash_value', $profile->cash_value) !== null && old('cash_value', $profile->cash_value) !== '' ? number_format((float)old('cash_value', $profile->cash_value), 0, ',', '.') : '' }}" 
+                       class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                       placeholder="0" 
+                       oninput="formatRupiahField(this, 'cash_value')">
+                <input type="hidden" name="cash_value" id="cash_value" value="{{ old('cash_value', $profile->cash_value ?? '') }}">
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Emas (Rp)</label>
-                <input name="gold_value" type="number" step="0.01" min="0" value="{{ old('gold_value', $profile->gold_value ?? '') }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
+                <input type="text" 
+                       value="{{ old('gold_value', $profile->gold_value) !== null && old('gold_value', $profile->gold_value) !== '' ? number_format((float)old('gold_value', $profile->gold_value), 0, ',', '.') : '' }}" 
+                       class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                       placeholder="0" 
+                       oninput="formatRupiahField(this, 'gold_value')">
+                <input type="hidden" name="gold_value" id="gold_value" value="{{ old('gold_value', $profile->gold_value ?? '') }}">
             </div>
         </div>
         <div>
             <label class="text-xs font-semibold text-oliveDark">Kendaraan (Rp)</label>
-            <input name="vehicle_value" type="number" step="0.01" min="0" value="{{ old('vehicle_value', $profile->vehicle_value ?? '') }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
+            <input type="text" 
+                   value="{{ old('vehicle_value', $profile->vehicle_value) !== null && old('vehicle_value', $profile->vehicle_value) !== '' ? number_format((float)old('vehicle_value', $profile->vehicle_value), 0, ',', '.') : '' }}" 
+                   class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
+                   placeholder="0" 
+                   oninput="formatRupiahField(this, 'vehicle_value')">
+            <input type="hidden" name="vehicle_value" id="vehicle_value" value="{{ old('vehicle_value', $profile->vehicle_value ?? '') }}">
         </div>
 
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2 mt-4">
@@ -127,4 +166,19 @@
         </div>
     </form>
 </div>
+
+<script>
+function formatRupiahField(inputEl, hiddenId) {
+    let rawVal = inputEl.value.replace(/[^0-9]/g, '');
+    let hiddenEl = document.getElementById(hiddenId);
+    if (hiddenEl) {
+        hiddenEl.value = rawVal;
+    }
+    if (rawVal) {
+        inputEl.value = new Intl.NumberFormat('id-ID').format(rawVal);
+    } else {
+        inputEl.value = '';
+    }
+}
+</script>
 @endsection

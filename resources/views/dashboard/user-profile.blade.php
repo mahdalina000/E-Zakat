@@ -62,6 +62,21 @@
     @else
     <div class="text-center py-6 text-olive/40 text-sm">Kategori belum ditentukan. Isi data diri lengkap terlebih dahulu.</div>
     @endif
+
+    <div class="mt-4 bg-cream2 rounded-xl p-4 text-xs text-oliveDark">
+        <div class="font-bold text-oliveDark uppercase tracking-wider text-xs mb-2">Cara Menghitung Kategori</div>
+        <ol class="list-decimal list-inside space-y-1.5 leading-relaxed text-oliveDark">
+            <li>Hitung <b class="text-oliveDark">kebutuhan pokok keluarga</b> = Rp1.500.000 × jumlah tanggungan (minimal 1).</li>
+            <li>Punya <b class="text-oliveDark">hutang</b> dan penghasilan ≤ kebutuhan pokok → <b class="text-oliveDark">Gharimin</b>.</li>
+            <li><b class="text-oliveDark">Tanpa penghasilan &amp; tanpa harta</b> → <b class="text-oliveDark">Fakir</b>.</li>
+            <li>Penghasilan <b class="text-oliveDark">≤ kebutuhan pokok</b> → <b class="text-oliveDark">Miskin</b>.</li>
+            <li>Penghasilan <b class="text-oliveDark">≥ Rp5.000.000</b> &amp; total aset <b class="text-oliveDark">≥ Rp10.000.000</b> → <b class="text-oliveDark">Pemberi Zakat</b>.</li>
+            <li>Selain itu → <b class="text-oliveDark">Netral</b>.</li>
+        </ol>
+        <div class="mt-2.5 pt-2.5 border-t border-cream3 text-oliveDark">
+            Data yang dipakai: penghasilan/bulan, tanggungan, hutang, dan total aset. Edit data diri untuk memperbarui status.
+        </div>
+    </div>
 </div>
 
 {{-- CARD CATATAN ZAKAT --}}
@@ -116,6 +131,9 @@
 <div id="recordModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl p-5 w-full max-w-lg max-h-[90vh] overflow-auto">
         <h3 class="font-bold text-oliveDark text-sm mb-3">Tambah Catatan Zakat</h3>
+        @error('jumlah')
+            <div class="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-3">{{ $message }}</div>
+        @enderror
         <form method="POST" action="{{ route('user.records.store') }}" class="space-y-3">
             @csrf
             <div>
@@ -151,17 +169,18 @@
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-                {{-- TANGGAL BAYAR DENGAN ICON KALENDER & TRIGGER POPUP --}}
+                {{-- TANGGAL BAYAR TANPA IKON (POLOS DENGAN TRIGGER CLICK) --}}
                 <div>
-                    <label class="text-xs font-semibold text-oliveDark">Tanggal Bayar</label>
-                    <div class="relative mt-1">
-                        <input name="payment_date" type="date" onclick="this.showPicker()" class="w-full border border-cream3 rounded-full pl-4 pr-9 py-2 text-xs bg-cream2 outline-none cursor-pointer">
-                        <i class="fa-solid fa-calendar-days absolute right-3.5 top-1/2 -translate-y-1/2 text-olive/50 pointer-events-none text-xs"></i>
-                    </div>
+                    <label class="text-xs font-semibold text-oliveDark block mb-1">Tanggal Bayar</label>
+                    <input name="payment_date" 
+                           type="date" 
+                           onclick="this.showPicker()" 
+                           class="no-calendar-icon w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none cursor-pointer text-oliveDark">
                 </div>
+
                 <div>
-                    <label class="text-xs font-semibold text-oliveDark">Metode Pembayaran</label>
-                    <select name="payment_method" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
+                    <label class="text-xs font-semibold text-oliveDark block mb-1">Metode Pembayaran</label>
+                    <select name="payment_method" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                         <option value="tunai">Tunai</option>
                         <option value="transfer">Transfer</option>
                         <option value="qris">QRIS</option>
@@ -197,7 +216,17 @@
     </a>
 </div>
 
-{{-- SCRIPT FORMAT TERPISAH DAN PASTI DIEKSEKUSI --}}
+{{-- CSS KHUSUS UNTUK MENGHAPUS SEMUA IKON KALENDER BAWAAN --}}
+<style>
+input[type="date"].no-calendar-icon::-webkit-calendar-picker-indicator,
+input[type="date"].no-calendar-icon::-webkit-inner-spin-button,
+input[type="date"].no-calendar-icon::-webkit-clear-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+</style>
+
+{{-- SCRIPT FORMAT TERPISAH --}}
 <script>
 function formatRupiahDirect(el) {
     let val = el.value.replace(/[^0-9]/g, '');
@@ -213,10 +242,4 @@ function formatRupiahDirect(el) {
 }
 </script>
 
-@endsection
-
-@section('scripts')
-<script>
-// Script tambahan jika menggunakan section scripts
-</script>
 @endsection
