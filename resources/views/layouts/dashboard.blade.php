@@ -267,9 +267,7 @@
     (function(){
         const btn = document.getElementById('themeToggleDash'), icon = document.getElementById('themeIconDash');
         function applyTheme(){
-            let stored = localStorage.getItem('theme');
-            if (!stored) { stored = 'dark'; localStorage.setItem('theme', 'dark'); }
-            const dark = stored === 'dark';
+            const dark = localStorage.getItem('theme') === 'dark';
             document.body.classList.toggle('dark-mode', dark);
             if (icon) icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }

@@ -162,9 +162,9 @@ body {
    ============================================================ */
 :root {
     --zy-orb: #6b8a5f;             /* garis pola bintang (light) */
-    --zy-grad: radial-gradient(circle at 20% 10%, rgba(36,108,66,0.10), transparent 40%),
-               radial-gradient(circle at 80% 90%, rgba(200,157,68,0.10), transparent 45%),
-               linear-gradient(180deg, #d5e2d3 0%, #cbd8ca 55%, #becfbe 100%);
+    --zy-grad: radial-gradient(circle at 18% 8%, rgba(38,110,70,0.12), transparent 40%),
+               radial-gradient(circle at 85% 92%, rgba(200,157,68,0.18), transparent 46%),
+               linear-gradient(160deg, #f0e9d8 0%, #e6ecd9 50%, #ccdec8 100%);
 }
 body.dark-mode {
     --zy-orb: #e6c374;
@@ -662,6 +662,26 @@ body.dark-mode .bg-white\/90 { background-color:#0d2417; }
 body.dark-mode .bg-cream2\/70 { background-color:rgba(13,34,23,.82); }
 body.dark-mode .bg-cream2\/60 { background-color:rgba(13,34,23,.72); }
 
+
+
+/* ===== Penyempurnaan light: border emas kartu terang + kontras ===== */
+body:not(.dark-mode) [class*="rounded-[20px]"]:not([class*="bg-olive"]) {
+    border: 1px solid rgba(200,157,68,0.35);
+}
+body:not(.dark-mode) [class*="rounded-2xl"]:not([class*="bg-olive"]) {
+    border: 1px solid rgba(200,157,68,0.30);
+}
+body:not(.dark-mode) #sidebar [class*="text-white/40"] { color: rgba(255,255,255,0.68) !important; }
+body:not(.dark-mode) .text-gray-400, body:not(.dark-mode) .text-slate-400 { color: #6a7568 !important; }
+body:not(.dark-mode) .text-gray-500, body:not(.dark-mode) .text-neutral-400, body:not(.dark-mode) .text-zinc-400 { color: #5c6659 !important; }
+/* ===== MODE TERANG PREMIUM (default) — emas + hijau sage ===== */
+.stat-card {
+    border: 1px solid rgba(200,157,68,0.35);
+    box-shadow: 0 12px 28px rgba(120,100,50,0.10);
+}
+#sidebar { border-right: 1px solid rgba(200,157,68,0.30); }
+header { border-bottom: 1px solid rgba(200,157,68,0.40); }
+body .bg-white { background: #fffdf6; }
 /* ==========================================================
    TEMA GELAP MEWAH — emas + hijau tua (dashboard)
    ========================================================== */
