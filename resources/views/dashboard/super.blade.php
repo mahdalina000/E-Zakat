@@ -135,30 +135,42 @@
 @endsection
 @section('scripts')
 <script>
-const loginData = @json($loginSeries);
-new Chart(document.getElementById('loginChart'), {
-    type: 'line',
-    data: {
-        labels: loginData.map(d=>d.label),
-        datasets: [{
-            data: loginData.map(d=>d.count),
-            borderColor: '#5A6B33', backgroundColor: 'rgba(90,107,51,0.12)',
-            fill: true, tension: 0.4, pointBackgroundColor:'#5A6B33', pointRadius: 4
-        }]
-    },
-    options: {plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}}}
-});
+function renderSuperCharts() {
+    // Tunggu Chart.js (dari module app.js) benar-benar siap sebelum render.
+    if (typeof Chart === 'undefined') {
+        setTimeout(renderSuperCharts, 120);
+        return;
+    }
+    const loginData = @json($loginSeries);
+    new Chart(document.getElementById('loginChart'), {
+        type: 'line',
+        data: {
+            labels: loginData.map(d=>d.label),
+            datasets: [{
+                data: loginData.map(d=>d.count),
+                borderColor: '#5A6B33', backgroundColor: 'rgba(90,107,51,0.12)',
+                fill: true, tension: 0.4, pointBackgroundColor:'#5A6B33', pointRadius: 4
+            }]
+        },
+        options: {plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}}}
+    });
 
-new Chart(document.getElementById('roleChart'), {
-    type: 'doughnut',
-    data: {
-        labels: ['Super Admin','Admin BAZNAS','Admin UPZ','User'],
-        datasets: [{
-            data: [{{ \App\Models\User::where('role','super_admin')->count() }}, {{ $totalBaznasAdmin }}, {{ $totalUpz }}, {{ $totalUsers }}],
-            backgroundColor: ['#8b5cf6','#10b981','#f97316','#0ea5e9'], borderWidth: 0
-        }]
-    },
-    options: {plugins:{legend:{display:false}}, cutout:'65%'}
-});
+    new Chart(document.getElementById('roleChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Super Admin','Admin BAZNAS','Admin UPZ','User'],
+            datasets: [{
+                data: [{{ \App\Models\User::where('role','super_admin')->count() }}, {{ $totalBaznasAdmin }}, {{ $totalUpz }}, {{ $totalUsers }}],
+                backgroundColor: ['#8b5cf6','#10b981','#f97316','#0ea5e9'], borderWidth: 0
+            }]
+        },
+        options: {plugins:{legend:{display:false}}, cutout:'65%'}
+    });
+}
+if (document.readyState !== 'complete') {
+    window.addEventListener('load', renderSuperCharts);
+} else {
+    renderSuperCharts();
+}
 </script>
 @endsection

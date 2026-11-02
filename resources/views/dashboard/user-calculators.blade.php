@@ -18,20 +18,20 @@
         backdrop-filter: blur(10px);
     }
 
-   /* Card Hasil Kanan — Warna Hijau Sama Persis dengan Sidebar Kiri (#1d5b37) */
-body.dark-mode div.bg-olive,
-body.dark-mode .calc-panel div.bg-olive {
-    background-color: #1d5b37 !important; /* Hijau sidebar */
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    backdrop-filter: none !important;
-}
+    /* Card Hasil Kanan — Warna Hijau Sama Persis dengan Sidebar Kiri (#1d5b37) */
+    body.dark-mode div.bg-olive,
+    body.dark-mode .calc-panel div.bg-olive {
+        background-color: #1d5b37 !important; /* Hijau sidebar */
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: none !important;
+    }
 
-/* Kotak Inner Dalam Card Hasil (Dibuat Hijau Sedikit Lebih Gelap Agar Kontras) */
-body.dark-mode div.bg-olive .bg-white,
-body.dark-mode div.bg-olive .bg-cream2 {
-    background-color: #144227 !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-}
+    /* Kotak Inner Dalam Card Hasil (Dibuat Hijau Sedikit Lebih Gelap Agar Kontras) */
+    body.dark-mode div.bg-olive .bg-white,
+    body.dark-mode div.bg-olive .bg-cream2 {
+        background-color: #144227 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
 
     /* Judul Setiap Zakat/Kalkulator diubah ke Warna Orange Web */
     body.dark-mode .calc-panel h2,
@@ -45,10 +45,11 @@ body.dark-mode div.bg-olive .bg-cream2 {
         color: #f8fafc !important; 
     }
 
-    /* Subteks / Penjelasan */
+    /* Subteks / Penjelasan / Info Waris agar tidak menabrak / terblok gelap */
     body.dark-mode .calc-panel .text-olive\/70,
     body.dark-mode .calc-panel .text-olive\/60,
-    body.dark-mode .calc-panel .text-olive\/50 {
+    body.dark-mode .calc-panel .text-olive\/50,
+    body.dark-mode .calc-panel .text-olive\/40 {
         color: #cbd5e1 !important; 
     }
 
@@ -90,6 +91,57 @@ body.dark-mode div.bg-olive .bg-cream2 {
         color: #34d399 !important; /* Hijau terang */
         font-weight: 800 !important;
     }
+    /* Radio Button Jenis Kelamin Pewaris khusus Dark Mode */
+body.dark-mode .calc-panel input[name="pewarisJk"] + div {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    color: #f1f5f9 !important; /* Teks putih terang agar terbaca */
+}
+
+/* Saat Radio Button Dipilih (Checked) */
+body.dark-mode .calc-panel input[name="pewarisJk"]:checked + div {
+    background-color: #1d5b37 !important; /* Hijau solid khas web */
+    border-color: #f59e0b !important; /* Border orange khas web */
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+/* ============================================================ */
+/* PERAPIHAN KOTAK AHLI WARIS (DARK MODE)                       */
+/* ============================================================ */
+
+/* Style Dasar Semua Kotak Ahli Waris */
+body.dark-mode #calc-panel-wariq .grid > label,
+body.dark-mode #calc-panel-wariq .grid > div {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 1rem !important;
+    color: #ffffff !important;
+}
+
+/* Teks Judul Ahli Waris (Putih Terang) */
+body.dark-mode #calc-panel-wariq .text-oliveDark {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Subteks Keterangan / Ayat (Putih Agak Redup Agar Tetap Kontras) */
+body.dark-mode #calc-panel-wariq .text-olive\/60,
+body.dark-mode #calc-panel-wariq .text-olive\/50 {
+    color: #cbd5e1 !important;
+}
+
+/* Input Angka (Jumlah Anak/Cucu/Saudara) */
+body.dark-mode #calc-panel-wariq input[type="number"] {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+}
+
+/* Kotak Centang Saat Dicentang (Efek Aktif Hijau + Border Orange) */
+body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
+    background-color: rgba(29, 91, 55, 0.8) !important;
+    border-color: #f59e0b !important;
+}
 </style>
 @endsection
 
@@ -163,15 +215,9 @@ body.dark-mode div.bg-olive .bg-cream2 {
             <input id="namaBerasLain" placeholder="Nama beras (opsional)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Atur jumlah jiwa, pilih jenis beras, dan sesuaikan harga per kg. Hasil berubah otomatis. Boleh setor dalam bentuk beras atau uang (sesuai harga beras lokal).</p>
-            <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-2 space-y-2 text-olive/70">
-                <div>• <b>Besaran Standar</b>: Sesuai Peraturan BAZNAS RI, zakat fitrah ditunaikan sebesar <b>2,5 kg atau 3,5 liter beras</b> (makanan pokok) per jiwa.</div>
-                <div>• <b>Konversi Nilai Uang</b>: Ditentukan berdasarkan standar harga beras yang dikonsumsi sehari-hari dikalikan dengan besaran zakat per jiwa (2,5 kg × harga beras/kg).</div>
-                <div>• <b>Kewajiban Jiwa</b>: Wajib dibayarkan untuk seluruh anggota keluarga yang menjadi tanggungan hidup sebelum shalat Idul Fitri.</div>
-            </div>
         </div>
         <button type="button" data-save-calc="zakat_fitrah" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
@@ -228,15 +274,9 @@ body.dark-mode div.bg-olive .bg-cream2 {
             <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
         </div>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Masukkan total harta (tabungan, deposito, emas, barang dagang). Status berubah <b>Wajib</b> jika harta ≥ nisab (85 gr) &amp; sudah haul 1 tahun. Zakat = 2,5% dari harta.</p>
-            <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-2 space-y-2 text-olive/70">
-                <div>• <b>Nisab Harta</b>: Mengikuti standar BAZNAS, nisab zakat maal adalah senilai <b>85 gram emas murni</b> (85 gram × harga pasaran emas per gram).</div>
-                <div>• <b>Syarat Haul</b>: Kepemilikan harta harus sudah mencapai <b>1 tahun hijriah (haul)</b> dan bebas dari hutang jangka pendek yang jatuh tempo.</div>
-                <div>• <b>Kadar Zakat</b>: Jika total gabungan simpanan/harta melebihi nisab dan sudah haul, dikenakan zakat sebesar <b>2,5%</b> dari total harta.</div>
-            </div>
         </div>
         <button type="button" data-save-calc="zakat_maal" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
@@ -281,15 +321,9 @@ body.dark-mode div.bg-olive .bg-cream2 {
         <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp)</label>
         <input id="fidyahHarga" type="text" data-money value="{{ number_format(45000,0,'','.') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Isi jumlah hari puasa yang ditinggalkan &amp; harga 1 porsi makan. Total fidyah otomatis terhitung. Boleh disalurkan berupa uang, beras (±0,75 kg/hari), atau makanan siap saji.</p>
-            <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-2 space-y-2 text-olive/70">
-                <div>• <b>Kewajiban Per Hari</b>: Setiap 1 hari utang puasa Ramadhan yang ditinggalkan dibayar dengan <b>1 mud makanan pokok (±0,75 kg beras)</b> atau setara 1 porsi makan lengkap.</div>
-                <div>• <b>Rumus Total</b>: (Jumlah Hari Utang Puasa) × (Harga 1 Porsi Makan Standar Lokal).</div>
-                <div>• <b>Penyaluran Resmi</b>: Dikelola dan disalurkan kepada fakir miskin berupa paket makanan siap saji atau bahan makanan pokok.</div>
-            </div>
         </div>
         <button type="button" data-save-calc="fidyah" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
@@ -326,15 +360,9 @@ body.dark-mode div.bg-olive .bg-cream2 {
         <input id="penghasilanBulan" type="text" data-money value="" placeholder="cth: 8500000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
         <p class="text-[10px] text-olive/50 mt-1">Ketik angka biasa — akan otomatis dipisah ribuan.</p>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Isi penghasilan bersih per bulan (Rp). Wajib zakat jika penghasilan ≥ <b>Rp 7.640.144/bulan</b>. Zakat = 2,5% dari penghasilan per bulan, dibayarkan langsung setiap bulan tanpa menunggu haul.</p>
-            <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-2 space-y-2 text-olive/70">
-                <div>• <b>Penentuan Nisab</b>: Mengikuti Keputusan Ketua BAZNAS RI Nomor 9 Tahun 2026, yaitu setara nilai 85 gram emas per tahun (Rp 91.681.728) atau <b>Rp 7.640.144 per bulan</b>.</div>
-                <div>• <b>Pemeriksaan Syarat Wajib</b>: Jika penghasilan bersih bulanan Anda mencapai atau melebihi Rp 7.640.144, maka <b>Wajib Zakat</b>. Jika di bawah nisab, maka tidak wajib.</div>
-                <div>• <b>Kadar Zakat</b>: Sebesar <b>2,5%</b> dari total penghasilan kotor/bersih per bulan tanpa menunggu haul 1 tahun (dikeluarkan langsung saat menerima gaji/penghasilan).</div>
-            </div>
         </div>
         <button type="button" data-calc-type="zakat_penghasilan" data-save-calc="zakat_penghasilan" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
@@ -379,15 +407,9 @@ body.dark-mode div.bg-olive .bg-cream2 {
             <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="tidak" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Tanpa irigasi (5%)</div></label>
         </div>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Isi total hasil panen dalam kg. Pilih irigasi: <b>Tanpa Irigasi</b> = kadar 5%, <b>Dengan Irigasi</b> = 2,5%. Wajib jika panen ≥ nisab 960 kg (15,24 kuintal).</p>
-            <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-2 space-y-2 text-olive/70">
-                <div>• <b>Nisab Panen</b>: Ditetapkan sebesar 5 wasaq atau setara <b>960 kg gabah/hasil panen</b> (atau ±653 kg jika makanan pokok bersih).</div>
-                <div>• <b>Penentuan Kadar Zakat</b>: Sebesar <b>5%</b> apabila menggunakan sarana irigasi berbiaya/pompa, dan <b>10%</b> (atau 5% sesuai penyesuaian biaya operasional) jika mengandalkan air hujan alami.</div>
-                <div>• <b>Tanpa Haul</b>: Zakat pertanian wajib dikeluarkan <b>langsung setiap kali masa panen</b> tanpa menunggu 1 tahun.</div>
-            </div>
         </div>
         <button type="button" data-calc-type="zakat_pertanian" data-save-calc="zakat_pertanian" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
@@ -444,15 +466,9 @@ body.dark-mode div.bg-olive .bg-cream2 {
 
         <label class="flex items-center gap-2 text-xs font-semibold mt-3"><input type="checkbox" id="dagHaul" checked class="accent-olive"> Sudah genap haul 1 tahun</label>
 
-        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed space-y-2">
+        <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
             <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
             <p class="mt-1">Masukkan total modal dagang, kurangi utang. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas) &amp; sudah haul 1 tahun.</p>
-            <div class="font-extrabold text-olive flex items-center gap-2 mt-2 pt-2 border-t-2 border-olive/20">Penjelasan Cara Kerja Perhitungan (SOP BAZNAS):</div>
-            <div class="mt-2 space-y-2 text-olive/70">
-                <div>• <b>Rumus Harta Bersih Niaga</b>: (Modal Diputar + Keuntungan + Piutang Lancar) dikurangi (Utang Jatuh Tempo).</div>
-                <div>• <b>Standar Nisab</b>: Setara nilai <b>85 gram emas</b> yang berlaku pada akhir tahun pembukuan usaha (haul 1 tahun).</div>
-                <div>• <b>Kadar Zakat</b>: Apabila Nilai Harta Bersih ≥ Nisab (85 gr Emas), maka zakat yang wajib dikeluarkan sebesar <b>2,5%</b>.</div>
-            </div>
         </div>
         <button type="button" data-calc-type="zakat_perdagangan" data-save-calc="zakat_perdagangan" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
@@ -542,100 +558,121 @@ body.dark-mode div.bg-olive .bg-cream2 {
             <i class="fa-solid fa-people-group text-[13px]"></i>
             <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">Ahli Waris yang Ada</span>
         </div>
-        <div class="p-4 bg-cream2/60 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="p-4 bg-cream2/60 space-y-4">
 
-            <!-- PASANGAN -->
-            <label id="wariqSuamiLabel" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqSuami" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Suami (Duda)</div><div class="text-[10px] text-olive/50 mt-0.5">Dzawul furudh · QS. 4:12</div></div>
-            </label>
-            <label id="wariqIstriLabel" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqIstri" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Istri / Janda</div><div class="text-[10px] text-olive/50 mt-0.5">Dzawul furudh · maks. 4 orang</div></div>
-            </label>
+            <!-- KELOMPOK 1: PILIHAN CENTANG (CHECKBOX) -->
+            <div>
+                <div class="text-xs font-extrabold text-oliveDark mb-2 uppercase tracking-wider">
+                    <i class="fa-solid fa-square-check mr-1 text-olive"></i> Ahli Waris Tunggal / Pasangan / Orang Tua
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <!-- PASANGAN -->
+                    <label id="wariqSuamiLabel" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqSuami" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Suami (Duda)</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · QS. 4:12</div></div>
+                    </label>
+                    <label id="wariqIstriLabel" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqIstri" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Istri / Janda</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · maks. 4 orang</div></div>
+                    </label>
 
-            <!-- ANAK -->
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Anak Laki-laki</div><div class="text-[10px] text-olive/50 mt-0.5">Ashabah · QS. 4:11</div></div>
-                    <input id="wariqAnakL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
-                </div>
-            </div>
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Anak Perempuan</div><div class="text-[10px] text-olive/50 mt-0.5">Furudh/ashabah · QS. 4:11</div></div>
-                    <input id="wariqAnakP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
-                </div>
-            </div>
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Cucu Laki-laki</div><div class="text-[10px] text-olive/50 mt-0.5">Jika tidak ada anak</div></div>
-                    <input id="wariqCucuL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
-                </div>
-            </div>
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Cucu Perempuan</div><div class="text-[10px] text-olive/50 mt-0.5">Jika tidak ada anak</div></div>
-                    <input id="wariqCucuP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                    <!-- ORANG TUA / KAKEK / NENEK -->
+                    <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqAyah" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Ayah Kandung</div><div class="text-[10px] text-olive/60 mt-0.5">Furudh/ashabah · QS. 4:11</div></div>
+                    </label>
+                    <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqIbu" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Ibu Kandung</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · QS. 4:11</div></div>
+                    </label>
+                    <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqKakek" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Kakek (dari Ayah)</div><div class="text-[10px] text-olive/60 mt-0.5">Pengganti ayah jika tidak ada</div></div>
+                    </label>
+                    <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqNenekIbu" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Nenek (dari Ibu)</div><div class="text-[10px] text-olive/60 mt-0.5">Pengganti ibu jika tidak ada</div></div>
+                    </label>
+                    <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                        <input type="checkbox" id="wariqNenekAyah" class="accent-olive mt-0.5">
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Nenek (dari Ayah)</div><div class="text-[10px] text-olive/60 mt-0.5">Pengganti ibu jika tidak ada</div></div>
+                    </label>
                 </div>
             </div>
 
-            <!-- ORANG TUA / KAKEK / NENEK -->
-            <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqAyah" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Ayah Kandung</div><div class="text-[10px] text-olive/50 mt-0.5">Furudh/ashabah · QS. 4:11</div></div>
-            </label>
-            <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqIbu" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Ibu Kandung</div><div class="text-[10px] text-olive/50 mt-0.5">Dzawul furudh · QS. 4:11</div></div>
-            </label>
-            <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqKakek" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Kakek (dari Ayah)</div><div class="text-[10px] text-olive/50 mt-0.5">Pengganti ayah jika tidak ada</div></div>
-            </label>
-            <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqNenekIbu" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Nenek (dari Ibu)</div><div class="text-[10px] text-olive/50 mt-0.5">Pengganti ibu jika tidak ada</div></div>
-            </label>
-            <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                <input type="checkbox" id="wariqNenekAyah" class="accent-olive mt-0.5">
-                <div><div class="text-xs font-bold text-oliveDark leading-tight">Nenek (dari Ayah)</div><div class="text-[10px] text-olive/50 mt-0.5">Pengganti ibu jika tidak ada</div></div>
-            </label>
+            <!-- KELOMPOK 2: PILIHAN JUMLAH / ANGKA (INPUT NUMBER) -->
+            <div class="pt-2 border-t border-cream3/60">
+                <div class="text-xs font-extrabold text-oliveDark mb-2 uppercase tracking-wider">
+                    <i class="fa-solid fa-calculator mr-1 text-olive"></i> Ahli Waris Berjumlah (Isi Jumlah Jiwa)
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <!-- ANAK & CUCU -->
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Anak Laki-laki</div><div class="text-[10px] text-olive/60 mt-0.5">Ashabah · QS. 4:11</div></div>
+                            <input id="wariqAnakL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Anak Perempuan</div><div class="text-[10px] text-olive/60 mt-0.5">Furudh/ashabah · QS. 4:11</div></div>
+                            <input id="wariqAnakP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Cucu Laki-laki</div><div class="text-[10px] text-olive/60 mt-0.5">Jika tidak ada anak</div></div>
+                            <input id="wariqCucuL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Cucu Perempuan</div><div class="text-[10px] text-olive/60 mt-0.5">Jika tidak ada anak</div></div>
+                            <input id="wariqCucuP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
 
-            <!-- SAUDARA -->
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Kandung Laki-laki</div><div class="text-[10px] text-olive/50 mt-0.5">Sekandung/seayah · QS. 4:176</div></div>
-                    <input id="wariqSaudaraL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                    <!-- SAUDARA -->
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Kandung Laki-laki</div><div class="text-[10px] text-olive/60 mt-0.5">Sekandung/seayah · QS. 4:176</div></div>
+                            <input id="wariqSaudaraL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Kandung Perempuan</div><div class="text-[10px] text-olive/60 mt-0.5">Sekandung/seayah · QS. 4:176</div></div>
+                            <input id="wariqSaudaraP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
+                    <div class="rounded-2xl p-3 bg-white border border-cream3">
+                        <div class="flex items-center justify-between gap-2">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Seibu</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh</div></div>
+                            <input id="wariqSaudaraSeibu" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Kandung Perempuan</div><div class="text-[10px] text-olive/50 mt-0.5">Sekandung/seayah · QS. 4:176</div></div>
-                    <input id="wariqSaudaraP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
-                </div>
-            </div>
-            <div class="rounded-2xl p-3 bg-white border border-cream3">
-                <div class="flex items-center justify-between gap-2">
-                    <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Seibu</div><div class="text-[10px] text-olive/50 mt-0.5">Dzawul furudh</div></div>
-                    <input id="wariqSaudaraSeibu" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
-                </div>
-            </div>
+
         </div>
-        <div class="px-4 pb-3 -mt-1 text-[10px] text-olive/50">
+        <div class="px-4 pb-3 pt-2 text-[11px] text-olive/70 font-medium">
             <p><i class="fa-solid fa-circle-info mr-1"></i>Cucu hanya berhak bila tidak ada anak. Kakek hanya bila ayah tidak ada. Nenek hanya bila ibu tidak ada. Saudara terhalang bila ada anak/ayah/kakek.</p>
         </div>
     </div>
+
+<div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
+    <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
+    <p class="mt-1">Isi total harta peninggalan kotor beserta kewajiban (biaya jenazah, hutang, wasiat), pilih jenis kelamin pewaris, lalu pilih/isi jumlah ahli waris yang ditinggalkan. Klik tombol hitung untuk melihat pembagian porsi secara otomatis.</p>
 </div>
 
 <button type="button" id="wariqHitung" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-calculator mr-2"></i>Hitung & Simpan Pembagian</button>
-        <p class="text-[10px] text-olive/50 mt-2 text-center"><i class="fa-solid fa-lock mr-1"></i> Versi login: hasil langsung tersimpan ke riwayat (pembeda kalkulator publik).</p>
+        <p class="text-[10px] text-olive/70 mt-2 text-center font-medium"><i class="fa-solid fa-lock mr-1"></i> Versi login: hasil langsung tersimpan ke riwayat (pembeda kalkulator publik).</p>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl">
         <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL PEMBAGIAN</div>
         <div id="wariqResult" class="mt-3 bg-white text-oliveDark rounded-2xl p-4 shadow-inner text-sm">
-            <div class="text-center text-olive/40 py-6">Belum dihitung. Isi form lalu klik "Hitung Pembagian".</div>
+            <div class="text-center text-olive/70 font-medium py-6">Belum dihitung. Isi form lalu klik "Hitung Pembagian".</div>
         </div>
     </div>
 </div>
@@ -822,7 +859,7 @@ async function calcWariq() {
         const labelAsli = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Menghitung...';
-        $('wariqResult').innerHTML = '<div class="text-center text-olive/50 py-6"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Sedang menghitung, mohon tunggu...</div>';
+        $('wariqResult').innerHTML = '<div class="text-center text-olive/70 py-6"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Sedang menghitung, mohon tunggu...</div>';
 
         const r = await calcServer('wariq', params);
         btn.disabled = false;
@@ -838,22 +875,22 @@ async function calcWariq() {
             : '';
         let rows = (r.hasil||[]).map(h =>
             '<div class="flex items-center justify-between border-b border-cream2 pb-2 mb-2">'
-            + '<div class="min-w-0"><div class="font-bold text-sm">' + h.ahli + '</div>'
-            + '<div class="text-[10px] text-olive/60">' + h.persen + '% · porsi ' + (h.porsi * 24).toFixed(2) + '/24</div></div>'
+            + '<div class="min-w-0"><div class="font-bold text-sm text-oliveDark">' + h.ahli + '</div>'
+            + '<div class="text-[10px] text-olive/70">' + h.persen + '% · porsi ' + (h.porsi * 24).toFixed(2) + '/24</div></div>'
             + '<div class="text-right shrink-0 ml-2"><div class="font-black text-olive text-sm">' + fmt(h.nilai) + '</div>'
-            + '<div class="text-[9px] text-olive/50">rupiah</div></div></div>'
+            + '<div class="text-[9px] text-olive/60">rupiah</div></div></div>'
         ).join('');
         let total = (r.hasil||[]).length
             ? '<div class="mt-2 pt-2 border-t-2 border-olive/20 flex justify-between items-center">'
               + '<span class="font-extrabold text-xs text-oliveDark">TOTAL DIBAGIKAN</span>'
-              + '<span class="font-black text-olive">' + fmt(r.hartaBersih) + ' <span class="text-[9px] font-normal text-olive/50">rupiah</span></span></div>'
+              + '<span class="font-black text-olive">' + fmt(r.hartaBersih) + ' <span class="text-[9px] font-normal text-olive/60">rupiah</span></span></div>'
             : '';
         let ket = (r.keterangan||[]).length
             ? '<div class="mt-3 pt-2 border-t border-cream2 text-[10px] text-olive/70 space-y-1">'
               + r.keterangan.map(k => '<div>• ' + k + '</div>').join('') + '</div>'
             : '';
         let savedBadge = r.saved ? '<div class="mt-3 bg-emerald-600 text-white rounded-lg px-2 py-1 text-[10px] font-bold text-center"><i class="fa-solid fa-check mr-1"></i>Tersimpan ke riwayat</div>' : '';
-        $('wariqResult').innerHTML = potongan + rows + total + ket + savedBadge || '<div class="text-center text-olive/40 py-4">Tidak ada ahli waris.</div>';
+        $('wariqResult').innerHTML = potongan + rows + total + ket + savedBadge || '<div class="text-center text-olive/60 py-4">Tidak ada ahli waris.</div>';
         window.__wariqResult = r;
     } catch(e){
         const btn = $('wariqHitung');
