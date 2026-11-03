@@ -95,6 +95,22 @@
         </div>
     </div>
 
+    <div class="grid sm:grid-cols-2 gap-3 mb-3">
+        <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-olive/40 text-xs pointer-events-none"></i>
+            <input type="text" id="recordSearch" placeholder="Cari catatan…" style="padding-left:2.25rem"
+                class="w-full border border-cream3 rounded-full pr-4 py-2 text-xs bg-cream2 outline-none focus:border-olive">
+        </div>
+        <select id="recordTypeFilter" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none focus:border-olive">
+            <option value="">Semua Jenis</option>
+            <option value="zakat_fitrah">Zakat Fitrah</option>
+            <option value="zakat_maal">Zakat Maal</option>
+            <option value="fidyah">Fidyah</option>
+            <option value="infak_sedekah">Infak & Sedekah</option>
+            <option value="wariq">Waris (Wariq)</option>
+        </select>
+    </div>
+
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
             <thead><tr class="text-left text-xs text-olive/50 border-b border-cream3">
@@ -103,9 +119,9 @@
                 <th class="py-2 pr-3">Metode</th><th class="py-2 pr-3">Keterangan</th>
                 <th class="py-2 text-right">Aksi</th>
             </tr></thead>
-            <tbody>
+            <tbody id="recordsTableBody">
             @forelse($records as $r)
-                <tr class="border-b border-cream2 hover:bg-cream2/50">
+                <tr class="border-b border-cream2 hover:bg-cream2/50" data-type="{{ $r->zakat_type }}" data-search="{{ strtolower($r->zakatTypeLabel().' '.$r->paymentMethodLabel().' '.($r->notes ?? '').' '.($r->payment_date?->format('d M Y') ?? '')) }}">
                     <td class="py-2.5 pr-3"><span class="text-[11px] px-2 py-0.5 rounded-full bg-olive/10 text-olive font-semibold">{{ $r->zakatTypeLabel() }}</span></td>
                     <td class="py-2.5 pr-3 text-xs">{{ $r->jiwa_count }} jiwa @if($r->beras_kg) • {{ $r->beras_kg }} kg beras @endif</td>
                     <td class="py-2.5 pr-3 font-bold text-oliveDark">Rp {{ number_format($r->total_amount ?? 0, 0, ',', '.') }}</td>
@@ -241,5 +257,38 @@ function formatRupiahDirect(el) {
     }
 }
 </script>
+@endsection
 
+@section('scripts')
+<script>
+    (function () {
+        const search = document.getElementById('recordSearch');
+        const filter = document.getElementById('recordTypeFilter');
+        const tbody = document.getElementById('recordsTableBody');
+        const rows = tbody ? Array.from(tbody.querySelectorAll('tr')) : [];
+        const emptyRow = tbody && tbody.querySelector('tr[colspan]') ? tbody.querySelector('tr[colspan]') : null;
+
+        function apply() {
+            const q = (search.value || '').trim().toLowerCase();
+            const type = filter.value;
+            let visible = 0;
+            rows.forEach(function (row) {
+                if (row === emptyRow) return;
+                const mType = row.dataset.type || '';
+                const mSearch = row.dataset.search || '';
+                const okType = !type || mType === type;
+                const okSearch = !q || mSearch.indexOf(q) !== -1;
+                const show = okType && okSearch;
+                row.style.display = show ? '' : 'none';
+                if (show) visible++;
+            });
+            if (emptyRow) {
+                emptyRow.style.display = visible === 0 ? '' : 'none';
+            }
+        }
+
+        if (search) search.addEventListener('input', apply);
+        if (filter) filter.addEventListener('change', apply);
+    })();
+</script>
 @endsection
