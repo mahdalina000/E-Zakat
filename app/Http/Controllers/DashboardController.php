@@ -104,6 +104,23 @@ class DashboardController extends Controller
         $profile = $u->wargaProfile;
         $totalRecords = $u->zakatRecords()->count();
 
-        return view('dashboard.user', compact('u', 'beras', 'totalLocations', 'totalUpz', 'totalBaznas', 'profile', 'totalRecords'));
+        // Grafik pribadi: total zakat per bulan (6 bulan terakhir)
+        $chartSeries = [];
+        for ($i = 5; $i >= 0; $i--) {
+            $m = now()->subMonths($i);
+            $total = $u->zakatRecords()
+                ->whereYear('payment_date', $m->year)
+                ->whereMonth('payment_date', $m->month)
+                ->sum('total_amount');
+            $chartSeries[] = [
+                'label' => $m->translatedFormat('M'),
+                'total' => (float) $total,
+            ];
+        }
+
+        return view('dashboard.user', compact(
+            'u', 'beras', 'totalLocations', 'totalUpz', 'totalBaznas',
+            'profile', 'totalRecords', 'chartSeries'
+        ));
     }
 }

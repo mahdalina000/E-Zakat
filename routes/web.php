@@ -4,8 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminBaznasController;
 use App\Http\Controllers\BerasPriceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackAdminController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\UserFeedbackController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +71,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/histories/{history}', [UserProfileController::class, 'destroyHistory'])->name('histories.destroy');
         Route::get('/export', [UserProfileController::class, 'export'])->name('export');
 
+        // Kritik & Saran
+        Route::get('/feedback', [UserFeedbackController::class, 'index'])->name('feedback');
+        Route::post('/feedback', [UserFeedbackController::class, 'store'])->name('feedback.store');
+        Route::delete('/feedback/{feedback}', [UserFeedbackController::class, 'destroy'])->name('feedback.destroy');
+
         // Hub kalkulator (semua kalkulator dalam satu halaman, hasil disimpan ke riwayat)
         Route::get('/calculators', [UserProfileController::class, 'calculators'])->name('calculators');
         Route::post('/calculators/{type}', [UserProfileController::class, 'saveCalculation'])->name('calculators.save');
@@ -95,6 +102,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
         Route::get('/beras', [BerasPriceController::class, 'index'])->name('beras.index');
         Route::post('/beras', [BerasPriceController::class, 'update'])->name('beras.update');
+
+        // Masukan warga (kritik & saran)
+        Route::get('/feedback', [FeedbackAdminController::class, 'index'])->name('feedback');
+        Route::post('/feedback/{feedback}/read', [FeedbackAdminController::class, 'markRead'])->name('feedback.read');
+        Route::delete('/feedback/{feedback}', [FeedbackAdminController::class, 'destroy'])->name('feedback.destroy');
     });
 
     // Super Admin — Pemko Banjarbaru
@@ -107,5 +119,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
         Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
         Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
+
+        // Masukan warga
+        Route::get('/feedback', [FeedbackAdminController::class, 'index'])->name('feedback');
+        Route::post('/feedback/{feedback}/read', [FeedbackAdminController::class, 'markRead'])->name('feedback.read');
+        Route::delete('/feedback/{feedback}', [FeedbackAdminController::class, 'destroy'])->name('feedback.destroy');
     });
 });

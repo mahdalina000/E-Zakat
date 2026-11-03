@@ -67,6 +67,19 @@
     </div>
 </div>
 
+{{-- GRAFIK PRIBADI --}}
+<div class="bg-white rounded-[20px] border border-cream3 p-5 lg:p-6 mt-4">
+    <div class="flex items-center justify-between mb-4">
+        <div class="font-bold text-oliveDark text-sm flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-olive"></i> Zakat Anda 6 Bulan Terakhir
+        </div>
+        <a href="{{ route('user.profile') }}" class="text-xs font-semibold text-olive underline">Lihat Catatan →</a>
+    </div>
+    <div class="relative h-64">
+        <canvas id="userZakatChart"></canvas>
+    </div>
+</div>
+
 <div class="grid lg:grid-cols-3 gap-4 mt-4">
     <a href="{{ route('user.calculators') }}" class="group bg-gradient-to-br from-olive to-olive2 rounded-[20px] p-5 hover:shadow-lg transition text-white shadow-md relative overflow-hidden">
         <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-white/10"></div>
@@ -100,4 +113,50 @@
     <a href="{{ route('panduan') }}" class="bg-gold text-oliveDark font-bold px-5 py-2.5 rounded-full text-sm whitespace-nowrap shadow">Buka Panduan →</a>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const canvas = document.getElementById('userZakatChart');
+        if (!canvas || typeof Chart === 'undefined') return;
+        const data = @json($chartSeries ?? []);
+        const existing = Chart.getChart(canvas);
+        if (existing) existing.destroy();
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: data.map(d => d.label),
+                datasets: [{
+                    label: 'Total Zakat (Rp)',
+                    data: data.map(d => d.total),
+                    borderColor: '#246c42',
+                    backgroundColor: 'rgba(36,108,66,0.14)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#c89d44',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function (ctx) {
+                                return 'Rp ' + ctx.parsed.y.toLocaleString('id-ID');
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: { beginAtZero: true, ticks: { precision: 0 } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    });
+</script>
 @endsection
