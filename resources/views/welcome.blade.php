@@ -424,7 +424,7 @@
         card.querySelectorAll('.zy-hadith > *').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(12px)';
-            el.style.transition = `opacity .5s ease ${i * 120}ms, transform .5s cubic-bezier(.16,1,.3,1) ${i * 120}ms`;
+            el.style.transition = `opacity .8s ease ${i * 120}ms, transform .8s cubic-bezier(.22,.61,.36,1) ${i * 120}ms`;
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     el.style.opacity = '1';
@@ -437,7 +437,7 @@
     }
     function next(){idx=(idx+1)%hadiths.length;render();}
     function prev(){idx=(idx-1+hadiths.length)%hadiths.length;render();}
-    function startTimer(){clearInterval(timer);timer=setInterval(()=>{if(!paused)next();},4200);}
+    function startTimer(){clearInterval(timer);timer=setInterval(()=>{if(!paused)next();},3000);}
     hadiths.forEach((_,i)=>{const b=document.createElement('button');b.addEventListener('click',()=>{idx=i;render();startTimer();});dots.appendChild(b);});
     document.getElementById('nextBtn')?.addEventListener('click',()=>{next();startTimer();});
     document.getElementById('prevBtn')?.addEventListener('click',()=>{prev();startTimer();});
