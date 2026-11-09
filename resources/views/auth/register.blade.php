@@ -111,6 +111,14 @@
                     </div>
 
                     <div>
+                        <label class="text-xs font-bold text-oliveDark block mb-1">No. Telepon</label>
+                        <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
+                            <i class="fa-solid fa-phone text-olive/50 text-xs"></i>
+                            <input name="phone" type="text" inputmode="tel" value="{{ old('phone') }}" required maxlength="20" pattern="(\+62|62|0)[0-9]{8,14}" title="Nomor telepon diawali 08, 62, atau +62, lalu 8-14 angka" class="w-full bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="08xx-xxxx-xxxx">
+                        </div>
+                    </div>
+
+                    <div>
                         <label class="text-xs font-bold text-oliveDark block mb-1">Password</label>
                         <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
                             <i class="fa-solid fa-lock text-olive/50 text-xs"></i>

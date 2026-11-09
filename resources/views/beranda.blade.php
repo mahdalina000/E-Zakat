@@ -207,7 +207,7 @@
             <div class="lg:col-span-7 space-y-3 relative overflow-hidden rounded-3xl p-2 eze-col-left">
 
                 <div class="inline-flex items-center gap-2 border border-gold/50 bg-gold/15 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark dark:text-gold2 anim-smooth delay-2">
-                    <i class="fa-solid fa-sparkles text-gold2"></i> ZAKAT MEMBERSIHKAN HARTA & JIWA
+                    <i class="fa-solid fa-sparkles text-oliveDark dark:text-gold2"></i> ZAKAT MEMBERSIHKAN HARTA & JIWA
                 </div>
 
                 <h1 class="font-black text-oliveDark text-[34px] lg:text-[48px] leading-[1.02] tracking-tight anim-smooth delay-3">

@@ -308,10 +308,6 @@
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-black"></i> Zakat Maal (Harta)</h2>
                 <p class="text-xs text-black/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
 
-                <label class="block mt-5 text-xs font-bold text-oliveDark">Total Harta (Rp)</label>
-                <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
-                <input id="maalHarta" type="hidden" value="100000000">
-
                 <div class="mt-3 p-3.5 rounded-2xl border-2 border-gold/50 bg-gold/10">
                     <label class="block text-xs font-extrabold text-emas-custom mb-1">
                         <i class="fa-solid fa-ring mr-1 text-emas-custom"></i> Emas Milik Pribadi — Hitung Otomatis ke Rupiah
@@ -347,6 +343,16 @@
                 <div class="mt-2 flex gap-2">
                     <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Ya</div></label>
                     <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
+                </div>
+
+                {{-- Total Harta diletakkan paling bawah: hasil akhir dari semua isian di atas --}}
+                <div class="mt-5 pt-4 border-t border-panel-border">
+                    <label class="block text-xs font-extrabold text-oliveDark">Total Harta (Rp)</label>
+                    <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full border-2 border-olive/40 rounded-full px-4 py-2.5 text-sm bg-panel-2 font-black text-oliveDark">
+                    <input id="maalHarta" type="hidden" value="100000000">
+                    <p class="text-[10px] text-black/60 mt-1">
+                        <i class="fa-solid fa-circle-info mr-1"></i> Otomatis terisi dari gram emas di atas. Bisa juga diketik manual untuk menambah tabungan, deposito, atau harta lain.
+                    </p>
                 </div>
             </div>
 
@@ -597,7 +603,8 @@
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp / porsi)</label>
-                <input id="fidyahHarga" type="number" value="45000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                <input id="fidyahHargaFormatted" type="text" value="45.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold" placeholder="14.000">
+                <input id="fidyahHarga" type="hidden" value="45000">
 
                 <div class="mt-4 flex items-center gap-2 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
                     <input id="fidyahModeBeras" type="checkbox" class="accent-olive rounded">
@@ -707,6 +714,8 @@ window.ezOnReady(function () {
                 calcPenghasilan();
             } else if(hiddenId === 'niagaModal' || hiddenId === 'niagaUtang' || hiddenId === 'niagaEmas') {
                 calcNiaga();
+            } else if(hiddenId === 'fidyahHarga') {
+                calcFidyah();
             }
         });
     }
@@ -715,6 +724,7 @@ window.ezOnReady(function () {
     formatCurrencyInput('hargaLainFormatted', 'hargaLain');
     formatCurrencyInput('maalHartaFormatted', 'maalHarta');
     formatCurrencyInput('maalEmasFormatted', 'maalEmas');
+    formatCurrencyInput('fidyahHargaFormatted', 'fidyahHarga');
 
     function calcFitrah() {
         const jiwaInput = document.getElementById('fitrahJiwa');
