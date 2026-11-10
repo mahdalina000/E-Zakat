@@ -456,15 +456,30 @@
         <div class="grid lg:grid-cols-2 gap-6">
             <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-store text-black"></i> Zakat Perniagaan</h2>
-                <p class="text-xs text-black/70 mt-1">2,5% dari total harta niaga (modal + keuntungan) setelah mencapai nisab <b>85 gr emas</b>.</p>
+                <p class="text-xs text-black/70 mt-1">2,5% dari harta bersih niaga setelah mencapai nisab <b>85 gr emas</b>.</p>
 
-                <label class="block mt-5 text-xs font-bold text-oliveDark">Total Modal + Keuntungan (Rp)</label>
-                <input id="niagaModalFormatted" type="text" value="50.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
-                <input id="niagaModal" type="hidden" value="50000000">
-
-                <label class="block mt-4 text-xs font-bold text-oliveDark">Total Utang / Hutang (Rp)</label>
-                <input id="niagaUtangFormatted" type="text" value="10.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
-                <input id="niagaUtang" type="hidden" value="10000000">
+                <div class="grid sm:grid-cols-2 gap-3 mt-5">
+                    <div>
+                        <label class="block text-xs font-bold text-oliveDark">Modal Diputar (Rp)</label>
+                        <input id="niagaModalFormatted" type="text" value="40.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaModal" type="hidden" value="40000000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-oliveDark">Keuntungan (Rp)</label>
+                        <input id="niagaUntungFormatted" type="text" value="10.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaUntung" type="hidden" value="10000000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-oliveDark">Piutang Lancar (Rp)</label>
+                        <input id="niagaPiutangFormatted" type="text" value="0" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaPiutang" type="hidden" value="0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-oliveDark">Utang Jatuh Tempo (Rp)</label>
+                        <input id="niagaUtangFormatted" type="text" value="10.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaUtang" type="hidden" value="10000000">
+                    </div>
+                </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas / gram (Rp)</label>
                 <div class="mt-1.5 flex items-center gap-2">
@@ -482,7 +497,7 @@
                         <input id="niagaGramEmas" type="number" placeholder="Jumlah gram (mis. 200)" class="w-1/2 border border-cream3 rounded-full px-3 py-1.5 text-xs font-semibold">
                         <button type="button" id="btnNiagaEmas" class="bg-gold hover:bg-gold text-white text-xs font-bold px-4 py-1.5 rounded-full transition shadow-sm active:scale-95">Tambah ke Modal</button>
                     </div>
-                    <div class="text-[10px] text-black/60 mt-1.5">Gram × harga emas = nilai emas, otomatis ditambah ke "Modal + Keuntungan".</div>
+                    <div class="text-[10px] text-black/60 mt-1.5">Gram × harga emas = nilai emas, otomatis ditambah ke "Modal Diputar".</div>
                 </div>
             </div>
 
@@ -492,7 +507,11 @@
                 <div class="mt-5 space-y-3">
                     <div class="bg-panel-2 rounded-2xl p-4 border border-white/20 space-y-2 text-xs">
                         <div class="flex justify-between"><span class="text-white/80">Nisab (85 gr × harga emas)</span><span id="niagaNisab" class="font-bold text-gold2">Rp 110.500.000</span></div>
-                        <div class="flex justify-between"><span class="text-white/80">Harta Bersih (modal − utang)</span><span id="niagaBersih" class="font-bold text-white">Rp 40.000.000</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Modal Diputar</span><span id="niagaModalOut" class="font-bold text-white">Rp 40.000.000</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Keuntungan</span><span id="niagaUntungOut" class="font-bold text-white">Rp 10.000.000</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Piutang Lancar</span><span id="niagaPiutangOut" class="font-bold text-white">Rp 0</span></div>
+                        <div class="flex justify-between"><span class="text-white/80">Utang Jatuh Tempo</span><span id="niagaUtangOut" class="font-bold text-white">Rp 10.000.000</span></div>
+                        <div class="flex justify-between border-t border-white/20 pt-2"><span class="text-white/80 font-semibold">Harta Bersih</span><span id="niagaBersih" class="font-bold text-gold2">Rp 40.000.000</span></div>
                     </div>
                     <div class="bg-black/15 rounded-2xl p-3.5 text-center border border-white/15">
                         <div class="text-[10px] text-white/80 uppercase tracking-wider font-semibold">Status</div>
@@ -503,7 +522,7 @@
                         <div id="niagaZakat" class="font-black text-2xl text-gold2 mt-0.5">Rp 0</div>
                     </div>
                     <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
-                        <b class="text-gold2">Cara pakai:</b> Masukkan total modal + keuntungan dagang, kurangi utang. Jika punya emas, isi gram lalu tekan "Tambah ke Modal" agar nilai emas ikut dihitung. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas).
+                        <b class="text-gold2">Cara pakai:</b> Isi modal diputar, keuntungan, piutang lancar, dan utang jatuh tempo secara terpisah. Jika punya emas, isi gram lalu tekan "Tambah ke Modal" agar nilai emas ikut dihitung. Harta bersih = (modal + keuntungan + piutang) − utang. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas).
                     </div>
                 </div>
             </div>
@@ -543,6 +562,21 @@
 
                 <div class="mt-5 p-3.5 rounded-2xl bg-panel-2/70 border border-panel-border text-[11px] text-oliveDark leading-relaxed">
                     <b class="text-black">Cara pakai:</b> Isi total hasil panen dalam kg. Pilih irigasi: <b>Tanpa Irigasi</b> = kadar 5%, <b>Dengan Irigasi</b> = 2,5%. Wajib jika panen ≥ nisab 960 kg (15,24 kuintal).
+                </div>
+
+                <div class="mt-4 p-3.5 rounded-2xl border border-gold/30 bg-gold/5 text-[11px] text-oliveDark leading-relaxed">
+                    <div class="font-bold text-black flex items-center gap-1.5 mb-1.5">
+                        <i class="fa-solid fa-circle-info text-gold2"></i> Kategori Tanaman yang Dihitung
+                    </div>
+                    <p class="mb-1.5">
+                        Zakat pertanian hanya dikenakan pada <b>tanaman makanan pokok</b> yang mengenyangkan dan menjadi bahan pangan utama, seperti <b>padi/gabah, jagung, gandum, kedelai, dan sagu</b>.
+                    </p>
+                    <p class="mb-1.5">
+                        Sayuran, buah-buahan, dan rempah-rempah <b>tidak termasuk</b> zakat pertanian. Jika hasilnya dijual sebagai barang dagangan, maka dikenakan <b>zakat perdagangan</b> (tab Perniagaan).
+                    </p>
+                    <p>
+                        Jika panen Anda berupa tanaman di luar makanan pokok, silakan gunakan tab <b>Zakat Perniagaan</b> atau <b>Zakat Maal</b>.
+                    </p>
                 </div>
             </div>
 
@@ -712,7 +746,7 @@ window.ezOnReady(function () {
                 calcMaal();
             } else if(hiddenId === 'penghasilan') {
                 calcPenghasilan();
-            } else if(hiddenId === 'niagaModal' || hiddenId === 'niagaUtang' || hiddenId === 'niagaEmas') {
+            } else if(hiddenId === 'niagaModal' || hiddenId === 'niagaUntung' || hiddenId === 'niagaPiutang' || hiddenId === 'niagaUtang' || hiddenId === 'niagaEmas') {
                 calcNiaga();
             } else if(hiddenId === 'fidyahHarga') {
                 calcFidyah();
@@ -877,22 +911,30 @@ window.ezOnReady(function () {
     /* ================= ZAKAT PERNIAGAAN ================= */
     function calcNiaga() {
         const modal = parseInt(document.getElementById('niagaModal').value || 0);
+        const untung = parseInt(document.getElementById('niagaUntung').value || 0);
+        const piutang = parseInt(document.getElementById('niagaPiutang').value || 0);
         const utang = parseInt(document.getElementById('niagaUtang').value || 0);
         const emas  = parseInt(document.getElementById('niagaEmas').value || 0);
         const nisab = 85 * emas;
-        const bersih = modal - utang;
+        const bersih = modal + untung + piutang - utang;
         const wajib = bersih >= nisab;
         const zakat = wajib ? Math.round(bersih * 0.025) : 0;
         document.getElementById('niagaNisab').textContent = fmt(nisab);
+        document.getElementById('niagaModalOut').textContent = fmt(modal);
+        document.getElementById('niagaUntungOut').textContent = fmt(untung);
+        document.getElementById('niagaPiutangOut').textContent = fmt(piutang);
+        document.getElementById('niagaUtangOut').textContent = fmt(utang);
         document.getElementById('niagaBersih').textContent = fmt(bersih);
         document.getElementById('niagaStatus').textContent = wajib ? 'Wajib Zakat' : 'Belum Wajib';
         document.getElementById('niagaZakat').textContent = fmt(zakat);
     }
-    ['niagaModal','niagaUtang','niagaEmas'].forEach(id => {
+    ['niagaModal','niagaUntung','niagaPiutang','niagaUtang','niagaEmas'].forEach(id => {
         const el = document.getElementById(id);
         if(el) el.addEventListener('input', calcNiaga);
     });
     formatCurrencyInput('niagaModalFormatted','niagaModal');
+    formatCurrencyInput('niagaUntungFormatted','niagaUntung');
+    formatCurrencyInput('niagaPiutangFormatted','niagaPiutang');
     formatCurrencyInput('niagaUtangFormatted','niagaUtang');
     formatCurrencyInput('niagaEmasFormatted','niagaEmas');
 

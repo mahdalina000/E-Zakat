@@ -455,7 +455,7 @@ const HOLIDAYS = [
         before: 7,
         after: 3,
         icon: 'fa-solid fa-star-and-crescent',
-        color: 'olive',
+        color: 'teal',
         title: 'Maulid Nabi SAW Mendekat!',
         text: 'Peringatan kelahiran Rasulullah SAW. Perbanyak keutamaan sedekah & zakat sebagai sunnah beliau.',
     },
@@ -466,7 +466,7 @@ const HOLIDAYS = [
         before: 3,
         after: 3,
         icon: 'fa-solid fa-book-quran',
-        color: 'olive',
+        color: 'blue',
         title: 'Malam Nuzulul Qur\'an',
         text: 'Perkiraan 17 Ramadan — perbanyak tilawah & sedekah. Siapkan zakat fitrah untuk akhir Ramadan.',
     },
@@ -477,7 +477,7 @@ const HOLIDAYS = [
         before: 15,
         after: 3,
         icon: 'fa-solid fa-mosque',
-        color: 'olive',
+        color: 'rose',
         title: 'Idul Fitri Mendekat!',
         text: 'Segera tunaikan zakat fitrah sebelum Sholat Id. 2,5 kg beras/jiwa (BAZNAS 2026: Rp50.000/jiwa).',
     },
@@ -488,7 +488,7 @@ const HOLIDAYS = [
         before: 30,
         after: 3,
         icon: 'fa-solid fa-star-and-crescent',
-        color: 'olive',
+        color: 'emerald',
         title: 'Ramadan 1448H Akan Tiba!',
         text: 'Bersyukurlah & siapkan fisik dan harta. Segera tunaikan zakat fitrah menjelang akhir Ramadan.',
     },
@@ -499,9 +499,9 @@ const HOLIDAYS = [
         before: 15,
         after: 3,
         icon: 'fa-solid fa-cow',
-        color: 'olive',
+        color: 'gold',
         title: 'Idul Adha Mendekat!',
-        text: 'Waktunya kurban. Siapkan 1/7 bagian hewan kurban — minimal \u00B12,5 kg daging per jiwa.',
+        text: 'Waktunya kurban. Siapkan 1/7 bagian hewan kurban — minimal ±12,5 kg daging per jiwa.',
     },
 ];
 
@@ -540,13 +540,22 @@ const HOLIDAYS = [
     }
 
     const palette = {
-        olive:  { bg: 'bg-olive', border: 'border-olive', text: 'text-white', iconBg: 'bg-white/20' },
+        olive:   { bg: '#3f5f43', border: '#7d9b72', soft: 'rgba(63,95,67,0.14)' },
+        teal:   { bg: '#0f766e', border: '#14b8a6', soft: 'rgba(15,118,110,0.14)' },
+        blue:   { bg: '#1d4ed8', border: '#60a5fa', soft: 'rgba(29,78,216,0.14)' },
+        emerald: { bg: '#047857', border: '#34d399', soft: 'rgba(4,120,87,0.14)' },
+        rose:   { bg: '#be123c', border: '#fb7185', soft: 'rgba(190,18,60,0.14)' },
+        gold:   { bg: '#926c1a', border: '#e2b356', soft: 'rgba(210,150,40,0.16)' },
     };
-    const p = palette.olive;
+    const p = palette[active.color] || palette.olive;
 
-    inner.className = 'flex items-start gap-3 p-4 rounded-2xl border shadow-lg text-sm ' +
-        'bg-' + p.bg + ' border-' + p.border + ' text-' + p.text + ' hover-smooth';
-    iconEl.className = 'text-2xl shrink-0 mt-0.5 ' + p.iconBg + ' p-2 rounded-xl';
+    inner.style.background = 'linear-gradient(135deg, ' + p.bg + ', ' + p.border + ')';
+    inner.style.borderColor = p.border;
+    inner.style.color = '#ffffff';
+    inner.style.boxShadow = '0 8px 20px -8px ' + p.soft;
+    iconEl.style.background = 'rgba(255,255,255,0.22)';
+    iconEl.style.color = '#ffffff';
+    iconEl.className = 'text-2xl shrink-0 mt-0.5 rounded-xl flex items-center justify-center w-11 h-11';
     iconEl.innerHTML = '<i class="' + active.icon + '"></i>';
 
     if(active.daysAfter === 0){
