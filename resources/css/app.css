@@ -113,10 +113,10 @@ turbo-progress-bar {
 
 /* Kelas penanda arah dipasang di <body> oleh transition.js */
 body.zy-dir-f .anim-smooth {
-    animation: pageSlideForward 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: pageSlideForward 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 body.zy-dir-b .anim-smooth {
-    animation: pageSlideBack 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: pageSlideBack 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 /* Delay berurutan (stagger) — lebih terasa "mengalir" dari atas ke bawah */
@@ -517,13 +517,13 @@ body.zy-nav-in .eze-up > * {
     opacity: 0.5;
 }
 body.zy-nav-in .eze-col-left > * {
-    animation: ezeInLeft 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation: ezeInLeft 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 body.zy-nav-in .eze-col-right > * {
-    animation: ezeInRight 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation: ezeInRight 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 body.zy-nav-in .eze-up > * {
-    animation: ezeInUp 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation: ezeInUp 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 /* Stagger berjenjang (delay naik bertahap) — dibuat lebih panjang & estetik */
 body.zy-nav-in .eze-col-left > *:nth-child(1),

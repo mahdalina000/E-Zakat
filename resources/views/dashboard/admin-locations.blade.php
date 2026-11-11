@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
-@section('title','Lokasi Saya — E-Zakat')
+@section('title','Kelola Lokasi — E-Zakat')
 @section('page-title','Kelola Lokasi UPZ / BAZNAS')
-@section('page-sub', auth()->user()->isAdminBaznas() ? 'Anda dapat mengelola seluruh lokasi' : 'Anda mengelola lokasi UPZ milik Anda')
+@section('page-sub', 'Semua admin dapat melihat dan mengubah seluruh lokasi')
 @section('content')
 <div class="flex items-center justify-between mb-4">
     <div class="text-sm text-olive/60">{{ $locations->total() }} lokasi</div>
@@ -28,10 +28,14 @@
                     <td class="px-4 py-3"><span class="text-[11px] px-2 py-1 rounded-full {{ $l->is_active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-500' }}">{{ $l->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
                     <td class="px-4 py-3 text-right whitespace-nowrap">
                         <a href="{{ route('admin.locations.edit', $l) }}" class="inline-flex w-8 h-8 items-center justify-center rounded-lg bg-cream text-olive hover:bg-cream3" title="Edit"><i class="fa-solid fa-pen text-xs"></i></a>
-                        <form method="POST" action="{{ route('admin.locations.destroy', $l) }}" class="inline" onsubmit="return confirm('Yakin hapus lokasi {{ $l->name }}?')">
+                        @if(auth()->user()->isSuperAdmin() || auth()->user()->isAdminBaznas())
+                        <form method="POST" action="{{ route('admin.locations.destroy', $l) }}" class="inline" onsubmit="return confirm('Yakin hapus lokasi {{ $l->name }}? Tindakan ini permanen.')">
                             @csrf @method('DELETE')
                             <button class="w-8 h-8 rounded-lg bg-red-50 text-red-500 hover:bg-red-100" title="Hapus"><i class="fa-solid fa-trash text-xs"></i></button>
                         </form>
+                        @else
+                        <span class="inline-flex w-8 h-8 items-center justify-center rounded-lg bg-cream2 text-olive/30" title="Admin UPZ tidak dapat menghapus lokasi"><i class="fa-solid fa-lock text-xs"></i></span>
+                        @endif
                     </td>
                 </tr>
             @empty

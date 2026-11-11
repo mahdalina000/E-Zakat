@@ -55,7 +55,12 @@ class AuthController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'phone' => ['required', 'string', 'min:8', 'max:20', 'regex:/^[0-9+\-\s()]+$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'phone.required' => 'Nomor telepon wajib diisi.',
+            'phone.regex' => 'Nomor telepon hanya boleh berisi angka, spasi, tanda hubung, atau +.',
+            'phone.min' => 'Nomor telepon minimal 8 karakter.',
         ]);
 
         $user = \App\Models\User::create([
@@ -64,6 +69,13 @@ class AuthController extends Controller
             'password' => $data['password'],
             'role' => 'user',
             'is_active' => true,
+        ]);
+
+        // Simpan nomor telepon ke profil warga (tabel users tidak punya kolom phone)
+        $user->wargaProfile()->create([
+            'user_id' => $user->id,
+            'full_name' => $data['name'],
+            'phone' => $data['phone'],
         ]);
 
         Auth::login($user);

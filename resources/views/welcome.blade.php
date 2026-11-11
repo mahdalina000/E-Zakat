@@ -424,7 +424,7 @@
         card.querySelectorAll('.zy-hadith > *').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(12px)';
-            el.style.transition = `opacity .5s ease ${i * 120}ms, transform .5s cubic-bezier(.16,1,.3,1) ${i * 120}ms`;
+            el.style.transition = `opacity .8s ease ${i * 120}ms, transform .8s cubic-bezier(.22,.61,.36,1) ${i * 120}ms`;
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     el.style.opacity = '1';
@@ -437,7 +437,7 @@
     }
     function next(){idx=(idx+1)%hadiths.length;render();}
     function prev(){idx=(idx-1+hadiths.length)%hadiths.length;render();}
-    function startTimer(){clearInterval(timer);timer=setInterval(()=>{if(!paused)next();},4200);}
+    function startTimer(){clearInterval(timer);timer=setInterval(()=>{if(!paused)next();},3000);}
     hadiths.forEach((_,i)=>{const b=document.createElement('button');b.addEventListener('click',()=>{idx=i;render();startTimer();});dots.appendChild(b);});
     document.getElementById('nextBtn')?.addEventListener('click',()=>{next();startTimer();});
     document.getElementById('prevBtn')?.addEventListener('click',()=>{prev();startTimer();});
@@ -483,37 +483,60 @@
             speakBtn.classList.add('bg-gold2','text-oliveDark');
         }
 
+        let audioEl = null;
+
         function speakHadith(){
             synth.cancel();
+            if(audioEl){ audioEl.pause(); audioEl = null; }
+
             const h = hadiths[idx];
-            const {id, ar, any} = pickVoices();
+            const num = String(idx + 1).padStart(2, '0');
+            const audioSrc = '/audio/hadits/h' + num + '.mp3';
 
-            // Pilih voice terbaik untuk arti (prioritas: id-ID, lalu fallback ke default)
-            const chosenVoice = id || any; // pakai suara default bila tak ada id-ID
-
-            const uId = new SpeechSynthesisUtterance('Artinya: ' + h.indo + '. ' + h.sumber + '.');
-            uId.lang = 'id-ID';
-            if(chosenVoice) uId.voice = chosenVoice;
-            uId.rate = 0.95;
-            uId.pitch = 1.0;
-            uId.volume = 1.0;
-
-            uId.onend = () => { speaking = false; resetIcon(); };
-            uId.onerror = (e) => {
-                // Jika masih error, coba lagi dengan voice default
-                speaking = false;
-                resetIcon();
+            // Coba mainkan file MP3 alami (ElevenLabs) jika tersedia.
+            // Jika file tidak ada -> fallback ke Web Speech API.
+            const tryAudio = () => {
+                const a = new Audio(audioSrc);
+                audioEl = a;
+                a.preload = 'metadata';
+                a.play().then(() => {
+                    speaking = true;
+                    showStop();
+                }).catch(() => {
+                    audioEl = null;
+                    speakViaSpeech();
+                });
+                a.addEventListener('ended', () => { speaking = false; audioEl = null; resetIcon(); });
+                a.addEventListener('error', () => { audioEl = null; speakViaSpeech(); });
             };
 
-            synth.speak(uId);
-            speaking = true;
-            showStop();
+            const speakViaSpeech = () => {
+                const {id, any} = pickVoices();
+                const chosenVoice = id || any;
+                const uId = new SpeechSynthesisUtterance('Artinya: ' + h.indo + '. ' + h.sumber + '.');
+                uId.lang = 'id-ID';
+                if(chosenVoice) uId.voice = chosenVoice;
+                uId.rate = 0.95;
+                uId.pitch = 1.0;
+                uId.volume = 1.0;
+                uId.onend = () => { speaking = false; resetIcon(); };
+                uId.onerror = () => { speaking = false; resetIcon(); };
+                synth.speak(uId);
+                speaking = true;
+                showStop();
+            };
+
+            // Cek ketersediaan file dulu, lalu putar / fallback
+            fetch(audioSrc, { method: 'HEAD' }).then(res => {
+                if(res.ok) tryAudio(); else speakViaSpeech();
+            }).catch(() => speakViaSpeech());
         }
 
         // Klik tombol: putar / hentikan
         speakBtn.addEventListener('click', () => {
             if(speaking){
                 synth.cancel();
+                if(audioEl){ audioEl.pause(); audioEl = null; }
                 speaking = false;
                 resetIcon();
             } else {
@@ -523,7 +546,7 @@
 
         // Berhenti saat pindah hadis (next/prev/dots/keyboard)
         const stopAll = () => {
-            if(speaking){ synth.cancel(); speaking = false; resetIcon(); }
+            if(speaking){ synth.cancel(); if(audioEl){ audioEl.pause(); audioEl = null; } speaking = false; resetIcon(); }
         };
         document.getElementById('nextBtn')?.addEventListener('click', stopAll);
         document.getElementById('prevBtn')?.addEventListener('click', stopAll);

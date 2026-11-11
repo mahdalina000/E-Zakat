@@ -18,7 +18,7 @@
 </div>
 @endif
 
-<div class="rounded-[20px] bg-gradient-to-br from-olive via-olive to-olive2 text-white p-5 lg:p-6 shadow-md relative overflow-hidden">
+<div class="rounded-[20px] bg-gradient-to-br from-olive via-olive to-olive2 text-white p-5 lg:p-6 shadow-md relative overflow-hidden mt-4">
     <div class="absolute -right-8 -top-10 w-44 h-44 rounded-full bg-white/10"></div>
     <div class="absolute -bottom-12 -left-6 w-36 h-36 rounded-full border-4 border-white/10"></div>
     <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-4 justify-between">

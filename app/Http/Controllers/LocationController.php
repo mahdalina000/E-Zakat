@@ -9,23 +9,37 @@ use Illuminate\Validation\Rule;
 
 class LocationController extends Controller
 {
-    /** Admin UPZ hanya melihat lokasi miliknya; BAZNAS melihat semua. */
+    /**
+     * Semua admin (UPZ, BAZNAS, Super Admin) melihat seluruh lokasi.
+     *
+     * Sebelumnya admin UPZ difilter created_by = dirinya, sehingga lokasi
+     * milik BAZNAS tidak terlihat sama sekali (hasilnya 0 lokasi).
+     */
     private function scoped()
     {
-        $u = Auth::user();
-        $q = Location::query();
-        if ($u->isAdminUpz()) {
-            $q->where('created_by', $u->id);
-        }
-        return $q;
+        return Location::query();
     }
 
+    /**
+     * Semua admin boleh MELIHAT dan MENGUBAH lokasi mana pun.
+     * Yang dibatasi hanya tipe lokasi yang boleh dibuat admin UPZ.
+     */
     private function authorizeOwn(Location $location): void
     {
-        $u = Auth::user();
-        if ($u->isAdminUpz() && $location->created_by !== $u->id) {
-            abort(403, 'Anda hanya dapat mengelola lokasi milik Anda.');
-        }
+        // sengaja kosong — akses lihat & ubah dibuka untuk semua admin
+    }
+
+    /**
+     * Hak hapus: hanya Super Admin dan Admin BAZNAS.
+     * Admin UPZ hanya boleh melihat dan mengubah.
+     */
+    private function authorizeDelete(): void
+    {
+        abort_unless(
+            Auth::user()->isSuperAdmin() || Auth::user()->isAdminBaznas(),
+            403,
+            'Admin UPZ hanya dapat melihat dan mengubah lokasi, tidak menghapus.'
+        );
     }
 
     public function index()
@@ -73,7 +87,7 @@ class LocationController extends Controller
 
     public function destroy(Location $location)
     {
-        $this->authorizeOwn($location);
+        $this->authorizeDelete();
         $location->delete();
         $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
         return redirect()->route($home)->with('success', 'Lokasi berhasil dihapus.');

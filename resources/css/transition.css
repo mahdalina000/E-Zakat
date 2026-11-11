@@ -15,7 +15,7 @@ body.zy-nav-out [data-page-transition] {
 }
 /* Saat masuk: konten baru naik dari bawah + fade (smooth, pelan — konsisten dgn halaman lain) */
 body.zy-nav-in [data-page-transition] {
-    animation: zyPageIn 1.05s cubic-bezier(.22,.61,.36,1) both;
+    animation: zyPageIn 1.35s cubic-bezier(.22,.61,.36,1) both;
 }
 @keyframes zyPageIn {
     from { opacity: 0.55; transform: translateY(22px); }

@@ -360,7 +360,7 @@ window.ezOnReady(function () {
 
             if(matchFilter && matchSearch) {
                 const marker = L.marker([loc.lat, loc.lng], { icon: createCustomIcon(loc.cat) }).addTo(map)
-                    .bindPopup(`<b style="color:#0F172A;">${loc.name}</b><br><span style="font-size:11px; color:#475569;">${loc.address}</span>`);
+                    .bindPopup(`<b style="color:#0F172A;">${loc.name}</b><br><span style="font-size:11px; color:#475569;">${loc.address}</span><br><a href="https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:#1d5b37;text-decoration:underline;">Buka di Google Maps &rarr;</a>`);
                 markers.push(marker);
 
                 const item = document.createElement('div');
@@ -373,9 +373,10 @@ window.ezOnReady(function () {
                 item.innerHTML = `
                     <div class="flex items-start gap-2.5 overflow-hidden">
                         <span class="w-2.5 h-2.5 rounded-full ${dotColor} shrink-0 mt-1"></span>
-                        <div class="truncate">
+                        <div class="truncate flex-1">
                             <div class="font-extrabold text-oliveDark truncate">${loc.name}</div>
                             <div class="text-[10px] text-black/70 truncate mt-0.5">${loc.address}</div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 mt-1 text-[10px] font-bold text-olive hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
                         </div>
                     </div>
                 `;

@@ -104,7 +104,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/zakat-request', [ZakatRequestController::class, 'index'])->name('zakat-request');
         Route::post('/zakat-request', [ZakatRequestController::class, 'store'])->name('zakat-request.store');
         Route::delete('/zakat-request/{zakatRequest}', [ZakatRequestController::class, 'destroy'])->name('zakat-request.destroy');
-
         // Hub kalkulator (semua kalkulator dalam satu halaman, hasil disimpan ke riwayat)
         Route::get('/calculators', [UserProfileController::class, 'calculators'])->name('calculators');
         Route::post('/calculators/{type}', [UserProfileController::class, 'saveCalculation'])->name('calculators.save');
