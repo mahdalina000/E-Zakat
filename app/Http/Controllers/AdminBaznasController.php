@@ -274,6 +274,22 @@ class AdminBaznasController extends Controller
             $request->only(['institution_type', 'institution_name', 'alias', 'address', 'phone', 'public_email', 'website', 'description'])
         );
 
+        // Ganti password akun admin (opsional — hanya jika field diisi)
+        if ($request->filled('new_password')) {
+            $request->validate([
+                'current_password' => ['required', 'string'],
+                'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+            ], [
+                'new_password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+            ]);
+
+            if (!\Illuminate\Support\Facades\Hash::check($request->input('current_password'), Auth::user()->password)) {
+                return back()->withErrors(['current_password' => 'Password lama salah.'])->withInput();
+            }
+
+            Auth::user()->update(['password' => \Illuminate\Support\Facades\Hash::make($request->input('new_password'))]);
+        }
+
         return back()->with('success', 'Pengaturan lembaga berhasil disimpan.');
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminBaznasController;
 use App\Http\Controllers\BerasPriceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackAdminController;
+use App\Http\Controllers\HolidayBannerAdminController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserFeedbackController;
@@ -17,7 +18,24 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', fn () => view('welcome'))->name('welcome');
-Route::get('/beranda', fn () => view('beranda'))->name('beranda');
+Route::get('/beranda', function () {
+    $holidayBanners = \App\Models\HolidayBanner::where('is_active', true)
+        ->orderBy('event_date')->get()
+        ->map(fn ($b) => [
+            'key' => $b->key,
+            'name' => $b->name,
+            'year' => (int) $b->event_date->format('Y'),
+            'month' => (int) $b->event_date->format('n'),
+            'day' => (int) $b->event_date->format('j'),
+            'before' => $b->before_days,
+            'after' => $b->after_days,
+            'icon' => $b->icon,
+            'color' => $b->color,
+            'title' => $b->title,
+            'text' => $b->text,
+        ])->values();
+    return view('beranda', compact('holidayBanners'));
+})->name('beranda');
 Route::get('/kalkulator', fn () => view('kalkulator', ['hargaBeras' => \App\Models\BerasPrice::currentPrice()]))->name('kalkulator');
 Route::get('/direktori', function () {
     $locations = \App\Models\Location::where('is_active', true)->orderBy('type')->orderBy('name')->get();
@@ -107,6 +125,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/feedback', [FeedbackAdminController::class, 'index'])->name('feedback');
         Route::post('/feedback/{feedback}/read', [FeedbackAdminController::class, 'markRead'])->name('feedback.read');
         Route::delete('/feedback/{feedback}', [FeedbackAdminController::class, 'destroy'])->name('feedback.destroy');
+
+        // Banner hari besar keagamaan — Admin BAZNAS/UPZ
+        Route::get('/holidays', [HolidayBannerAdminController::class, 'index'])->name('holidays.index');
+        Route::post('/holidays', [HolidayBannerAdminController::class, 'store'])->name('holidays.store');
+        Route::put('/holidays/{banner}', [HolidayBannerAdminController::class, 'update'])->name('holidays.update');
+        Route::post('/holidays/{banner}/toggle', [HolidayBannerAdminController::class, 'toggle'])->name('holidays.toggle');
+        Route::delete('/holidays/{banner}', [HolidayBannerAdminController::class, 'destroy'])->name('holidays.destroy');
     });
 
     // Super Admin — Pemko Banjarbaru

@@ -361,11 +361,13 @@
                         <div class="space-y-3">
                             <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-calendar-days mr-1"></i> Kalender Terdekat</div>
                             <div class="flex flex-wrap gap-2 p-3.5 festive-card rounded-2xl" id="festivalChips">
-                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Ramadan 1448H</span>
-                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Nuzulul Qur'an</span>
-                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Idul Fitri</span>
-                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Idul Adha</span>
-                                <span class="text-[11px] font-bold festive-chip rounded-full px-3.5 py-1.5 text-white">Maulid Nabi</span>
+                                @forelse($holidayBanners as $h)
+                                <button type="button" data-key="{{ $h['key'] }}" class="festive-chip rounded-full px-3.5 py-1.5 text-white text-[11px] font-bold transition">
+                                    {{ $h['name'] }}
+                                </button>
+                                @empty
+                                <span class="text-[11px] text-white/60">Belum ada data hari raya.</span>
+                                @endforelse
                             </div>
                             <a href="{{ url('/kalkulator') }}" class="inline-flex items-center gap-2 bg-gold2 hover:bg-gold text-white text-xs font-extrabold px-5 py-2.5 rounded-full transition active:scale-95 shadow-md">
                                 <i class="fa-solid fa-calculator"></i> Hitung Zakat Sekarang
@@ -447,63 +449,63 @@ function initCountdown() {
 }
 window.addEventListener('load', initCountdown);
 
-const HOLIDAYS = [
-    {
-        key: 'mawlid-1448',
-        name: 'Maulid Nabi Muhammad SAW 1448H',
-        date: new Date(2027, 5, 25),
-        before: 7,
-        after: 3,
-        icon: 'fa-solid fa-star-and-crescent',
-        color: 'teal',
-        title: 'Maulid Nabi SAW Mendekat!',
-        text: 'Peringatan kelahiran Rasulullah SAW. Perbanyak keutamaan sedekah & zakat sebagai sunnah beliau.',
-    },
-    {
-        key: 'nuzulul-quran-1448',
-        name: 'Nuzulul Qur\'an 1448H',
-        date: new Date(2027, 2, 26),
-        before: 3,
-        after: 3,
-        icon: 'fa-solid fa-book-quran',
-        color: 'blue',
-        title: 'Malam Nuzulul Qur\'an',
-        text: 'Perkiraan 17 Ramadan — perbanyak tilawah & sedekah. Siapkan zakat fitrah untuk akhir Ramadan.',
-    },
-    {
-        key: 'idul-fitri-1448',
-        name: '1 Syawal 1448H (Idul Fitri)',
-        date: new Date(2027, 2, 30),
-        before: 15,
-        after: 3,
-        icon: 'fa-solid fa-mosque',
-        color: 'rose',
-        title: 'Idul Fitri Mendekat!',
-        text: 'Segera tunaikan zakat fitrah sebelum Sholat Id. 2,5 kg beras/jiwa (BAZNAS 2026: Rp50.000/jiwa).',
-    },
-    {
-        key: 'ramadan-1448',
-        name: 'Bulan Suci Ramadan 1448H',
-        date: new Date(2027, 1, 8),
-        before: 30,
-        after: 3,
-        icon: 'fa-solid fa-star-and-crescent',
-        color: 'emerald',
-        title: 'Ramadan 1448H Akan Tiba!',
-        text: 'Bersyukurlah & siapkan fisik dan harta. Segera tunaikan zakat fitrah menjelang akhir Ramadan.',
-    },
-    {
-        key: 'idul-adha-1448',
-        name: '10 Dzulhijjah 1448H (Idul Adha)',
-        date: new Date(2027, 4, 16),
-        before: 15,
-        after: 3,
-        icon: 'fa-solid fa-cow',
-        color: 'gold',
-        title: 'Idul Adha Mendekat!',
-        text: 'Waktunya kurban. Siapkan 1/7 bagian hewan kurban — minimal ±12,5 kg daging per jiwa.',
-    },
-];
+// Banner hari raya dibangun dari tabel holiday_banners (dikelola Admin BAZNAS)
+const HOLIDAYS = (@json($holidayBanners ?? collect())).map(h => ({
+    key: h.key,
+    name: h.name,
+    date: new Date(h.year, h.month - 1, h.day),
+    before: h.before,
+    after: h.after,
+    icon: h.icon,
+    color: h.color,
+    title: h.title,
+    text: h.text,
+}));
+
+const paletteAll = {
+    olive:   { bg: '#3f5f43', border: '#7d9b72', soft: 'rgba(63,95,67,0.14)' },
+    teal:   { bg: '#0f766e', border: '#14b8a6', soft: 'rgba(15,118,110,0.14)' },
+    blue:   { bg: '#1d4ed8', border: '#60a5fa', soft: 'rgba(29,78,216,0.14)' },
+    emerald: { bg: '#047857', border: '#34d399', soft: 'rgba(4,120,87,0.14)' },
+    rose:   { bg: '#be123c', border: '#fb7185', soft: 'rgba(190,18,60,0.14)' },
+    gold:   { bg: '#926c1a', border: '#e2b356', soft: 'rgba(210,150,40,0.16)' },
+};
+
+// Tampilkan banner + perbarui countdown untuk satu hari raya (dipakai klik chip & auto)
+function applyFestival(h) {
+    const banner = document.getElementById('holidayBanner');
+    const inner = document.getElementById('holidayBannerInner');
+    const iconEl = document.getElementById('holidayBannerIcon');
+    const titleEl = document.getElementById('holidayBannerTitle');
+    const textEl = document.getElementById('holidayBannerText');
+    const noteEl = document.getElementById('holidayBannerNote');
+    if(!banner || !inner || !h) return;
+
+    const p = paletteAll[h.color] || paletteAll.olive;
+    inner.style.background = 'linear-gradient(135deg, ' + p.bg + ', ' + p.border + ')';
+    inner.style.borderColor = p.border;
+    inner.style.color = '#ffffff';
+    inner.style.boxShadow = '0 8px 20px -8px ' + p.soft;
+    iconEl.style.background = 'rgba(255,255,255,0.22)';
+    iconEl.style.color = '#ffffff';
+    iconEl.className = 'text-2xl shrink-0 mt-0.5 rounded-xl flex items-center justify-center w-11 h-11';
+    iconEl.innerHTML = '<i class="' + h.icon + '"></i>';
+
+    const now = new Date();
+    const days = Math.max(0, Math.round((h.date - now) / 86400000));
+    titleEl.textContent = h.title;
+    textEl.textContent = (days > 0 ? h.name + ' dalam ' + days + ' hari. ' : '') + h.text;
+
+    banner.classList.remove('hidden');
+    if(noteEl) noteEl.classList.remove('hidden');
+
+    const dEl = document.getElementById('countdownDays');
+    const nEl = document.getElementById('countdownName');
+    const dtEl = document.getElementById('countdownDate');
+    if(dEl) dEl.textContent = days;
+    if(nEl) nEl.textContent = h.name.replace(/ 14\d+H/, '').trim();
+    if(dtEl) dtEl.textContent = h.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+}
 
 (function initHolidayBanner() {
     const banner = document.getElementById('holidayBanner');
@@ -539,43 +541,25 @@ const HOLIDAYS = [
         return;
     }
 
-    const palette = {
-        olive:   { bg: '#3f5f43', border: '#7d9b72', soft: 'rgba(63,95,67,0.14)' },
-        teal:   { bg: '#0f766e', border: '#14b8a6', soft: 'rgba(15,118,110,0.14)' },
-        blue:   { bg: '#1d4ed8', border: '#60a5fa', soft: 'rgba(29,78,216,0.14)' },
-        emerald: { bg: '#047857', border: '#34d399', soft: 'rgba(4,120,87,0.14)' },
-        rose:   { bg: '#be123c', border: '#fb7185', soft: 'rgba(190,18,60,0.14)' },
-        gold:   { bg: '#926c1a', border: '#e2b356', soft: 'rgba(210,150,40,0.16)' },
-    };
-    const p = palette[active.color] || palette.olive;
-
-    inner.style.background = 'linear-gradient(135deg, ' + p.bg + ', ' + p.border + ')';
-    inner.style.borderColor = p.border;
-    inner.style.color = '#ffffff';
-    inner.style.boxShadow = '0 8px 20px -8px ' + p.soft;
-    iconEl.style.background = 'rgba(255,255,255,0.22)';
-    iconEl.style.color = '#ffffff';
-    iconEl.className = 'text-2xl shrink-0 mt-0.5 rounded-xl flex items-center justify-center w-11 h-11';
-    iconEl.innerHTML = '<i class="' + active.icon + '"></i>';
-
-    if(active.daysAfter === 0){
-        titleEl.textContent = active.title;
-        textEl.textContent = active.text;
-    } else if(active.daysAfter > 0){
-        titleEl.textContent = active.title;
-        textEl.textContent = 'Hari ini ' + active.name + ' yang lalu (H-' + active.daysAfter + '). ' + active.text;
-    } else {
-        titleEl.textContent = active.daysAfter === 0 ? active.title : (active.name + ' dalam ' + active.daysUntil + ' hari');
-        textEl.textContent = active.text;
-    }
-
-    banner.classList.remove('hidden');
-    noteEl.classList.remove('hidden');
+    applyFestival(active);
 
     closeBtn.addEventListener('click', () => {
         banner.classList.add('hidden');
         noteEl.classList.add('hidden');
         localStorage.setItem(closedKey, String(now.getFullYear()));
+    });
+})();
+
+// Klik chip "Kalender Terdekat" -> tampilkan banner & perbarui countdown
+(function(){
+    const chips = document.querySelectorAll('#festivalChips [data-key]');
+    chips.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const h = HOLIDAYS.find(x => x.key === btn.dataset.key);
+            if(h) applyFestival(h);
+            chips.forEach(b => b.classList.remove('bg-gold2', 'text-oliveDark', 'ring-2', 'ring-gold2'));
+            btn.classList.add('bg-gold2', 'text-oliveDark', 'ring-2', 'ring-gold2');
+        });
     });
 })();
 </script>

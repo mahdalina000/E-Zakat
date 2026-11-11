@@ -50,6 +50,25 @@
             <textarea name="description" rows="4" class="mt-1 w-full border border-cream3 rounded-2xl px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="Profil singkat lembaga...">{{ old('description', $profile->description) }}</textarea>
         </div>
 
+        <div class="border-t border-cream3/50 pt-4">
+            <div class="text-xs font-bold text-oliveDark mb-3 flex items-center gap-2"><i class="fa-solid fa-lock"></i> Ganti Password Akun</div>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <div>
+                    <label class="text-xs font-semibold text-oliveDark">Password Lama</label>
+                    <input name="current_password" type="password" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="••••••••">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-oliveDark">Password Baru</label>
+                    <input name="new_password" type="password" minlength="8" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="Min. 8 karakter">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-oliveDark">Ulangi Password Baru</label>
+                    <input name="new_password_confirmation" type="password" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="Ulangi password baru">
+                </div>
+            </div>
+            <p class="text-[10px] text-olive/60 mt-2">Kosongkan ketiganya jika tidak ingin mengganti password.</p>
+        </div>
+
         <div class="flex gap-3 pt-2">
             <button class="bg-olive text-white font-semibold px-6 py-2.5 rounded-full hover:bg-olive2"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Pengaturan</button>
             <a href="{{ route('admin.baznas') }}" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2.5 rounded-full hover:bg-cream3">Kembali</a>

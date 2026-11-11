@@ -195,6 +195,8 @@
                 <a href="{{ route('admin.beras.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.beras.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-wheat-awn w-4"></i> Harga Beras Banjar</a>
                 <a href="{{ route('admin.export') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.export') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-file-excel w-4"></i> Export Catatan</a>
                 <a href="{{ route('admin.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Masukan Warga</a>
+                <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> Pengaturan Profil</a>
+                <a href="{{ route('admin.holidays.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.holidays.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-star-and-crescent w-4"></i> Banner Hari Raya</a>
             @endif
 
             @if($u->isUser())
