@@ -465,12 +465,15 @@ const list = [
 document.getElementById('dailyHadith').textContent = '"' + list[new Date().getDate() % list.length] + '"';
 
 /* COUNTDOWN HARI RAYA TERDEKAT (dipakai oleh banner bagian bawah) */
+let countdownTarget = null;
 function initCountdown() {
     const now = new Date();
-    let next = null;
-    for(const h of HOLIDAYS){
-        if(h.date > now){
-            if(!next || h.date < next.date) next = h;
+    let next = countdownTarget || null;
+    if(!next){
+        for(const h of HOLIDAYS){
+            if(h.date > now){
+                if(!next || h.date < next.date) next = h;
+            }
         }
     }
     const dEl = document.getElementById('countdownDays');
@@ -588,6 +591,10 @@ function applyFestival(h) {
     if(dEl) dEl.textContent = days;
     if(nEl) nEl.textContent = h.name.replace(/ 14\d+H/, '').trim();
     if(dtEl) dtEl.textContent = h.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+
+    // Selaraskan countdown (Hari:Jam:Mnt:Dtk) dengan chip/banner yang aktif
+    countdownTarget = h;
+    initCountdown();
 }
 
 // Tutup banner dengan mulus + simpan status (per sesi & per tahun)
