@@ -165,11 +165,12 @@
     body.dark-mode .result-card-olive .bg-panel-2 {
         background-color: rgba(255, 255, 255, 0.07) !important;
         border-color: rgba(255, 255, 255, 0.14) !important;
-    }</style>
+    }
+</style>
 @endsection
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
+<div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4 overflow-x-hidden">
     <!-- HEADER TAB TIPE ZAKAT DALAM BLOK TRANSPARAN DENGAN ORNAMEN SVG -->
     <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm relative overflow-hidden eze-up">
         <svg class="absolute right-4 top-2 w-20 h-20 opacity-15 pointer-events-none text-gold2" viewBox="0 0 24 24" fill="currentColor">
@@ -191,35 +192,35 @@
     </div>
 
     {{-- FITRAH --}}
-    <div id="panel-fitrah" class="tab-panel space-y-6">
-        <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+    <div id="panel-fitrah" class="tab-panel space-y-6 w-full overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-6 min-w-0">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm min-w-0">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-black"></i> Zakat Fitrah</h2>
                 <p class="text-xs text-black/70 mt-1">Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras atau 3,5 liter / jiwa (1 sha').</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jumlah Jiwa</label>
                 <div class="mt-2 flex items-center gap-3">
-                    <button id="fitrahMinus" type="button" class="w-10 h-10 rounded-full bg-panel-2 border border-cream3/70 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
-                    <input id="fitrahJiwa" type="number" min="1" value="1" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-panel-2 border border-cream3/70">
-                    <button id="fitrahPlus" type="button" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                    <button id="fitrahMinus" type="button" class="w-10 h-10 shrink-0 rounded-full bg-panel-2 border border-cream3/70 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <input id="fitrahJiwa" type="number" min="1" value="1" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-panel-2">
+                    <button id="fitrahPlus" type="button" class="w-10 h-10 shrink-0 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jenis Beras</label>
                 <div class="mt-2 grid grid-cols-2 gap-2">
-                    <label class="cursor-pointer">
+                    <label class="cursor-pointer min-w-0">
                         <input type="radio" name="beras" value="banjar" checked class="peer sr-only">
-                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive border border-cream3/40 rounded-2xl p-3 text-center transition shadow-sm">
-                            <div class="text-xs font-extrabold">Beras Banjar</div>
-                            <div class="text-[10px] opacity-80">Premium lokal</div>
-                            <div class="text-xs mt-1 font-bold">Rp <span id="labelBanjar">{{ number_format($hargaBeras ?? 16500,0,',','.') }}</span> / kg</div>
+                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive border border-cream3/40 rounded-2xl p-2.5 lg:p-3 text-center transition shadow-sm overflow-hidden">
+                            <div class="text-xs font-extrabold truncate">Beras Banjar</div>
+                            <div class="text-[10px] opacity-80 truncate">Premium lokal</div>
+                            <div class="text-[11px] lg:text-xs mt-1 font-bold truncate">Rp <span id="labelBanjar">{{ number_format($hargaBeras ?? 16500,0,',','.') }}</span>/kg</div>
                         </div>
                     </label>
-                    <label class="cursor-pointer">
+                    <label class="cursor-pointer min-w-0">
                         <input type="radio" name="beras" value="lain" class="peer sr-only">
-                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive border border-cream3/40 rounded-2xl p-3 text-center transition shadow-sm">
-                            <div class="text-xs font-extrabold">Beras Lain</div>
-                            <div class="text-[10px] opacity-80">Atur harga</div>
-                            <div class="text-xs mt-1 font-bold">Custom / kg</div>
+                        <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive border border-cream3/40 rounded-2xl p-2.5 lg:p-3 text-center transition shadow-sm overflow-hidden">
+                            <div class="text-xs font-extrabold truncate">Beras Lain</div>
+                            <div class="text-[10px] opacity-80 truncate">Atur harga</div>
+                            <div class="text-[11px] lg:text-xs mt-1 font-bold truncate">Custom/kg</div>
                         </div>
                     </label>
                 </div>
@@ -227,8 +228,8 @@
                 <div id="hargaBanjarBox" class="mt-4">
                     <label class="text-xs font-bold text-oliveDark">Harga Beras Banjar (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
-                        <span class="text-xs font-bold text-black">Rp</span>
-                        <input id="hargaBanjarFormatted" type="text" value="{{ number_format($hargaBeras ?? 16500,0,',','.') }}" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <span class="text-xs font-bold text-black shrink-0">Rp</span>
+                        <input id="hargaBanjarFormatted" type="text" value="{{ number_format($hargaBeras ?? 16500,0,',','.') }}" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                         <input id="hargaBanjar" type="hidden" value="{{ $hargaBeras ?? 16500 }}">
                     </div>
                 </div>
@@ -236,8 +237,8 @@
                 <div id="hargaLainBox" class="mt-4 hidden">
                     <label class="text-xs font-bold text-oliveDark">Harga Beras Lain (per kg)</label>
                     <div class="mt-1 flex items-center gap-2">
-                        <span class="text-xs font-bold text-black">Rp</span>
-                        <input id="hargaLainFormatted" type="text" value="14.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <span class="text-xs font-bold text-black shrink-0">Rp</span>
+                        <input id="hargaLainFormatted" type="text" value="14.000" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                         <input id="hargaLain" type="hidden" value="14000">
                     </div>
                     <input id="namaBerasLain" placeholder="Nama beras (opsional, mis. Beras Siam)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2">
@@ -249,38 +250,26 @@
             </div>
 
             <!-- KARTU HASIL PERHITUNGAN FITRAH DENGAN AKSEN WARTA EMAS -->
-            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between min-w-0">
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL PERHITUNGAN</div>
                     <h3 class="font-black text-2xl mt-1 text-white">Zakat Fitrah</h3>
 
-                    <div class="mt-5 space-y-3">
-                        <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
-                                <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Total Beras</div>
-                                <div id="fitrahBeras" class="font-black text-white text-xl mt-0.5">2,5 kg</div>
-                                <div id="fitrahLiter" class="text-[10px] text-white/70 mt-0.5">≈ 3,5 liter</div>
-                            </div>
-                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
-                                <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Jiwa</div>
-                                <div id="fitrahJiwaOut" class="font-black text-white text-xl mt-0.5">1</div>
-                                <div class="text-[10px] text-white/70 mt-0.5">orang</div>
-                            </div>
+                    <div class="mt-4 space-y-2">
+                        <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/20 space-y-1.5">
+                            <div class="flex justify-between text-xs font-medium"><span class="text-white/80">Jumlah Jiwa</span><span id="fitrahJiwaOut" class="font-bold text-white">1 orang</span></div>
+                            <div class="flex justify-between text-xs font-medium"><span class="text-white/80">Total Beras</span><span id="fitrahBeras" class="font-bold text-white">2,5 kg</span></div>
+                            <div class="flex justify-between text-xs font-medium hidden sm:flex"><span class="text-white/80">Setara Volume</span><span id="fitrahLiter" class="font-bold text-white">≈ 3,5 liter</span></div>
                         </div>
 
-                        <div class="bg-gold/20 backdrop-blur-md rounded-2xl p-4 text-center border border-gold/40 shadow-md">
+                        <div class="bg-gold/20 backdrop-blur-md rounded-2xl p-3 sm:p-4 text-center border border-gold/40 shadow-md">
                             <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Setara Uang</div>
-                            <div id="fitrahRupiah" class="font-black text-2xl text-gold2 mt-0.5">Rp 41.250</div>
-                            <div id="fitrahJenisLabel" class="text-[11px] text-white/90 mt-1 font-medium">Beras Banjar • Rp16.500/kg</div>
+                            <div id="fitrahRupiah" class="font-black text-xl sm:text-2xl text-gold2 mt-0.5">Rp 41.250</div>
+                            <div id="fitrahJenisLabel" class="text-[10px] sm:text-[11px] text-white/90 mt-1 font-medium">Beras Banjar • Rp16.500/kg</div>
                         </div>
 
-                        <div id="fitrahRincian" class="bg-black/15 backdrop-blur-md rounded-2xl p-4 border border-white/15 text-[11px] text-white leading-relaxed">
-                            <div class="space-y-1">
-                                <div class="text-xs font-bold text-gold2 mb-1"><i class="fa-solid fa-thumbtack mr-1"></i> Rincian Satuan:</div>
-                                <div>• <b>Per orang</b>: Rp 41.250 / orang (2,5 kg × Rp16.500/kg)</div>
-                                <div>• <b>Total 1 orang</b>: 1 × Rp 41.250 = <b class="text-white">Rp 41.250</b></div>
-                                <div>• Total beras: <b>2,5 kg</b> (2,5 kg/orang × 1 orang)</div>
-                            </div>
+                        <div id="fitrahRincian" class="bg-black/15 backdrop-blur-md rounded-2xl p-2.5 border border-white/15 text-[10px] sm:text-[11px] text-white leading-snug hidden sm:block">
+                            • Per orang: Rp 41.250 (2,5 kg × Rp16.500/kg)
                         </div>
                     </div>
                 </div>
@@ -302,9 +291,9 @@
     </div>
 
     {{-- MAAL --}}
-    <div id="panel-maal" class="tab-panel hidden space-y-6">
-        <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+    <div id="panel-maal" class="tab-panel hidden space-y-6 w-full overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-6 min-w-0">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm min-w-0">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-black"></i> Zakat Maal (Harta)</h2>
                 <p class="text-xs text-black/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
 
@@ -313,7 +302,7 @@
                         <i class="fa-solid fa-ring mr-1 text-emas-custom"></i> Emas Milik Pribadi — Hitung Otomatis ke Rupiah
                     </label>
                     <div class="flex items-center gap-2">
-                        <input id="gramEmasInput" type="number" min="0" step="0.1" value="100" class="flex-1 border border-cream3 rounded-full px-3.5 py-2 text-xs font-bold bg-panel-2">
+                        <input id="gramEmasInput" type="number" min="0" step="0.1" value="100" class="w-full min-w-0 border border-cream3 rounded-full px-3.5 py-2 text-xs font-bold bg-panel-2">
                         <span class="text-[10px] text-black/60 shrink-0">gram</span>
                     </div>
                     <div id="emasKonsiBox" class="mt-2.5 rounded-xl bg-panel-2 border border-panel-border p-3">
@@ -333,22 +322,22 @@
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas per gram (Rp)</label>
                 <div class="mt-1.5 flex items-center gap-2">
-                    <span class="text-xs font-bold text-black">Rp</span>
-                    <input id="maalEmasFormatted" type="text" value="1.300.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
-                    <span class="text-[10px] text-black/60">/gram</span>
+                    <span class="text-xs font-bold text-black shrink-0">Rp</span>
+                    <input id="maalEmasFormatted" type="text" value="1.300.000" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                    <span class="text-[10px] text-black/60 shrink-0">/gram</span>
                 </div>
                 <input id="maalEmas" type="hidden" value="1300000">
                 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Sudah haul 1 tahun?</label>
                 <div class="mt-2 flex gap-2">
-                    <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Ya</div></label>
-                    <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
+                    <label class="flex-1 cursor-pointer min-w-0"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Ya</div></label>
+                    <label class="flex-1 cursor-pointer min-w-0"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
                 </div>
 
                 {{-- Total Harta diletakkan paling bawah: hasil akhir dari semua isian di atas --}}
                 <div class="mt-5 pt-4 border-t border-panel-border">
                     <label class="block text-xs font-extrabold text-oliveDark">Total Harta (Rp)</label>
-                    <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full border-2 border-olive/40 rounded-full px-4 py-2.5 text-sm bg-panel-2 font-black text-oliveDark">
+                    <input id="maalHartaFormatted" type="text" value="100.000.000" class="mt-1.5 w-full min-w-0 border-2 border-olive/40 rounded-full px-4 py-2.5 text-sm bg-panel-2 font-black text-oliveDark">
                     <input id="maalHarta" type="hidden" value="100000000">
                     <p class="text-[10px] text-black/60 mt-1">
                         <i class="fa-solid fa-circle-info mr-1"></i> Otomatis terisi dari gram emas di atas. Bisa juga diketik manual untuk menambah tabungan, deposito, atau harta lain.
@@ -357,7 +346,7 @@
             </div>
 
             <!-- KARTU HASIL PERHITUNGAN MAAL -->
-            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between min-w-0">
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT MAAL</div>
                     <h3 class="font-black text-2xl mt-1 text-white">Zakat Harta</h3>
@@ -401,14 +390,14 @@
     </div>
 
     {{-- PENGHASILAN --}}
-    <div id="panel-penghasilan" class="tab-panel hidden space-y-6">
-        <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+    <div id="panel-penghasilan" class="tab-panel hidden space-y-6 w-full overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-6 min-w-0">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm min-w-0">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-briefcase text-black"></i> Zakat Penghasilan</h2>
                 <p class="text-xs text-black/70 mt-1">2,5% dari penghasilan bulanan yang mencapai nisab. Nisab: <b>Rp 7.640.144/bulan</b> (BAZNAS 2026, setara 85 gr emas).</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark">Penghasilan Bersih / Bulan (Rp)</label>
-                <input id="penghasilanFormatted" type="text" value="7.640.144" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                <input id="penghasilanFormatted" type="text" value="7.640.144" class="mt-1.5 w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                 <input id="penghasilan" type="hidden" value="7640144">
 
                 <div class="mt-4 p-3 rounded-2xl border border-gold/30 bg-gold/5 text-[11px] text-black/80 leading-relaxed">
@@ -417,7 +406,7 @@
                 </div>
             </div>
 
-            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl min-w-0">
                 <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PENGHASILAN</div>
                 <h3 class="font-black text-2xl mt-1 text-white">2,5%</h3>
                 <div class="mt-5 space-y-3">
@@ -452,40 +441,40 @@
     </div>
 
     {{-- PERNIAGAAN --}}
-    <div id="panel-perniagaan" class="tab-panel hidden space-y-6">
-        <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+    <div id="panel-perniagaan" class="tab-panel hidden space-y-6 w-full overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-6 min-w-0">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm min-w-0">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-store text-black"></i> Zakat Perniagaan</h2>
                 <p class="text-xs text-black/70 mt-1">2,5% dari harta bersih niaga setelah mencapai nisab <b>85 gr emas</b>.</p>
 
                 <div class="grid sm:grid-cols-2 gap-3 mt-5">
-                    <div>
+                    <div class="min-w-0">
                         <label class="block text-xs font-bold text-oliveDark">Modal Diputar (Rp)</label>
-                        <input id="niagaModalFormatted" type="text" value="40.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaModalFormatted" type="text" value="40.000.000" class="mt-1.5 w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                         <input id="niagaModal" type="hidden" value="40000000">
                     </div>
-                    <div>
+                    <div class="min-w-0">
                         <label class="block text-xs font-bold text-oliveDark">Keuntungan (Rp)</label>
-                        <input id="niagaUntungFormatted" type="text" value="10.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaUntungFormatted" type="text" value="10.000.000" class="mt-1.5 w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                         <input id="niagaUntung" type="hidden" value="10000000">
                     </div>
-                    <div>
+                    <div class="min-w-0">
                         <label class="block text-xs font-bold text-oliveDark">Piutang Lancar (Rp)</label>
-                        <input id="niagaPiutangFormatted" type="text" value="0" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaPiutangFormatted" type="text" value="0" class="mt-1.5 w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                         <input id="niagaPiutang" type="hidden" value="0">
                     </div>
-                    <div>
+                    <div class="min-w-0">
                         <label class="block text-xs font-bold text-oliveDark">Utang Jatuh Tempo (Rp)</label>
-                        <input id="niagaUtangFormatted" type="text" value="10.000.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                        <input id="niagaUtangFormatted" type="text" value="10.000.000" class="mt-1.5 w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
                         <input id="niagaUtang" type="hidden" value="10000000">
                     </div>
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas / gram (Rp)</label>
                 <div class="mt-1.5 flex items-center gap-2">
-                    <span class="text-xs font-bold text-black">Rp</span>
-                    <input id="niagaEmasFormatted" type="text" value="1.300.000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
-                    <span class="text-[10px] text-black/60">/gram</span>
+                    <span class="text-xs font-bold text-black shrink-0">Rp</span>
+                    <input id="niagaEmasFormatted" type="text" value="1.300.000" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold">
+                    <span class="text-[10px] text-black/60 shrink-0">/gram</span>
                 </div>
                 <input id="niagaEmas" type="hidden" value="1300000">
 
@@ -494,14 +483,14 @@
                         <i class="fa-solid fa-ring text-emas-custom"></i> Punya Emas? Hitung Gramnya
                     </div>
                     <div class="flex items-center gap-2">
-                        <input id="niagaGramEmas" type="number" placeholder="Jumlah gram (mis. 200)" class="w-1/2 border border-cream3 rounded-full px-3 py-1.5 text-xs font-semibold">
-                        <button type="button" id="btnNiagaEmas" class="bg-gold hover:bg-gold text-white text-xs font-bold px-4 py-1.5 rounded-full transition shadow-sm active:scale-95">Tambah ke Modal</button>
+                        <input id="niagaGramEmas" type="number" placeholder="Jumlah gram (mis. 200)" class="w-1/2 min-w-0 border border-cream3 rounded-full px-3 py-1.5 text-xs font-semibold">
+                        <button type="button" id="btnNiagaEmas" class="bg-gold hover:bg-gold text-white text-xs font-bold px-4 py-1.5 rounded-full transition shadow-sm active:scale-95 shrink-0">Tambah ke Modal</button>
                     </div>
                     <div class="text-[10px] text-black/60 mt-1.5">Gram × harga emas = nilai emas, otomatis ditambah ke "Modal Diputar".</div>
                 </div>
             </div>
 
-            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl min-w-0">
                 <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PERNIAGAAN</div>
                 <h3 class="font-black text-2xl mt-1 text-white">2,5%</h3>
                 <div class="mt-5 space-y-3">
@@ -542,22 +531,22 @@
     </div>
 
     {{-- PERTANIAN --}}
-    <div id="panel-pertanian" class="tab-panel hidden space-y-6">
-        <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+    <div id="panel-pertanian" class="tab-panel hidden space-y-6 w-full overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-6 min-w-0">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm min-w-0">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-black"></i> Zakat Pertanian</h2>
                 <p class="text-xs text-black/70 mt-1">Nisab: <b>15,24 kuintal (960 kg)</b> hasil panen. Kadar: <b>5%</b> (tanpa irigasi) atau <b>2,5%</b> (dengan irigasi).</p>
 
                 <label class="block mt-5 text-xs font-bold text-oliveDark">Total Panen (kg)</label>
                 <div class="mt-1.5 flex items-center gap-2">
-                    <input id="panenKg" type="number" value="1000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold text-center">
+                    <input id="panenKg" type="number" value="1000" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold text-center">
                     <span class="text-xs font-bold text-black shrink-0">kg</span>
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Sistem Irigasi</label>
                 <div class="mt-2 flex gap-2">
-                    <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="tidak" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Tanpa Irigasi (5%)</div></label>
-                    <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="ada" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold">Dengan Irigasi (2,5%)</div></label>
+                    <label class="flex-1 cursor-pointer min-w-0"><input type="radio" name="irigasi" value="tidak" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold truncate">Tanpa Irigasi (5%)</div></label>
+                    <label class="flex-1 cursor-pointer min-w-0"><input type="radio" name="irigasi" value="ada" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white border border-cream3/40 rounded-full py-2 text-center text-xs font-bold truncate">Dengan Irigasi (2,5%)</div></label>
                 </div>
 
                 <div class="mt-5 p-3.5 rounded-2xl bg-panel-2/70 border border-panel-border text-[11px] text-oliveDark leading-relaxed">
@@ -580,7 +569,7 @@
                 </div>
             </div>
 
-            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl">
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl min-w-0">
                 <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL ZAKAT PERTANIAN</div>
                 <h3 class="font-black text-2xl mt-1 text-white">Panen</h3>
                 <div class="mt-5 space-y-3">
@@ -623,21 +612,21 @@
     </div>
 
     {{-- FIDYAH --}}
-    <div id="panel-fidyah" class="tab-panel hidden space-y-6">
-        <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm">
+    <div id="panel-fidyah" class="tab-panel hidden space-y-6 w-full overflow-hidden">
+        <div class="grid lg:grid-cols-2 gap-6 min-w-0">
+            <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm min-w-0">
                 <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-black"></i> Fidyah Puasa</h2>
                 <p class="text-xs text-black/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
 
-                <label class="block mt-5 text-xs font-bold text-oliveDark">Jumlah hari yang ditinggalkan</label>
+                <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jumlah hari yang ditinggalkan</label>
                 <div class="mt-2 flex items-center gap-3">
-                    <button id="fidyahMinus" type="button" class="w-10 h-10 rounded-full bg-panel-2 border border-cream3/70 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
-                    <input id="fidyahHari" type="number" min="1" value="7" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-panel-2 border border-cream3/70">
-                    <button id="fidyahPlus" type="button" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                    <button id="fidyahMinus" type="button" class="w-10 h-10 shrink-0 rounded-full bg-panel-2 border border-cream3/70 text-black font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <input id="fidyahHari" type="number" min="1" value="7" class="w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-panel-2">
+                    <button id="fidyahPlus" type="button" class="w-10 h-10 shrink-0 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
 
                 <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp / porsi)</label>
-                <input id="fidyahHargaFormatted" type="text" value="45.000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold" placeholder="14.000">
+                <input id="fidyahHargaFormatted" type="text" value="45.000" class="mt-1.5 w-full min-w-0 border border-cream3 rounded-full px-4 py-2 text-xs bg-panel-2 font-bold" placeholder="14.000">
                 <input id="fidyahHarga" type="hidden" value="45000">
 
                 <div class="mt-4 flex items-center gap-2 bg-panel-2/70 rounded-xl p-3 border border-panel-border">
@@ -656,41 +645,25 @@
             </div>
 
             <!-- KARTU HASIL PERHITUNGAN FIDYAH -->
-            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
+            <div class="result-card-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between min-w-0">
                 <div>
                     <div class="text-[10px] tracking-[0.18em] font-extrabold text-gold2 uppercase">HASIL FIDYAH</div>
                     <h3 class="font-black text-2xl mt-1 text-white">Fidyah Puasa</h3>
 
-                    <div class="mt-5 space-y-3">
-                        <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
-                                <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Hari</div>
-                                <div id="fidyahHariOut" class="font-black text-white text-xl mt-0.5">7</div>
-                                <div class="text-[10px] text-white/70 mt-0.5">hari</div>
-                            </div>
-                            <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3.5 border border-white/20 shadow-sm">
-                                <div class="text-[10px] text-white/80 font-semibold uppercase tracking-wider">Per Hari</div>
-                                <div id="fidyahPerHari" class="font-black text-white text-base mt-0.5">Rp 45.000</div>
-                                <div class="text-[10px] text-white/70 mt-0.5">1 porsi</div>
-                            </div>
+                    <div class="mt-4 space-y-2">
+                        <div class="bg-panel-2 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/20 space-y-1.5">
+                            <div class="flex justify-between text-xs font-medium"><span class="text-white/80">Jumlah Hari</span><span id="fidyahHariOut" class="font-bold text-white">7 hari</span></div>
+                            <div class="flex justify-between text-xs font-medium"><span class="text-white/80">Per Hari</span><span id="fidyahPerHari" class="font-bold text-white">Rp 45.000</span></div>
                         </div>
 
-                        <div class="bg-gold/20 backdrop-blur-md rounded-2xl p-4 text-center border border-gold/40 shadow-md">
+                        <div class="bg-gold/20 backdrop-blur-md rounded-2xl p-3 sm:p-4 text-center border border-gold/40 shadow-md">
                             <div class="text-[10px] text-gold2 uppercase tracking-wider font-bold">Total Fidyah</div>
-                            <div id="fidyahTotal" class="font-black text-2xl text-gold2 mt-0.5">Rp 315.000</div>
-                            <div id="fidyahBerasOut" class="text-[11px] text-white/90 mt-1 hidden"></div>
+                            <div id="fidyahTotal" class="font-black text-xl sm:text-2xl text-gold2 mt-0.5">Rp 315.000</div>
+                            <div id="fidyahBerasOut" class="text-[10px] sm:text-[11px] text-white/90 mt-1 hidden"></div>
                         </div>
 
-                        <div class="bg-black/15 backdrop-blur-md rounded-2xl p-4 border border-white/15 text-[11px] text-white leading-relaxed space-y-1">
-                            <div class="font-bold text-gold2 text-xs"><i class="fa-solid fa-utensils mr-1"></i> Fidyah bisa disalurkan dalam 3 bentuk:</div>
-                            <ul class="list-disc list-inside space-y-0.5 ml-1 text-white/90">
-                                <li><b>Uang</b>: Sesuai harga 1 porsi makan.</li>
-                                <li><b>Beras</b>: ±0,75 kg per hari puasa.</li>
-                                <li><b>Makanan siap saji</b>: 1 porsi lengkap dibagikan langsung.</li>
-                            </ul>
-                        </div>
                         <div class="text-[11px] text-white/80 leading-relaxed bg-black/15 rounded-2xl p-3.5 border border-white/15">
-                            <b class="text-gold2">Cara pakai:</b> Isi jumlah hari puasa yang ditinggalkan &amp; harga 1 porsi makan. Centang "Hitung juga dalam beras" untuk melihat konversi kg. Total fidyah otomatis terhitung.
+                            <b class="text-gold2">Fidyah:</b> Bisa dibayar berupa uang (sesuai harga 1 porsi makan), ±0,75 kg beras/hari, atau makanan siap saji. Atur jumlah hari &amp; harga per porsi.
                         </div>
                     </div>
                 </div>
@@ -789,12 +762,7 @@ window.ezOnReady(function () {
         document.getElementById('fitrahJenisLabel').textContent = nama + ' • Rp' + Number(harga).toLocaleString('id-ID') + '/kg';
 
         document.getElementById('fitrahRincian').innerHTML = `
-            <div class="space-y-1">
-                <div class="text-xs font-bold text-gold2 mb-1"><i class="fa-solid fa-thumbtack mr-1"></i> Rincian Satuan:</div>
-                <div>• <b>Per orang</b>: ${fmt(rupiahPerJiwa)} / orang (2,5 kg × Rp${Number(harga).toLocaleString('id-ID')}/kg)</div>
-                <div>• <b>Total ${jiwa} orang</b>: ${jiwa} × ${fmt(rupiahPerJiwa)} = <b class="text-white">${fmt(totalRupiah)}</b></div>
-                <div>• Total beras: <b>${fmtKg(totalKg)} kg</b> (${kgPerJiwa} kg/orang × ${jiwa} orang)</div>
-            </div>
+            • ${jiwa} orang × ${fmt(rupiahPerJiwa)} = <b class="text-white">${fmt(totalRupiah)}</b> (2,5 kg × Rp${Number(harga).toLocaleString('id-ID')}/kg)
         `;
 
         document.getElementById('hargaBanjarBox').classList.toggle('hidden', beras !== 'banjar');

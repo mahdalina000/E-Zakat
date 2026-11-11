@@ -20,6 +20,41 @@
     </form>
 </div>
 
+<div class="bg-white rounded-[20px] border border-cream3/40 p-5 mb-5">
+    <h4 class="font-bold text-oliveDark text-sm mb-1"><i class="fa-solid fa-user-plus mr-2 text-olive"></i>Buat Akun Admin Baru</h4>
+    <p class="text-[11px] text-olive/50 mb-4">Satu form untuk semua jenis admin (UPZ / Masjid / BAZNAS). Nama diisi dengan nama instansi/UPZ/Masjid.</p>
+    <form method="POST" action="{{ route('super.users.store') }}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+        @csrf
+        <div class="lg:col-span-2">
+            <label class="text-[11px] font-semibold text-olive/70 block mb-1">Nama / Instansi</label>
+            <input name="name" required placeholder="mis. Admin UPZ Masjid Al-Munawwarah" class="w-full text-xs px-3 py-2.5 rounded-xl border border-cream3 bg-cream/30 outline-none focus:border-olive">
+        </div>
+        <div>
+            <label class="text-[11px] font-semibold text-olive/70 block mb-1">Email</label>
+            <input name="email" type="email" required placeholder="admin@..." class="w-full text-xs px-3 py-2.5 rounded-xl border border-cream3 bg-cream/30 outline-none focus:border-olive">
+        </div>
+        <div>
+            <label class="text-[11px] font-semibold text-olive/70 block mb-1">Sandi</label>
+            <input name="password" type="password" required minlength="8" placeholder="min. 8 karakter" class="w-full text-xs px-3 py-2.5 rounded-xl border border-cream3 bg-cream/30 outline-none focus:border-olive">
+        </div>
+        <div>
+            <label class="text-[11px] font-semibold text-olive/70 block mb-1">Jenis Admin</label>
+            <select name="role" required class="w-full text-xs px-3 py-2.5 rounded-xl border border-cream3 bg-cream/30 outline-none focus:border-olive">
+                <option value="admin_upz">Admin UPZ / Masjid</option>
+                <option value="admin_baznas">Admin BAZNAS</option>
+                <option value="super_admin">Super Admin</option>
+            </select>
+        </div>
+        <div class="lg:col-span-5">
+            <label class="text-[11px] font-semibold text-olive/70 block mb-1">Alamat (otomatis masuk peta)</label>
+            <input name="address" placeholder="mis. Jl. A. Yani KM 33 — Komplek Pemko Banjarbaru" class="w-full text-xs px-3 py-2.5 rounded-xl border border-cream3 bg-cream/30 outline-none focus:border-olive">
+        </div>
+        <button class="lg:col-span-5 bg-olive text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-oliveDark transition">
+            <i class="fa-solid fa-check mr-1"></i> Simpan Akun Admin
+        </button>
+    </form>
+</div>
+
 <div class="rounded-[20px] border border-cream3/30 overflow-hidden">
     <div class="overflow-x-auto">
         <table class="w-full text-sm">

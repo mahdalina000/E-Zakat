@@ -214,6 +214,25 @@ class AdminBaznasController extends Controller
         $profile->is_verified = true;
         $profile->verified_by = Auth::id();
         $profile->verified_at = now();
+
+        // Pastikan warga punya lokasi agar otomatis tampil di peta.
+        // Jika belum ada, buatkan lokasi dari alamat yang tercatat (koordinat default pusat kota).
+        if (!$profile->location_id || !$profile->location) {
+            $loc = \App\Models\Location::create([
+                'name' => 'Warga: ' . $user->name,
+                'address' => $profile->address_line1 ?: 'Alamat tidak tercatat',
+                'kelurahan' => 'Banjarbaru',
+                'kecamatan' => '',
+                'latitude' => -3.4420,
+                'longitude' => 114.8310,
+                'type' => 'warga',
+                'phone' => null,
+                'is_active' => true,
+                'created_by' => Auth::id(),
+            ]);
+            $profile->location_id = $loc->id;
+        }
+
         $profile->save();
 
         return back()->with('success', "Status warga {$user->name} telah diverifikasi dan masuk ke peta.");

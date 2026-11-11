@@ -43,6 +43,7 @@ class AuthController extends Controller
                 'user_agent' => $request->userAgent(),
                 'logged_in_at' => now(),
             ]);
+            LoginActivity::pruneToLatest();
 
             return $this->redirectByRole($user);
         }
@@ -87,6 +88,7 @@ class AuthController extends Controller
             'user_agent' => $request->userAgent(),
             'logged_in_at' => now(),
         ]);
+        LoginActivity::pruneToLatest();
 
         return redirect()->route('dashboard');
     }

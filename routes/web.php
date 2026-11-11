@@ -21,7 +21,9 @@ Route::get('/', fn () => view('welcome'))->name('welcome');
 Route::get('/beranda', fn () => view('beranda'))->name('beranda');
 Route::get('/kalkulator', fn () => view('kalkulator', ['hargaBeras' => \App\Models\BerasPrice::currentPrice()]))->name('kalkulator');
 Route::get('/direktori', function () {
-    $locations = \App\Models\Location::where('is_active', true)->orderBy('type')->orderBy('name')->get();
+    $locations = \App\Models\Location::where('is_active', true)
+        ->where('type', '!=', 'warga')
+        ->orderBy('type')->orderBy('name')->get();
     $spots = $locations->map(fn ($l) => [
         'id' => $l->id,
         'cat' => $l->type,
@@ -147,6 +149,7 @@ Route::middleware('auth')->group(function () {
     // Super Admin — Pemko Banjarbaru
     Route::middleware('role:super_admin')->prefix('super')->name('super.')->group(function () {
         Route::get('/users', [SuperAdminController::class, 'users'])->name('users');
+        Route::post('/users', [SuperAdminController::class, 'store'])->name('users.store');
         Route::get('/locations', [SuperAdminController::class, 'locations'])->name('locations');
         Route::get('/activity', [SuperAdminController::class, 'activity'])->name('activity');
         Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');

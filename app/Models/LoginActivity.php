@@ -21,4 +21,13 @@ class LoginActivity extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function pruneToLatest(int $limit = 50): void
+    {
+        if (static::count() <= $limit) {
+            return;
+        }
+        $keep = static::orderByDesc('id')->take($limit)->pluck('id');
+        static::whereNotIn('id', $keep)->delete();
+    }
 }
