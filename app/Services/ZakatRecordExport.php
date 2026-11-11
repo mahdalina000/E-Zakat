@@ -13,11 +13,13 @@ class ZakatRecordExport implements FromCollection, WithHeadings, WithTitle, With
 {
     protected $userIds;
     protected $jenis;
+    protected $kategori;
 
-    public function __construct(array $userIds = [], ?string $jenis = null)
+    public function __construct(array $userIds = [], ?string $jenis = null, ?string $kategori = null)
     {
         $this->userIds = $userIds;
         $this->jenis = $jenis;
+        $this->kategori = $kategori;
     }
 
     public function collection(): Collection
@@ -28,6 +30,13 @@ class ZakatRecordExport implements FromCollection, WithHeadings, WithTitle, With
         }
         if ($this->jenis) {
             $query->byType($this->jenis);
+        }
+        if ($this->kategori) {
+            if ($this->kategori === 'penerima') {
+                $query->whereHas('user.wargaProfile', fn ($q) => $q->whereIn('zakat_category', ['penerima_fakir', 'penerima_miskin', 'penerima_gharimin']));
+            } elseif ($this->kategori === 'pemberi') {
+                $query->whereHas('user.wargaProfile', fn ($q) => $q->where('zakat_category', 'pemberi'));
+            }
         }
         return $query->latest()->get();
     }
@@ -55,6 +64,9 @@ class ZakatRecordExport implements FromCollection, WithHeadings, WithTitle, With
     public function title(): string
     {
         $prefix = 'pencatatan-zakat';
+        if ($this->kategori) {
+            $prefix .= '-' . $this->kategori;
+        }
         if ($this->jenis) {
             $prefix .= '-' . $this->jenis;
         }

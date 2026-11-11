@@ -98,6 +98,7 @@ class UserProfileController extends Controller
             'payment_date' => ['nullable', 'date'],
             'payment_method' => ['nullable', 'string', 'in:tunai,transfer,qris,beras_fisik,emas_fisik,makanan'],
             'reference_number' => ['nullable', 'string', 'max:100'],
+            'tujuan' => ['nullable', 'string', 'in:sendiri,upz,baznas,distribusi'],
             'notes' => ['nullable', 'string', 'max:500'],
             'location_id' => ['nullable', 'exists:locations,id'],
         ]);
@@ -129,6 +130,43 @@ class UserProfileController extends Controller
         abort_unless($record->user_id === $u->id, 403);
         $record->delete();
         return redirect()->route('user.profile')->with('success', 'Catatan zakat dihapus.');
+    }
+
+    /**
+     * Perbarui catatan zakat (edit).
+     */
+    public function updateRecord(Request $request, ZakatRecord $record)
+    {
+        $u = Auth::user();
+        abort_unless($record->user_id === $u->id, 403);
+
+        $data = $request->validate([
+            'zakat_type' => ['required', 'in:zakat_fitrah,zakat_maal,fidyah,infak_sedekah,wariq'],
+            'total_amount' => ['nullable', 'numeric', 'min:0'],
+            'beras_kg' => ['nullable', 'numeric', 'min:0'],
+            'gold_gram' => ['nullable', 'numeric', 'min:0'],
+            'jiwa_count' => ['nullable', 'integer', 'min:1', 'max:100'],
+            'due_date' => ['nullable', 'date'],
+            'payment_date' => ['nullable', 'date'],
+            'payment_method' => ['nullable', 'string', 'in:tunai,transfer,qris,beras_fisik,emas_fisik,makanan'],
+            'reference_number' => ['nullable', 'string', 'max:100'],
+            'tujuan' => ['nullable', 'string', 'in:sendiri,upz,baznas,distribusi'],
+            'notes' => ['nullable', 'string', 'max:500'],
+        ]);
+
+        $isEmpty = ($data['jiwa_count'] ?? 0) <= 0
+            && empty($data['beras_kg'])
+            && empty($data['total_amount']);
+
+        if ($isEmpty) {
+            return back()->withErrors([
+                'jumlah' => 'Isi minimal salah satu: Jumlah Jiwa, Beras (kg), atau Total Nilai (Rp).',
+            ])->withInput();
+        }
+
+        $record->update($data);
+
+        return redirect()->route('user.profile')->with('success', 'Catatan zakat berhasil diperbarui.');
     }
 
     /**
@@ -262,6 +300,7 @@ class UserProfileController extends Controller
                 'jumlah_saudara_p' => ['nullable', 'integer', 'min:0', 'max:100'],
                 'jumlah_saudara_seibu' => ['nullable', 'integer', 'min:0', 'max:100'],
                 'ada_istri' => ['nullable', 'boolean'],
+                'jumlah_istri' => ['nullable', 'integer', 'min:1', 'max:4'],
                 'ada_suami' => ['nullable', 'boolean'],
             ]);
 
@@ -271,6 +310,7 @@ class UserProfileController extends Controller
                 pewarisJk: $input['pewaris_jk'],
                 adaIstri: (bool) ($input['ada_istri'] ?? false),
                 adaSuami: (bool) ($input['ada_suami'] ?? false),
+                jumlahIstri: (int) ($input['jumlah_istri'] ?? 1),
                 jumlahAnakL: (int) ($input['jumlah_anak_l'] ?? 0),
                 jumlahAnakP: (int) ($input['jumlah_anak_p'] ?? 0),
                 jumlahSaudaraL: (int) ($input['jumlah_saudara_l'] ?? 0),

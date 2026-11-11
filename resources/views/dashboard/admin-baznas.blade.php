@@ -31,14 +31,70 @@
         <button onclick="document.getElementById('wargaModal').classList.remove('hidden')" class="bg-olive text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-olive2">
             <i class="fa-solid fa-user-plus mr-1"></i> Tambah Warga
         </button>
-        <a href="{{ route('admin.export') }}" class="bg-cream border border-cream3 text-olive text-xs font-semibold px-4 py-2 rounded-full hover:bg-cream3">
+        <button onclick="document.getElementById('exportModal').classList.remove('hidden')" class="bg-cream border border-cream3 text-olive text-xs font-semibold px-4 py-2 rounded-full hover:bg-cream3">
             <i class="fa-solid fa-file-excel mr-1"></i> Export Excel
-        </a>
-        <a href="{{ route('admin.settings') }}" class="bg-olive/10 border border-olive/30 text-olive text-xs font-semibold px-4 py-2 rounded-full hover:bg-olive/20">
-            <i class="fa-solid fa-gear mr-1"></i> Pengaturan
-        </a>
+        </button>
     </div>
 </div>
+
+{{-- MODAL EXPORT BERDASARKAN KATEGORI --}}
+<div id="exportModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl p-5 w-full max-w-sm">
+        <h3 class="font-bold text-oliveDark text-sm mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-file-excel text-olive"></i> Export Catatan Zakat
+        </h3>
+        <div class="space-y-2">
+            <a href="{{ route('admin.export', ['kategori' => 'semuanya']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
+                <span><i class="fa-solid fa-list mr-2 text-olive"></i> Semua Catatan</span>
+                <i class="fa-solid fa-chevron-right text-olive/40"></i>
+            </a>
+            <a href="{{ route('admin.export', ['kategori' => 'penerima']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
+                <span><i class="fa-solid fa-hand-holding-heart mr-2 text-emerald-600"></i> Khusus Penerima</span>
+                <i class="fa-solid fa-chevron-right text-olive/40"></i>
+            </a>
+            <a href="{{ route('admin.export', ['kategori' => 'pemberi']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
+                <span><i class="fa-solid fa-hand-holding-dollar mr-2 text-olive"></i> Khusus Pemberi</span>
+                <i class="fa-solid fa-chevron-right text-olive/40"></i>
+            </a>
+        </div>
+        <button type="button" onclick="document.getElementById('exportModal').classList.add('hidden')" class="mt-4 w-full bg-cream border border-cream3 text-olive font-semibold px-4 py-2 rounded-full text-xs">Tutup</button>
+    </div>
+</div>
+
+{{-- WARGA BARU MENUNGGU VERIFIKASI --}}
+@if($pendingWarga->isNotEmpty())
+<div class="mt-4 bg-white rounded-[20px] border border-cream3 overflow-hidden">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-cream2 bg-amber-50/60">
+        <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-clock-rotate-left text-xs"></i></span>
+            <span class="font-bold text-oliveDark text-sm">Warga Baru — Menunggu Verifikasi</span>
+            <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">{{ $pendingWarga->count() }}</span>
+        </div>
+        <span class="text-[11px] text-olive/50">Verifikasi status agar masuk ke peta</span>
+    </div>
+    <div class="divide-y divide-cream2">
+        @foreach($pendingWarga as $pw)
+        <div class="flex items-center gap-3 px-4 py-3">
+            <span class="w-9 h-9 rounded-full bg-cream text-olive flex items-center justify-center font-bold text-xs shrink-0">{{ strtoupper(substr($pw->name,0,1)) }}</span>
+            <div class="min-w-0 flex-1">
+                <div class="font-semibold text-oliveDark text-sm truncate">{{ $pw->name }}</div>
+                <div class="text-[11px] text-olive/50 truncate">
+                    {{ $pw->wargaProfile?->kategoriLabel() ?? 'Belum ada kategori' }}
+                    <span class="text-red-500 font-semibold"> · belum terverifikasi</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="{{ route('admin.warga.show', $pw) }}" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-cream text-olive hover:bg-cream3" title="Detail"><i class="fa-solid fa-eye text-xs"></i></a>
+                <form action="{{ route('admin.warga.verify', $pw) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center gap-1.5 bg-olive text-white text-xs font-semibold px-3 py-2 rounded-full hover:bg-olive2"><i class="fa-solid fa-check"></i> Verifikasi</button>
+                </form>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+@endif
 
 {{-- LIST WARGA --}}
 <div class="mt-4 bg-white rounded-[20px] border border-cream3 overflow-hidden">
@@ -64,7 +120,14 @@
                 </td>
                 <td class="px-4 py-3">
                     @if($user->wargaProfile?->zakat_category)
-                    <span class="text-[11px] px-2 py-1 rounded-full {{ $user->wargaProfile->zakat_category === 'pemberi' ? 'bg-olive/10 text-olive' : 'bg-emerald-100 text-emerald-700' }}">{{ $user->wargaProfile->kategoriLabel() }}</span>
+                        @if($user->wargaProfile->category_approved)
+                        <span class="text-[11px] px-2 py-1 rounded-full {{ $user->wargaProfile->zakat_category === 'pemberi' ? 'bg-olive/10 text-olive' : 'bg-emerald-100 text-emerald-700' }}">{{ $user->wargaProfile->kategoriLabel() }}</span>
+                        @else
+                        <div class="flex flex-col items-start gap-1">
+                            <span class="text-[11px] px-2 py-1 rounded-full bg-amber-100 text-amber-700">{{ $user->wargaProfile->kategoriLabel() }}</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-red-50 text-red-500 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-0.5"></i>Belum Terverifikasi</span>
+                        </div>
+                        @endif
                     @else
                     <span class="text-[11px] text-olive/40">Belum</span>
                     @endif
@@ -75,7 +138,12 @@
                 <td class="px-4 py-3 text-xs">{{ $user->wargaProfile->dependents_count ?? 0 }} jiwa</td>
                 <td class="px-4 py-3 text-right whitespace-nowrap">
                     <a href="{{ route('admin.warga.show', $user) }}" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-cream text-olive hover:bg-cream3" title="Detail"><i class="fa-solid fa-eye text-xs"></i></a>
-                    <a href="{{ route('admin.warga.edit', $user) }}" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-cream text-olive hover:bg-cream3" title="Edit"><i class="fa-solid fa-pen text-xs"></i></a>
+                    @unless($user->wargaProfile?->category_approved)
+                    <form action="{{ route('admin.warga.verify', $user) }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-olive text-white hover:bg-olive2" title="Verifikasi status"><i class="fa-solid fa-check text-xs"></i></button>
+                    </form>
+                    @endunless
                 </td>
             </tr>
         @empty

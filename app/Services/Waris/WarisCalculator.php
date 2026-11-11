@@ -22,6 +22,7 @@ class WarisCalculator
         string $pewarisJk,
         bool $adaIstri = false,
         bool $adaSuami = false,
+        int $jumlahIstri = 1,
         int $jumlahAnakL = 0,
         int $jumlahAnakP = 0,
         bool $adaAyah = false,
@@ -92,8 +93,14 @@ class WarisCalculator
 
         if ($pewarisJk === 'L' && $adaIstri) {
             $porsi = $adaKeturunan ? 1 / 8 : 1 / 4;
-            $furud[] = ['label' => 'Istri', 'share' => $porsi];
-            $keterangan[] = 'Istri: ' . ($adaKeturunan ? '1/8' : '1/4') . ($adaKeturunan ? ' (ada keturunan)' : ' (tidak ada keturunan)') . '.';
+            $jmlI = max(1, (int) $jumlahIstri);
+            if ($jmlI > 1) {
+                $furud[] = ['label' => 'Istri (' . $jmlI . ')', 'share' => $porsi];
+                $keterangan[] = 'Istri (' . $jmlI . ' orang): ' . ($adaKeturunan ? '1/8' : '1/4') . ' total, dibagi rata kepada ' . $jmlI . ' istri.';
+            } else {
+                $furud[] = ['label' => 'Istri', 'share' => $porsi];
+                $keterangan[] = 'Istri: ' . ($adaKeturunan ? '1/8' : '1/4') . ($adaKeturunan ? ' (ada keturunan)' : ' (tidak ada keturunan)') . '.';
+            }
             $adaPasangan = true;
             $porsiPasangan = $porsi;
         }

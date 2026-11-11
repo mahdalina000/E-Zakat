@@ -19,7 +19,7 @@ class SuperAdminController extends Controller
             ->when($role, fn ($x) => $x->where('role', $role))
             ->orderByRaw("FIELD(role, 'super_admin','admin_baznas','admin_upz','admin','user')")
             ->orderBy('name')
-            ->paginate(12)
+            ->paginate(50)
             ->withQueryString();
 
         $counts = [
@@ -38,7 +38,7 @@ class SuperAdminController extends Controller
         $type = request('type');
         $locations = Location::with('creator')
             ->when($type, fn ($x) => $x->where('type', $type))
-            ->latest()->paginate(15)->withQueryString();
+            ->latest()->paginate(50)->withQueryString();
 
         $counts = [
             'all' => Location::count(),
@@ -52,7 +52,7 @@ class SuperAdminController extends Controller
 
     public function activity()
     {
-        $activities = LoginActivity::with('user')->latest('logged_in_at')->paginate(20);
+        $activities = LoginActivity::with('user')->latest('logged_in_at')->paginate(50);
         $total = LoginActivity::count();
 
         return view('dashboard.super-activity', compact('activities', 'total'));

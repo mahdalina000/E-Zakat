@@ -44,7 +44,7 @@
             position: fixed;
             top: 38px; /* Diturunkan lagi supaya rantai dan badan lampion kelihatan penuh */
             right: 16px;
-            z-index: 10; /* Di belakang tombol/badge User */
+            z-index: 10; /* Menimpa konten, seperti perilaku semula */
             pointer-events: none;
             filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.65));
         }
@@ -71,7 +71,7 @@
         }
     </script>
 </head>
-<body class="min-h-screen text-oliveDark relative overflow-x-hidden bg-zy-bg">
+<body class="text-oliveDark relative overflow-hidden bg-zy-bg" style="height:100vh">
 
 <!-- LATAR ORNAMEN ISLAMI UTAMA -->
 <div class="absolute inset-0 w-full h-full pointer-events-none select-none z-0" aria-hidden="true">
@@ -144,7 +144,7 @@
             </svg>
 </div>
 
-<div class="flex min-h-screen relative z-10">
+<div class="flex relative z-10" style="height:100vh">
     {{-- Sidebar Kiri --}}
     <aside id="sidebar" class="fixed lg:sticky top-0 z-50 w-[260px] h-screen bg-olive text-white flex flex-col -translate-x-full lg:translate-x-0 transition-transform relative overflow-hidden">
         
@@ -195,12 +195,15 @@
                 <a href="{{ route('admin.beras.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.beras.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-wheat-awn w-4"></i> Harga Beras Banjar</a>
                 <a href="{{ route('admin.export') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.export') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-file-excel w-4"></i> Export Catatan</a>
                 <a href="{{ route('admin.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Masukan Warga</a>
+                <a href="{{ route('admin.zakat-requests') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.zakat-requests*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Pengajuan Hitung Waris</a>
+                <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> Pengaturan</a>
             @endif
 
             @if($u->isUser())
                 <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">WARGA</div>
                 <a href="{{ route('user.profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.profile*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-id-card w-4"></i> Profil & Data Diri</a>
                 <a href="{{ route('user.calculators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.calculators*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-calculator w-4"></i> Kalkulator Zakat & Waris</a>
+                <a href="{{ route('user.zakat-request') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.zakat-request*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Ajukan Hitung Waris</a>
                 <a href="{{ route('user.histories') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.histories*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-clock-rotate-left w-4"></i> Riwayat Perhitungan</a>
                 <a href="{{ route('user.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.feedback*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Kritik & Saran</a>
 
@@ -224,9 +227,9 @@
     <div id="overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-black/40 z-40 lg:hidden"></div>
 
     {{-- Main Content --}}
-    <div class="flex-1 min-w-0">
+    <div class="flex-1" style="height:100vh;display:flex;flex-direction:column;min-width:0">
         <!-- HEADER ATAS KANAN -->
-        <header class="sticky top-0 z-30 bg-olive/95 backdrop-blur border-b border-gold/30 shadow-sm">
+        <header class="sticky top-0 z-30 bg-olive/95 backdrop-blur border-b border-gold/30 shadow-sm" style="flex-shrink:0">
             <div class="px-4 lg:px-8 h-[64px] flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <button onclick="toggleSidebar()" class="lg:hidden w-10 h-10 bg-white border border-cream3 rounded-xl flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
@@ -243,7 +246,7 @@
             </div>
         </header>
 
-        <div class="p-4 lg:p-8 anim-dashboard">
+        <div class="p-4 lg:p-8 anim-dashboard" style="flex:1 1 0%;min-height:0;overflow-y:auto">
             @if(session('success'))
                 <div class="mb-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl px-4 py-3 text-sm flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif

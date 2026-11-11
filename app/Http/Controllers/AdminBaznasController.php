@@ -24,6 +24,13 @@ class AdminBaznasController extends Controller
         $warga = User::where('role', 'user')->with('wargaProfile')
             ->orderBy('name')->paginate(15);
 
+        // Warga yang baru dibuat / belum diverifikasi kategorinya
+        $pendingWarga = User::where('role', 'user')->with('wargaProfile')
+            ->whereHas('wargaProfile', fn ($q) => $q->where(function ($q2) {
+                $q2->where('category_approved', false)->orWhereNull('category_approved');
+            }))
+            ->orderBy('created_at', 'desc')->get();
+
         $totalPenerima = User::where('role', 'user')
             ->whereHas('wargaProfile', fn ($q) => $q->whereIn('zakat_category', ['penerima_fakir', 'penerima_miskin', 'penerima_gharimin']))
             ->count();
@@ -37,7 +44,7 @@ class AdminBaznasController extends Controller
         $locations = ($u->isAdminUpz() ? Location::where('created_by', $u->id) : Location::query())
             ->orderBy('name')->get();
 
-        return view('dashboard.admin-baznas', compact('warga', 'totalPenerima', 'totalPemberi', 'totalRecords', 'locations'));
+        return view('dashboard.admin-baznas', compact('warga', 'pendingWarga', 'totalPenerima', 'totalPemberi', 'totalRecords', 'locations'));
     }
 
     /**
@@ -192,6 +199,27 @@ class AdminBaznasController extends Controller
     }
 
     /**
+     * Verifikasi kategori/status warga oleh admin → langsung dianggap sah
+     * dan warga ikut tampil di peta.
+     */
+    public function approveWarga(User $user)
+    {
+        $profile = $user->wargaProfile;
+        if (!$profile) {
+            abort(404);
+        }
+        $profile->category_approved = true;
+        $profile->category_approved_by = Auth::id();
+        $profile->category_approved_at = now();
+        $profile->is_verified = true;
+        $profile->verified_by = Auth::id();
+        $profile->verified_at = now();
+        $profile->save();
+
+        return back()->with('success', "Status warga {$user->name} telah diverifikasi dan masuk ke peta.");
+    }
+
+    /**
      * Tambah catatan zakat oleh admin (untuk warga tertentu).
      */
     public function storeRecord(Request $request, User $user)
@@ -235,10 +263,11 @@ class AdminBaznasController extends Controller
         abort_unless($u->isAdmin(), 403);
 
         $jenis = $request->get('jenis');
+        $kategori = $request->get('kategori');
         $userIds = [];
 
         return Excel::download(
-            new ZakatRecordExport($userIds, $jenis),
+            new ZakatRecordExport($userIds, $jenis, $kategori),
             'pencatatan-zakat-admin-' . now()->format('Y-m-d') . '.xlsx'
         );
     }
