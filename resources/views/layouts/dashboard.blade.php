@@ -197,6 +197,7 @@
                 <a href="{{ route('admin.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Masukan Warga</a>
                 <a href="{{ route('admin.zakat-requests') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.zakat-requests*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Pengajuan Hitung Waris</a>
                 <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> Pengaturan</a>
+                <a href="{{ route('admin.holidays.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.holidays.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-star-and-crescent w-4"></i> Banner Hari Raya</a>
             @endif
 
             @if($u->isUser())
