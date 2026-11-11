@@ -191,7 +191,7 @@
                     <div id="holidayBannerTitle" class="font-extrabold text-base"></div>
                     <div id="holidayBannerText" class="text-xs mt-0.5 leading-relaxed"></div>
                 </div>
-                <button id="holidayBannerClose" type="button" class="w-7 h-7 rounded-full hover:opacity-70 transition flex items-center justify-center shrink-0 text-xs" title="Sembunyikan pengingat">
+                <button id="holidayBannerClose" type="button" aria-label="Tutup pengingat" class="relative z-20 cursor-pointer w-7 h-7 rounded-full hover:opacity-70 transition flex items-center justify-center shrink-0 text-sm bg-black/20 text-white" title="Sembunyikan pengingat">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -507,6 +507,31 @@ function applyFestival(h) {
     if(dtEl) dtEl.textContent = h.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
 }
 
+// Tutup banner dengan mulus + simpan status (per sesi & per tahun)
+function hideBanner() {
+    const banner = document.getElementById('holidayBanner');
+    const noteEl = document.getElementById('holidayBannerNote');
+    if(!banner) return;
+    banner.style.transition = 'opacity .25s ease, transform .25s ease';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(-6px)';
+    setTimeout(() => {
+        banner.classList.add('hidden');
+        banner.style.opacity = '';
+        banner.style.transform = '';
+        banner.style.transition = '';
+    }, 260);
+    if(noteEl){
+        noteEl.style.transition = 'opacity .2s ease';
+        noteEl.style.opacity = '0';
+        setTimeout(() => { noteEl.classList.add('hidden'); noteEl.style.opacity = ''; noteEl.style.transition = ''; }, 200);
+    }
+}
+function rememberClosed(hKey) {
+    try { sessionStorage.setItem('ezakat_festival_closed', hKey); } catch(e) {}
+    try { localStorage.setItem('ezakat_banner_closed_' + hKey, String(new Date().getFullYear())); } catch(e) {}
+}
+
 (function initHolidayBanner() {
     const banner = document.getElementById('holidayBanner');
     const inner = document.getElementById('holidayBannerInner');
@@ -544,9 +569,8 @@ function applyFestival(h) {
     applyFestival(active);
 
     closeBtn.addEventListener('click', () => {
-        banner.classList.add('hidden');
-        noteEl.classList.add('hidden');
-        localStorage.setItem(closedKey, String(now.getFullYear()));
+        rememberClosed(active.key);
+        hideBanner();
     });
 })();
 
@@ -560,6 +584,18 @@ function applyFestival(h) {
             chips.forEach(b => b.classList.remove('bg-gold2', 'text-oliveDark', 'ring-2', 'ring-gold2'));
             btn.classList.add('bg-gold2', 'text-oliveDark', 'ring-2', 'ring-gold2');
         });
+    });
+})();
+
+// Tombol tutup (X) selalu berfungsi, apa pun cara banner tampil (auto / klik chip)
+(function(){
+    const closeBtn = document.getElementById('holidayBannerClose');
+    if(!closeBtn) return;
+    closeBtn.addEventListener('click', () => {
+        const activeChip = document.querySelector('#festivalChips [data-key].bg-gold2');
+        const key = activeChip ? activeChip.dataset.key : null;
+        if(key) rememberClosed(key);
+        hideBanner();
     });
 })();
 </script>
