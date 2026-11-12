@@ -18,30 +18,30 @@
             <input name="name" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2" placeholder="mis. Idul Fitri 1449H">
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Key (slug unik) *</label>
-            <input name="key" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2" placeholder="mis. idul-fitri-1449">
+            <label class="text-xs font-semibold text-oliveDark">Key (slug unik) <span class="text-olive/40 font-normal">· opsional</span></label>
+            <input name="key" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2" placeholder="auto dari nama">
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Tanggal (countdown) *</label>
+            <label class="text-xs font-semibold text-oliveDark">Tanggal Hari Raya *</label>
             <input name="event_date" type="date" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Tampil Sejak (H-N hari)</label>
+            <label class="text-xs font-semibold text-oliveDark">Mulai tampil <span class="text-olive/40 font-normal">· hari sebelum (opsional)</span></label>
             <input name="before_days" type="number" min="0" max="90" value="15" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Tampil Sampai (H+N hari)</label>
+            <label class="text-xs font-semibold text-oliveDark">Bertahan <span class="text-olive/40 font-normal">· hari sesudah (opsional)</span></label>
             <input name="after_days" type="number" min="0" max="90" value="3" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Ikon (Font Awesome)</label>
-            <input name="icon" value="fa-solid fa-mosque" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+            <label class="text-xs font-semibold text-oliveDark">Ikon <span class="text-olive/40 font-normal">· opsional</span></label>
+            <input name="icon" placeholder="fa-solid fa-mosque (contoh)" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Warna</label>
+            <label class="text-xs font-semibold text-oliveDark">Warna <span class="text-olive/40 font-normal">· opsional</span></label>
             <select name="color" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
                 @foreach(['olive','teal','blue','emerald','rose','gold'] as $c)
-                <option value="{{ $c }}" @selected(old('color') === $c)>{{ ucfirst($c) }}</option>
+                <option value="{{ $c }}" @selected((old('color') ?? 'olive') === $c)>{{ ucfirst($c) }}</option>
                 @endforeach
             </select>
         </div>

@@ -20,7 +20,8 @@
                 <label class="text-xs font-semibold text-oliveDark">Harga baru (Rp / kg) *</label>
                 <div class="mt-1 flex items-center border border-cream3 rounded-full px-4 py-2.5 bg-cream2">
                     <span class="text-sm text-olive font-bold">Rp</span>
-                    <input name="price" type="number" min="5000" max="100000" value="{{ $current->price ?? 16000 }}" required class="w-full bg-transparent outline-none text-sm ml-2">
+                    <input name="price_display" id="priceDisplay" type="text" inputmode="numeric" value="{{ number_format($current->price ?? 16000,0,',','.') }}" required class="w-full bg-transparent outline-none text-sm ml-2">
+                    <input type="hidden" name="price" id="priceHidden" value="{{ $current->price ?? 16000 }}">
                     <span class="text-xs text-olive/60 font-semibold ml-2 whitespace-nowrap">/&nbsp;kg</span>
                 </div>
                 <p class="text-[11px] text-olive/50 mt-1">Valid: Rp5.000 – Rp100.000 per kg.</p>
@@ -60,4 +61,21 @@
         </div>
     </div>
 </div>
+
+<script>
+(function(){
+    const display = document.getElementById('priceDisplay');
+    const hidden = document.getElementById('priceHidden');
+    if(!display || !hidden) return;
+    const fmt = n => n.replace(/\D/g,'').replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+    display.addEventListener('input', function(){
+        hidden.value = display.value.replace(/\D/g,'');
+        display.value = fmt(display.value);
+    });
+    display.addEventListener('blur', function(){
+        hidden.value = display.value.replace(/\D/g,'');
+        display.value = fmt(display.value);
+    });
+})();
+</script>
 @endsection
