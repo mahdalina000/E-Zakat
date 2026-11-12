@@ -53,17 +53,26 @@ class HolidayBannerAdminController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
-            'key' => ['required', 'string', 'max:60', Rule::unique('holiday_banners', 'key')->ignore($request->route('banner')?->id)],
+        $data = $request->validate([
+            'key' => ['nullable', 'string', 'max:60', Rule::unique('holiday_banners', 'key')->ignore($request->route('banner')?->id)],
             'name' => ['required', 'string', 'max:150'],
             'event_date' => ['required', 'date'],
-            'before_days' => ['required', 'integer', 'min:0', 'max:90'],
-            'after_days' => ['required', 'integer', 'min:0', 'max:90'],
-            'icon' => ['required', 'string', 'max:60'],
-            'color' => ['required', Rule::in(['olive', 'teal', 'blue', 'emerald', 'rose', 'gold'])],
+            'before_days' => ['nullable', 'integer', 'min:0', 'max:90'],
+            'after_days' => ['nullable', 'integer', 'min:0', 'max:90'],
+            'icon' => ['nullable', 'string', 'max:60'],
+            'color' => ['nullable', Rule::in(['olive', 'teal', 'blue', 'emerald', 'rose', 'gold'])],
             'title' => ['required', 'string', 'max:150'],
             'text' => ['required', 'string', 'max:2000'],
             'is_active' => ['nullable', 'boolean'],
-        ]) + ['is_active' => $request->boolean('is_active', true)];
+        ]);
+
+        $data['key'] = $data['key'] ?? \Illuminate\Support\Str::slug($data['name']);
+        $data['before_days'] = $data['before_days'] ?? 15;
+        $data['after_days'] = $data['after_days'] ?? 3;
+        $data['icon'] = $data['icon'] ?? 'fa-solid fa-mosque';
+        $data['color'] = $data['color'] ?? 'olive';
+        $data['is_active'] = $request->boolean('is_active', true);
+
+        return $data;
     }
 }

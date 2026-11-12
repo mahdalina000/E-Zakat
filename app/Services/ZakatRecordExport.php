@@ -32,8 +32,10 @@ class ZakatRecordExport implements FromCollection, WithHeadings, WithTitle, With
             $query->byType($this->jenis);
         }
         if ($this->kategori) {
-            if ($this->kategori === 'penerima') {
-                $query->whereHas('user.wargaProfile', fn ($q) => $q->whereIn('zakat_category', ['penerima_fakir', 'penerima_miskin', 'penerima_gharimin']));
+            if ($this->kategori === 'gharimin') {
+                $query->whereHas('user.wargaProfile', fn ($q) => $q->where('zakat_category', 'penerima_gharimin'));
+            } elseif ($this->kategori === 'kurang_mampu') {
+                $query->whereHas('user.wargaProfile', fn ($q) => $q->whereIn('zakat_category', ['penerima_fakir', 'penerima_miskin']));
             } elseif ($this->kategori === 'pemberi') {
                 $query->whereHas('user.wargaProfile', fn ($q) => $q->where('zakat_category', 'pemberi'));
             }

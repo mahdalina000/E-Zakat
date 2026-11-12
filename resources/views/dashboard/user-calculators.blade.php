@@ -155,6 +155,21 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
     background-color: rgba(29, 91, 55, 0.8) !important;
     border-color: #f59e0b !important;
 }
+
+/* Kotak info "Apa itu wasiat?" & "Cara pakai" agar ikut gelap (menabrak di dark mode) */
+body.dark-mode #calc-panel-wariq .bg-white\/70,
+body.dark-mode #calc-panel-wariq .bg-cream2\/70 {
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+body.dark-mode #calc-panel-wariq .bg-white\/70 .text-oliveDark,
+body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-oliveDark {
+    color: #f1f5f9 !important;
+}
+body.dark-mode #calc-panel-wariq .bg-white\/70 .text-olive,
+body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
+    color: #e2b356 !important;
+}
 </style>
 @endsection
 
@@ -577,26 +592,28 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
             <i class="fa-solid fa-house-chimney text-[13px]"></i>
             <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">Harta Peninggalan (Tirkah)</span>
         </div>
-        <div class="p-4 bg-cream2/60 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-                <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Total Harta Kotor *</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60 bg-earth/20 rounded-l-full px-2.5 py-1.5">Rp</span>
-                    <input id="wariqHarta" type="text" inputmode="numeric" data-money value="120.000.000" class="w-full border border-cream3 rounded-full pl-12 pr-3 py-2 text-xs bg-white font-bold">
+        <div class="p-4 bg-cream2/60">
+            <div class="rounded-2xl border border-cream3 bg-white divide-y divide-cream3 overflow-hidden">
+                <div class="px-4 py-3">
+                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Total Harta Kotor *</label>
+                    <div class="relative mt-1">
+                        <span class="absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-olive/50">Rp</span>
+                        <input id="wariqHarta" type="text" inputmode="numeric" data-money value="120.000.000" class="w-full bg-transparent outline-none pl-7 pr-3 py-1 text-sm font-bold">
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Biaya Pengurusan Jenazah</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60 bg-earth/20 rounded-l-full px-2.5 py-1.5">Rp</span>
-                    <input id="wariqPemakaman" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-12 pr-3 py-2 text-xs bg-white font-bold">
+                <div class="px-4 py-3">
+                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Biaya Pengurusan Jenazah</label>
+                    <div class="relative mt-1">
+                        <span class="absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-olive/50">Rp</span>
+                        <input id="wariqPemakaman" type="text" inputmode="numeric" data-money value="0" class="w-full bg-transparent outline-none pl-7 pr-3 py-1 text-sm font-bold">
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Hutang Almarhum/Almarhumah</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60 bg-earth/20 rounded-l-full px-2.5 py-1.5">Rp</span>
-                    <input id="wariqHutang" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-12 pr-3 py-2 text-xs bg-white font-bold">
+                <div class="px-4 py-3">
+                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Hutang Almarhum/Almarhumah</label>
+                    <div class="relative mt-1">
+                        <span class="absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-olive/50">Rp</span>
+                        <input id="wariqHutang" type="text" inputmode="numeric" data-money value="0" class="w-full bg-transparent outline-none pl-7 pr-3 py-1 text-sm font-bold">
+                    </div>
                 </div>
             </div>
         </div>
