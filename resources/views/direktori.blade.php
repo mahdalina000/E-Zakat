@@ -321,12 +321,22 @@ window.ezOnReady(function () {
         });
     }
 
-    const locations = [
-        { id: 1, name: "BAZNAS Kota Banjarbaru", cat: "baznas", lat: -3.4428, lng: 114.8315, address: "Jl. Panglima Batur No. 1, Loktabat Utara" },
-        { id: 2, name: "UPZ Masjid Agung Al-Munawwarah", cat: "upz", lat: -3.4410, lng: 114.8340, address: "Jl. Trikora, Banjarbaru" },
-        { id: 3, name: "UPZ Masjid Landasan Ulin", cat: "upz", lat: -3.4500, lng: 114.8000, address: "Jl. A. Yani Km. 23, Landasan Ulin" },
-        { id: 4, name: "Penerima Fidyah & Zakat (Warga 1)", cat: "warga", lat: -3.4350, lng: 114.8250, address: "Guntung Paikat, Banjarbaru" },
-    ];
+    const locations = {!! json_encode($spots->map(fn ($s) => [
+        'id' => $s['id'],
+        'cat' => $s['cat'],
+        'name' => $s['name'],
+        'address' => $s['addr'],
+        'lat' => $s['lat'],
+        'lng' => $s['lng'],
+    ])->values()) !!};
+
+    // Fallback bila data kosong
+    if (!locations.length) {
+        locations.push({ id: 1, name: "BAZNAS Kota Banjarbaru", cat: "baznas", lat: -3.4428, lng: 114.8315, address: "Jl. Panglima Batur No. 1, Loktabat Utara" });
+        locations.push({ id: 2, name: "UPZ Masjid Agung Al-Munawwarah", cat: "upz", lat: -3.4410, lng: 114.8340, address: "Jl. Trikora, Banjarbaru" });
+        locations.push({ id: 3, name: "UPZ Masjid Landasan Ulin", cat: "upz", lat: -3.4500, lng: 114.8000, address: "Jl. A. Yani Km. 23, Landasan Ulin" });
+        locations.push({ id: 4, name: "Penerima Fidyah & Zakat (Warga 1)", cat: "warga", lat: -3.4350, lng: 114.8250, address: "Guntung Paikat, Banjarbaru" });
+    }
 
     let markers = [];
 

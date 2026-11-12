@@ -179,7 +179,7 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
 {{--  TAB: ZAKAT FITRAH --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-fitrah" class="calc-panel">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     {{-- FORM --}}
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-olive"></i> Zakat Fitrah</h2>
@@ -259,9 +259,18 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <div id="fitrahJenisLabel" class="text-[10px] text-cream/80 mt-0.5">Beras Banjar • Rp{{ number_format($beras ?? 16000,0,',','.') }}/kg</div>
                 </div>
                 <div id="fitrahRincian" class="mt-3 text-[11px] text-olive/70 leading-relaxed font-medium"></div>
-            </div>
-        </div>
-        <p class="text-[11px] text-cream/70 mt-4"><i class="fa-solid fa-clock mr-1"></i> Waktu utama: akhir Ramadhan hingga sebelum shalat Id.</p>
+                </div>
+
+                <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
+                <li>QS. Al-Baqarah {184 (kewajiban fidyah & pembayaran fitrah)
+                <li>Hadits riwayat Muslim: 1 sha' (±2,5 kg) makanan pokok per jiwa
+                <li>Fatwa & modul BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                </ul>
+                </div>
+                </div>
+                <p class="text-[11px] text-cream/70 mt-4"><i class="fa-solid fa-clock mr-1"></i> Waktu utama: akhir Ramadhan hingga sebelum shalat Id.</p>
     </div>
 </div>
 </div>
@@ -270,7 +279,7 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
 {{--  TAB: ZAKAT MAAL --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-maal" class="calc-panel hidden">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-olive"></i> Zakat Maal (Harta)</h2>
         <p class="text-xs text-olive/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
@@ -310,6 +319,15 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <div id="maalZakat" class="font-black text-xl">Rp 0</div>
                 </div>
             </div>
+
+            <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
+                    <li>QS. At-Taubah:103 (kewajiban zakat harta)
+                    <li>Hadits riwayat Bukhari-Muslim: tidak ada zakat < 5 wasaq / nisab 85 gr emas
+                    <li>Fatwa & modul BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -319,7 +337,7 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
 {{--  TAB: FIDYAH --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-fidyah" class="calc-panel hidden">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-olive"></i> Fidyah Puasa</h2>
         <p class="text-xs text-olive/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
@@ -355,6 +373,14 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <div id="fidyahBerasOut" class="text-[10px] text-cream/80 mt-0.5"></div>
                 </div>
             </div>
+
+            <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
+                    <li>QS. Al-Baqarah:184 (fidyah pengganti puasa)
+                    <li>Modul BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -364,7 +390,7 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
 {{--  TAB: ZAKAT PENGHASILAN --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-penghasilan" class="calc-panel hidden">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-money-bill-trend-up text-olive"></i> Zakat Penghasilan</h2>
         <p class="text-xs text-olive/70 mt-1">2,5% dari penghasilan bulanan (gaji, honor, dll). Nisab: Rp2.500.000/bulan (setara 85 gr emas konversi). Disetorkan setiap bulan.</p>
@@ -397,6 +423,15 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <div id="penghasilanTahunan" class="text-[10px] text-cream/80 mt-0.5">/ tahun: Rp 0</div>
                 </div>
             </div>
+
+            <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
+                    <li>Fatwa MUI No. 3/2003 & modul BAZNAS (zakat penghasilan)
+                    <li>Nisab = nilai 85 gr emas, kadar 2,5%
+                    <li>Fatwa MUI: <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -406,7 +441,7 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
 {{--  TAB: ZAKAT PERTANIAN --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-pertanian" class="calc-panel hidden">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-seedling text-olive"></i> Zakat Pertanian</h2>
         <p class="text-xs text-olive/70 mt-1">Dihitung dari hasil panen yang mencapai nisab. Dengan irigasi (sarana air berbiaya): zakat 2,5%. Tanpa irigasi: zakat 5%.</p>
@@ -443,6 +478,15 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <div id="pertanianZakat" class="font-black text-xl">0 kg</div>
                 </div>
             </div>
+
+            <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
+                    <li>QS. Al-An'am:141 & Hadits riwayat Bukhari-Muslim: zakat pertanian saat panen
+                    <li>Nisab 653 kg beras (5 wasaq); kadar 5% (irigasi) / 10% (tadah hujan)
+                    <li>Fatwa MUI & modul BAZNAS: <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -452,7 +496,7 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
 {{--  TAB: ZAKAT PERDAGANGAN --}}
 {{-- ============================================================ --}}
 <div id="calc-panel-perdagangan" class="calc-panel hidden">
-<div class="grid lg:grid-cols-2 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
         <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-store text-olive"></i> Zakat Perdagangan</h2>
         <p class="text-xs text-olive/70 mt-1">Untuk pedagang. Total harta = modal + piutang + persediaan − utang. Nisab 85 gr emas, zakat 2,5% bila mencapai nisab & haul 1 tahun.</p>
@@ -502,6 +546,15 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <div id="dagZakat" class="font-black text-xl">Rp 0</div>
                 </div>
             </div>
+
+            <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
+                    <li>QS. Al-Baqarah:267 & Hadits riwayat Abu Dawud (zakat perdagangan)
+                    <li>Nisab 85 gr emas; kadar 2,5% dari nilai barang dagang + untung (berjalan 1 tahun)
+                    <li>Fatwa MUI & modul BAZNAS: <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -546,13 +599,6 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                     <input id="wariqHutang" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-12 pr-3 py-2 text-xs bg-white font-bold">
                 </div>
             </div>
-            <div>
-                <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Wasiat (maks. 1/3)</label>
-                <div class="relative mt-1">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60 bg-earth/20 rounded-l-full px-2.5 py-1.5">Rp</span>
-                    <input id="wariqWasiat" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-12 pr-3 py-2 text-xs bg-white font-bold">
-                </div>
-            </div>
         </div>
     </div>
 
@@ -580,14 +626,20 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     <!-- PASANGAN -->
-                    <label id="wariqSuamiLabel" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
+                    <label id="wariqSuamiBox" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqSuami" class="accent-olive mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Suami (Duda)</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · QS. 4:12</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Suami (Duda)</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · tunggal · QS. 4:12</div></div>
                     </label>
-                    <label id="wariqIstriLabel" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
-                        <input type="checkbox" id="wariqIstri" class="accent-olive mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Istri / Janda</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · maks. 4 orang</div></div>
-                    </label>
+                    <div id="wariqIstriBox" class="rounded-2xl p-3 bg-white border border-cream3">
+                        <label id="wariqIstriLabel" class="flex items-start gap-2.5 cursor-pointer">
+                            <input type="checkbox" id="wariqIstri" class="accent-olive mt-0.5">
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Istri / Janda</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · maks. 4 orang</div></div>
+                        </label>
+                        <div id="wariqJumlahIstriWrap" class="mt-2 flex items-center gap-2 pl-7" style="display:none">
+                            <span class="text-[10px] font-bold text-olive/70">Jumlah istri</span>
+                            <input type="number" id="wariqJumlahIstri" value="2" min="1" max="4" class="w-16 border border-cream3 rounded-full px-3 py-1 text-xs bg-cream2 outline-none text-center">
+                        </div>
+                    </div>
 
                     <!-- ORANG TUA / KAKEK / NENEK -->
                     <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
@@ -670,6 +722,33 @@ body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
         </div>
         <div class="px-4 pb-3 pt-2 text-[11px] text-olive/70 font-medium">
             <p><i class="fa-solid fa-circle-info mr-1"></i>Cucu hanya berhak bila tidak ada anak. Kakek hanya bila ayah tidak ada. Nenek hanya bila ibu tidak ada. Saudara terhalang bila ada anak/ayah/kakek.</p>
+        </div>
+    </div>
+
+    <!-- ===== SEKSI WASIAT (TERPISAH DI BAWAH) ===== -->
+    <div class="rounded-2xl border border-cream3 overflow-hidden shadow-sm">
+        <div class="flex items-center gap-2.5 px-4 py-3 bg-olive text-white">
+            <i class="fa-solid fa-scroll text-[13px]"></i>
+            <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">Wasiat (Opsional)</span>
+        </div>
+        <div class="p-4 bg-cream2/60">
+            <div>
+                <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Nominal Wasiat (Rp)</label>
+                <div class="relative mt-1">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-olive/60 bg-earth/20 rounded-l-full px-2.5 py-1.5">Rp</span>
+                    <input id="wariqWasiat" type="text" inputmode="numeric" data-money value="0" class="w-full border border-cream3 rounded-full pl-12 pr-3 py-2 text-xs bg-white font-bold">
+                </div>
+            </div>
+            <div class="mt-3 bg-white/70 border border-cream3 rounded-xl p-3 text-[11px] text-oliveDark leading-relaxed">
+                <div class="font-extrabold text-olive flex items-center gap-2 text-xs"><i class="fa-solid fa-circle-info"></i> Apa itu wasiat?</div>
+                <p class="mt-1">Wasiat adalah pemberian harta dari pewaris kepada <b>orang lain di luar ahli waris</b> (mis. anak yatim, panti, masjid) sebelum harta dibagi.</p>
+                <div class="mt-2 space-y-1">
+                    <div>• <b>Bentuknya:</b> bisa berupa uang, barang, tanah, atau harta lain — yang diwasiatkan pemiliknya.</div>
+                    <div>• <b>Tujuannya:</b> disalurkan ke pihak yang dituju dalam wasiat (mustahik / lembaga / seseorang).</div>
+                    <div>• <b>Batasnya:</b> maksimal <b>1/3 harta</b> (sesuai hadits Nabi ﷺ). Lebih dari itu otomatis dibatasi 1/3.</div>
+                    <div>• <b>Catatan:</b> wasiat <b>tidak boleh</b> diberikan kepada ahli waris, kecuali disetujui seluruh ahli waris.</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -843,6 +922,25 @@ function calcPerdagangan() {
 }
 
 // ---- WARIS (server) ----
+document.getElementById('wariqIstri').addEventListener('change', function () {
+    var wrap = document.getElementById('wariqJumlahIstriWrap');
+    if (wrap) { wrap.style.display = this.checked ? 'flex' : 'none'; }
+});
+
+// Tampilkan pasangan sesuai jenis kelamin pewaris: istri (bisa berjumlah) untuk L, suami (tunggal) untuk P
+function updatePasanganCalc() {
+    var jk = document.querySelector('input[name=pewarisJk]:checked');
+    if (!jk) return;
+    var L = jk.value === 'L';
+    var istri = document.getElementById('wariqIstriBox');
+    var suami = document.getElementById('wariqSuamiBox');
+    if (istri) istri.style.display = L ? '' : 'none';
+    if (suami) suami.style.display = L ? 'none' : '';
+}
+document.querySelectorAll('input[name=pewarisJk]').forEach(function (r) {
+    r.addEventListener('change', updatePasanganCalc);
+});
+updatePasanganCalc();
 async function calcWariq() {
     const jk = document.querySelector('input[name=pewarisJk]:checked').value;
     const params = {
@@ -864,6 +962,7 @@ async function calcWariq() {
         ada_nenek_ibu: $('wariqNenekIbu').checked,
         ada_nenek_ayah: $('wariqNenekAyah').checked,
         ada_istri: $('wariqIstri').checked,
+        jumlah_istri: parseInt(document.getElementById('wariqJumlahIstri').value || 1),
         ada_suami: $('wariqSuami').checked,
         save: 1
     };
@@ -886,13 +985,29 @@ async function calcWariq() {
               + '<div class="flex justify-between font-bold text-oliveDark"><span>Harta bersih</span><span>' + fmt(r.hartaBersih) + '</span></div>'
               + '</div>'
             : '';
-        let rows = (r.hasil||[]).map(h =>
-            '<div class="flex items-center justify-between border-b border-cream2 pb-2 mb-2">'
+        let rows = (r.hasil||[]).map(h => {
+            // Jika label berjumlah (mis. "Anak laki-laki (3)"), pecah per individu
+            const m = String(h.ahli || '').match(/^(.+?)\s*\((\d+)\)$/);
+            if (m) {
+                const base = m[1].trim();
+                const n = parseInt(m[2], 10);
+                const nilai = (h.nilai ?? 0) / n;
+                const persen = (h.persen ?? 0) / n;
+                const porsi = (h.porsi ?? 0) / n;
+                return Array.from({length: n}, (_, i) => i + 1).map(i =>
+                    '<div class="flex items-center justify-between border-b border-cream2 pb-2 mb-2">'
+                    + '<div class="min-w-0"><div class="font-bold text-sm text-oliveDark">' + base + ' #' + i + '</div>'
+                    + '<div class="text-[10px] text-olive/70">' + persen.toFixed(2) + '% · porsi ' + (porsi * 24).toFixed(2) + '/24</div></div>'
+                    + '<div class="text-right shrink-0 ml-2"><div class="font-black text-olive text-sm">' + fmt(nilai) + '</div>'
+                    + '<div class="text-[9px] text-olive/60">rupiah</div></div></div>'
+                ).join('');
+            }
+            return '<div class="flex items-center justify-between border-b border-cream2 pb-2 mb-2">'
             + '<div class="min-w-0"><div class="font-bold text-sm text-oliveDark">' + h.ahli + '</div>'
             + '<div class="text-[10px] text-olive/70">' + h.persen + '% · porsi ' + (h.porsi * 24).toFixed(2) + '/24</div></div>'
             + '<div class="text-right shrink-0 ml-2"><div class="font-black text-olive text-sm">' + fmt(h.nilai) + '</div>'
-            + '<div class="text-[9px] text-olive/60">rupiah</div></div></div>'
-        ).join('');
+            + '<div class="text-[9px] text-olive/60">rupiah</div></div></div>';
+        }).join('');
         let total = (r.hasil||[]).length
             ? '<div class="mt-2 pt-2 border-t-2 border-olive/20 flex justify-between items-center">'
               + '<span class="font-extrabold text-xs text-oliveDark">TOTAL DIBAGIKAN</span>'

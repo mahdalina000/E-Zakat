@@ -265,12 +265,9 @@
             position: relative;
             width: 100%;
         }
-        .neu-container.right-panel-active .sign-in-container {
-            display: none;
-        }
-        .neu-container.right-panel-active .sign-up-container {
-            transform: none;
-        }
+        .sign-up-container { display: none; }
+        .neu-container.right-panel-active .sign-in-container { display: none; }
+        .neu-container.right-panel-active .sign-up-container { display: block; transform: none; }
         .overlay-container { display: none !important; }
     }
 </style>
@@ -377,9 +374,9 @@
                 <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
                 </a>
-                <a href="{{ route('register') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
+                <button type="button" id="mobGoRegister" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
                     Belum punya akun? <span class="text-gold">Daftar →</span>
-                </a>
+                </button>
             </div>
         </div>
 
@@ -450,9 +447,9 @@
                 <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
                 </a>
-                <a href="{{ route('login') }}" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
+                <button type="button" id="mobGoLogin" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
                     Sudah punya akun? <span class="text-gold">Masuk →</span>
-                </a>
+                </button>
             </div>
         </div>
 
@@ -579,6 +576,12 @@ document.addEventListener('DOMContentLoaded', () => {
             container.classList.remove('right-panel-active');
         });
     }
+
+    // Toggle di layar kecil (tanpa pindah halaman)
+    const mobReg = document.getElementById('mobGoRegister');
+    const mobLog = document.getElementById('mobGoLogin');
+    if (mobReg) mobReg.addEventListener('click', () => container.classList.add('right-panel-active'));
+    if (mobLog) mobLog.addEventListener('click', () => container.classList.remove('right-panel-active'));
 
     document.querySelectorAll('.demo').forEach(b => {
         b.addEventListener('click', () => {

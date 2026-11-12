@@ -17,8 +17,9 @@ class WargaProfile extends Model
         'city', 'province', 'postal_code',
         'dependents_count', 'monthly_income', 'monthly_expense',
         'debt_amount', 'asset_value', 'cash_value', 'gold_value',
- 'investment_value', 'property_value', 'vehicle_value',
- 'zakat_category', 'zakat_category_reason',
+        'investment_value', 'property_value', 'vehicle_value',
+        'zakat_category', 'zakat_category_reason',
+        'category_approved', 'category_approved_by', 'category_approved_at',
         'is_verified', 'verified_by', 'verified_at',
     ];
 
@@ -33,6 +34,8 @@ class WargaProfile extends Model
         'investment_value' => 'decimal:2',
         'property_value' => 'decimal:2',
         'vehicle_value' => 'decimal:2',
+        'category_approved' => 'boolean',
+        'category_approved_at' => 'datetime',
         'is_verified' => 'boolean',
         'verified_at' => 'datetime',
     ];
@@ -106,7 +109,7 @@ class WargaProfile extends Model
         return match ($this->zakat_category) {
             'pemberi' => 'Pemberi Zakat',
             'penerima_fakir' => 'Penerima — Fakir',
-            'penerima_miskin' => 'Penerima — Miskin',
+            'penerima_miskin' => 'Penerima — Kurang / Tidak Mampu',
             'penerima_gharimin' => 'Penerima — Gharimin',
             'netral' => 'Netral',
             default => 'Belum Diketahui',

@@ -270,15 +270,41 @@ body.dark-mode div:not([class*="text-"]) {
 body.dark-mode .text-olive { color: #A8D5BA !important; }
 body.dark-mode .text-olive2 { color: #8CC9A1 !important; }
 /* Variasi opasitas hijau */
-body.dark-mode .text-olive\/70,
-body.dark-mode .text-olive\/60,
+body.dark-mode .text-olive\/10,
+body.dark-mode .text-olive\/20,
+body.dark-mode .text-olive\/30,
+body.dark-mode .text-olive\/40,
 body.dark-mode .text-olive\/50,
+body.dark-mode .text-olive\/60,
+body.dark-mode .text-olive\/70,
 body.dark-mode .text-olive\/80,
-body.dark-mode .text-olive\/90 { color: #A8D5BA !important; }
+body.dark-mode .text-olive\/90,
+body.dark-mode .text-olive\/95 { color: #A8D5BA !important; }
 /* Opasitas oliveDark → PUTIH (sesuai permintaan: hitam→putih di dark) */
+body.dark-mode .text-oliveDark\/10,
+body.dark-mode .text-oliveDark\/20,
+body.dark-mode .text-oliveDark\/30,
+body.dark-mode .text-oliveDark\/40,
+body.dark-mode .text-oliveDark\/50,
+body.dark-mode .text-oliveDark\/60,
 body.dark-mode .text-oliveDark\/70,
 body.dark-mode .text-oliveDark\/80,
-body.dark-mode .text-oliveDark\/60 { color: #f8fafc !important; }
+body.dark-mode .text-oliveDark\/90 { color: #f8fafc !important; }
+
+/* Toggle pilihan Jenis Kelamin di dark */
+body.dark-mode .peer:checked ~ .peer-checked\:bg-olive,
+body.dark-mode .peer:checked ~ .peer-checked\:bg-olive2 {
+    background-color: #4B8B3B !important;
+}
+body.dark-mode .peer:checked ~ .peer-checked\:text-white {
+    color: #ffffff !important;
+}
+body.dark-mode .peer:not(:checked) ~ .peer-checked\:bg-olive,
+body.dark-mode .peer:not(:checked) ~ .peer-checked\:text-white {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
 
 /* ELEMEN PUTIH TETAP PUTIH (nav aktif, logo, tombol) */
 body.dark-mode nav a.bg-white {
@@ -294,13 +320,21 @@ body.dark-mode .rounded-xl.bg-white {
 
 /* TEKS CREAM DI DARK MODE → PUTIH TERANG (di header olive/footer) */
 body.dark-mode .text-cream,
+body.dark-mode .text-cream\/40,
+body.dark-mode .text-cream\/50,
+body.dark-mode .text-cream\/60,
+body.dark-mode .text-cream\/70,
 body.dark-mode .text-cream\/80,
-body.dark-mode .text-cream\/90,
-body.dark-mode .text-cream\/70 { color: #f8fafc !important; }
+body.dark-mode .text-cream\/90 { color: #f8fafc !important; }
 
 /* Teks putih / white di dark mode tetap putih */
 body.dark-mode .text-white { color: #ffffff !important; }
+body.dark-mode .text-white\/30,
 body.dark-mode .text-white\/40,
+body.dark-mode .text-white\/50,
+body.dark-mode .text-white\/60,
+body.dark-mode .text-white\/70,
+body.dark-mode .text-white\/80,
 body.dark-mode .text-white\/90 { color: #f8fafc !important; }
 /* Teks earth (kuning) & gold (emas) di dark mode — aksen tetap terlihat */
 body.dark-mode .text-earth { color: #F2C94C !important; }
@@ -773,6 +807,15 @@ body.dark-mode .stat-card {
     border: 1px solid rgba(218,180,96,0.34) !important;
 }
 
+
+/* ============================================================
+   RESPONSIF MOBILE: sidebar fixed pada layar < lg (1024px)
+   agar TIDAK mendorong konten ke kanan (fix Tailwind `fixed`
+   tak ter-compile → sidebar jadi relative & mengambil 260px)
+   ============================================================ */
+@media (max-width: 1023px) {
+    #sidebar { position: fixed !important; }
+}
 
 /* ============================================================
    SEMBUNYIKAN IKON KALENDER NATIVE DI INPUT TANGGAL

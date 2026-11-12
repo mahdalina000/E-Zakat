@@ -13,7 +13,7 @@ class ZakatRecord extends Model
     protected $fillable = [
         'user_id', 'location_id', 'zakat_type', 'total_amount', 'beras_kg',
         'gold_gram', 'jiwa_count', 'due_date', 'payment_date',
-        'payment_method', 'reference_number', 'notes',
+        'payment_method', 'reference_number', 'tujuan', 'notes',
         'is_confirmed', 'confirmed_by', 'confirmed_at',
     ];
 
@@ -65,6 +65,17 @@ class ZakatRecord extends Model
             'emas_fisik' => 'Emas Fisik',
             'makanan' => 'Makanan',
             default => ucfirst($this->payment_method ?? '-'),
+        };
+    }
+
+    public function tujuanLabel(): string
+    {
+        return match ($this->tujuan) {
+            'sendiri' => 'Dibayar langsung / sendiri',
+            'upz' => 'Ke UPZ / Masjid',
+            'baznas' => 'Ke BAZNAS',
+            'distribusi' => 'Distribusi langsung ke mustahik',
+            default => $this->tujuan ?: '-',
         };
     }
 

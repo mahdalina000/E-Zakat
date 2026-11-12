@@ -184,12 +184,36 @@
     <main class="space-y-4 my-auto relative">
 
         {{-- BANNER HARI RAYA & PENGINGAT ZAKAT --}}
-        <div id="holidayBanner" class="hidden anim-smooth delay-1">
-            <div id="holidayBannerInner" class="flex items-start gap-3 p-4 rounded-2xl border shadow-lg text-sm" style="transition: all .25s ease;">
-                <div id="holidayBannerIcon" class="text-lg shrink-0 mt-0.5"></div>
-                <div class="flex-1">
-                    <div id="holidayBannerTitle" class="font-extrabold text-base"></div>
-                    <div id="holidayBannerText" class="text-xs mt-0.5 leading-relaxed"></div>
+        <style>
+            /* Ornamen ketupat bergoyang menggantung (nuansa hari raya) */
+            .ketupat-wrap{position:absolute;top:-22px;pointer-events:none;z-index:3;display:flex;align-items:flex-start;gap:6px}
+            .ketupat-wrap.left{left:-8px}
+            .ketupat-wrap.right{left:auto;right:-8px}
+            .ketupat{display:inline-block;transform-origin:top center;animation:ketupatSway 4s ease-in-out infinite;filter:drop-shadow(0 2px 3px rgba(0,0,0,.22))}
+            .ketupat:nth-child(2){animation-delay:-2.1s;animation-duration:4.8s}
+            .ketupat:nth-child(3){animation-delay:-3.2s;animation-duration:5.2s}
+            .ketupat-wrap.right .ketupat{animation-delay:-2.7s;animation-duration:4.6s}
+            .ketupat-wrap.right .ketupat:nth-child(2){animation-delay:-1.3s}
+            .ketupat-wrap.right .ketupat:nth-child(3){animation-delay:-3.8s}
+            @keyframes ketupatSway{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+        </style>
+        <div id="holidayBanner" class="relative hidden anim-smooth delay-1">
+            <div class="ketupat-wrap left" aria-hidden="true">
+                <span class="ketupat"><svg width="30" height="46" viewBox="0 0 30 46" fill="none"><line x1="15" y1="0" x2="15" y2="12" stroke="#c89d44" stroke-width="1.6"/><polygon points="15,14 29,27 15,40 1,27" fill="url(#kg1)" stroke="#e2b356" stroke-width="1.4" stroke-linejoin="round"/><line x1="15" y1="14" x2="15" y2="40" stroke="rgba(255,255,255,.4)" stroke-width="1"/><line x1="1" y1="27" x2="29" y2="27" stroke="rgba(255,255,255,.4)" stroke-width="1"/><path d="M15 40 L12 45 M15 40 L18 45" stroke="#e2b356" stroke-width="1.3" stroke-linecap="round"/><defs><linearGradient id="kg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8a54"/><stop offset="1" stop-color="#1d5b37"/></linearGradient></defs></svg></span>
+                <span class="ketupat"><svg width="26" height="40" viewBox="0 0 26 40" fill="none"><line x1="13" y1="0" x2="13" y2="11" stroke="#c89d44" stroke-width="1.4"/><polygon points="13,13 25,24 13,35 1,24" fill="url(#kg2)" stroke="#e2b356" stroke-width="1.3" stroke-linejoin="round"/><line x1="13" y1="13" x2="13" y2="35" stroke="rgba(255,255,255,.4)" stroke-width="0.9"/><line x1="1" y1="24" x2="25" y2="24" stroke="rgba(255,255,255,.4)" stroke-width="0.9"/><path d="M13 35 L10 39.5 M13 35 L16 39.5" stroke="#c89d44" stroke-width="1.1" stroke-linecap="round"/><defs><linearGradient id="kg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c89d44"/><stop offset="1" stop-color="#a97c2d"/></linearGradient></defs></svg></span>
+                <span class="ketupat"><svg width="22" height="34" viewBox="0 0 22 34" fill="none"><line x1="11" y1="0" x2="11" y2="10" stroke="#c89d44" stroke-width="1.2"/><polygon points="11,12 21,21 11,30 1,21" fill="url(#kg1)" stroke="#e2b356" stroke-width="1.1" stroke-linejoin="round"/><line x1="11" y1="12" x2="11" y2="30" stroke="rgba(255,255,255,.4)" stroke-width="0.8"/><line x1="1" y1="21" x2="21" y2="21" stroke="rgba(255,255,255,.4)" stroke-width="0.8"/><path d="M11 30 L8.5 34 M11 30 L13.5 34" stroke="#e2b356" stroke-width="1" stroke-linecap="round"/></svg></span>
+            </div>
+            <div class="ketupat-wrap right" aria-hidden="true">
+                <span class="ketupat"><svg width="24" height="38" viewBox="0 0 24 38" fill="none"><line x1="12" y1="0" x2="12" y2="10" stroke="#c89d44" stroke-width="1.3"/><polygon points="12,12 23,22 12,32 1,22" fill="url(#kg3)" stroke="#e2b356" stroke-width="1.2" stroke-linejoin="round"/><line x1="12" y1="12" x2="12" y2="32" stroke="rgba(255,255,255,.4)" stroke-width="0.8"/><line x1="1" y1="22" x2="23" y2="22" stroke="rgba(255,255,255,.4)" stroke-width="0.8"/><path d="M12 32 L9.5 36 M12 32 L14.5 36" stroke="#c89d44" stroke-width="1" stroke-linecap="round"/><defs><linearGradient id="kg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c89d44"/><stop offset="1" stop-color="#a97c2d"/></linearGradient></defs></svg></span>
+                <span class="ketupat"><svg width="30" height="46" viewBox="0 0 30 46" fill="none"><line x1="15" y1="0" x2="15" y2="12" stroke="#c89d44" stroke-width="1.6"/><polygon points="15,14 29,27 15,40 1,27" fill="url(#kg1)" stroke="#e2b356" stroke-width="1.4" stroke-linejoin="round"/><line x1="15" y1="14" x2="15" y2="40" stroke="rgba(255,255,255,.4)" stroke-width="1"/><line x1="1" y1="27" x2="29" y2="27" stroke="rgba(255,255,255,.4)" stroke-width="1"/><path d="M15 40 L12 45 M15 40 L18 45" stroke="#e2b356" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+                <span class="ketupat"><svg width="22" height="34" viewBox="0 0 22 34" fill="none"><line x1="11" y1="0" x2="11" y2="10" stroke="#c89d44" stroke-width="1.2"/><polygon points="11,12 21,21 11,30 1,21" fill="url(#kg2)" stroke="#e2b356" stroke-width="1.1" stroke-linejoin="round"/><line x1="11" y1="12" x2="11" y2="30" stroke="rgba(255,255,255,.4)" stroke-width="0.8"/><line x1="1" y1="21" x2="21" y2="21" stroke="rgba(255,255,255,.4)" stroke-width="0.8"/><path d="M11 30 L8.5 34 M11 30 L13.5 34" stroke="#e2b356" stroke-width="1" stroke-linecap="round"/></svg></span>
+            </div>
+            <div id="holidayBannerInner" class="relative flex items-center gap-3 p-4 sm:p-5 rounded-2xl border shadow-lg text-sm overflow-hidden" style="transition: all .25s ease;">
+                <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at 10% 25%, rgba(255,255,255,.30) 1px, transparent 1.6px), radial-gradient(circle at 90% 15%, rgba(255,255,255,.26) 1px, transparent 1.6px), radial-gradient(circle at 70% 80%, rgba(255,255,255,.20) 1px, transparent 1.6px); background-size: 28px 28px;"></div>
+                <div id="holidayBannerIcon" class="text-2xl shrink-0 relative rounded-xl flex items-center justify-center w-11 h-11"></div>
+                <div class="flex-1 relative">
+                    <div id="holidayBannerTitle" class="font-black text-lg sm:text-2xl text-gold2 leading-tight drop-shadow-sm"></div>
+                    <div id="holidayBannerText" class="text-xs mt-1 text-white/85 leading-relaxed"></div>
                 </div>
                 <button id="holidayBannerClose" type="button" aria-label="Tutup pengingat" class="relative z-20 cursor-pointer w-7 h-7 rounded-full hover:opacity-70 transition flex items-center justify-center shrink-0 text-sm bg-black/20 text-white" title="Sembunyikan pengingat">
                     <i class="fa-solid fa-xmark"></i>
@@ -206,10 +230,14 @@
             <!-- KOLOM KIRI: HERO RINGKAS -->
             <div class="lg:col-span-7 space-y-3 relative overflow-hidden rounded-3xl p-2 eze-col-left">
 
-                <div class="inline-flex items-center gap-2 border border-gold/50 bg-gold/15 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark dark:text-gold2 anim-smooth delay-2">
-                    <i class="fa-solid fa-sparkles text-oliveDark dark:text-gold2"></i> ZAKAT MEMBERSIHKAN HARTA & JIWA
-                </div>
-
+<style>
+    /* Badge hero: teks gelap di light mode, emas di dark mode (inline, anti-cache) */
+    .eze-badge-txt { color: #0e2a1c; }
+    body.dark-mode .eze-badge-txt { color: #e2b356; }
+</style>
+<div class="inline-flex items-center gap-2 border border-emerald-900/30 dark:border-gold/50 bg-emerald-800/10 dark:bg-gold/15 px-3.5 py-1 rounded-full text-xs font-extrabold text-oliveDark dark:text-gold2 anim-smooth delay-2">
+    <i class="eze-badge-txt fa-solid fa-sparkles"></i> <span class="eze-badge-txt">ZAKAT MEMBERSIHKAN HARTA & JIWA</span>
+</div>
                 <h1 class="font-black text-oliveDark text-[34px] lg:text-[48px] leading-[1.02] tracking-tight anim-smooth delay-3">
                     Mudahkan Zakat,<br>
                     <span class="text-black">Raih Berkah.</span>
@@ -342,11 +370,28 @@
                                 <div class="text-sm font-black mt-0.5">Maaf Lahir &amp; Batin &mdash; Semoga Ibadah Kita Diterima</div>
                             </div>
                         </div>
-                        <!-- COUNTDOWN dinamis -->
-                        <div class="flex items-center gap-3 festive-card rounded-2xl px-4 py-3">
-                            <div class="text-center">
-                                <div id="countdownDays" class="text-2xl font-black text-gold2 leading-none">--</div>
-                                <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Hari</div>
+                        <!-- COUNTDOWN dinamis (Hari : Jam : Menit : Detik) -->
+                        <div class="flex items-center gap-3 sm:gap-4 festive-card rounded-2xl px-4 py-3">
+                            <div class="flex items-end gap-1.5 sm:gap-2.5">
+                                <div class="text-center">
+                                    <div id="countdownDays" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
+                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Hari</div>
+                                </div>
+                                <span class="pb-5 text-xl sm:text-2xl font-black text-gold2/80 leading-none">:</span>
+                                <div class="text-center">
+                                    <div id="countdownHours" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
+                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Jam</div>
+                                </div>
+                                <span class="pb-5 text-xl sm:text-2xl font-black text-gold2/80 leading-none">:</span>
+                                <div class="text-center">
+                                    <div id="countdownMinutes" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
+                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Mnt</div>
+                                </div>
+                                <span class="pb-5 text-xl sm:text-2xl font-black text-gold2/80 leading-none">:</span>
+                                <div class="text-center">
+                                    <div id="countdownSeconds" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
+                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Dtk</div>
+                                </div>
                             </div>
                             <div class="text-left">
                                 <div id="countdownName" class="text-[11px] font-extrabold leading-tight">Hari Raya Terdekat</div>
@@ -377,22 +422,12 @@
                         <!-- kanan: 3 pengingat zakat -->
                         <div class="space-y-3">
                             <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-bell mr-1"></i> Pengingat Zakat</div>
-                            <div class="grid sm:grid-cols-3 gap-3 p-3.5 festive-card rounded-2xl">
-                                <div class="festive-card rounded-2xl p-4">
-                                    <div class="w-9 h-9 bg-gold2/90 text-white rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-wheat-awn"></i></div>
-                                    <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Fitrah</div>
-                                    <div class="text-[10px] text-white/70 mt-1 leading-snug">2,5 kg beras/jiwa &mdash; BAZNAS 2026 <b class="text-gold2">Rp50.000</b> per jiwa</div>
+                            <div class="festive-card rounded-2xl p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-quote-left text-gold2 text-sm"></i>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90">Motivasi Ibadah</span>
                                 </div>
-                                <div class="festive-card rounded-2xl p-4">
-                                    <div class="w-9 h-9 bg-gold2/90 text-white rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-scale-balanced"></i></div>
-                                    <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Penghasilan</div>
-                                    <div class="text-[10px] text-white/70 mt-1 leading-snug">Tiap bulan &mdash; nisab <b class="text-gold2">Rp7.640.144</b>, bagi <b>2,5%</b></div>
-                                </div>
-                                <div class="festive-card rounded-2xl p-4">
-                                    <div class="w-9 h-9 bg-gold2/90 text-white rounded-xl flex items-center justify-center text-sm font-black shadow-sm"><i class="fa-solid fa-coins"></i></div>
-                                    <div class="mt-2.5 text-xs font-extrabold leading-tight">Zakat Maal &amp; Niaga</div>
-                                    <div class="text-[10px] text-white/70 mt-1 leading-snug">Setahun &mdash; harta &ge; <b class="text-gold2">85 gr emas</b> &amp; haul, keluarkan <b>2,5%</b></div>
-                                </div>
+                                <div id="motivationText" class="text-xs leading-relaxed text-white/85">Sedang memuat&hellip;</div>
                             </div>
                         </div>
                     </div>
@@ -430,24 +465,75 @@ const list = [
 document.getElementById('dailyHadith').textContent = '"' + list[new Date().getDate() % list.length] + '"';
 
 /* COUNTDOWN HARI RAYA TERDEKAT (dipakai oleh banner bagian bawah) */
+let countdownTarget = null;
 function initCountdown() {
     const now = new Date();
-    let next = null;
-    for(const h of HOLIDAYS){
-        if(h.date > now){
-            if(!next || h.date < next.date) next = h;
+    let next = countdownTarget || null;
+    if(!next){
+        for(const h of HOLIDAYS){
+            if(h.date > now){
+                if(!next || h.date < next.date) next = h;
+            }
         }
     }
     const dEl = document.getElementById('countdownDays');
+    const hEl = document.getElementById('countdownHours');
+    const mEl = document.getElementById('countdownMinutes');
+    const sEl = document.getElementById('countdownSeconds');
     const nEl = document.getElementById('countdownName');
     const dtEl = document.getElementById('countdownDate');
-    if(!next){ dEl.textContent = '—'; return; }
-    const days = Math.max(0, Math.round((next.date - now) / 86400000));
-    dEl.textContent = days;
-    nEl.textContent = next.name.replace(' 1448H','').replace(' 1447H','');
-    dtEl.textContent = next.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+    if(!next){
+        if(dEl) dEl.textContent = '—';
+        if(hEl) hEl.textContent = '—';
+        if(mEl) mEl.textContent = '—';
+        if(sEl) sEl.textContent = '—';
+        return;
+    }
+    const diff = Math.max(0, next.date.getTime() - now.getTime());
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    if(dEl) dEl.textContent = days;
+    if(hEl) hEl.textContent = String(hours).padStart(2,'0');
+    if(mEl) mEl.textContent = String(minutes).padStart(2,'0');
+    if(sEl) sEl.textContent = String(seconds).padStart(2,'0');
+    if(nEl) nEl.textContent = next.name.replace(' 1448H','').replace(' 1447H','');
+    if(dtEl) dtEl.textContent = next.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
 }
 window.addEventListener('load', initCountdown);
+setInterval(initCountdown, 1000);
+
+/* Motivasi ibadah (rotasi) + ucapan hari raya */
+const MOTIVATIONS = [
+    'Raih ketenangan hati dengan bersedekah dan menunaikan zakat.',
+    'Setiap kebaikan kecil adalah cahaya bagi hari-hari Anda.',
+    'Perbanyak rasa syukur, niscaya nikmat semakin bertambah.',
+    'Berbagi rezeki tidak mengurangi, justru menambah keberkahan.',
+    'Istiqamah dalam kebaikan adalah kunci ketenteraman hati.',
+];
+function initMotivation() {
+    const el = document.getElementById('motivationText');
+    if (!el) return;
+    const now = new Date();
+    let holidayEl = null;
+    for (const h of HOLIDAYS) {
+        const start = new Date(h.date.getTime() - h.before * 86400000);
+        const end = new Date(h.date.getTime() + h.after * 86400000);
+        if (now >= start && now <= end) { holidayEl = h; break; }
+    }
+    const upd = () => {
+        if (holidayEl) {
+            const name = (holidayEl.name || '').replace(' 1448H','').replace(' 1447H','');
+            el.textContent = 'Selamat Hari Raya ' + name + ' — Maaf Lahir & Batin. Semoga ibadah kita diterima Allah SWT.';
+        } else {
+            el.textContent = MOTIVATIONS[Math.floor(Math.random() * MOTIVATIONS.length)];
+        }
+    };
+    upd();
+    if (!holidayEl) setInterval(upd, 9000);
+}
+window.addEventListener('load', initMotivation);
 
 // Banner hari raya dibangun dari tabel holiday_banners (dikelola Admin BAZNAS)
 const HOLIDAYS = (@json($holidayBanners ?? collect())).map(h => ({
@@ -505,6 +591,10 @@ function applyFestival(h) {
     if(dEl) dEl.textContent = days;
     if(nEl) nEl.textContent = h.name.replace(/ 14\d+H/, '').trim();
     if(dtEl) dtEl.textContent = h.date.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+
+    // Selaraskan countdown (Hari:Jam:Mnt:Dtk) dengan chip/banner yang aktif
+    countdownTarget = h;
+    initCountdown();
 }
 
 // Tutup banner dengan mulus + simpan status (per sesi & per tahun)
