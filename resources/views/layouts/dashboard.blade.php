@@ -193,11 +193,11 @@
                 <a href="{{ route('admin.baznas') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.baznas') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-users w-4"></i> Kelola Warga Zakat</a>
                 <a href="{{ route('admin.locations.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.locations.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-map-location-dot w-4"></i> Kelola Lokasi</a>
                 <a href="{{ route('admin.beras.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.beras.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-wheat-awn w-4"></i> Harga Beras Banjar</a>
-                <button type="button" onclick="document.getElementById('exportModalGlobal').classList.remove('hidden')" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm w-full text-left text-cream hover:bg-white/10"><i class="fa-solid fa-file-excel w-4"></i> Export Catatan</button>
                 <a href="{{ route('admin.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Masukan Warga</a>
                 <a href="{{ route('admin.zakat-requests') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.zakat-requests*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Pengajuan Hitung Waris</a>
                 <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> Pengaturan</a>
                 <a href="{{ route('admin.holidays.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.holidays.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-star-and-crescent w-4"></i> Banner Hari Raya</a>
+                <a href="{{ route('admin.waris-calculator') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.waris-calculator') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-calculator w-4"></i> Kalkulator Waris</a>
             @endif
 
             @if($u->isUser())
@@ -218,9 +218,9 @@
         </nav>
 
         <div class="p-3 border-t border-white/10 relative z-10">
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Yakin ingin keluar dari akun ini?')">
                 @csrf
-                <button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-200 hover:bg-red-500/20 transition"><i class="fa-solid fa-right-from-bracket w-4"></i> Keluar</button>
+                <button class="w-full flex items-center justify-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold bg-red-600 text-white hover:bg-red-500 active:scale-[0.98] transition shadow-md shadow-red-900/30"><i class="fa-solid fa-right-from-bracket w-4"></i> Keluar</button>
             </form>
         </div>
     </aside>
@@ -242,7 +242,13 @@
                 <div class="flex items-center gap-2 text-xs pr-6">
                     <button id="themeToggleDash" type="button" class="w-9 h-9 rounded-full bg-white/15 border border-white/20 text-white hover:bg-white/25 transition flex items-center justify-center" title="Mode gelap / terang"><i id="themeIconDash" class="fa-solid fa-moon"></i></button>
                     <span class="hidden sm:inline bg-white/15 border border-white/20 px-3 py-1.5 rounded-full text-white"><i class="fa-regular fa-calendar mr-1"></i> {{ now()->translatedFormat('d M Y') }}</span>
-                    <span class="bg-gold2 text-oliveDark px-3 py-1.5 rounded-full font-bold shadow-sm relative z-20">{{ $u->roleLabel() }}</span>
+                    @if($u->isUser())
+                    <a href="{{ route('user.profile') }}" class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold hover:bg-white/30 transition" title="Buka Profil"><i class="fa-solid fa-id-card text-[10px]"></i> {{ $u->name }}</a>
+                    @elseif($u->isAdmin())
+                    <a href="{{ route('admin.settings') }}" class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold hover:bg-white/30 transition" title="Buka Pengaturan"><i class="fa-solid fa-id-card text-[10px]"></i> {{ $u->name }}</a>
+                    @else
+                    <span class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold"><i class="fa-solid fa-id-card text-[10px]"></i> {{ $u->name }}</span>
+                    @endif
                 </div>
             </div>
         </header>
@@ -265,36 +271,6 @@
     </div>
 </div>
 
-{{-- MODAL EXPORT GLOBAL (dibuka dari sidebar) --}}
-@if(auth()->user() && auth()->user()->isAdmin())
-<div id="exportModalGlobal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl p-5 w-full max-w-sm shadow-2xl">
-        <div class="flex items-center justify-between mb-4">
-            <h3 class="font-bold text-oliveDark text-sm flex items-center gap-2"><i class="fa-solid fa-file-excel text-olive"></i> Export Catatan Zakat</h3>
-            <button type="button" onclick="document.getElementById('exportModalGlobal').classList.add('hidden')" class="text-olive/50 hover:text-olive text-lg leading-none">&times;</button>
-        </div>
-        <div class="space-y-2">
-            <a href="{{ route('admin.export', ['kategori' => 'semuanya']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
-                <span><i class="fa-solid fa-list mr-2 text-olive"></i> Semua Catatan</span>
-                <i class="fa-solid fa-chevron-right text-olive/40"></i>
-            </a>
-            <a href="{{ route('admin.export', ['kategori' => 'gharimin']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
-                <span><i class="fa-solid fa-hands-holding-circle mr-2 text-teal-600"></i> Penerima Gharimin</span>
-                <i class="fa-solid fa-chevron-right text-olive/40"></i>
-            </a>
-            <a href="{{ route('admin.export', ['kategori' => 'kurang_mampu']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
-                <span><i class="fa-solid fa-hand-holding-heart mr-2 text-emerald-600"></i> Penerima Kurang Mampu (Fakir & Miskin)</span>
-                <i class="fa-solid fa-chevron-right text-olive/40"></i>
-            </a>
-            <a href="{{ route('admin.export', ['kategori' => 'pemberi']) }}" class="flex items-center justify-between w-full border border-cream3 rounded-xl px-4 py-3 text-xs font-semibold text-oliveDark hover:bg-cream2">
-                <span><i class="fa-solid fa-hand-holding-dollar mr-2 text-olive"></i> Pemberi (Muzaki)</span>
-                <i class="fa-solid fa-chevron-right text-olive/40"></i>
-            </a>
-        </div>
-        <button type="button" onclick="document.getElementById('exportModalGlobal').classList.add('hidden')" class="mt-4 w-full bg-cream border border-cream3 text-olive font-semibold px-4 py-2 rounded-full text-xs">Tutup</button>
-    </div>
-</div>
-@endif
 
 <script>
     function toggleSidebar(){

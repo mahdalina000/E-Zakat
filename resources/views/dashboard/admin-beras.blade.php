@@ -36,9 +36,9 @@
     </div>
 
     <div class="lg:col-span-2">
-        <div class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4">
+        <div class="rounded-[20px] border border-cream3/30 p-5 lg:p-6 space-y-4" style="background: rgba(255,255,255,0.32); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);">
             <div class="font-bold text-oliveDark text-sm mb-3"><i class="fa-solid fa-clock-rotate-left text-olive mr-2"></i> Riwayat Perubahan Harga</div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" style="max-height:420px; overflow-y:auto;">
                 <table class="w-full text-sm">
                     <thead><tr class="text-left text-xs text-olive/50 border-b border-cream3">
                         <th class="py-2 pr-3">Harga</th><th class="py-2 pr-3">Catatan</th><th class="py-2 pr-3">Diubah oleh</th><th class="py-2">Waktu</th>

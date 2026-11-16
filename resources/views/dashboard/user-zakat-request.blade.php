@@ -8,7 +8,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4" style="height:100%">
 
     {{-- FORM PENGAJUAN WARIS --}}
-    <div class="bg-white rounded-[20px] border border-cream3 p-5" style="height:100%; display:flex; flex-direction:column; min-height:0">
+    <div class="bg-white rounded-[20px] border border-cream3 p-5" style="display:flex; flex-direction:column">
         <h3 class="font-bold text-oliveDark text-sm mb-1 flex items-center gap-2">
             <span class="w-8 h-8 rounded-full bg-olive/10 text-olive flex items-center justify-center"><i class="fa-solid fa-people-roof text-xs"></i></span>
             Pengajuan Hitung Waris
@@ -23,10 +23,10 @@
         <div class="mb-4 text-xs bg-red-50 border border-red-200 text-red-600 rounded-xl px-4 py-3"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Periksa kembali isian Anda.</div>
         @endif
 
-        <form method="POST" action="{{ route('user.zakat-request.store') }}" class="space-y-3" style="display:flex; flex-direction:column; flex:1 1 0%; min-height:0">
+        <form method="POST" action="{{ route('user.zakat-request.store') }}" class="space-y-3" style="display:flex; flex-direction:column">
             @csrf
 
-            <div style="flex:1 1 0%; min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-right:2px; padding-bottom:24px">
+            <div style="padding-right:2px; padding-bottom:24px">
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Nama Pewaris / Almarhum *</label>
                 <input name="deceased_name" value="{{ old('deceased_name') }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">
@@ -44,30 +44,40 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Total Harta Warisan (Rp) *</label>
-                    <input name="total_harta" type="number" min="0" value="{{ old('total_harta', 0) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">
+                    <input type="hidden" name="total_harta" id="total_harta" value="{{ old('total_harta', 0) }}">
+                    <input type="text" inputmode="numeric" data-target="total_harta" data-default="{{ old('total_harta', 0) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30 rupiah-display">
                     @error('total_harta')<div class="text-[10px] text-red-500 mt-1">{{ $message }}</div>@enderror
                 </div>
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Hutang Pewaris (Rp)</label>
-                    <input name="hutang" type="number" min="0" value="{{ old('hutang', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">
+                    <input type="hidden" name="hutang" id="hutang" value="{{ old('hutang', 0) }}">
+                    <input type="text" inputmode="numeric" data-target="hutang" data-default="{{ old('hutang', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30 rupiah-display">
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Biaya Pemakaman (Rp)</label>
-                    <input name="biaya_pemakaman" type="number" min="0" value="{{ old('biaya_pemakaman', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">
+                    <input type="hidden" name="biaya_pemakaman" id="biaya_pemakaman" value="{{ old('biaya_pemakaman', 0) }}">
+                    <input type="text" inputmode="numeric" data-target="biaya_pemakaman" data-default="{{ old('biaya_pemakaman', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30 rupiah-display">
                 </div>
                 <div>
                     <label class="text-xs font-semibold text-oliveDark">Wasiat (Rp) <span class="font-normal text-olive/50">(maks 1/3)</span></label>
-                    <input name="wasiat" type="number" min="0" value="{{ old('wasiat', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">
+                    <input type="hidden" name="wasiat" id="wasiat" value="{{ old('wasiat', 0) }}">
+                    <input type="text" inputmode="numeric" data-target="wasiat" data-default="{{ old('wasiat', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30 rupiah-display">
                 </div>
                 </div>
 
                 <div>
                 <label class="text-xs font-semibold text-oliveDark">Harta Sengketa (Rp) <span class="font-normal text-olive/50">(opsional)</span></label>
-                <input name="harta_sengketa" type="number" min="0" value="{{ old('harta_sengketa', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">
+                <input type="hidden" name="harta_sengketa" id="harta_sengketa" value="{{ old('harta_sengketa', 0) }}">
+                <input type="text" inputmode="numeric" data-target="harta_sengketa" data-default="{{ old('harta_sengketa', 0) }}" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30 rupiah-display">
                 <p class="text-[10px] text-olive/50 mt-1">Harta yang masih disengketakan (mis. tanah sengketa) <b>tidak ikut dibagi</b>. Jumlah ini otomatis dikeluarkan dari total.</p>
+                <div id="sengketaReasonWrap" style="display:none" class="mt-2">
+                    <label class="text-[11px] font-semibold text-oliveDark">Alasan / Penjelasan Harta Sengketa</label>
+                    <textarea name="sengketa_reason" rows="2" placeholder="Contoh: tanah warisan sedang digugat keluarga lain…" class="mt-1 w-full border border-cream3 rounded-2xl px-4 py-2 text-xs bg-cream2 focus:outline-none focus:ring-2 focus:ring-olive/30">{{ old('sengketa_reason') }}</textarea>
+                    @error('sengketa_reason')<div class="text-[10px] text-red-500 mt-1">{{ $message }}</div>@enderror
+                </div>
                 </div>
 
                 <div class="bg-cream2/60 rounded-2xl p-3 space-y-2">
@@ -137,6 +147,35 @@
                 r.addEventListener('change', updatePasanganForm);
             });
             updatePasanganForm();
+
+            // Format Rupiah utk field nominal
+            document.querySelectorAll('.rupiah-display').forEach(function (d) {
+                var target = document.getElementById(d.dataset.target);
+                function clean() { return String(d.value || '').replace(/[^0-9]/g, ''); }
+                function syncReason() {
+                    var wr = document.getElementById('sengketaReasonWrap');
+                    var hs = document.getElementById('harta_sengketa');
+                    if (wr && hs && parseInt(hs.value || '0', 10) > 0) wr.style.display = 'block';
+                    else if (wr) wr.style.display = 'none';
+                }
+                function render() {
+                    // seed awal dari data-default bila masih kosong
+                    if (!d.dataset.seeded && d.dataset.default !== undefined) {
+                        d.dataset.seeded = '1';
+                        var def = String(d.dataset.default || '0').replace(/[^0-9]/g, '');
+                        if (def) {
+                            d.value = new Intl.NumberFormat('id-ID').format(parseInt(def, 10));
+                            if (target) target.value = def;
+                        }
+                    }
+                    var v = clean();
+                    d.value = v ? new Intl.NumberFormat('id-ID').format(parseInt(v, 10)) : '';
+                    if (target) target.value = v;
+                    syncReason();
+                }
+                d.addEventListener('input', render);
+                render();
+            });
         })();
         </script>
     </div>
@@ -168,16 +207,20 @@
 
                 <div class="text-[11px] text-oliveDark mb-2"><i class="fa-solid fa-user-xmark mr-1 text-olive"></i>Pewaris: <b>{{ $rq->deceased_name ?? $rq->full_name }}</b></div>
 
-                <div class="grid grid-cols-2 gap-2 text-[11px]">
-                    <div><span class="text-olive/50">Harta warisan:</span> <b class="text-oliveDark">Rp {{ number_format($rq->waris_data['total_harta'] ?? $rq->total_assets, 0, ',', '.') }}</b></div>
-                    <div><span class="text-olive/50">Hutang:</span> <b class="text-oliveDark">Rp {{ number_format($rq->waris_data['hutang'] ?? $rq->debt_amount, 0, ',', '.') }}</b></div>
-                    <div><span class="text-olive/50">Biaya pemakaman:</span> <b class="text-oliveDark">Rp {{ number_format($rq->waris_data['biaya_pemakaman'] ?? 0, 0, ',', '.') }}</b></div>
-                    <div><span class="text-olive/50">Wasiat:</span> <b class="text-oliveDark">Rp {{ number_format($rq->waris_data['wasiat'] ?? 0, 0, ',', '.') }}</b></div>
-                    <div><span class="text-olive/50">Harta sengketa:</span> <b class="text-oliveDark">Rp {{ number_format($rq->waris_data['harta_sengketa'] ?? 0, 0, ',', '.') }}</b></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-2 text-[11px]">
+                    <div><span class="text-olive/50 block">Harta warisan</span><b class="text-oliveDark block">Rp {{ number_format($rq->waris_data['total_harta'] ?? $rq->total_assets, 0, ',', '.') }}</b></div>
+                    <div><span class="text-olive/50 block">Hutang</span><b class="text-oliveDark block">Rp {{ number_format($rq->waris_data['hutang'] ?? $rq->debt_amount, 0, ',', '.') }}</b></div>
+                    <div><span class="text-olive/50 block">Biaya pemakaman</span><b class="text-oliveDark block">Rp {{ number_format($rq->waris_data['biaya_pemakaman'] ?? 0, 0, ',', '.') }}</b></div>
+                    <div><span class="text-olive/50 block">Wasiat</span><b class="text-oliveDark block">Rp {{ number_format($rq->waris_data['wasiat'] ?? 0, 0, ',', '.') }}</b></div>
+                    <div><span class="text-olive/50 block">Harta sengketa</span><b class="text-oliveDark block">Rp {{ number_format($rq->waris_data['harta_sengketa'] ?? 0, 0, ',', '.') }}</b></div>
                 </div>
 
                 @if($rq->description)
                 <div class="mt-2 text-[11px] text-olive/70 bg-white border border-cream3 rounded-xl px-3 py-2"><i class="fa-solid fa-note-sticky mr-1 text-olive"></i>{{ $rq->description }}</div>
+                @endif
+
+                @if(!empty($rq->waris_data['sengketa_alasan']))
+                <div class="mt-2 text-[11px] text-olive/70 bg-white border border-cream3 rounded-xl px-3 py-2"><i class="fa-solid fa-triangle-exclamation mr-1 text-red-500"></i>Alasan sengketa: {{ $rq->waris_data['sengketa_alasan'] }}</div>
                 @endif
 
                 @if($rq->admin_note)
@@ -210,7 +253,7 @@
                             @php $n = (int)$mm[2]; $nilai = ($h['nilai'] ?? 0)/$n; $persen = ($h['persen'] ?? 0)/$n; $porsi = ($h['porsi'] ?? 0)/$n; @endphp
                             @for($i=1; $i<=$n; $i++)
                             <div class="flex items-center justify-between gap-2 border-b border-white/10 pb-1.5">
-                                <div><div class="font-bold text-xs">{{ $mm[1] }} #{{ $i }}</div><div class="text-[10px] text-cream/70">{{ number_format($persen, 2) }}% · porsi {{ number_format($porsi*24, 2) }}/24</div></div>
+                                <div><div class="font-bold text-xs">{{ $mm[1] }}@if($n>1) #{{ $i }}@endif</div><div class="text-[10px] text-cream/70">{{ number_format($persen, 2) }}% · porsi {{ number_format($porsi*24, 2) }}/24</div></div>
                                 <div class="text-right font-black text-sm">Rp {{ number_format($nilai, 0, ',', '.') }}</div>
                             </div>
                             @endfor

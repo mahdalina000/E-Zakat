@@ -97,8 +97,8 @@ class UserProfileController extends Controller
             'due_date' => ['nullable', 'date'],
             'payment_date' => ['nullable', 'date'],
             'payment_method' => ['nullable', 'string', 'in:tunai,transfer,qris,beras_fisik,emas_fisik,makanan'],
-            'reference_number' => ['nullable', 'string', 'max:100'],
-            'tujuan' => ['nullable', 'string', 'in:sendiri,upz,baznas,distribusi'],
+            'payment_proof' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'tujuan' => ['nullable', 'string', 'in:warga,sendiri,upz,baznas,distribusi'],
             'notes' => ['nullable', 'string', 'max:500'],
             'location_id' => ['nullable', 'exists:locations,id'],
         ]);
@@ -114,6 +114,10 @@ class UserProfileController extends Controller
             ])->withInput();
         }
 
+        if ($request->hasFile('payment_proof')) {
+            $data['payment_proof'] = $request->file('payment_proof')->store('payment-proofs', 'public');
+        }
+        unset($data['reference_number']);
         $data['user_id'] = $u->id;
         $data['is_confirmed'] = false;
         ZakatRecord::create($data);
@@ -149,8 +153,8 @@ class UserProfileController extends Controller
             'due_date' => ['nullable', 'date'],
             'payment_date' => ['nullable', 'date'],
             'payment_method' => ['nullable', 'string', 'in:tunai,transfer,qris,beras_fisik,emas_fisik,makanan'],
-            'reference_number' => ['nullable', 'string', 'max:100'],
-            'tujuan' => ['nullable', 'string', 'in:sendiri,upz,baznas,distribusi'],
+            'payment_proof' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'tujuan' => ['nullable', 'string', 'in:warga,sendiri,upz,baznas,distribusi'],
             'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
@@ -164,6 +168,9 @@ class UserProfileController extends Controller
             ])->withInput();
         }
 
+        if ($request->hasFile('payment_proof')) {
+            $data['payment_proof'] = $request->file('payment_proof')->store('payment-proofs', 'public');
+        }
         $record->update($data);
 
         return redirect()->route('user.profile')->with('success', 'Catatan zakat berhasil diperbarui.');

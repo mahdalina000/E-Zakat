@@ -123,11 +123,12 @@
                 <th class="py-2 pr-3">Total (Rp)</th><th class="py-2 pr-3">Tanggal</th>
                 <th class="py-2 pr-3">Metode</th><th class="py-2 pr-3">Tujuan</th>
                 <th class="py-2 pr-3">Keterangan</th>
+                <th class="py-2 pr-3">Bukti</th>
                 <th class="py-2 text-right">Aksi</th>
             </tr></thead>
             <tbody id="recordsTableBody">
             @forelse($records as $r)
-                <tr class="border-b border-cream2 hover:bg-cream2/50" data-id="{{ $r->id }}" data-type="{{ $r->zakat_type }}" data-search="{{ strtolower($r->zakatTypeLabel().' '.$r->paymentMethodLabel().' '.($r->tujuanLabel() ?? '').' '.($r->notes ?? '').' '.($r->payment_date?->format('d M Y') ?? '')) }}">
+                <tr class="border-b border-cream2 hover:bg-cream2/50" data-id="{{ $r->id }}" data-type="{{ $r->zakat_type }}" data-proof="{{ $r->payment_proof }}" data-search="{{ strtolower($r->zakatTypeLabel().' '.$r->paymentMethodLabel().' '.($r->tujuanLabel() ?? '').' '.($r->notes ?? '').' '.($r->payment_date?->format('d M Y') ?? '')) }}">
                     <td class="py-2.5 pr-3"><span class="text-[11px] px-2 py-0.5 rounded-full bg-olive/10 text-olive font-semibold whitespace-nowrap">{{ $r->zakatTypeLabel() }}</span></td>
                     <td class="py-2.5 pr-3 text-xs whitespace-nowrap">{{ $r->jiwa_count }} jiwa @if($r->beras_kg) • {{ $r->beras_kg }} kg beras @endif</td>
                     <td class="py-2.5 pr-3 font-bold text-oliveDark whitespace-nowrap">Rp {{ number_format($r->total_amount ?? 0, 0, ',', '.') }}</td>
@@ -135,6 +136,13 @@
                     <td class="py-2.5 pr-3 text-xs whitespace-nowrap">{{ $r->paymentMethodLabel() }}</td>
                     <td class="py-2.5 pr-3 text-xs whitespace-nowrap">{{ $r->tujuanLabel() }}</td>
                     <td class="py-2.5 pr-3 text-xs text-olive/70 max-w-[140px] truncate">{{ Str::limit($r->notes, 40) }}</td>
+                    <td class="py-2.5 pr-3 text-xs whitespace-nowrap">
+                        @if($r->payment_proof)
+                        <img src="{{ asset('storage/' . $r->payment_proof) }}" alt="Bukti pembayaran" title="Klik untuk perbesar" class="h-9 w-9 object-cover rounded-lg border border-cream3 shadow-sm cursor-pointer" onclick="window.open(this.src,'_blank','width=900,height=700')">
+                        @else
+                        <span class="text-olive/40">—</span>
+                        @endif
+                    </td>
                     <td class="py-2.5 text-right whitespace-nowrap">
                         <button type="button" onclick="openEditModal({{ $r->id }})" class="w-7 h-7 rounded-lg bg-olive/10 text-olive hover:bg-olive/20 text-xs" title="Edit"><i class="fa-solid fa-pen"></i></button>
                         <form method="POST" action="{{ route('user.records.destroy', $r) }}" onsubmit="return confirm('Hapus catatan ini?')" class="inline">
@@ -144,7 +152,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="8" class="py-8 text-center text-olive/40">Belum ada catatan zakat.</td></tr>
+                <tr><td colspan="9" class="py-8 text-center text-olive/40">Belum ada catatan zakat.</td></tr>
             @endforelse
             </tbody>
         </table>
@@ -160,7 +168,7 @@
             @error('jumlah')
                 <div class="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-3">{{ $message }}</div>
             @enderror
-        <form method="POST" action="{{ route('user.records.store') }}" id="recordForm" style="display:flex;flex-direction:column;flex:1 1 0%;min-height:0">
+        <form method="POST" action="{{ route('user.records.store') }}" id="recordForm" enctype="multipart/form-data" style="display:flex;flex-direction:column;flex:1 1 0%;min-height:0">
             @csrf
             <input type="hidden" name="_method" id="recordMethod" value="POST">
             <div class="space-y-3" style="flex:1 1 0%;min-height:0;overflow-y:auto">
@@ -216,15 +224,17 @@
                 <label class="text-xs font-semibold text-oliveDark">Tujuan Zakat</label>
                 <select name="tujuan" id="f_tujuan" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                     <option value="">— Pilih Tujuan —</option>
-                    <option value="sendiri">Dibayar langsung / sendiri</option>
+                    <option value="warga">Warga (mustahik)</option>
                     <option value="upz">Ke UPZ / Masjid</option>
                     <option value="baznas">Ke BAZNAS</option>
-                    <option value="distribusi">Distribusi langsung ke mustahik</option>
                 </select>
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark">No. Referensi</label>
-                <input name="reference_number" id="f_reference_number" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none" placeholder="mis. No. transfer">
+                <label class="text-xs font-semibold text-oliveDark">Bukti Foto Pembayaran</label>
+                <label for="f_payment_proof" class="mt-1 block w-full cursor-pointer rounded-full bg-olive hover:bg-olive2 text-white text-center px-4 py-2.5 text-xs font-semibold transition shadow-sm"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Pilih File Bukti</label>
+                <input type="file" name="payment_proof" id="f_payment_proof" accept="image/*" onchange="showProofPreview(this)" class="sr-only">
+                <p class="text-[10px] text-olive/50 mt-1.5 text-center">JPG / PNG / WEBP · maks 2 MB (opsional)</p>
+                <div id="f_payment_proof_preview" class="hidden mt-2 flex justify-center"></div>
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Keterangan</label>
@@ -273,6 +283,35 @@ function formatRupiahDirect(el) {
         el.value = '';
     }
 }
+function showProofPreview(input) {
+    const pv = document.getElementById('f_payment_proof_preview');
+    if (!pv) return;
+    const f = input.files && input.files[0];
+    if (f) {
+        const rd = new FileReader();
+        rd.onload = function (e) {
+            pv.classList.remove('hidden');
+            pv.innerHTML = '<img src="' + e.target.result + '" class="h-16 w-16 object-cover rounded-xl border border-cream3 shadow-sm">';
+        };
+        rd.readAsDataURL(f);
+    } else {
+        pv.classList.add('hidden');
+        pv.innerHTML = '';
+    }
+}
+(function () {
+    var jiwa = document.getElementById('f_jiwa_count');
+    var beras = document.getElementById('f_beras_kg');
+    if (jiwa && beras) {
+        jiwa.addEventListener('input', function () {
+            var j = parseFloat(jiwa.value);
+            if (!isNaN(j) && j > 0) {
+                var b = j * 2.5;
+                beras.value = (Number.isInteger(b) ? b : b.toFixed(2)).toString().replace('.00', '');
+            }
+        });
+    }
+})();
 function openRecordModal() {
     document.getElementById('recordForm').reset();
     document.getElementById('recordMethod').value = 'POST';
@@ -281,6 +320,10 @@ function openRecordModal() {
     document.getElementById('recordSubmitBtn').textContent = 'Simpan Catatan';
     document.getElementById('total_amount').value = '';
     document.getElementById('total_amount_formatted').value = '';
+    const pfReset = document.getElementById('f_payment_proof');
+    if (pfReset) pfReset.value = '';
+    const pvReset = document.getElementById('f_payment_proof_preview');
+    if (pvReset) { pvReset.classList.add('hidden'); pvReset.innerHTML = ''; }
     document.getElementById('recordModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     document.getElementById('recordModal').scrollTop = 0;
@@ -326,10 +369,21 @@ function openEditModal(id) {
         const metodeMap = {'Tunai':'tunai','Transfer':'transfer','QRIS':'qris','Beras Fisik':'beras_fisik','Makanan':'makanan'};
         document.getElementById('f_payment_method').value = metodeMap[metode] || 'tunai';
         const tujuan = cells[5].textContent.trim();
-        const tujuanMap = {'Dibayar langsung / sendiri':'sendiri','Ke UPZ / Masjid':'upz','Ke BAZNAS':'baznas','Distribusi langsung ke mustahik':'distribusi'};
+        const tujuanMap = {'Warga (mustahik)':'warga','Ke UPZ / Masjid':'upz','Ke BAZNAS':'baznas','Distribusi langsung ke mustahik':'distribusi','Dibayar langsung / sendiri':'sendiri'};
         document.getElementById('f_tujuan').value = tujuanMap[tujuan] || '';
         const ket = cells[6].textContent.trim();
         document.getElementById('f_notes').value = (ket && ket !== '-') ? ket : '';
+        const proofVal = row.dataset.proof || '';
+        const pvEdit = document.getElementById('f_payment_proof_preview');
+        if (pvEdit) {
+            if (proofVal) {
+                pvEdit.classList.remove('hidden');
+                pvEdit.innerHTML = '<div class="flex items-center gap-2"><img src="{{ asset('storage') }}/' + proofVal + '" class="h-12 w-12 object-cover rounded-lg border border-cream3"><span class="text-[10px] text-olive/60">Foto bukti lama — unggah baru untuk mengganti</span></div>';
+            } else {
+                pvEdit.classList.add('hidden');
+                pvEdit.innerHTML = '';
+            }
+        }
     }
     document.getElementById('recordModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';

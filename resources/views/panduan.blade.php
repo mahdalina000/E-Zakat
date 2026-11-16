@@ -56,9 +56,9 @@
         background: none !important;
     }
 
-    /* BLOK LAFAL NIAT — HIJAU SOLID (menonjol sebagai blok hijau, bukan pucat/transparan) */
+    /* BLOK LAFAL NIAT — HIJAU UTAMA SOLID (menonjol sebagai blok hijau, bukan pucat/transparan) */
     .bg-niat-box {
-        background-color: #d5e8d8 !important;
+        background-color: rgba(36, 108, 66, 0.12) !important;
         border: 1px solid rgba(36, 108, 66, 0.40) !important;
     }
     body.dark-mode .bg-niat-box {
@@ -217,7 +217,7 @@
             </div>
 
             {{-- FAQ --}}
-            <div id="faq" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm">
+            <div id="faq" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 eze-up shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
                     <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> FAQ Zakat
                 </h2>

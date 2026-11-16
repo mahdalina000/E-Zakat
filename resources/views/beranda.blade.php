@@ -549,12 +549,12 @@ const HOLIDAYS = (@json($holidayBanners ?? collect())).map(h => ({
 }));
 
 const paletteAll = {
-    olive:   { bg: '#3f5f43', border: '#7d9b72', soft: 'rgba(63,95,67,0.14)' },
-    teal:   { bg: '#0f766e', border: '#14b8a6', soft: 'rgba(15,118,110,0.14)' },
-    blue:   { bg: '#1d4ed8', border: '#60a5fa', soft: 'rgba(29,78,216,0.14)' },
-    emerald: { bg: '#047857', border: '#34d399', soft: 'rgba(4,120,87,0.14)' },
-    rose:   { bg: '#be123c', border: '#fb7185', soft: 'rgba(190,18,60,0.14)' },
-    gold:   { bg: '#926c1a', border: '#e2b356', soft: 'rgba(210,150,40,0.16)' },
+    olive:   { bg: '#246c42', border: '#1d5b37', soft: 'rgba(36,108,66,0.20)' },
+    teal:   { bg: '#246c42', border: '#1d5b37', soft: 'rgba(36,108,66,0.20)' },
+    blue:   { bg: '#246c42', border: '#1d5b37', soft: 'rgba(36,108,66,0.20)' },
+    emerald: { bg: '#246c42', border: '#1d5b37', soft: 'rgba(36,108,66,0.20)' },
+    rose:   { bg: '#246c42', border: '#1d5b37', soft: 'rgba(36,108,66,0.20)' },
+    gold:   { bg: '#246c42', border: '#1d5b37', soft: 'rgba(36,108,66,0.20)' },
 };
 
 // Tampilkan banner + perbarui countdown untuk satu hari raya (dipakai klik chip & auto)
@@ -584,6 +584,11 @@ function applyFestival(h) {
 
     banner.classList.remove('hidden');
     if(noteEl) noteEl.classList.remove('hidden');
+
+    // Gulir otomatis agar banner (dengan ketupat) langsung terlihat
+    try {
+        banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) {}
 
     const dEl = document.getElementById('countdownDays');
     const nEl = document.getElementById('countdownName');

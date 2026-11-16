@@ -47,7 +47,6 @@
                 <div><span class="text-olive/50">Harta warisan:</span> <b class="text-oliveDark">Rp {{ number_format($w['total_harta'] ?? $rq->total_assets, 0, ',', '.') }}</b></div>
                 <div><span class="text-olive/50">Hutang:</span> <b class="text-oliveDark">Rp {{ number_format($w['hutang'] ?? $rq->debt_amount, 0, ',', '.') }}</b></div>
                 <div><span class="text-olive/50">Biaya pemakaman:</span> <b class="text-oliveDark">Rp {{ number_format($w['biaya_pemakaman'] ?? 0, 0, ',', '.') }}</b></div>
-                <div><span class="text-olive/50">Wasiat:</span> <b class="text-oliveDark">Rp {{ number_format($w['wasiat'] ?? 0, 0, ',', '.') }}</b></div>
                 <div><span class="text-olive/50">Harta sengketa:</span> <b class="text-oliveDark">Rp {{ number_format($w['harta_sengketa'] ?? 0, 0, ',', '.') }}</b></div>
             </div>
             <div class="mt-2 text-[10px] text-olive/70 border-t border-cream2 pt-1.5">
@@ -71,7 +70,6 @@
                 @if(($detail['hartaSengketa'] ?? 0) > 0)<div class="flex justify-between gap-2"><span>− Harta sengketa</span><b>Rp {{ number_format($detail['hartaSengketa'], 0, ',', '.') }}</b></div>@endif
                 @if(($detail['potongan']['hutang'] ?? 0) > 0)<div class="flex justify-between gap-2"><span>− Hutang</span><b>Rp {{ number_format($detail['potongan']['hutang'], 0, ',', '.') }}</b></div>@endif
                 @if(($detail['potongan']['biaya_pemakaman'] ?? 0) > 0)<div class="flex justify-between gap-2"><span>− Biaya pemakaman</span><b>Rp {{ number_format($detail['potongan']['biaya_pemakaman'], 0, ',', '.') }}</b></div>@endif
-                @if(($detail['potongan']['wasiat'] ?? 0) > 0)<div class="flex justify-between gap-2"><span>− Wasiat</span><b>Rp {{ number_format($detail['potongan']['wasiat'], 0, ',', '.') }}</b></div>@endif
             </div>
             @endif
             @if(!empty($hasil))
@@ -125,11 +123,61 @@
         </div>
         @elseif($rq->status === 'verified')
         <div class="border-t border-cream2 pt-3">
-            <form action="{{ route('admin.zakat-requests.calculate', $rq) }}" method="POST" class="space-y-2">
+            <div class="mb-2 flex items-center gap-2 text-xs font-bold text-oliveDark"><i class="fa-solid fa-calculator text-olive"></i> Kalkulator Waris — sesuaikan lalu hitung & kirim</div>
+            <form action="{{ route('admin.zakat-requests.calculate', $rq) }}" method="POST" class="space-y-3">
                 @csrf
-                <div class="bg-cream2/60 rounded-xl p-3">
-                    <div class="text-xs font-bold text-oliveDark mb-1"><i class="fa-solid fa-calculator mr-1"></i>Perhitungan otomatis: Pembagian Waris (faraidz)</div>
-                    <div class="text-[11px] text-olive/60">Sistem akan menghitung secara otomatis berdasarkan data ahli waris yang diajukan warga (urutan: biaya jenazah → hutang → wasiat → pembagian).</div>
+                <div class="bg-cream2/60 rounded-xl p-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div class="col-span-2 sm:col-span-3 flex items-center gap-3">
+                        <span class="text-[10px] font-semibold text-oliveDark">Jenis Kelamin Pewaris:</span>
+                        <label class="flex items-center gap-1 text-[11px] text-oliveDark"><input type="radio" name="pewaris_jk" value="L" {{ ($w['pewaris_jk'] ?? 'L') === 'L' ? 'checked' : '' }} class="accent-olive"> Laki-laki</label>
+                        <label class="flex items-center gap-1 text-[11px] text-oliveDark"><input type="radio" name="pewaris_jk" value="P" {{ ($w['pewaris_jk'] ?? '') === 'P' ? 'checked' : '' }} class="accent-olive"> Perempuan</label>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-semibold text-oliveDark">Total Harta (Rp)</label>
+                        <input type="hidden" name="total_harta" value="{{ $w['total_harta'] ?? 0 }}">
+                        <input type="text" inputmode="numeric" data-name="total_harta" data-default="{{ $w['total_harta'] ?? 0 }}" required class="rupiah-display w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-semibold text-oliveDark">Hutang (Rp)</label>
+                        <input type="hidden" name="hutang" value="{{ $w['hutang'] ?? 0 }}">
+                        <input type="text" inputmode="numeric" data-name="hutang" data-default="{{ $w['hutang'] ?? 0 }}" class="rupiah-display w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-semibold text-oliveDark">Biaya Pemakaman (Rp)</label>
+                        <input type="hidden" name="biaya_pemakaman" value="{{ $w['biaya_pemakaman'] ?? 0 }}">
+                        <input type="text" inputmode="numeric" data-name="biaya_pemakaman" data-default="{{ $w['biaya_pemakaman'] ?? 0 }}" class="rupiah-display w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-semibold text-oliveDark">Harta Sengketa (Rp)</label>
+                        <input type="hidden" name="harta_sengketa" value="{{ $w['harta_sengketa'] ?? 0 }}">
+                        <input type="text" inputmode="numeric" data-name="harta_sengketa" data-default="{{ $w['harta_sengketa'] ?? 0 }}" class="rupiah-display w-full border border-cream3 rounded-full px-3 py-1.5 text-xs bg-white">
+                    </div>
+                    <div class="col-span-2 sm:col-span-3">
+                        <label class="text-[10px] font-semibold text-oliveDark">Alasan Harta Sengketa</label>
+                        <textarea name="sengketa_reason" rows="2" placeholder="cth. tanah sedang digugat…" class="w-full border border-cream3 rounded-xl px-3 py-1.5 text-xs bg-white">{{ $w['sengketa_alasan'] ?? '' }}</textarea>
+                    </div>
+                </div>
+                <div class="bg-cream2/60 rounded-xl p-3 space-y-2">
+                    <div class="text-xs font-bold text-oliveDark">Ahli Waris</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
+                        <div><label class="text-[10px] text-olive/70 block">Anak L</label><input name="jumlah_anak_l" type="number" min="0" value="{{ $w['jumlah_anak_l'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Anak P</label><input name="jumlah_anak_p" type="number" min="0" value="{{ $w['jumlah_anak_p'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Cucu L</label><input name="jumlah_cucu_l" type="number" min="0" value="{{ $w['jumlah_cucu_l'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Cucu P</label><input name="jumlah_cucu_p" type="number" min="0" value="{{ $w['jumlah_cucu_p'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Saudara L</label><input name="jumlah_saudara_l" type="number" min="0" value="{{ $w['jumlah_saudara_l'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Saudara P</label><input name="jumlah_saudara_p" type="number" min="0" value="{{ $w['jumlah_saudara_p'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Saudara Seibu</label><input name="jumlah_saudara_seibu" type="number" min="0" value="{{ $w['jumlah_saudara_seibu'] ?? 0 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                        <div><label class="text-[10px] text-olive/70 block">Jumlah Istri</label><input name="jumlah_istri" type="number" min="1" max="4" value="{{ $w['jumlah_istri'] ?? 1 }}" class="w-full border border-cream3 rounded-full px-2 py-1 text-xs bg-white"></div>
+                    </div>
+                    <div class="pt-1 border-t border-cream2 grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-1.5 text-[11px]">
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_ayah" value="1" {{ ($w['ada_ayah'] ?? false) ? 'checked' : '' }} class="accent-olive"> Ayah</label>
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_ibu" value="1" {{ ($w['ada_ibu'] ?? false) ? 'checked' : '' }} class="accent-olive"> Ibu</label>
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_kakek" value="1" {{ ($w['ada_kakek'] ?? false) ? 'checked' : '' }} class="accent-olive"> Kakek</label>
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_nenek_ibu" value="1" {{ ($w['ada_nenek_ibu'] ?? false) ? 'checked' : '' }} class="accent-olive"> Nenek (ibu)</label>
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_nenek_ayah" value="1" {{ ($w['ada_nenek_ayah'] ?? false) ? 'checked' : '' }} class="accent-olive"> Nenek (ayah)</label>
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_istri" value="1" {{ ($w['ada_istri'] ?? false) ? 'checked' : '' }} class="accent-olive"> Istri</label>
+                        <label class="flex items-center gap-1.5 text-oliveDark"><input type="checkbox" name="ada_suami" value="1" {{ ($w['ada_suami'] ?? false) ? 'checked' : '' }} class="accent-olive"> Suami</label>
+                    </div>
                 </div>
                 <input name="admin_note" placeholder="Catatan untuk warga (opsional)" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
                 <button type="submit" class="w-full bg-olive text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-olive2"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Hitung & Kirim Hasil</button>
@@ -148,5 +196,28 @@
 @if($requests->hasPages())
 <div class="mt-4">{{ $requests->links() }}</div>
 @endif
+
+<script>
+document.querySelectorAll('.rupiah-display').forEach(function (d) {
+    var form = d.closest('form');
+    function target() { return form ? form.querySelector('input[name="' + d.dataset.name + '"]') : null; }
+    function clean() { return String(d.value || '').replace(/[^0-9]/g, ''); }
+    function render() {
+        if (!d.dataset.seeded && d.dataset.default !== undefined) {
+            d.dataset.seeded = '1';
+            var def = String(d.dataset.default || '0').replace(/[^0-9]/g, '');
+            if (def) {
+                d.value = new Intl.NumberFormat('id-ID').format(parseInt(def, 10));
+                var t = target(); if (t) t.value = def;
+            }
+        }
+        var v = clean();
+        d.value = v ? new Intl.NumberFormat('id-ID').format(parseInt(v, 10)) : '';
+        var t = target(); if (t) t.value = v;
+    }
+    d.addEventListener('input', render);
+    render();
+});
+</script>
 
 @endsection

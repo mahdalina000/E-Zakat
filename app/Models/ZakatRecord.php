@@ -13,7 +13,7 @@ class ZakatRecord extends Model
     protected $fillable = [
         'user_id', 'location_id', 'zakat_type', 'total_amount', 'beras_kg',
         'gold_gram', 'jiwa_count', 'due_date', 'payment_date',
-        'payment_method', 'reference_number', 'tujuan', 'notes',
+        'payment_method', 'payment_proof', 'tujuan', 'notes',
         'is_confirmed', 'confirmed_by', 'confirmed_at',
     ];
 
@@ -71,7 +71,7 @@ class ZakatRecord extends Model
     public function tujuanLabel(): string
     {
         return match ($this->tujuan) {
-            'sendiri' => 'Dibayar langsung / sendiri',
+            'sendiri', 'warga' => 'Warga (mustahik)',
             'upz' => 'Ke UPZ / Masjid',
             'baznas' => 'Ke BAZNAS',
             'distribusi' => 'Distribusi langsung ke mustahik',

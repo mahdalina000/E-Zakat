@@ -80,6 +80,12 @@
             border-color: rgba(255, 255, 255, 0.2) !important;
         }
 
+        /* HEADER & KARTU HADIS TETAP HIJAU UTAMA DI DARK MODE (sama dgn light mode) */
+        body.dark-mode header.bg-olive,
+        body.dark-mode .bg-olive {
+            background-color: #246c42 !important;
+        }
+
         body.dark-mode .quick-action-bar .border-cream3 {
             border-color: rgba(255, 255, 255, 0.15) !important;
         }
