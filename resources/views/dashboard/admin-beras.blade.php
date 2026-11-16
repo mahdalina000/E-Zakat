@@ -18,17 +18,17 @@
             <div class="font-bold text-oliveDark text-sm"><i class="fa-solid fa-pen-to-square text-olive mr-2"></i> Perbarui Harga</div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Harga baru (Rp / kg) *</label>
-                <div class="mt-1 flex items-center border border-cream3 rounded-full px-4 py-2.5 bg-cream2">
-                    <span class="text-sm text-olive font-bold">Rp</span>
-                    <input name="price_display" id="priceDisplay" type="text" inputmode="numeric" value="{{ number_format($current->price ?? 16000,0,',','.') }}" required class="w-full bg-transparent outline-none text-sm ml-2">
+                                <div class="mt-1 flex items-center gap-2 px-4 py-3" style="background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.30); border-radius:16px;">
+                    <span class="text-sm font-bold text-olive">Rp</span>
+                    <input name="price_display" id="priceDisplay" type="text" inputmode="numeric" value="{{ $current->price ?? 16000 }}" required class="w-full outline-none font-bold text-xl text-olive min-w-0" style="background-color:transparent !important; border:none !important; box-shadow:none !important;">
                     <input type="hidden" name="price" id="priceHidden" value="{{ $current->price ?? 16000 }}">
-                    <span class="text-xs text-olive/60 font-semibold ml-2 whitespace-nowrap">/&nbsp;kg</span>
+                    <span class="text-xs text-olive/60 font-semibold whitespace-nowrap">/&nbsp;kg</span>
                 </div>
                 <p class="text-[11px] text-olive/50 mt-1">Valid: Rp5.000 – Rp100.000 per kg.</p>
             </div>
             <div>
                 <label class="text-xs font-semibold text-oliveDark">Catatan perubahan</label>
-                <input name="note" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="mis. Penyesuaian harga pasar">
+                <input name="note" class="mt-1 w-full outline-none text-sm px-4 py-3" style="background:rgba(255,255,255,0.10) !important; border:1px solid rgba(255,255,255,0.30) !important; border-radius:16px;" placeholder="mis. Penyesuaian harga pasar">
             </div>
             <button class="w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Harga Baru</button>
             <p class="text-[11px] text-olive/50"><i class="fa-solid fa-circle-info mr-1"></i> Setiap perubahan dicatat dalam riwayat.</p>

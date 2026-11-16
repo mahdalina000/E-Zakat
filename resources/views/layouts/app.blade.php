@@ -37,6 +37,9 @@
             });
         }
     </script>
+<style>
+body.dark-mode header .rounded-full.bg-cream { background-color:#0d2417 !important; border:1px solid rgba(200,157,68,0.25) !important; }
+</style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden bg-zy-bg">
 
