@@ -70,6 +70,15 @@
             });
         }
     </script>
+<style>
+body.dark-mode aside .rounded-xl.bg-cream.p-1 {
+  background: rgba(255,255,255,0.14) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255,255,255,0.28) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25) !important;
+}
+</style>
 </head>
 <body class="text-oliveDark relative overflow-hidden bg-zy-bg" style="height:100vh">
 
