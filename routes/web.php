@@ -162,6 +162,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/zakat-requests/{zakatRequest}/verify', [ZakatRequestController::class, 'verify'])->name('zakat-requests.verify');
         Route::post('/zakat-requests/{zakatRequest}/calculate', [ZakatRequestController::class, 'calculate'])->name('zakat-requests.calculate');
         Route::post('/zakat-requests/{zakatRequest}/reject', [ZakatRequestController::class, 'reject'])->name('zakat-requests.reject');
+        Route::match(['get', 'post'], '/waris-calculator', [ZakatRequestController::class, 'adminWarisCalculator'])->name('waris-calculator');
 
         // Banner hari besar keagamaan — Admin BAZNAS/UPZ
         Route::get('/holidays', [HolidayBannerAdminController::class, 'index'])->name('holidays.index');

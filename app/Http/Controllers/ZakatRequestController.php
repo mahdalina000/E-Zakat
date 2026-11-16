@@ -34,6 +34,7 @@ class ZakatRequestController extends Controller
             'biaya_pemakaman' => ['nullable', 'numeric', 'min:0'],
             'wasiat' => ['nullable', 'numeric', 'min:0'],
             'harta_sengketa' => ['nullable', 'numeric', 'min:0'],
+            'sengketa_reason' => ['nullable', 'string', 'max:2000'],
             'pewaris_jk' => ['required', 'in:L,P'],
             'jumlah_anak_l' => ['nullable', 'integer', 'min:0', 'max:100'],
             'jumlah_anak_p' => ['nullable', 'integer', 'min:0', 'max:100'],
@@ -61,6 +62,7 @@ class ZakatRequestController extends Controller
             'biaya_pemakaman' => (float) ($data['biaya_pemakaman'] ?? 0),
             'wasiat' => (float) ($data['wasiat'] ?? 0),
             'harta_sengketa' => (float) ($data['harta_sengketa'] ?? 0),
+            'sengketa_alasan' => !empty($data['sengketa_reason']) ? trim((string) $data['sengketa_reason']) : null,
             'jumlah_anak_l' => (int) ($data['jumlah_anak_l'] ?? 0),
             'jumlah_anak_p' => (int) ($data['jumlah_anak_p'] ?? 0),
             'jumlah_cucu_l' => (int) ($data['jumlah_cucu_l'] ?? 0),
@@ -139,9 +141,59 @@ class ZakatRequestController extends Controller
 
         $data = $request->validate([
             'admin_note' => ['nullable', 'string', 'max:2000'],
+            // Override opsional dari kalkulator inline (jika admin mengubah data)
+            'total_harta' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+            'hutang' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+            'biaya_pemakaman' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+            'wasiat' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+            'harta_sengketa' => ['sometimes', 'nullable', 'numeric', 'min:0'],
+            'sengketa_reason' => ['sometimes', 'nullable', 'string', 'max:2000'],
+            'jumlah_anak_l' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'jumlah_anak_p' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'jumlah_cucu_l' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'jumlah_cucu_p' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'jumlah_saudara_l' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'jumlah_saudara_p' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'jumlah_saudara_seibu' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:100'],
+            'ada_ayah' => ['sometimes', 'nullable', 'boolean'],
+            'ada_ibu' => ['sometimes', 'nullable', 'boolean'],
+            'ada_kakek' => ['sometimes', 'nullable', 'boolean'],
+            'ada_nenek_ibu' => ['sometimes', 'nullable', 'boolean'],
+            'ada_nenek_ayah' => ['sometimes', 'nullable', 'boolean'],
+            'ada_istri' => ['sometimes', 'nullable', 'boolean'],
+            'jumlah_istri' => ['sometimes', 'nullable', 'integer', 'min:1', 'max:4'],
+            'ada_suami' => ['sometimes', 'nullable', 'boolean'],
         ]);
 
         $w = (array) $zakatRequest->waris_data;
+
+        // Jika admin mengirim data dari kalkulator inline, gunakan sebagai pengganti
+        if ($request->has('total_harta')) {
+            $w = [
+                'pewaris_jk' => $request->input('pewaris_jk', $w['pewaris_jk'] ?? 'L'),
+                'total_harta' => (float) ($request->input('total_harta') ?: 0),
+                'hutang' => (float) ($request->input('hutang') ?: 0),
+                'biaya_pemakaman' => (float) ($request->input('biaya_pemakaman') ?: 0),
+                'wasiat' => (float) ($request->input('wasiat') ?: 0),
+                'harta_sengketa' => (float) ($request->input('harta_sengketa') ?: 0),
+                'sengketa_alasan' => trim((string) $request->input('sengketa_reason', $w['sengketa_alasan'] ?? '')),
+                'jumlah_anak_l' => (int) ($request->input('jumlah_anak_l') ?: 0),
+                'jumlah_anak_p' => (int) ($request->input('jumlah_anak_p') ?: 0),
+                'jumlah_cucu_l' => (int) ($request->input('jumlah_cucu_l') ?: 0),
+                'jumlah_cucu_p' => (int) ($request->input('jumlah_cucu_p') ?: 0),
+                'jumlah_saudara_l' => (int) ($request->input('jumlah_saudara_l') ?: 0),
+                'jumlah_saudara_p' => (int) ($request->input('jumlah_saudara_p') ?: 0),
+                'jumlah_saudara_seibu' => (int) ($request->input('jumlah_saudara_seibu') ?: 0),
+                'ada_ayah' => (bool) $request->boolean('ada_ayah'),
+                'ada_ibu' => (bool) $request->boolean('ada_ibu'),
+                'ada_kakek' => (bool) $request->boolean('ada_kakek'),
+                'ada_nenek_ibu' => (bool) $request->boolean('ada_nenek_ibu'),
+                'ada_nenek_ayah' => (bool) $request->boolean('ada_nenek_ayah'),
+                'ada_istri' => (bool) $request->boolean('ada_istri'),
+                'jumlah_istri' => (int) ($request->input('jumlah_istri') ?: 1),
+                'ada_suami' => (bool) $request->boolean('ada_suami'),
+            ];
+        }
 
         if (empty($w) || !isset($w['total_harta'])) {
             return back()->withErrors(['waris' => 'Data pengajuan waris tidak lengkap.']);
@@ -185,12 +237,118 @@ class ZakatRequestController extends Controller
             'status' => 'done',
             'calculated_amount' => $hartaBersih,
             'calculation_detail' => $result,
+            'waris_data' => $w,
             'admin_note' => $data['admin_note'] ?? $zakatRequest->admin_note,
             'calculated_by' => Auth::id(),
             'calculated_at' => now(),
         ]);
 
         return back()->with('success', 'Pembagian waris telah dihitung dan hasilnya terkirim ke warga.');
+    }
+
+    /**
+     * Kalkulator waris versi admin — petugas dapat input & menghitung sendiri
+     * agar bisa menjelaskan bagian harta sengketa kepada masyarakat.
+     */
+    public function adminWarisCalculator(Request $request)
+    {
+        $this->ensureAdmin();
+
+        $result = null;
+        $summary = null;
+
+        if ($request->isMethod('post')) {
+            $data = $request->validate([
+                'total_harta' => ['required', 'numeric', 'min:0'],
+                'hutang' => ['nullable', 'numeric', 'min:0'],
+                'biaya_pemakaman' => ['nullable', 'numeric', 'min:0'],
+                'wasiat' => ['nullable', 'numeric', 'min:0'],
+                'harta_sengketa' => ['nullable', 'numeric', 'min:0'],
+                'sengketa_reason' => ['nullable', 'string', 'max:2000'],
+                'pewaris_jk' => ['required', 'in:L,P'],
+                'jumlah_anak_l' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'jumlah_anak_p' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'jumlah_cucu_l' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'jumlah_cucu_p' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'jumlah_saudara_l' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'jumlah_saudara_p' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'jumlah_saudara_seibu' => ['nullable', 'integer', 'min:0', 'max:100'],
+                'ada_ayah' => ['nullable', 'boolean'],
+                'ada_ibu' => ['nullable', 'boolean'],
+                'ada_kakek' => ['nullable', 'boolean'],
+                'ada_nenek_ibu' => ['nullable', 'boolean'],
+                'ada_nenek_ayah' => ['nullable', 'boolean'],
+                'ada_istri' => ['nullable', 'boolean'],
+                'jumlah_istri' => ['nullable', 'integer', 'min:1', 'max:4'],
+                'ada_suami' => ['nullable', 'boolean'],
+            ]);
+
+            $waris = [
+                'pewaris_jk' => $data['pewaris_jk'],
+                'total_harta' => (float) $data['total_harta'],
+                'hutang' => (float) ($data['hutang'] ?? 0),
+                'biaya_pemakaman' => (float) ($data['biaya_pemakaman'] ?? 0),
+                'wasiat' => (float) ($data['wasiat'] ?? 0),
+                'harta_sengketa' => (float) ($data['harta_sengketa'] ?? 0),
+                'sengketa_alasan' => !empty($data['sengketa_reason']) ? trim((string) $data['sengketa_reason']) : null,
+                'jumlah_anak_l' => (int) ($data['jumlah_anak_l'] ?? 0),
+                'jumlah_anak_p' => (int) ($data['jumlah_anak_p'] ?? 0),
+                'jumlah_cucu_l' => (int) ($data['jumlah_cucu_l'] ?? 0),
+                'jumlah_cucu_p' => (int) ($data['jumlah_cucu_p'] ?? 0),
+                'jumlah_saudara_l' => (int) ($data['jumlah_saudara_l'] ?? 0),
+                'jumlah_saudara_p' => (int) ($data['jumlah_saudara_p'] ?? 0),
+                'jumlah_saudara_seibu' => (int) ($data['jumlah_saudara_seibu'] ?? 0),
+                'ada_ayah' => (bool) ($data['ada_ayah'] ?? false),
+                'ada_ibu' => (bool) ($data['ada_ibu'] ?? false),
+                'ada_kakek' => (bool) ($data['ada_kakek'] ?? false),
+                'ada_nenek_ibu' => (bool) ($data['ada_nenek_ibu'] ?? false),
+                'ada_nenek_ayah' => (bool) ($data['ada_nenek_ayah'] ?? false),
+                'ada_istri' => (bool) ($data['ada_istri'] ?? false),
+                'jumlah_istri' => (int) ($data['jumlah_istri'] ?? 1),
+                'ada_suami' => (bool) ($data['ada_suami'] ?? false),
+            ];
+
+            $hartaSengketa = max(0, (float) $waris['harta_sengketa']);
+            $totalHartaEfektif = max(0, (float) $waris['total_harta'] - $hartaSengketa);
+
+            $calc = new WarisCalculator();
+            $result = $calc->hitung(
+                totalHarta: $totalHartaEfektif,
+                pewarisJk: $waris['pewaris_jk'],
+                adaIstri: $waris['ada_istri'],
+                adaSuami: $waris['ada_suami'],
+                jumlahIstri: $waris['jumlah_istri'],
+                jumlahAnakL: $waris['jumlah_anak_l'],
+                jumlahAnakP: $waris['jumlah_anak_p'],
+                jumlahSaudaraL: $waris['jumlah_saudara_l'],
+                jumlahSaudaraP: $waris['jumlah_saudara_p'],
+                jumlahSaudaraSeibu: $waris['jumlah_saudara_seibu'],
+                jumlahCucuL: $waris['jumlah_cucu_l'],
+                jumlahCucuP: $waris['jumlah_cucu_p'],
+                adaAyah: $waris['ada_ayah'],
+                adaIbu: $waris['ada_ibu'],
+                adaKakek: $waris['ada_kakek'],
+                adaNenekIbu: $waris['ada_nenek_ibu'],
+                adaNenekAyah: $waris['ada_nenek_ayah'],
+                hutang: $waris['hutang'],
+                wasiat: $waris['wasiat'],
+                biayaPemakaman: $waris['biaya_pemakaman'],
+            );
+
+            $result['totalHartaAsli'] = (float) $waris['total_harta'];
+            $result['hartaSengketa'] = $hartaSengketa;
+
+            $summary = [
+                'total_harta' => $waris['total_harta'],
+                'harta_sengketa' => $hartaSengketa,
+                'hutang' => $waris['hutang'],
+                'biaya_pemakaman' => $waris['biaya_pemakaman'],
+                'wasiat' => $waris['wasiat'],
+                'sengketa_alasan' => $waris['sengketa_alasan'],
+            ];
+        }
+
+        return view('dashboard.admin-waris-calculator', compact('result', 'summary'));
     }
 
     /**

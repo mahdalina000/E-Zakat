@@ -150,7 +150,7 @@
         position: absolute;
         border-radius: 50%;
     }
-    .pin-baznas { background: #10B981; }
+    .pin-baznas { background: #246c42; }
     .pin-upz { background: #2563EB; }
     .pin-warga { background: #F43F5E; }
 </style>
@@ -169,15 +169,15 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-3">
-            <div class="bg-panel-2 rounded-2xl p-3.5 border border-emerald-500/30 flex items-center justify-between shadow-sm">
+            <div class="bg-panel-2 rounded-2xl p-3.5 border flex items-center justify-between shadow-sm" style="border-color: rgba(36,108,66,0.35);">
                 <div class="flex items-center gap-3">
-                    <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 shrink-0"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-olive shrink-0"></div>
                     <div>
                         <div class="font-extrabold text-xs text-oliveDark">BAZNAS</div>
                         <div class="text-[10px] text-black/70">Resmi • Kota Banjarbaru</div>
                     </div>
                 </div>
-                <span id="countBaznas" class="font-black text-sm bg-emerald-500 text-white px-2.5 py-0.5 rounded-full">0</span>
+                <span id="countBaznas" class="font-black text-sm bg-olive text-white px-2.5 py-0.5 rounded-full">0</span>
             </div>
 
             <div class="bg-panel-2 rounded-2xl p-3.5 border border-blue-500/30 flex items-center justify-between shadow-sm">
@@ -209,7 +209,7 @@
         <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-oliveDark">Filter:</span>
             <button data-filter="all" class="filter-btn bg-olive text-white px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95 shadow-sm">Semua</button>
-            <button data-filter="baznas" class="filter-btn border border-emerald-500/40 text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95">BAZNAS</button>
+            <button data-filter="baznas" class="filter-btn border text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95" style="border-color: rgba(36,108,66,0.45);">BAZNAS</button>
             <button data-filter="upz" class="filter-btn border border-blue-500/40 text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95">UPZ/Masjid</button>
             <button data-filter="warga" class="filter-btn border border-rose-500/40 text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95">Warga</button>
         </div>
@@ -234,7 +234,7 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
                     <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0 border border-white"></span>
+                        <span class="w-3 h-3 rounded-full bg-olive shrink-0 border border-white"></span>
                         <span class="text-black/80 font-semibold">Hijau: <span class="font-normal">Kantor BAZNAS Resmi</span></span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -360,13 +360,13 @@ window.ezOnReady(function () {
 
             if(matchFilter && matchSearch) {
                 const marker = L.marker([loc.lat, loc.lng], { icon: createCustomIcon(loc.cat) }).addTo(map)
-                    .bindPopup(`<b style="color:#0F172A;">${loc.name}</b><br><span style="font-size:11px; color:#475569;">${loc.address}</span><br><a href="https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:#1d5b37;text-decoration:underline;">Buka di Google Maps &rarr;</a>`);
+                    .bindPopup(`<b style="color:#0F172A;">${loc.name}</b><br><span style="font-size:11px; color:#475569;">${loc.address}</span><br><a href="https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:#e2b356;text-decoration:underline;">Buka di Google Maps &rarr;</a>`);
                 markers.push(marker);
 
                 const item = document.createElement('div');
                 item.className = 'bg-panel-2 rounded-xl p-2.5 border border-panel-border hover:border-olive cursor-pointer transition text-xs flex items-center justify-between';
                 
-                let dotColor = 'bg-emerald-500';
+                let dotColor = 'bg-olive';
                 if (loc.cat === 'upz') dotColor = 'bg-blue-600';
                 if (loc.cat === 'warga') dotColor = 'bg-rose-500';
 
@@ -376,7 +376,7 @@ window.ezOnReady(function () {
                         <div class="truncate flex-1">
                             <div class="font-extrabold text-oliveDark truncate">${loc.name}</div>
                             <div class="text-[10px] text-black/70 truncate mt-0.5">${loc.address}</div>
-                            <a href="https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 mt-1 text-[10px] font-bold text-olive hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="inline-flex items-center gap-1 mt-1 text-[10px] font-bold text-gold2 hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
                         </div>
                     </div>
                 `;

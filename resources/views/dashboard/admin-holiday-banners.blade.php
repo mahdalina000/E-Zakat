@@ -23,7 +23,7 @@
         </div>
         <div>
             <label class="text-xs font-semibold text-oliveDark">Tanggal Hari Raya *</label>
-            <input name="event_date" type="date" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+            <input name="event_date" id="event_date" type="date" required value="{{ old('event_date', now()->toDateString()) }}" onclick="this.showPicker && this.showPicker()" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
         <div>
             <label class="text-xs font-semibold text-oliveDark">Mulai tampil <span class="text-olive/40 font-normal">· hari sebelum (opsional)</span></label>
@@ -95,5 +95,15 @@
     </div>
     <div class="p-4 border-t border-cream2">{{ $banners->links() }}</div>
 </div>
+
+<style>
+body.dark-mode input[type="date"],
+body.dark-mode input[name="event_date"] {
+    color-scheme: dark;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+}
+</style>
 
 @endsection

@@ -14,7 +14,6 @@
             <div class="font-black text-oliveDark">{{ $profile->kategoriLabel() }}</div>
         </div>
     </div>
-    <a href="{{ route('user.profile') }}" class="text-xs font-semibold text-olive underline">Lihat Profil →</a>
 </div>
 @endif
 
