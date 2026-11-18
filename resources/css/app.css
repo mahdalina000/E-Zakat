@@ -841,3 +841,13 @@ body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     opacity: 1;
 }
+
+/* ============================================================
+   SEMUA IKON KALENDER / JAM DI DARK MODE — dipaksa PUTIH
+   (agar tidak menabrak background gelap)
+   ============================================================ */
+body.dark-mode .fa-calendar,
+body.dark-mode .fa-calendar-days,
+body.dark-mode .fa-clock {
+    color: #f8fafc !important;
+}

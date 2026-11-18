@@ -32,6 +32,21 @@
     body.dark-mode .history-card .border-amber-100 {
         border-color: rgba(255, 255, 255, 0.1) !important;
     }
+
+    /* Ikon kalender/jam di header jadi putih agar tidak menabrak */
+    body.dark-mode .history-card .fa-calendar,
+    body.dark-mode .history-card .fa-clock {
+        color: #f8fafc !important;
+    }
+
+    /* Detail input & hasil: teks label dan nilai kontras di dark mode */
+    body.dark-mode .history-card .text-olive\/60,
+    body.dark-mode .history-card .text-olive\/70 {
+        color: #cbd5e1 !important;
+    }
+    body.dark-mode .history-card table td {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
 </style>
 @endsection
 
