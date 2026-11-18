@@ -71,13 +71,54 @@
         }
     </script>
 <style>
-body.dark-mode aside .rounded-xl.bg-cream.p-1 {
+body.dark-mode body:not(.dark-mode) aside .rounded-xl.bg-cream.p-1 {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+aside .rounded-xl.bg-cream.p-1 {
   background: rgba(255,255,255,0.14) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   backdrop-filter: blur(8px) !important;
   border: 1px solid rgba(255,255,255,0.28) !important;
   box-shadow: 0 4px 20px rgba(0,0,0,0.25) !important;
 }
+<style>
+.logout-btn { background:transparent; color:#e6dcc4; }
+.logout-btn:hover { background:#dc2626 !important; color:#fff !important; box-shadow:0 4px 14px rgba(220,38,38,0.35); }
+.logout-btn:active { background:#dc2626 !important; color:#fff !important; box-shadow:0 4px 14px rgba(220,38,38,0.35); }
+</style>
+<style>
+/* Dekorasi sidebar & header (light mode) */
+body:not(.dark-mode) #sidebar {
+  background: linear-gradient(180deg,#1d5b37 0%, #246c42 45%, #1f6140 100%) !important;
+}
+body:not(.dark-mode) #sidebar .sidebar-ornament-img { opacity:0.62; }
+body:not(.dark-mode) #sidebar::before{
+  content:""; position:absolute; inset:-46px auto auto -46px; width:190px; height:190px;
+  border-radius:50%; background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 70%); pointer-events:none; z-index:0;
+}
+body:not(.dark-mode) #sidebar::after{
+  content:""; position:absolute; inset:auto -70px -70px auto; width:240px; height:240px;
+  border-radius:50%; background: radial-gradient(circle, rgba(200,157,68,0.38), transparent 70%); pointer-events:none; z-index:0;
+}
+body:not(.dark-mode) header.sticky {
+  background: linear-gradient(90deg,#1d5b37, #246c42 60%, #2f7a4d) !important;
+  border-bottom: 2px solid rgba(200,157,68,0.45) !important;
+}
+/* Pertegas warna menu & label sidebar (light) */
+body:not(.dark-mode) #sidebar nav a { border:1px solid transparent; transition:all .15s ease; }
+body:not(.dark-mode) #sidebar nav a:hover { border-color:rgba(230,179,86,0.45); background:rgba(255,255,255,0.08); }
+body:not(.dark-mode) #sidebar nav a.bg-white { border-color:rgba(230,179,86,0.55); box-shadow:0 2px 10px rgba(200,157,68,0.25); }
+body:not(.dark-mode) #sidebar nav a.bg-white i { color:#c89d44; }
+body:not(.dark-mode) #sidebar nav .text-cream\/50 { color:rgba(230,179,86,0.85) !important; font-weight:700; letter-spacing:.14em; }
+body:not(.dark-mode) #sidebar div[class*="bg-white/10"] { border:1px solid rgba(230,179,86,0.25); }
+
+body:not(.dark-mode) header.sticky::before{
+  content:""; position:absolute; inset:0 auto auto 0; width:100%; height:100%;
+  background: radial-gradient(circle at 92% 50%, rgba(200,157,68,0.20), transparent 45%); pointer-events:none;
+}
+</style>
 </style>
 </head>
 <body class="text-oliveDark relative overflow-hidden bg-zy-bg" style="height:100vh">
@@ -173,7 +214,7 @@ body.dark-mode aside .rounded-xl.bg-cream.p-1 {
                     <div class="text-[10px] tracking-[0.18em] text-cream/70 -mt-0.5">DASHBOARD</div>
                 </div>
             </a>
-            <button onclick="toggleSidebar()" class="lg:hidden ml-auto w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-xmark text-sm"></i></button>
+            <button onclick="toggleSidebar()" class="lg:hidden ml-auto w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-cream"><i class="fa-solid fa-xmark text-sm"></i></button>
         </div>
 
         @php $u = auth()->user(); @endphp
@@ -187,7 +228,7 @@ body.dark-mode aside .rounded-xl.bg-cream.p-1 {
             </div>
         </div>
 
-        <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1 relative z-10">
+        <nav class="flex-1 min-h-0 overflow-y-auto px-3 py-4 space-y-1 relative z-10">
             <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mb-2">MENU</div>
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('dashboard*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gauge-high w-4"></i> Dashboard</a>
 
@@ -206,7 +247,6 @@ body.dark-mode aside .rounded-xl.bg-cream.p-1 {
                 <a href="{{ route('admin.zakat-requests') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.zakat-requests*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Pengajuan Hitung Waris</a>
                 <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> Pengaturan</a>
                 <a href="{{ route('admin.holidays.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.holidays.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-star-and-crescent w-4"></i> Banner Hari Raya</a>
-                <a href="{{ route('admin.waris-calculator') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.waris-calculator') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-calculator w-4"></i> Kalkulator Waris</a>
             @endif
 
             @if($u->isUser())
@@ -226,10 +266,10 @@ body.dark-mode aside .rounded-xl.bg-cream.p-1 {
             <a href="{{ url('/beranda') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-house w-4"></i> Beranda Situs</a>
         </nav>
 
-        <div class="p-3 border-t border-white/10 relative z-10">
+        <div class="p-3 border-t border-white/10 relative z-10 flex-shrink-0">
             <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Yakin ingin keluar dari akun ini?')">
                 @csrf
-                <button class="w-full flex items-center justify-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold bg-red-600 text-white hover:bg-red-500 active:scale-[0.98] transition shadow-md shadow-red-900/30"><i class="fa-solid fa-right-from-bracket w-4"></i> Keluar</button>
+                <button class="logout-btn w-full flex items-center justify-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition active:scale-[0.98]"><i class="fa-solid fa-right-from-bracket w-4"></i> Keluar</button>
             </form>
         </div>
     </aside>
@@ -241,11 +281,11 @@ body.dark-mode aside .rounded-xl.bg-cream.p-1 {
         <!-- HEADER ATAS KANAN -->
         <header class="sticky top-0 z-30 bg-olive/95 backdrop-blur border-b border-gold/30 shadow-sm" style="flex-shrink:0">
             <div class="px-4 lg:px-8 h-[64px] flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <button onclick="toggleSidebar()" class="lg:hidden w-10 h-10 bg-white border border-cream3 rounded-xl flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
-                    <div>
-                        <div class="font-bold text-white text-sm lg:text-base">@yield('page-title','Dashboard')</div>
-                        <div class="text-xs text-cream/70 hidden sm:block">@yield('page-sub','')</div>
+                <div class="flex items-center gap-3 min-w-0">
+                    <button onclick="toggleSidebar()" class="lg:hidden w-10 h-10 bg-white border border-cream3 rounded-xl flex items-center justify-center text-oliveDark"><i class="fa-solid fa-bars"></i></button>
+                    <div class="min-w-0">
+                        <div class="font-bold text-white text-sm lg:text-base truncate max-w-[52vw] lg:max-w-md">@yield('page-title','Dashboard')</div>
+                        <div class="text-xs text-cream/70 hidden sm:block truncate max-w-[52vw] lg:max-w-md">@yield('page-sub','')</div>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 text-xs pr-6">

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('title','Ajukan Hitung Waris — E-Zakat')
 @section('page-title','Ajukan Minta Hitung Waris')
-@section('page-sub','Sampaikan harta peninggalan & ahli waris, admin akan memverifikasi lalu menghitung pembagian waris Anda')
+@section('page-sub','Ajukan permohonan hitung waris Anda')
 
 @section('content')
 

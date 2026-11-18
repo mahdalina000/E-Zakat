@@ -20,12 +20,12 @@
                 <tr class="border-t border-cream2 hover:bg-cream2/50">
                     <td class="px-4 py-3">
                         <div class="font-semibold">{{ $l->name }}</div>
-                        <div class="text-[11px] text-olive/50">{{ $l->address }}</div>
+                        <div class="text-xs text-olive/70 mt-0.5 leading-snug">{{ $l->address }}</div>
                     </td>
                     <td class="px-4 py-3 text-xs">{{ $l->kelurahan }}</td>
                     <td class="px-4 py-3 text-xs">{{ $l->kecamatan }}</td>
-                    <td class="px-4 py-3"><span class="text-[11px] px-2 py-1 rounded-full text-white" style="background: {{ $l->typeColor() }}">{{ $l->typeLabel() }}</span></td>
-                    <td class="px-4 py-3"><span class="text-[11px] px-2 py-1 rounded-full {{ $l->is_active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-500' }}">{{ $l->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
+                    <td class="px-4 py-3"><span class="text-[11px] px-2.5 py-1 rounded-full text-white whitespace-nowrap" style="background: {{ $l->typeColor() }}">{{ $l->typeLabel() }}</span></td>
+                    <td class="px-4 py-3"><span class="text-[11px] px-2.5 py-1 rounded-full whitespace-nowrap {{ $l->is_active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-500' }}">{{ $l->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
                     <td class="px-4 py-3 text-right whitespace-nowrap">
                         <a href="{{ route('admin.locations.edit', $l) }}" class="inline-flex w-8 h-8 items-center justify-center rounded-lg bg-cream text-olive hover:bg-cream3" title="Edit"><i class="fa-solid fa-pen text-xs"></i></a>
                         @if(auth()->user()->isSuperAdmin() || auth()->user()->isAdminBaznas())

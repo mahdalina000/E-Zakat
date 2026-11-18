@@ -3,6 +3,14 @@
 @section('page-title')Dashboard Admin {{ auth()->user()->isAdminBaznas() ? 'BAZNAS' : 'UPZ' }}@endsection
 @section('page-sub','Kelola lokasi penyaluran & harga beras')
 @section('content')
+<style>
+body:not(.dark-mode) .loc-item{ background:#ffffff !important; border:1px solid rgba(36,108,66,0.16); box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+body:not(.dark-mode) .loc-item .text-olive\/50{ color:rgba(36,108,66,0.62) !important; }
+body:not(.dark-mode) .overflow-y-auto::-webkit-scrollbar{ width:6px; }
+body:not(.dark-mode) .overflow-y-auto::-webkit-scrollbar-track{ background:transparent; }
+body:not(.dark-mode) .overflow-y-auto::-webkit-scrollbar-thumb{ background:rgba(36,108,66,0.25); border-radius:999px; }
+</style>
+
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     <div class="stat-card sc-sky">
@@ -33,7 +41,7 @@
         <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
         <div class="absolute right-6 bottom-2 text-white/10 text-3xl"><i class="fa-solid fa-wheat-awn"></i></div>
         <div class="flex items-center justify-between">
-            <div class="sc-icon bg-white/15"><i class="fa-solid fa-wheat-awn"></i></div>
+            <div class="sc-icon"><i class="fa-solid fa-wheat-awn"></i></div>
             <span class="sc-label">HARGA</span>
         </div>
         <div class="sc-num text-gold">Rp {{ number_format($beras->price ?? 16000,0,',','.') }}</div>
@@ -61,12 +69,12 @@
 <div class="grid lg:grid-cols-2 gap-4 mt-4">
     <div class="rounded-[20px] border border-cream3/30 p-5">
         <div class="flex items-center justify-between mb-3">
-            <div class="font-bold text-oliveDark text-sm"><i class="fa-solid fa-map-location-dot text-olive mr-2"></i> Lokasi Saya</div>
+            <div class="flex items-center gap-2 font-bold text-oliveDark text-sm"><span class="w-7 h-7 inline-flex items-center justify-center rounded-lg bg-olive/10 text-olive"><i class="fa-solid fa-map-location-dot text-xs"></i></span> Lokasi Saya</div>
             <a href="{{ route('admin.locations.create') }}" class="bg-olive text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-olive2"><i class="fa-solid fa-plus mr-1"></i> Tambah</a>
         </div>
-        <div class="space-y-2 max-h-[300px] overflow-auto">
+        <div class="space-y-2 max-h-[300px] overflow-y-auto pr-2">
             @forelse($myLocations as $l)
-            <div class="flex items-center gap-3 bg-cream rounded-xl p-3">
+            <div class="loc-item flex items-center gap-3 bg-cream rounded-xl p-3">
                 <span class="w-3 h-3 rounded-full flex-shrink-0" style="background: #{{ ltrim($l->typeColor(),'#') }}"></span>
                 <div class="min-w-0 flex-1">
                     <div class="text-sm font-semibold truncate">{{ $l->name }}</div>
@@ -81,8 +89,8 @@
     </div>
 
     <div class="space-y-4">
-        <div class="rounded-[20px] border border-cream3/30 p-5">
-            <div class="font-bold text-oliveDark text-sm mb-3"><i class="fa-solid fa-wheat-awn text-olive mr-2"></i> Harga Beras Banjar</div>
+        <div class="rounded-[20px] bg-white border border-cream3/70 shadow-sm p-5">
+            <div class="flex items-center gap-2 font-bold text-oliveDark text-sm mb-3"><span class="w-7 h-7 inline-flex items-center justify-center rounded-lg bg-olive/10 text-olive"><i class="fa-solid fa-wheat-awn text-xs"></i></span> Harga Beras Banjar</div>
             <div class="flex items-end justify-between bg-cream rounded-xl p-4">
                 <div>
                     <div class="text-xs text-olive/60">Harga saat ini</div>

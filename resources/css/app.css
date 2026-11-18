@@ -15,9 +15,9 @@
        Selaras dengan referensi: hijau profesional sebagai warna utama,
        aksen EMAS hangat sebagai pelengkap (tidak monoton hijau/putih/hitam).
        Nama utility lama tetap dipakai, hanya nilainya yang disesuaikan. */
-    --color-cream: #d5e2d3;      /* netral kehijauan (dasar, sesuai referensi) */
-    --color-cream2: #cdd8c9;    /* latar hijau pucat hangat */
-    --color-cream3: #becfbe;    /* garis pembatas hijau pudar */
+    --color-cream: #f1ead9;      /* netral kehijauan (dasar, sesuai referensi) */
+    --color-cream2: #e9dec9;    /* latar hijau pucat hangat */
+    --color-cream3: #ddcda9;    /* garis pembatas hijau pudar */
     --color-olive: #246c42;     /* HIJAU UTAMA — tombol/aksen solid */
     --color-olive2: #1d5b37;    /* hijau lebih gelap (hover/gradasi) */
     --color-olive3: #3a8c44;    /* hijau segar (ikon/micro) */
@@ -162,9 +162,9 @@ body {
    ============================================================ */
 :root {
     --zy-orb: #6b8a5f;             /* garis pola bintang (light) */
-    --zy-grad: radial-gradient(circle at 18% 8%, rgba(38,110,70,0.12), transparent 40%),
-               radial-gradient(circle at 85% 92%, rgba(200,157,68,0.18), transparent 46%),
-               linear-gradient(160deg, #f0e9d8 0%, #e6ecd9 50%, #ccdec8 100%);
+    --zy-grad: radial-gradient(circle at 15% 10%, rgba(38,110,70,0.10), transparent 42%),
+               radial-gradient(circle at 88% 90%, rgba(200,157,68,0.24), transparent 48%),
+               linear-gradient(160deg, #faf4e3 0%, #f3ecd8 35%, #e9edda 70%, #d8e9ce 100%);
 }
 body.dark-mode {
     --zy-orb: #e6c374;

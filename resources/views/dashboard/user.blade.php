@@ -1,6 +1,9 @@
 @extends('layouts.dashboard')
 @section('title','Dashboard User — E-Zakat')
-@section('page-title')Assalamualaikum, {{ auth()->user()->name }}@endsection
+@section('page-title')
+    <span class="hidden sm:inline">Assalamualaikum, {{ auth()->user()->name }}</span>
+    <span class="sm:hidden">Assalamualaikum</span>
+@endsection
 @section('page-sub','Selamat datang di E-Zakat Banjarbaru')
 @section('content')
 

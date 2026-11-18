@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('title','Profil Warga — E-Zakat')
-@section('page-title','Profil & Data Diri — ' . auth()->user()->name)
+@section('page-title','Profil & Data Diri')
 @section('page-sub','Kelola data diri, kategori zakat, dan catatan perhitungan')
 @section('content')
 
@@ -119,11 +119,11 @@
     <div class="overflow-x-auto">
         <table class="w-full text-sm min-w-[640px]">
             <thead><tr class="text-left text-xs text-olive/50 border-b border-cream3">
-                <th class="py-2 pr-3">Jenis</th><th class="py-2 pr-3">Jumlah</th>
-                <th class="py-2 pr-3">Total (Rp)</th><th class="py-2 pr-3">Tanggal</th>
-                <th class="py-2 pr-3">Metode</th><th class="py-2 pr-3">Tujuan</th>
-                <th class="py-2 pr-3">Keterangan</th>
-                <th class="py-2 pr-3">Bukti</th>
+                <th class="py-2 pr-4">Jenis</th><th class="py-2 pr-4">Jumlah</th>
+                <th class="py-2 pr-4">Total (Rp)</th><th class="py-2 pr-4">Tanggal</th>
+                <th class="py-2 pr-4">Metode</th><th class="py-2 pr-4">Tujuan</th>
+                <th class="py-2 pr-4">Keterangan</th>
+                <th class="py-2 pr-4">Bukti</th>
                 <th class="py-2 text-right">Aksi</th>
             </tr></thead>
             <tbody id="recordsTableBody">
@@ -143,12 +143,14 @@
                         <span class="text-olive/40">—</span>
                         @endif
                     </td>
-                    <td class="py-2.5 text-right whitespace-nowrap">
-                        <button type="button" onclick="openEditModal({{ $r->id }})" class="w-7 h-7 rounded-lg bg-olive/10 text-olive hover:bg-olive/20 text-xs" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                    <td class="py-2.5 pr-3 text-right whitespace-nowrap">
+                        <div class="inline-flex items-center gap-2">
+                        <button type="button" onclick="openEditModal({{ $r->id }})" class="w-8 h-8 rounded-lg bg-olive/10 text-olive hover:bg-olive/20 text-xs flex items-center justify-center" title="Edit"><i class="fa-solid fa-pen"></i></button>
                         <form method="POST" action="{{ route('user.records.destroy', $r) }}" onsubmit="return confirm('Hapus catatan ini?')" class="inline">
                             @csrf @method('DELETE')
-                            <button class="w-7 h-7 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 text-xs"><i class="fa-solid fa-trash"></i></button>
+                            <button class="w-8 h-8 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 text-xs flex items-center justify-center" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                         </form>
+                        </div>
                     </td>
                 </tr>
             @empty

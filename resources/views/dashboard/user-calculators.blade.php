@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('title','Kalkulator Zakat & Waris — E-Zakat')
 @section('page-title','Kalkulator Zakat & Waris')
-@section('page-sub','Hitung dan simpan semua jenis perhitungan zakat & waris dalam satu halaman')
+@section('page-sub','Hitung zakat & waris Anda')
 
 @section('head')
 <style>
