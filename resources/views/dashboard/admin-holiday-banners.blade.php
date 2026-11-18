@@ -96,14 +96,4 @@
     <div class="p-4 border-t border-cream2">{{ $banners->links() }}</div>
 </div>
 
-<style>
-body.dark-mode input[type="date"],
-body.dark-mode input[name="event_date"] {
-    color-scheme: dark;
-    background-color: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #e2e8f0;
-}
-</style>
-
 @endsection

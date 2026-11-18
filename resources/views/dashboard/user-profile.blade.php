@@ -209,7 +209,7 @@
                     <input name="payment_date" id="f_payment_date"
                            type="date"
                            onclick="this.showPicker()"
-                           class="no-calendar-icon w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none cursor-pointer text-oliveDark">
+                           class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none cursor-pointer text-oliveDark">
                 </div>
                 <div>
                     <label class="text-xs font-semibold text-oliveDark block mb-1">Metode Pembayaran</label>

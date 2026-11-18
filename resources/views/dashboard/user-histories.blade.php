@@ -42,14 +42,14 @@
     <div class="history-card bg-white rounded-[20px] border border-cream3 shadow-sm hover:shadow-md transition overflow-hidden">
 
         {{-- HEADER: badge jenis + tanggal + ikon + tombol hapus --}}
-        <div class="flex items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-olive/10 to-transparent border-b border-cream3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-3 bg-gradient-to-r from-olive/10 to-transparent border-b border-cream3">
             <div class="flex items-center gap-3 min-w-0">
                 <span class="w-10 h-10 rounded-2xl bg-olive text-white flex items-center justify-center shrink-0 shadow-sm">
                     <i class="fa-solid {{ $h->calcTypeIcon() }}"></i>
                 </span>
                 <div class="min-w-0">
                     <div class="font-extrabold text-oliveDark text-sm truncate">{{ $h->calcTypeLabel() }}</div>
-                    <div class="text-[11px] text-olive/50 flex items-center gap-1.5 mt-0.5">
+                    <div class="text-[11px] text-olive/50 flex items-center gap-1.5 mt-0.5 whitespace-nowrap">
                         <i class="fa-regular fa-calendar"></i>{{ $h->created_at->translatedFormat('d M Y') }}
                         <span class="text-olive/30">·</span>
                         <i class="fa-regular fa-clock"></i>{{ $h->created_at->translatedFormat('H:i') }}
@@ -57,11 +57,11 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-3 shrink-0">
+            <div class="flex items-center justify-between sm:justify-end gap-3 shrink-0">
                 @if(($h->result_data['total'] ?? null) !== null)
-                <div class="text-right">
+                <div class="text-left sm:text-right">
                     <div class="text-[9px] text-olive/50 uppercase tracking-wider font-semibold">Total Nilai</div>
-                    <div class="font-black text-oliveDark text-base sm:text-lg leading-none">Rp {{ number_format($h->result_data['total'], 0, ',', '.') }}</div>
+                    <div class="font-black text-oliveDark text-base leading-none whitespace-nowrap">Rp {{ number_format($h->result_data['total'], 0, ',', '.') }}</div>
                 </div>
                 @endif
                 <form action="{{ route('user.histories.destroy', $h->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat perhitungan ini?')">
