@@ -1604,3 +1604,10 @@ body.dark-mode .logo-badge {
     background: linear-gradient(150deg, #1d3a29, #14281c);
     border-color: rgba(232,197,71,.35);
 }
+
+
+body.dark-mode .settings-page .peer:checked + div[class*="peer-checked:bg-olive/10"] [data-rgv-name],
+body.dark-mode .settings-page label:has(> input.peer:checked) [data-rgv-name] {
+    color: #D4AF37 !important;
+    font-weight: 700 !important;
+}
