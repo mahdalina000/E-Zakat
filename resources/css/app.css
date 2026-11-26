@@ -10,7 +10,7 @@
    E-ZAKAT CUSTOM THEME
    Palet warna lokal (cream, olive, earth, dll.)
    ============================================================ */
-@theme {
+@theme  {
     /* ===== PALET WARNA (hijau utama + aksen emas hangat) =====
        Selaras dengan referensi: hijau profesional sebagai warna utama,
        aksen EMAS hangat sebagai pelengkap (tidak monoton hijau/putih/hitam).
@@ -43,7 +43,7 @@
    ANIMASI KONSISTEN
    ============================================================ */
 /* Sembunyikan progress bar bawaan Turbo (jaring pengaman ganda) */
-turbo-progress-bar {
+turbo-progress-bar  {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
@@ -52,7 +52,7 @@ turbo-progress-bar {
 /* Reveal dasar (fresh load) — terinspirasi video referensi:
    fade + slide naik lembut + scale halus, easing eksponensial
    yang "mengalir" (bukan tajam). */
-@keyframes smoothReveal {
+@keyframes smoothReveal  {
     0% {
         opacity: 0.72;
         transform: translateY(16px) scale(0.995);
@@ -67,16 +67,16 @@ turbo-progress-bar {
    direktori, panduan, welcome). Stagger lewat .delay-1..5.
    Reveal dibuat mengalir (mulai opacity 0.72, geser 16px) supaya
    terasa lembut dan elegan, bukan kedipan per-elemen. */
-.anim-smooth {
+.anim-smooth  {
     animation: smoothReveal 1.15s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 /* Login: seluruh kartu naik BERSAMA dari bawah sebagai satu kesatuan
    (jelas terlihat namun tetap lembut — dipakai oleh halaman login). */
-.rise-in {
+.rise-in  {
     animation: riseIn 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-@keyframes riseIn {
+@keyframes riseIn  {
     from { opacity: 0.4; transform: translateY(60px); }
     to   { opacity: 1; transform: translateY(0); }
 }
@@ -89,7 +89,7 @@ turbo-progress-bar {
    Durasi nyaman (0.45s) dengan easing meluncur yang halus, agar
    terasa mengalir dan enak dipandang (bukan kaku).
    ============================================================ */
-@keyframes pageSlideForward {
+@keyframes pageSlideForward  {
     0% {
         opacity: 0.55;
         transform: translateX(42px) scale(0.985);
@@ -100,7 +100,7 @@ turbo-progress-bar {
     }
 }
 
-@keyframes pageSlideBack {
+@keyframes pageSlideBack  {
     0% {
         opacity: 0.55;
         transform: translateX(-42px) scale(0.985);
@@ -112,25 +112,25 @@ turbo-progress-bar {
 }
 
 /* Kelas penanda arah dipasang di <body> oleh transition.js */
-body.zy-dir-f .anim-smooth {
+body.zy-dir-f .anim-smooth  {
     animation: pageSlideForward 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-body.zy-dir-b .anim-smooth {
+body.zy-dir-b .anim-smooth  {
     animation: pageSlideBack 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 /* Delay berurutan (stagger) — lebih terasa "mengalir" dari atas ke bawah */
-.delay-1 { animation-delay: 0.06s; }
-.delay-2 { animation-delay: 0.12s; }
-.delay-3 { animation-delay: 0.18s; }
-.delay-4 { animation-delay: 0.24s; }
-.delay-5 { animation-delay: 0.30s; }
+.delay-1  { animation-delay: 0.06s; }
+.delay-2  { animation-delay: 0.12s; }
+.delay-3  { animation-delay: 0.18s; }
+.delay-4  { animation-delay: 0.24s; }
+.delay-5  { animation-delay: 0.30s; }
 
 /* Hover Float Soft Effect */
-.hover-smooth {
+.hover-smooth  {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.hover-smooth:hover {
+.hover-smooth:hover  {
     transform: translateY(-4px);
     box-shadow: 0 16px 32px -8px rgba(0, 31, 63, 0.12);
 }
@@ -138,7 +138,7 @@ body.zy-dir-b .anim-smooth {
 /* ============================================================
    BASE BODY — font & background
    ============================================================ */
-body {
+body  {
     font-family: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     overflow-x: hidden;
     /* Latar dasar HANYA WARNA (tanpa ornamen baru): hijau lembut hangat,
@@ -153,20 +153,20 @@ body {
 }
 
 /* Tailwind class .font-amiri override agar pakai Amiri */
-.font-amiri { font-family: 'Amiri', serif !important; }
+.font-amiri  { font-family: 'Amiri', serif !important; }
 
 /* ============================================================
    LATAR ORNAMEN ISLAMI (mandala + lentera + pola bintang)
    Warna ornamen memakai CSS variables agar bisa berganti
    otomatis saat dark mode (body.dark-mode).
    ============================================================ */
-:root {
+:root  {
     --zy-orb: #6b8a5f;             /* garis pola bintang (light) */
     --zy-grad: radial-gradient(circle at 15% 10%, rgba(38,110,70,0.10), transparent 42%),
                radial-gradient(circle at 88% 90%, rgba(200,157,68,0.24), transparent 48%),
                linear-gradient(160deg, #faf4e3 0%, #f3ecd8 35%, #e9edda 70%, #d8e9ce 100%);
 }
-body.dark-mode {
+body.dark-mode  {
     --zy-orb: #e6c374;
     --zy-grad: radial-gradient(circle at 20% 10%, rgba(41,122,75,0.20), transparent 40%),
                radial-gradient(circle at 80% 90%, rgba(226,179,86,0.14), transparent 45%),
@@ -174,38 +174,38 @@ body.dark-mode {
 }
 
 /* Utilitas Tailwind-style untuk elemen latar ornamen */
-.bg-zy-bg { background-color: transparent; }
-.zy-zy-grad { background: var(--zy-grad); transition: background 0.4s ease; }
-.zy-star { color: var(--zy-orb); opacity: 0.05; transition: color .4s, opacity .4s; }
-body.dark-mode .zy-star { opacity: 0.08; }
+.bg-zy-bg  { background-color: transparent; }
+.zy-zy-grad  { background: var(--zy-grad); transition: background 0.4s ease; }
+.zy-star  { color: var(--zy-orb); opacity: 0.05; transition: color .4s, opacity .4s; }
+body.dark-mode .zy-star  { opacity: 0.08; }
 /* LENTERA KIRI & KANAN */
-.zy-lantern-line { stroke: var(--zy-orb); }
-body.dark-mode .zy-lantern-line { stroke: #e0b553; }
+.zy-lantern-line  { stroke: var(--zy-orb); }
+body.dark-mode .zy-lantern-line  { stroke: #e0b553; }
 /* LENTERA KANAN: di depan konten agar terlihat (hanya di tampilan, pointer-events-none) */
-.zy-lantern-right { opacity: 0.85; z-index: 40; }
-body.dark-mode .zy-lantern-right { opacity: 0.95; }
-.zy-lantern { opacity: 0.60; }
-body.dark-mode .zy-lantern { opacity: 0.85; }
+.zy-lantern-right  { opacity: 0.85; z-index: 40; }
+body.dark-mode .zy-lantern-right  { opacity: 0.95; }
+.zy-lantern  { opacity: 0.60; }
+body.dark-mode .zy-lantern  { opacity: 0.85; }
 
 /* Animasi swing halus lentera */
-@keyframes zySwayLeft {
+@keyframes zySwayLeft  {
     0%, 100% { transform: rotate(0deg); }
     50%      { transform: rotate(1.2deg); }
 }
-@keyframes zySwayRight {
+@keyframes zySwayRight  {
     0%, 100% { transform: rotate(0deg); }
     50%      { transform: rotate(-1.5deg); }
 }
-.zy-lantern-left  { transform-origin: top center; animation: zySwayLeft 7s ease-in-out infinite; }
-.zy-lantern-right { transform-origin: top center; animation: zySwayRight 8.5s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
+.zy-lantern-left   { transform-origin: top center; animation: zySwayLeft 7s ease-in-out infinite; }
+.zy-lantern-right  { transform-origin: top center; animation: zySwayRight 8.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce)  {
     .zy-lantern-left, .zy-lantern-right { animation: none; }
 }
 
 /* ============================================================
    DARK MODE (harus di-compile Vite, bukan CSS dinamis)
    ============================================================ */
-body.dark-mode {
+body.dark-mode  {
     /* Dark: hijau gelap hangat (bukan hitam/biru polos), selaras palet */
     background:
         radial-gradient(circle at 18% 12%, rgba(41, 122, 75, 0.18), transparent 40%),
@@ -217,7 +217,7 @@ body.dark-mode {
 
 /* 1. KARTU UTAMA DAN CONTAINER GELAP */
 body.dark-mode .bg-cream2,
-body.dark-mode .bg-white {
+body.dark-mode .bg-white  {
     background-color: #1e293b !important;
     color: #f8fafc !important;
 }
@@ -226,7 +226,7 @@ body.dark-mode .bg-white {
    biar logo & teks dalam bundaran tetap terbaca */
 body.dark-mode .rounded-full.bg-white,
 body.dark-mode .rounded-xl.bg-white,
-body.dark-mode .rounded-lg.bg-white {
+body.dark-mode .rounded-lg.bg-white  {
     background-color: #ffffff !important;
     color: #2E5A26 !important;
 }
@@ -235,40 +235,38 @@ body.dark-mode .rounded-lg.bg-white {
    teks di dalamnya tetap gelap agar kontras */
 body.dark-mode .bg-earth,
 body.dark-mode .bg-earth\/20,
-body.dark-mode .bg-earth\/15 {
+body.dark-mode .bg-earth\/15  {
     background-color: #F2C94C !important;
 }
 body.dark-mode .bg-earth,
-body.dark-mode .bg-earth\/20 {
+body.dark-mode .bg-earth\/20  {
     color: #1F3D1B !important;
 }
 /* Elemen EMAS (gold) di dark mode — aksen tetap terlihat jelas */
-body.dark-mode .bg-gold { background-color: #C59B52 !important; color: #1F3D1B !important; }
-body.dark-mode .bg-gold2 { background-color: #D4AF37 !important; color: #1F3D1B !important; }
-body.dark-mode .text-gold { color: #D4AF37 !important; }
-body.dark-mode .text-gold2 { color: #E8C547 !important; }
-body.dark-mode .border-gold { border-color: rgba(197, 155, 82, 0.6) !important; }
+body.dark-mode .bg-gold  { background-color: #C59B52 !important; color: #1F3D1B !important; }
+body.dark-mode .bg-gold2  { background-color: #D4AF37 !important; color: #1F3D1B !important; }
+body.dark-mode .border-gold  { border-color: rgba(197, 155, 82, 0.6) !important; }
 
 /* 2. PAKSA HANYA TEKS GELAP/HITAM MENJADI TERANG
    (di atas bg gelap halaman; elemen ber-putih sendiri punya aturan khusus) */
 body.dark-mode .text-oliveDark,
 body.dark-mode h1:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth),
 body.dark-mode h2:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth),
-body.dark-mode h3:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth) {
+body.dark-mode h3:not(.text-olive):not(.text-olive2):not(.text-white):not(.text-earth)  {
     color: #f8fafc !important;
 }
 /* TEKS KUNYAU/EMAS (text-earth) DI DARK → EMAS TERANG (kontras di bg gelap) */
-body.dark-mode .text-earth { color: #F2C94C !important; }
+body.dark-mode .text-earth  { color: #F2C94C !important; }
 body.dark-mode .text-gold,
-body.dark-mode .text-gold2 { color: #D4AF37 !important; }
+body.dark-mode .text-gold2  { color: #D4AF37 !important; }
 /* div: hanya yang tidak punya kelas warna sendiri */
-body.dark-mode div:not([class*="text-"]) {
+body.dark-mode div:not([class*="text-"])  {
     color: #f8fafc !important;
 }
 
 /* TEKS HIJAU DI DARK MODE → WARNA TERANG (kontras dgn bg gelap) */
-body.dark-mode .text-olive { color: #A8D5BA !important; }
-body.dark-mode .text-olive2 { color: #8CC9A1 !important; }
+body.dark-mode .text-olive  { color: #A8D5BA !important; }
+body.dark-mode .text-olive2  { color: #8CC9A1 !important; }
 /* Variasi opasitas hijau */
 body.dark-mode .text-olive\/10,
 body.dark-mode .text-olive\/20,
@@ -279,7 +277,7 @@ body.dark-mode .text-olive\/60,
 body.dark-mode .text-olive\/70,
 body.dark-mode .text-olive\/80,
 body.dark-mode .text-olive\/90,
-body.dark-mode .text-olive\/95 { color: #A8D5BA !important; }
+body.dark-mode .text-olive\/95  { color: #A8D5BA !important; }
 /* Opasitas oliveDark → PUTIH (sesuai permintaan: hitam→putih di dark) */
 body.dark-mode .text-oliveDark\/10,
 body.dark-mode .text-oliveDark\/20,
@@ -289,31 +287,31 @@ body.dark-mode .text-oliveDark\/50,
 body.dark-mode .text-oliveDark\/60,
 body.dark-mode .text-oliveDark\/70,
 body.dark-mode .text-oliveDark\/80,
-body.dark-mode .text-oliveDark\/90 { color: #f8fafc !important; }
+body.dark-mode .text-oliveDark\/90  { color: #f8fafc !important; }
 
 /* Toggle pilihan Jenis Kelamin di dark */
 body.dark-mode .peer:checked ~ .peer-checked\:bg-olive,
-body.dark-mode .peer:checked ~ .peer-checked\:bg-olive2 {
+body.dark-mode .peer:checked ~ .peer-checked\:bg-olive2  {
     background-color: #4B8B3B !important;
 }
-body.dark-mode .peer:checked ~ .peer-checked\:text-white {
+body.dark-mode .peer:checked ~ .peer-checked\:text-white  {
     color: #ffffff !important;
 }
 body.dark-mode .peer:not(:checked) ~ .peer-checked\:bg-olive,
-body.dark-mode .peer:not(:checked) ~ .peer-checked\:text-white {
+body.dark-mode .peer:not(:checked) ~ .peer-checked\:text-white  {
     background-color: #1e293b !important;
     color: #f8fafc !important;
     border-color: #334155 !important;
 }
 
 /* ELEMEN PUTIH TETAP PUTIH (nav aktif, logo, tombol) */
-body.dark-mode nav a.bg-white {
+body.dark-mode nav a.bg-white  {
     background-color: #ffffff !important;
     color: #2E5A26 !important;
     font-weight: 800 !important;
 }
 body.dark-mode .rounded-full.bg-white,
-body.dark-mode .rounded-xl.bg-white {
+body.dark-mode .rounded-xl.bg-white  {
     background-color: #ffffff !important;
     color: #2E5A26 !important;
 }
@@ -325,30 +323,28 @@ body.dark-mode .text-cream\/50,
 body.dark-mode .text-cream\/60,
 body.dark-mode .text-cream\/70,
 body.dark-mode .text-cream\/80,
-body.dark-mode .text-cream\/90 { color: #f8fafc !important; }
+body.dark-mode .text-cream\/90  { color: #f8fafc !important; }
 
 /* Teks putih / white di dark mode tetap putih */
-body.dark-mode .text-white { color: #ffffff !important; }
+body.dark-mode .text-white  { color: #ffffff !important; }
 body.dark-mode .text-white\/30,
 body.dark-mode .text-white\/40,
 body.dark-mode .text-white\/50,
 body.dark-mode .text-white\/60,
 body.dark-mode .text-white\/70,
 body.dark-mode .text-white\/80,
-body.dark-mode .text-white\/90 { color: #f8fafc !important; }
+body.dark-mode .text-white\/90  { color: #f8fafc !important; }
 /* Teks earth (kuning) & gold (emas) di dark mode — aksen tetap terlihat */
-body.dark-mode .text-earth { color: #F2C94C !important; }
-body.dark-mode .text-gold { color: #D4AF37 !important; }
-body.dark-mode .text-gold2 { color: #E8C547 !important; }
+body.dark-mode .text-earth  { color: #F2C94C !important; }body.dark-mode .text-gold {color: #D4AF37 !important; color: #D4AF37 !important;}body.dark-mode .text-gold2 {color: #E8C547 !important; color: #E8C547 !important;}
 
 /* Elemen KUNYAU (tombol Masuk, badge) — teks gelap */
 body.dark-mode .bg-earth,
-body.dark-mode .bg-earth\/20 {
+body.dark-mode .bg-earth\/20  {
     background-color: #F2C94C !important;
     color: #2E5A26 !important;
 }
 body.dark-mode a.bg-earth,
-body.dark-mode button.bg-earth {
+body.dark-mode button.bg-earth  {
     background-color: #F2C94C !important;
     color: #2E5A26 !important;
 }
@@ -356,7 +352,7 @@ body.dark-mode button.bg-earth {
 /* TOMBOL HIJAU — teks putih */
 body.dark-mode a.bg-olive,
 body.dark-mode button.bg-olive,
-body.dark-mode div.bg-olive:not([class*="bg-olive\/"]) {
+body.dark-mode div.bg-olive:not([class*="bg-olive\/"])  {
     background-color: #4B8B3B !important;
     color: #ffffff !important;
 }
@@ -369,19 +365,19 @@ body.dark-mode .bg-panel\/50,
 body.dark-mode .bg-panel\/60,
 body.dark-mode .bg-panel-2,
 body.dark-mode .bg-panel-2\/50,
-body.dark-mode .bg-panel-2\/70 {
+body.dark-mode .bg-panel-2\/70  {
     background-color: #0d2417 !important;
     border-color: #1e4030 !important;
 }
 /* Teks di atas panel: HIJAU TUA → HIJAU MUDA, HITAM → PUTIH */
 body.dark-mode .bg-panel .text-oliveDark,
-body.dark-mode .bg-panel-2 .text-oliveDark { color: #A8D5BA !important; }
+body.dark-mode .bg-panel-2 .text-oliveDark  { color: #A8D5BA !important; }
 body.dark-mode .bg-panel .text-oliveDark\/70,
-body.dark-mode .bg-panel-2 .text-oliveDark\/70 { color: #A8D5BA !important; }
+body.dark-mode .bg-panel-2 .text-oliveDark\/70  { color: #A8D5BA !important; }
 body.dark-mode .bg-panel .text-olive,
-body.dark-mode .bg-panel-2 .text-olive { color: #f8fafc !important; }
+body.dark-mode .bg-panel-2 .text-olive  { color: #f8fafc !important; }
 body.dark-mode .bg-panel .text-black,
-body.dark-mode .bg-panel-2 .text-black { color: #f8fafc !important; }
+body.dark-mode .bg-panel-2 .text-black  { color: #f8fafc !important; }
 body.dark-mode .bg-panel .text-black\/70,
 body.dark-mode .bg-panel-2 .text-black\/70,
 body.dark-mode .bg-panel .text-black\/60,
@@ -389,14 +385,14 @@ body.dark-mode .bg-panel-2 .text-black\/60,
 body.dark-mode .bg-panel .text-black\/50,
 body.dark-mode .bg-panel-2 .text-black\/50,
 body.dark-mode .bg-panel .text-black\/40,
-body.dark-mode .bg-panel-2 .text-black\/40 { color: #f8fafc !important; }
+body.dark-mode .bg-panel-2 .text-black\/40  { color: #f8fafc !important; }
 
 /* 3b. TEKS PENJELASAN DI DALAM BLOK PANEL (p / small / text-olive* / text-oliveDark*)
    Light: hitam (sesuai mapping). Dark: HITAM→PUTIH, HIJAU TUA→HIJAU MUDA. */
 body.dark-mode .bg-panel p,
 body.dark-mode .bg-panel-2 p,
 body.dark-mode .bg-panel small,
-body.dark-mode .bg-panel-2 small {
+body.dark-mode .bg-panel-2 small  {
     color: #f8fafc !important;
 }
 
@@ -405,24 +401,24 @@ body.dark-mode .bg-cream2,
 body.dark-mode .bg-cream2\/80,
 body.dark-mode .bg-cream2\/60,
 body.dark-mode .bg-cream2\/90,
-body.dark-mode .bg-cream2\/50 {
+body.dark-mode .bg-cream2\/50  {
     background-color: #0f1b12 !important;
     color: #f8fafc !important;
     border-color: #1f3324 !important;
 }
 
 /* 6. INPUT FORM & BORDER HALUS */
-body.dark-mode .border-cream3 {
+body.dark-mode .border-cream3  {
     border-color: #334155 !important;
 }
-body.dark-mode input {
+body.dark-mode input  {
     background-color: #0f172a !important;
     color: #ffffff !important;
     border-color: #475569 !important;
 }
 
 /* 7. BACKGROUND LAYAR PENUH DI DARK MODE — hijau gelap hangat (bukan biru) */
-body.dark-mode {
+body.dark-mode  {
     background:
         radial-gradient(circle at 18% 12%, rgba(41, 122, 75, 0.18), transparent 40%),
         radial-gradient(circle at 82% 88%, rgba(226, 179, 86, 0.12), transparent 42%),
@@ -431,12 +427,12 @@ body.dark-mode {
 
 /* GAMBAR LATAR (e-zakat.jpg) DI DARK MODE → DIGELAPKAN SUPAYA TIDAK MENJADI CAHAYA
    (Gambar blur di welcome & layout app/guest jadi gelap pekat di dark mode) */
-body.dark-mode img[src*="e-zakat.jpg"] {
+body.dark-mode img[src*="e-zakat.jpg"]  {
     filter: brightness(0.18) contrast(1.1) saturate(0.25) hue-rotate(60deg) !important;
     opacity: 0.22 !important;
 }
 /* Overlay gelap HIJAU HANGAT di atas gambar latar agar background gelap & konsisten */
-body.dark-mode::before {
+body.dark-mode::before  {
     content: '';
     position: fixed;
     inset: 0;
@@ -447,14 +443,11 @@ body.dark-mode::before {
 }
 
 /* Orb ambient glow: DIHILANGKAN di dark mode (cahaya orange) */
-body.dark-mode .bg-olive\/20 { background-color: transparent !important; }
-body.dark-mode .bg-olive\/25 { background-color: transparent !important; }
-body.dark-mode .bg-olive3\/10 { background-color: transparent !important; }
-body.dark-mode .bg-earth\/15 { background-color: transparent !important; }
-body.dark-mode .bg-earth\/20 { background-color: transparent !important; }
-body.dark-mode .bg-earth\/10 { background-color: transparent !important; }
-body.dark-mode .bg-gold\/15 { background-color: transparent !important; }
-body.dark-mode .bg-gold\/20 { background-color: transparent !important; }
+body.dark-mode .bg-olive\/20  { background-color: transparent !important; }
+body.dark-mode .bg-olive\/25  { background-color: transparent !important; }
+body.dark-mode .bg-olive3\/10  { background-color: transparent !important; }
+body.dark-mode .bg-gold\/15  { background-color: transparent !important; }
+body.dark-mode .bg-gold\/20  { background-color: transparent !important; }
 
 /* BLOK PUCAT (bg-white, bg-cream, bg-cream2) DI DARK → DIGELAPKAN jadi hijau hangat
    (Supaya panel & kartu tidak pucat dan teks tidak nabrak) */
@@ -470,20 +463,17 @@ body.dark-mode .bg-panel\/50,
 body.dark-mode .bg-panel\/60,
 body.dark-mode .bg-panel-2,
 body.dark-mode .bg-panel-2\/50,
-body.dark-mode .bg-panel-2\/70 {
+body.dark-mode .bg-panel-2\/70  {
     background-color: #0d2417 !important;
     color: #f8fafc !important;
     border-color: #1e4030 !important;
 }
 
 /* ELEMEN KUNYAU/EMAS (bg-earth) DI DARK → TETAP TERLIHAT SEBAGAI AKSEN EMAS, BUKAN CAHAYA */
-body.dark-mode .bg-earth { background-color: #d4a853 !important; color: #133221 !important; }
-body.dark-mode .bg-earth\/20 { background-color: rgba(212, 168, 83, 0.28) !important; color: #f8fafc !important; }
-body.dark-mode .bg-earth\/15 { background-color: rgba(212, 168, 83, 0.20) !important; color: #f8fafc !important; }
-body.dark-mode .bg-earth\/10 { background-color: rgba(212, 168, 83, 0.14) !important; color: #f8fafc !important; }
-body.dark-mode .bg-gold { background-color: #c89d44 !important; color: #133221 !important; }
+body.dark-mode .bg-earth  { background-color: #d4a853 !important; color: #133221 !important; }body.dark-mode .bg-earth\/20 {background-color: transparent !important; background-color: rgba(212, 168, 83, 0.28) !important; color: #f8fafc !important;}body.dark-mode .bg-earth\/15 {background-color: transparent !important; background-color: rgba(212, 168, 83, 0.20) !important; color: #f8fafc !important;}body.dark-mode .bg-earth\/10 {background-color: transparent !important; background-color: rgba(212, 168, 83, 0.14) !important; color: #f8fafc !important;}
+body.dark-mode .bg-gold  { background-color: #c89d44 !important; color: #133221 !important; }
 body.dark-mode .bg-gold\/15,
-body.dark-mode .bg-gold\/20 { background-color: rgba(200, 157, 68, 0.22) !important; }
+body.dark-mode .bg-gold\/20  { background-color: rgba(200, 157, 68, 0.22) !important; }
 
 /* 8. TEKS DI LUAR PANEL DI DARK MODE → PUTIH TERANG (hanya teks yang sebelumnya
    gelap/black. Text putih, hijau, & kuning sudah di-cover aturan sebelumnya) */
@@ -493,7 +483,7 @@ body.dark-mode .text-black\/80,
 body.dark-mode .text-black\/70,
 body.dark-mode .text-black\/60,
 body.dark-mode .text-black\/50,
-body.dark-mode .text-black\/40 {
+body.dark-mode .text-black\/40  {
     color: #f8fafc !important;
 }
 
@@ -501,7 +491,7 @@ body.dark-mode .text-black\/40 {
    (anti nabrak). Berlaku untuk welcome s.d. panduan.
    TEKS HIJAU (olive) tetap jadi hijau muda; TEKS HITAM/NAVY → putih. */
 body.dark-mode .text-oliveDark,
-body.dark-mode .text-black { color: #f8fafc !important; }
+body.dark-mode .text-black  { color: #f8fafc !important; }
 
 
 /* ============================================================
@@ -513,67 +503,67 @@ body.dark-mode .text-black { color: #f8fafc !important; }
    ============================================================ */
 body.zy-nav-in .eze-col-left > *,
 body.zy-nav-in .eze-col-right > *,
-body.zy-nav-in .eze-up > * {
+body.zy-nav-in .eze-up > *  {
     opacity: 0.5;
 }
-body.zy-nav-in .eze-col-left > * {
+body.zy-nav-in .eze-col-left > *  {
     animation: ezeInLeft 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-body.zy-nav-in .eze-col-right > * {
+body.zy-nav-in .eze-col-right > *  {
     animation: ezeInRight 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-body.zy-nav-in .eze-up > * {
+body.zy-nav-in .eze-up > *  {
     animation: ezeInUp 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 /* Stagger berjenjang (delay naik bertahap) — dibuat lebih panjang & estetik */
 body.zy-nav-in .eze-col-left > *:nth-child(1),
 body.zy-nav-in .eze-col-right > *:nth-child(1),
-body.zy-nav-in .eze-up > *:nth-child(1) { animation-delay: 0.06s; }
+body.zy-nav-in .eze-up > *:nth-child(1)  { animation-delay: 0.06s; }
 body.zy-nav-in .eze-col-left > *:nth-child(2),
 body.zy-nav-in .eze-col-right > *:nth-child(2),
-body.zy-nav-in .eze-up > *:nth-child(2) { animation-delay: 0.16s; }
+body.zy-nav-in .eze-up > *:nth-child(2)  { animation-delay: 0.16s; }
 body.zy-nav-in .eze-col-left > *:nth-child(3),
 body.zy-nav-in .eze-col-right > *:nth-child(3),
-body.zy-nav-in .eze-up > *:nth-child(3) { animation-delay: 0.26s; }
+body.zy-nav-in .eze-up > *:nth-child(3)  { animation-delay: 0.26s; }
 body.zy-nav-in .eze-col-left > *:nth-child(4),
 body.zy-nav-in .eze-col-right > *:nth-child(4),
-body.zy-nav-in .eze-up > *:nth-child(4) { animation-delay: 0.36s; }
+body.zy-nav-in .eze-up > *:nth-child(4)  { animation-delay: 0.36s; }
 body.zy-nav-in .eze-col-left > *:nth-child(5),
 body.zy-nav-in .eze-col-right > *:nth-child(5),
-body.zy-nav-in .eze-up > *:nth-child(5) { animation-delay: 0.46s; }
+body.zy-nav-in .eze-up > *:nth-child(5)  { animation-delay: 0.46s; }
 body.zy-nav-in .eze-col-left > *:nth-child(6),
 body.zy-nav-in .eze-col-right > *:nth-child(6),
-body.zy-nav-in .eze-up > *:nth-child(6) { animation-delay: 0.56s; }
+body.zy-nav-in .eze-up > *:nth-child(6)  { animation-delay: 0.56s; }
 body.zy-nav-in .eze-col-left > *:nth-child(7),
 body.zy-nav-in .eze-col-right > *:nth-child(7),
-body.zy-nav-in .eze-up > *:nth-child(7) { animation-delay: 0.66s; }
+body.zy-nav-in .eze-up > *:nth-child(7)  { animation-delay: 0.66s; }
 body.zy-nav-in .eze-col-left > *:nth-child(8),
 body.zy-nav-in .eze-col-right > *:nth-child(8),
-body.zy-nav-in .eze-up > *:nth-child(8) { animation-delay: 0.78s; }
+body.zy-nav-in .eze-up > *:nth-child(8)  { animation-delay: 0.78s; }
 
-@keyframes ezeInLeft {
+@keyframes ezeInLeft  {
     from { opacity: 0.5; transform: translateX(-72px) scale(0.98); }
     to   { opacity: 1; transform: translateX(0) scale(1); }
 }
-@keyframes ezeInRight {
+@keyframes ezeInRight  {
     from { opacity: 0.5; transform: translateX(72px) scale(0.98); }
     to   { opacity: 1; transform: translateX(0) scale(1); }
 }
-@keyframes ezeInUp {
+@keyframes ezeInUp  {
     from { opacity: 0.5; transform: translateY(40px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 /* Kalkulator: kolom form (kiri) & kolom hasil (kanan) per tab */
-body.zy-nav-in .tab-panel > .grid > div:nth-child(1) {
+body.zy-nav-in .tab-panel > .grid > div:nth-child(1)  {
     opacity: 0.5;
     animation: ezeInLeft 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-body.zy-nav-in .tab-panel > .grid > div:nth-child(2) {
+body.zy-nav-in .tab-panel > .grid > div:nth-child(2)  {
     opacity: 0.5;
     animation: ezeInRight 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-body.zy-nav-in .tab-panel > .grid > div:nth-child(2) { animation-delay: 0.15s; }
-@media (prefers-reduced-motion: reduce) {
+body.zy-nav-in .tab-panel > .grid > div:nth-child(2)  { animation-delay: 0.15s; }
+@media (prefers-reduced-motion: reduce)  {
     body.zy-nav-in .eze-col-left > *,
     body.zy-nav-in .eze-col-right > *,
     body.zy-nav-in .eze-up > *,
@@ -588,138 +578,138 @@ body.zy-nav-in .tab-panel > .grid > div:nth-child(2) { animation-delay: 0.15s; }
 /* Kembalikan latar halaman DARK seperti sebelum perbaikan CSS:
    rata #121816 (bukan gradient hijau) & tanpa overlay gelap.
    (Perbaikan kurung tetap dipertahankan agar CSS utuh.) */
-body.dark-mode {
+body.dark-mode  {
     background: #121816 !important;
 }
-body.dark-mode::before {
+body.dark-mode::before  {
     content: none !important;
 }
 
 /* Cegah kedip putih saat ganti halaman: background stabil di <html> */
-html { background-color: #e7ebe4; }
-html:has(body.dark-mode) { background-color: #121816; }
+html  { background-color: #e7ebe4; }
+html:has(body.dark-mode)  { background-color: #121816; }
 
 /* Lampion/lentera statis — tanpa animasi (sesuai permintaan user) */
-.zy-lantern-left, .zy-lantern-right { animation: none !important; }
+.zy-lantern-left, .zy-lantern-right  { animation: none !important; }
 
 /* Kelas khusus teks Emas Milik Pribadi — ikut tema situs (kelas dark-mode):
    light = hijau, dark = emas. TIDAK bergantung pada preferensi sistem. */
-.emas-label { color: #1d5b37; }
-body.dark-mode .emas-label, .emas-label.dark-mode { color: #D4AF37; }
+.emas-label  { color: #1d5b37; }
+body.dark-mode .emas-label, .emas-label.dark-mode  { color: #D4AF37; }
 
 /* ============================================================
    KOMPONEN KARTU STATISTIK DASHBOARD (light + dark)
    ============================================================ */
-.stat-card{
+.stat-card {
     position:relative; border-radius:20px; padding:1rem; overflow:hidden;
     background:linear-gradient(135deg,#ffffff,#f2edde);
     border:1px solid rgba(24,116,58,.16);
     box-shadow:0 12px 28px -14px rgba(18,60,32,.22);
     transition:transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease;
 }
-.stat-card:hover{ transform:translateY(-3px); box-shadow:0 18px 34px -16px rgba(18,60,32,.32); }
-.stat-card .sc-icon{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; }
-.stat-card .sc-label{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
-.stat-card .sc-num{ font-size:26px; font-weight:900; margin-top:12px; color:#133a24; line-height:1.05; }
-.stat-card .sc-sub{ font-size:12px; font-weight:600; color:#133a24; opacity:.88; margin-top:2px; }
-.stat-card .sc-foot{ font-size:11px; color:#246c42; opacity:.6; margin-top:2px; }
+.stat-card:hover { transform:translateY(-3px); box-shadow:0 18px 34px -16px rgba(18,60,32,.32); }
+.stat-card .sc-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+.stat-card .sc-label { font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+.stat-card .sc-num { font-size:26px; font-weight:900; margin-top:12px; color:#133a24; line-height:1.05; }
+.stat-card .sc-sub { font-size:12px; font-weight:600; color:#133a24; opacity:.88; margin-top:2px; }
+.stat-card .sc-foot { font-size:11px; color:#246c42; opacity:.6; margin-top:2px; }
 
-.sc-emerald{ border-color:rgba(16,185,129,.30); }
-.sc-emerald .sc-icon{ background:#d1fae5; color:#047857; }
-.sc-emerald .sc-label{ color:#059669; }
-.sc-gold{ border-color:rgba(197,155,82,.45); }
-.sc-gold .sc-icon{ background:#fef3c7; color:#b45309; }
-.sc-gold .sc-label{ color:#b45309; }
-.sc-olive{ border-color:rgba(36,108,66,.30); }
-.sc-olive .sc-icon{ background:#dcefe0; color:#246c42; }
-.sc-olive .sc-label{ color:#246c42; }
-.sc-sky{ border-color:rgba(14,165,233,.32); }
-.sc-sky .sc-icon{ background:#e0f2fe; color:#0284c7; }
-.sc-sky .sc-label{ color:#0369a1; }
-.sc-rose{ border-color:rgba(244,63,94,.32); }
-.sc-rose .sc-icon{ background:#ffe4e6; color:#be123c; }
-.sc-rose .sc-label{ color:#be123c; }
+.sc-emerald { border-color:rgba(16,185,129,.30); }
+.sc-emerald .sc-icon { background:#d1fae5; color:#047857; }
+.sc-emerald .sc-label { color:#059669; }
+.sc-gold { border-color:rgba(197,155,82,.45); }
+.sc-gold .sc-icon { background:#fef3c7; color:#b45309; }
+.sc-gold .sc-label { color:#b45309; }
+.sc-olive { border-color:rgba(36,108,66,.30); }
+.sc-olive .sc-icon { background:#dcefe0; color:#246c42; }
+.sc-olive .sc-label { color:#246c42; }
+.sc-sky { border-color:rgba(14,165,233,.32); }
+.sc-sky .sc-icon { background:#e0f2fe; color:#0284c7; }
+.sc-sky .sc-label { color:#0369a1; }
+.sc-rose { border-color:rgba(244,63,94,.32); }
+.sc-rose .sc-icon { background:#ffe4e6; color:#be123c; }
+.sc-rose .sc-label { color:#be123c; }
 
-.stat-solid{
+.stat-solid {
     border-radius:20px; padding:1rem; color:#fff; position:relative; overflow:hidden;
     background:linear-gradient(135deg,#246c42,#1d5b37);
     box-shadow:0 14px 30px -14px rgba(18,60,32,.45);
 }
-.stat-solid .sc-num{ color:#fff; }
-.stat-solid .sc-sub{ color:rgba(255,255,255,.92); }
-.stat-solid .sc-label{ color:rgba(255,255,255,.85); }
+.stat-solid .sc-num { color:#fff; }
+.stat-solid .sc-sub { color:rgba(255,255,255,.92); }
+.stat-solid .sc-label { color:rgba(255,255,255,.85); }
 
 /* ---- DARK MODE ---- */
-body.dark-mode .stat-card{
+body.dark-mode .stat-card {
     background:linear-gradient(135deg,#0d2417,#0a1711);
     border-color:#1e4030;
     box-shadow:0 12px 28px -14px rgba(0,0,0,.6);
 }
 body.dark-mode .stat-card .sc-num,
-body.dark-mode .stat-card .sc-sub{ color:#f8fafc; }
-body.dark-mode .stat-card .sc-foot{ color:#8fc7a2; }
-body.dark-mode .sc-emerald{ border-color:rgba(16,185,129,.38); }
-body.dark-mode .sc-emerald .sc-icon{ background:rgba(16,185,129,.16); color:#6ee7b7; }
-body.dark-mode .sc-emerald .sc-label{ color:#6ee7b7; }
-body.dark-mode .sc-gold{ border-color:rgba(200,157,68,.42); }
-body.dark-mode .sc-gold .sc-icon{ background:rgba(200,157,68,.18); color:#fbbf24; }
-body.dark-mode .sc-gold .sc-label{ color:#fbbf24; }
-body.dark-mode .sc-olive{ border-color:rgba(36,108,66,.42); }
-body.dark-mode .sc-olive .sc-icon{ background:rgba(36,108,66,.22); color:#a8d5ba; }
-body.dark-mode .sc-olive .sc-label{ color:#a8d5ba; }
-body.dark-mode .sc-sky{ border-color:rgba(14,165,233,.38); }
-body.dark-mode .sc-sky .sc-icon{ background:rgba(14,165,233,.18); color:#7dd3fc; }
-body.dark-mode .sc-sky .sc-label{ color:#7dd3fc; }
-body.dark-mode .sc-rose{ border-color:rgba(244,63,94,.38); }
-body.dark-mode .sc-rose .sc-icon{ background:rgba(244,63,94,.18); color:#fda4af; }
-body.dark-mode .sc-rose .sc-label{ color:#fda4af; }
-body.dark-mode .stat-solid{ background:linear-gradient(135deg,#1d5b37,#143f28); }
+body.dark-mode .stat-card .sc-sub { color:#f8fafc; }
+body.dark-mode .stat-card .sc-foot { color:#8fc7a2; }
+body.dark-mode .sc-emerald { border-color:rgba(16,185,129,.38); }
+body.dark-mode .sc-emerald .sc-icon { background:rgba(16,185,129,.16); color:#6ee7b7; }
+body.dark-mode .sc-emerald .sc-label { color:#6ee7b7; }
+body.dark-mode .sc-gold { border-color:rgba(200,157,68,.42); }
+body.dark-mode .sc-gold .sc-icon { background:rgba(200,157,68,.18); color:#fbbf24; }
+body.dark-mode .sc-gold .sc-label { color:#fbbf24; }
+body.dark-mode .sc-olive { border-color:rgba(36,108,66,.42); }
+body.dark-mode .sc-olive .sc-icon { background:rgba(36,108,66,.22); color:#a8d5ba; }
+body.dark-mode .sc-olive .sc-label { color:#a8d5ba; }
+body.dark-mode .sc-sky { border-color:rgba(14,165,233,.38); }
+body.dark-mode .sc-sky .sc-icon { background:rgba(14,165,233,.18); color:#7dd3fc; }
+body.dark-mode .sc-sky .sc-label { color:#7dd3fc; }
+body.dark-mode .sc-rose { border-color:rgba(244,63,94,.38); }
+body.dark-mode .sc-rose .sc-icon { background:rgba(244,63,94,.18); color:#fda4af; }
+body.dark-mode .sc-rose .sc-label { color:#fda4af; }
+body.dark-mode .stat-solid { background:linear-gradient(135deg,#1d5b37,#143f28); }
 
-.stat-solid .sc-num.text-gold{ color:#e8c547; }
+.stat-solid .sc-num.text-gold { color:#e8c547; }
 
 
 /* ---- DARK: override gradien global (kartu/permukaan yang pakai gradien terang) ---- */
-body.dark-mode .from-white { --tw-gradient-from: #0d2417; }
-body.dark-mode .via-white { --tw-gradient-via: #0a1711; }
-body.dark-mode .to-cream2 { --tw-gradient-to: #0f1b12; }
-body.dark-mode .from-gold\/15 { --tw-gradient-from: rgba(200,157,68,0.20); }
-body.dark-mode .from-gold\/10 { --tw-gradient-from: rgba(200,157,68,0.16); }
-body.dark-mode .from-olive\/10 { --tw-gradient-from: rgba(75,139,59,0.18); }
-body.dark-mode .from-olive { --tw-gradient-from: #3a7d50; }
-body.dark-mode .to-olive2 { --tw-gradient-to: #27603a; }
-body.dark-mode .from-gold { --tw-gradient-from: #8a6a2f; }
-body.dark-mode .to-earth { --tw-gradient-to: #a1762e; }
-body.dark-mode .border-olive\/15 { border-color: rgba(110,165,126,0.55); }
+body.dark-mode .from-white  { --tw-gradient-from: #0d2417; }
+body.dark-mode .via-white  { --tw-gradient-via: #0a1711; }
+body.dark-mode .to-cream2  { --tw-gradient-to: #0f1b12; }
+body.dark-mode .from-gold\/15  { --tw-gradient-from: rgba(200,157,68,0.20); }
+body.dark-mode .from-gold\/10  { --tw-gradient-from: rgba(200,157,68,0.16); }
+body.dark-mode .from-olive\/10  { --tw-gradient-from: rgba(75,139,59,0.18); }
+body.dark-mode .from-olive  { --tw-gradient-from: #3a7d50; }
+body.dark-mode .to-olive2  { --tw-gradient-to: #27603a; }
+body.dark-mode .from-gold  { --tw-gradient-from: #8a6a2f; }
+body.dark-mode .to-earth  { --tw-gradient-to: #a1762e; }
+body.dark-mode .border-olive\/15  { border-color: rgba(110,165,126,0.55); }
 
 /* Dark: permukaan kalkulator (varian opacity) -- kartu formulir & panel hasil */
-body.dark-mode .bg-white\/90 { background-color:#0d2417; }
-body.dark-mode .bg-cream2\/70 { background-color:rgba(13,34,23,.82); }
-body.dark-mode .bg-cream2\/60 { background-color:rgba(13,34,23,.72); }
+body.dark-mode .bg-white\/90  { background-color:#0d2417; }
+body.dark-mode .bg-cream2\/70  { background-color:rgba(13,34,23,.82); }
+body.dark-mode .bg-cream2\/60  { background-color:rgba(13,34,23,.72); }
 
 
 
 /* ===== Penyempurnaan light: border emas kartu terang + kontras ===== */
-body:not(.dark-mode) [class*="rounded-[20px]"]:not([class*="bg-olive"]) {
+body:not(.dark-mode) [class*="rounded-[20px]"]:not([class*="bg-olive"])  {
     border: 1px solid rgba(200,157,68,0.35);
 }
-body:not(.dark-mode) [class*="rounded-2xl"]:not([class*="bg-olive"]) {
+body:not(.dark-mode) [class*="rounded-2xl"]:not([class*="bg-olive"])  {
     border: 1px solid rgba(200,157,68,0.30);
 }
-body:not(.dark-mode) #sidebar [class*="text-white/40"] { color: rgba(255,255,255,0.68) !important; }
-body:not(.dark-mode) .text-gray-400, body:not(.dark-mode) .text-slate-400 { color: #6a7568 !important; }
-body:not(.dark-mode) .text-gray-500, body:not(.dark-mode) .text-neutral-400, body:not(.dark-mode) .text-zinc-400 { color: #5c6659 !important; }
+body:not(.dark-mode) #sidebar [class*="text-white/40"]  { color: rgba(255,255,255,0.68) !important; }
+body:not(.dark-mode) .text-gray-400, body:not(.dark-mode) .text-slate-400  { color: #6a7568 !important; }
+body:not(.dark-mode) .text-gray-500, body:not(.dark-mode) .text-neutral-400, body:not(.dark-mode) .text-zinc-400  { color: #5c6659 !important; }
 /* ===== MODE TERANG PREMIUM (default) — emas + hijau sage ===== */
-.stat-card {
+.stat-card  {
     border: 1px solid rgba(200,157,68,0.35);
     box-shadow: 0 12px 28px rgba(120,100,50,0.10);
 }
-#sidebar { border-right: 1px solid rgba(200,157,68,0.30); }
-header { border-bottom: 1px solid rgba(200,157,68,0.40); }
-body .bg-white { background: #fffdf6; }
+#sidebar  { border-right: 1px solid rgba(200,157,68,0.30); }
+header  { border-bottom: 1px solid rgba(200,157,68,0.40); }
+body .bg-white  { background: #fffdf6; }
 /* ==========================================================
    TEMA GELAP MEWAH — emas + hijau tua (dashboard)
    ========================================================== */
-body.dark-mode {
+body.dark-mode  {
     --zy-grad: radial-gradient(circle at 18% 6%, rgba(41,122,75,0.30), transparent 40%),
                radial-gradient(circle at 86% 94%, rgba(226,179,86,0.20), transparent 46%),
                linear-gradient(155deg, #06120b 0%, #0b2115 48%, #040c08 100%);
@@ -727,76 +717,75 @@ body.dark-mode {
 }
 
 /* Kartu utama (rounded-[20px]) -> glass gelap + border emas */
-body.dark-mode [class*="rounded-[20px]"] {
+body.dark-mode [class*="rounded-[20px]"]  {
     background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)) !important;
     border: 1px solid rgba(200,157,68,0.22) !important;
     box-shadow: 0 14px 36px rgba(0,0,0,0.42);
 }
 
 /* Kartu cream kecil */
-body.dark-mode .bg-cream {
+body.dark-mode .bg-cream  {
     background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) !important;
     border: 1px solid rgba(200,157,68,0.18) !important;
 }
 
 /* Header atas */
-body.dark-mode header {
+body.dark-mode header  {
     background: linear-gradient(180deg, rgba(5,15,10,0.94), rgba(8,24,16,0.90)) !important;
     border-bottom: 1px solid rgba(218,180,96,0.45) !important;
     box-shadow: 0 6px 18px rgba(0,0,0,0.35);
 }
 
 /* Sidebar */
-body.dark-mode #sidebar {
+body.dark-mode #sidebar  {
     background: linear-gradient(180deg, #0e1f16, #14301f) !important;
     border-right: 1px solid rgba(218,180,96,0.32);
 }
-body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.5; }
-body.dark-mode #sidebar a { color: #cfd8cd; }
-body.dark-mode #sidebar a:hover { background: rgba(218,180,96,0.14); color: #f4ead0; }
+body.dark-mode #sidebar a  { color: #cfd8cd; }
+body.dark-mode #sidebar a:hover  { background: rgba(218,180,96,0.14); color: #f4ead0; }
 
 /* Teks */
-body.dark-mode .text-oliveDark { color: #f2e9d2 !important; }
-body.dark-mode .text-olive { color: #cbbd94 !important; }
-body.dark-mode .text-cream, body.dark-mode .text-cream2 { color: #e6dcc4 !important; }
+body.dark-mode .text-oliveDark  { color: #f2e9d2 !important; }
+body.dark-mode .text-olive  { color: #cbbd94 !important; }
+body.dark-mode .text-cream, body.dark-mode .text-cream2  { color: #e6dcc4 !important; }
 
 /* Tabel & pill */
-body.dark-mode thead { color: #e2c57f !important; }
-body.dark-mode table { border-color: rgba(218,180,96,0.15) !important; }
-body.dark-mode tr { border-color: rgba(218,180,96,0.15) !important; }
-body.dark-mode [class*="rounded-full"] { border-color: rgba(218,180,96,0.30) !important; }
+body.dark-mode thead  { color: #e2c57f !important; }
+body.dark-mode table  { border-color: rgba(218,180,96,0.15) !important; }
+body.dark-mode tr  { border-color: rgba(218,180,96,0.15) !important; }
+body.dark-mode [class*="rounded-full"]  { border-color: rgba(218,180,96,0.30) !important; }
 
 /* Komponen kartu statistik: sentuhan emas di dark */
-body.dark-mode .stat-card {
+body.dark-mode .stat-card  {
     border: 1px solid rgba(200,157,68,0.28) !important;
     box-shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
 
 /* ===== Penyempurnaan kontras & keselarasan dark ===== */
 /* Kartu info Harga Beras -> senada dengan tema gelap mewah */
-body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] {
+body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"]  {
     background: linear-gradient(160deg, #0e2418, #09170f) !important;
     border: 1px solid rgba(218,180,96,0.40) !important;
 }
-body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] .bg-white\/10 {
+body.dark-mode [class*="rounded-[20px]"][class*="bg-olive"] .bg-white\/10  {
     background: rgba(255,255,255,0.06) !important;
     border: 1px solid rgba(218,180,96,0.18);
 }
 
 /* Sub-label sekunder lebih terbaca */
-body.dark-mode [class*="text-olive/60"] { color: #dcd2b2 !important; }
-body.dark-mode [class*="text-cream/70"] { color: #cfc6aE !important; }
-body.dark-mode [class*="text-cream/80"] { color: #e2d8bf !important; }
+body.dark-mode [class*="text-olive/60"]  { color: #dcd2b2 !important; }
+body.dark-mode [class*="text-cream/70"]  { color: #cfc6aE !important; }
+body.dark-mode [class*="text-cream/80"]  { color: #e2d8bf !important; }
 
 /* Label section sidebar (MENU / PUBLIK) */
-body.dark-mode #sidebar [class*="text-white/40"] { color: rgba(255,255,255,0.70) !important; }
+body.dark-mode #sidebar [class*="text-white/40"]  { color: rgba(255,255,255,0.70) !important; }
 
 /* Pill role hijau pucat -> kontras */
-body.dark-mode [class*="bg-emerald-50"] { background: rgba(111,158,124,0.16) !important; color: #9fc7ae !important; border: 1px solid rgba(111,158,124,0.35); }
-body.dark-mode [class*="bg-emerald-100"] { background: rgba(111,158,124,0.20) !important; color: #b3d6bf !important; border: 1px solid rgba(111,158,124,0.40); }
+body.dark-mode [class*="bg-emerald-50"]  { background: rgba(111,158,124,0.16) !important; color: #9fc7ae !important; border: 1px solid rgba(111,158,124,0.35); }
+body.dark-mode [class*="bg-emerald-100"]  { background: rgba(111,158,124,0.20) !important; color: #b3d6bf !important; border: 1px solid rgba(111,158,124,0.40); }
 
 /* Kartu statistik: pisah lebih jelas dari background */
-body.dark-mode .stat-card {
+body.dark-mode .stat-card  {
     background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.03)) !important;
     border: 1px solid rgba(218,180,96,0.34) !important;
 }
@@ -807,7 +796,7 @@ body.dark-mode .stat-card {
    agar TIDAK mendorong konten ke kanan (fix Tailwind `fixed`
    tak ter-compile → sidebar jadi relative & mengambil 260px)
    ============================================================ */
-@media (max-width: 1023px) {
+@media (max-width: 1023px)  {
     #sidebar { position: fixed !important; }
 }
 
@@ -815,7 +804,7 @@ body.dark-mode .stat-card {
    SEMBUNYIKAN IKON KALENDER NATIVE DI INPUT TANGGAL
    (pakai .no-calendar-icon + showPicker() saat diklik)
    ============================================================ */
-.no-calendar-icon::-webkit-calendar-picker-indicator {
+.no-calendar-icon::-webkit-calendar-picker-indicator  {
     display: none;
     -webkit-appearance: none;
     appearance: none;
@@ -827,7 +816,7 @@ body.dark-mode .stat-card {
    ============================================================ */
 body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator,
 body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator,
-body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator {
+body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator  {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
     background-size: 18px 18px;
     background-position: center;
@@ -842,14 +831,14 @@ body.dark-mode input[type="month"]::-webkit-calendar-picker-indicator {
    ============================================================ */
 body.dark-mode .fa-calendar,
 body.dark-mode .fa-calendar-days,
-body.dark-mode .fa-clock {
+body.dark-mode .fa-clock  {
     color: #f8fafc !important;
 }
 
 /* ============================================================
    COUNTDOWN BANNER — kotak angka terpisah (tanpa titik dua)
    ============================================================ */
-.countdown-cell {
+.countdown-cell  {
     position: relative;
     min-width: 3.6rem;
     padding: 0.7rem 0.8rem 0.65rem;
@@ -864,7 +853,7 @@ body.dark-mode .fa-clock {
     -webkit-backdrop-filter: blur(12px) saturate(140%);
     transition: transform .25s cubic-bezier(.25,1,.5,1), box-shadow .25s ease;
 }
-.countdown-cell::after {
+.countdown-cell::after  {
     content: "";
     position: absolute;
     inset: 1px 1px auto 1px;
@@ -873,129 +862,129 @@ body.dark-mode .fa-clock {
     background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
     pointer-events: none;
 }
-@media (max-width: 640px) {
+@media (max-width: 640px)  {
     .countdown-cell { min-width: 3.1rem; padding: 0.55rem 0.6rem 0.5rem; border-radius: 1rem; }
     .countdown-cell::after { border-radius: 0.9rem 0.9rem 0 0; }
 }
 
 /* ===== Notifikasi dropdown ===== */
-.notif-dropdown{ background:#ffffff; border-color:var(--color-cream3); }
-body.dark-mode .notif-dropdown{ background:#17251c; border-color:rgba(255,255,255,.15); }
-body.dark-mode .notif-dropdown .bg-white{ background:#17251c; }
-body.dark-mode .notif-dropdown .notif-head{ background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.08); }
-body.dark-mode .notif-dropdown .notif-head-title{ color:#f8fafc; }
-body.dark-mode .notif-dropdown .notif-head-count{ color:#a9b9ad; }
-body.dark-mode .notif-dropdown .notif-title{ color:#f8fafc; }
-body.dark-mode .notif-dropdown .notif-msg{ color:#cbd5e1; }
-body.dark-mode .notif-dropdown .notif-time{ color:#8fa096; }
-body.dark-mode .notif-dropdown .notif-empty{ color:#94a89b; }
-body.dark-mode .notif-dropdown .divide-y > :not([hidden]) ~ :not([hidden]){ border-color:rgba(255,255,255,.08); }
+.notif-dropdown { background:#ffffff; border-color:var(--color-cream3); }
+body.dark-mode .notif-dropdown { background:#17251c; border-color:rgba(255,255,255,.15); }
+body.dark-mode .notif-dropdown .bg-white { background:#17251c; }
+body.dark-mode .notif-dropdown .notif-head { background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.08); }
+body.dark-mode .notif-dropdown .notif-head-title { color:#f8fafc; }
+body.dark-mode .notif-dropdown .notif-head-count { color:#a9b9ad; }
+body.dark-mode .notif-dropdown .notif-title { color:#f8fafc; }
+body.dark-mode .notif-dropdown .notif-msg { color:#cbd5e1; }
+body.dark-mode .notif-dropdown .notif-time { color:#8fa096; }
+body.dark-mode .notif-dropdown .notif-empty { color:#94a89b; }
+body.dark-mode .notif-dropdown .divide-y > :not([hidden]) ~ :not([hidden]) { border-color:rgba(255,255,255,.08); }
 
 /* Cover profil (gradien hijau-emas islami) */
-.profile-cover{ height:6.5rem; border-radius:calc(1rem - 1px) calc(1rem - 1px) 0 0; position:relative;
+.profile-cover { height:6.5rem; border-radius:calc(1rem - 1px) calc(1rem - 1px) 0 0; position:relative;
     background-image:
         linear-gradient(120deg,#1d5b37 0%,#246c42 58%,#e2b356 135%),
         radial-gradient(rgba(226,179,86,.28) 1px, transparent 1px);
     background-size:100% 100%, 18px 18px; }
 /* Alert sukses */
-.alert-success{ position:relative; display:flex; align-items:flex-start; gap:.75rem;
+.alert-success { position:relative; display:flex; align-items:flex-start; gap:.75rem;
     border-radius:1rem; border-left:4px solid #10b981; padding:.9rem 1.1rem;
     background:rgba(236,253,245,.95); color:#065f46; box-shadow:0 10px 26px -14px rgba(6,78,59,.35); }
 /* --- Kartu / komponen halaman Pengaturan (Light) --- */
-.settings-card{ background:#fff; border:1px solid rgba(6,78,59,.10); border-radius:1rem; box-shadow:0 10px 30px -16px rgba(6,78,59,.25); }
-.avatar-circle{ width:5rem; height:5rem; border-radius:9999px; background:linear-gradient(145deg,#10b981,#064e3b);
+.settings-card { background:#fff; border:1px solid rgba(6,78,59,.10); border-radius:1rem; box-shadow:0 10px 30px -16px rgba(6,78,59,.25); }
+.avatar-circle { width:5rem; height:5rem; border-radius:9999px; background:linear-gradient(145deg,#10b981,#064e3b);
     box-shadow:0 0 0 3px #e2b356, 0 12px 28px -12px rgba(6,78,59,.55);
     display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:1.5rem; }
-.role-badge{ display:inline-flex; align-items:center; gap:.4rem; font-size:.75rem; font-weight:700;
+.role-badge { display:inline-flex; align-items:center; gap:.4rem; font-size:.75rem; font-weight:700;
     padding:.32rem .8rem; border-radius:9999px; background:rgba(226,179,86,.16); color:#8a6720; }
-.info-icon{ width:2rem; height:2rem; flex:none; border-radius:.65rem; display:flex; align-items:center; justify-content:center;
+.info-icon { width:2rem; height:2rem; flex:none; border-radius:.65rem; display:flex; align-items:center; justify-content:center;
     background:rgba(36,108,66,.10); color:#246c42; font-size:.85rem; }
 /* Modal konfirmasi hapus foto */
-.avatar-modal{ background:#fff; border:1px solid rgba(6,78,59,.10); }
-.avatar-modal-icon{ background:rgba(254,226,226,.9); color:#dc2626; }
-.avatar-modal-title{ color:#064e3b; }
-.avatar-modal-text{ color:#64748b; }
-.avatar-modal-btn-neutral{ background:#f1f5f9; color:#475569; }
-.avatar-modal-btn-neutral:hover{ background:#e2e8f0; }
+.avatar-modal { background:#fff; border:1px solid rgba(6,78,59,.10); }
+.avatar-modal-icon { background:rgba(254,226,226,.9); color:#dc2626; }
+.avatar-modal-title { color:#064e3b; }
+.avatar-modal-text { color:#64748b; }
+.avatar-modal-btn-neutral { background:#f1f5f9; color:#475569; }
+.avatar-modal-btn-neutral:hover { background:#e2e8f0; }
 /* ============================================================
    DARK MODE — Halaman PENGATURAN (/settings & admin)
    Hanya mengubah styling dark; Light Mode tidak disentuh.
    ============================================================ */
-body.dark-mode .settings-page .bg-white {
+body.dark-mode .settings-page .bg-white  {
     background-color: #0d2417 !important;
     color: #f8fafc !important;
 }
-body.dark-mode .profile-cover {
+body.dark-mode .profile-cover  {
     background-image:
         linear-gradient(120deg,#0f3d28 0%,#1d5b37 58%,rgba(226,179,86,.65) 135%),
         radial-gradient(rgba(226,179,86,.22) 1px, transparent 1px);
     background-size:100% 100%, 18px 18px;
 }
-body.dark-mode .alert-success {
+body.dark-mode .alert-success  {
     background:rgba(6,78,59,.35); color:#a7f3d0;
     border-left-color:#34d399; box-shadow:0 10px 26px -14px rgba(0,0,0,.55);
 }
-body.dark-mode .settings-card {
+body.dark-mode .settings-card  {
     background: #0d2417 !important;
     border-color: rgba(255,255,255,.10) !important;
     box-shadow: 0 12px 32px -16px rgba(0,0,0,.6) !important;
 }
-body.dark-mode .avatar-circle {
+body.dark-mode .avatar-circle  {
     box-shadow: 0 0 0 3px rgba(226,179,86,.85), 0 14px 30px -12px rgba(0,0,0,.6) !important;
 }
-body.dark-mode .role-badge {
+body.dark-mode .role-badge  {
     background: rgba(226,179,86,.18) !important;
     color: #f0ce8c !important;
 }
-body.dark-mode .info-icon {
+body.dark-mode .info-icon  {
     background: rgba(36,108,66,.28) !important;
     color: #9fe0b6 !important;
 }
-body.dark-mode .avatar-modal {
+body.dark-mode .avatar-modal  {
     background: #0d2417 !important;
     border-color: rgba(255,255,255,.10) !important;
 }
-body.dark-mode .avatar-modal-icon {
+body.dark-mode .avatar-modal-icon  {
     background: rgba(220,38,38,.18) !important;
     color: #fca5a5 !important;
 }
-body.dark-mode .avatar-modal-title { color: #f8fafc !important; }
-body.dark-mode .avatar-modal-text { color: #B9DCC4 !important; }
-body.dark-mode .avatar-modal-btn-neutral { background: rgba(255,255,255,.08) !important; color:#fff !important; }
-body.dark-mode .avatar-modal-btn-neutral:hover { background: rgba(255,255,255,.14) !important; }
+body.dark-mode .avatar-modal-title  { color: #f8fafc !important; }
+body.dark-mode .avatar-modal-text  { color: #B9DCC4 !important; }
+body.dark-mode .avatar-modal-btn-neutral  { background: rgba(255,255,255,.08) !important; color:#fff !important; }
+body.dark-mode .avatar-modal-btn-neutral:hover  { background: rgba(255,255,255,.14) !important; }
 body.dark-mode .settings-page .rounded-2xl,
-body.dark-mode .settings-page .rounded-\[20px\] {
+body.dark-mode .settings-page .rounded-\[20px\]  {
     background-color: #0d2417 !important;
     border-color: #245032 !important;
 }
-body.dark-mode .settings-page .text-oliveDark { color: #f8fafc !important; }
+body.dark-mode .settings-page .text-oliveDark  { color: #f8fafc !important; }
 body.dark-mode .settings-page .text-olive,
 body.dark-mode .settings-page .text-olive\/40,
 body.dark-mode .settings-page .text-olive\/50,
 body.dark-mode .settings-page .text-olive\/60,
 body.dark-mode .settings-page .text-olive\/70,
 body.dark-mode .settings-page .text-olive\/80,
-body.dark-mode .settings-page .text-olive\/90 { color: #B9DCC4 !important; }
+body.dark-mode .settings-page .text-olive\/90  { color: #B9DCC4 !important; }
 body.dark-mode .settings-page .border-cream3,
-body.dark-mode .settings-page .border-b { border-color: #245032 !important; }
+body.dark-mode .settings-page .border-b  { border-color: #245032 !important; }
 body.dark-mode .settings-page input.bg-white,
-body.dark-mode .settings-page textarea.bg-white {
+body.dark-mode .settings-page textarea.bg-white  {
     background-color: #0a1c12 !important;
     border-color: #2c563a !important;
     color: #f8fafc !important;
 }
 body.dark-mode .settings-page input::placeholder,
-body.dark-mode .settings-page textarea::placeholder { color: #7da08b !important; }
+body.dark-mode .settings-page textarea::placeholder  { color: #7da08b !important; }
 body.dark-mode .settings-page label,
-body.dark-mode .settings-page .font-medium { color: #cfe5d6 !important; }
-body.dark-mode .settings-page .peer:checked ~ .peer-checked\:bg-olive\/10 {
+body.dark-mode .settings-page .font-medium  { color: #cfe5d6 !important; }
+body.dark-mode .settings-page .peer:checked ~ .peer-checked\:bg-olive\/10  {
     background-color: #245a34 !important;
     border-color: #3f7a4f !important;
 }
-body.dark-mode .settings-page .peer:not(:checked) ~ .peer-checked\:bg-olive\/10 {
+body.dark-mode .settings-page .peer:not(:checked) ~ .peer-checked\:bg-olive\/10  {
     background-color: #0d2417 !important;
 }
-body.dark-mode .settings-page .bg-olive\/10 { background-color: rgba(75,139,59,0.25) !important; }
+body.dark-mode .settings-page .bg-olive\/10  { background-color: rgba(75,139,59,0.25) !important; }
 
 
 /* ============================================================
@@ -1009,14 +998,14 @@ body.dark-mode .bg-cream2\/50,
 body.dark-mode .bg-cream2\/60,
 body.dark-mode .bg-cream2\/70,
 body.dark-mode .bg-cream2\/80,
-body.dark-mode .bg-cream2\/90 {
+body.dark-mode .bg-cream2\/90  {
     background: rgba(255, 255, 255, 0.08) !important;
     border-color: rgba(255, 255, 255, 0.14) !important;
     color: #F8FAFC !important;
 }
 body.dark-mode .bg-panel-2,
 body.dark-mode .bg-panel-2\/50,
-body.dark-mode .bg-panel-2\/70 {
+body.dark-mode .bg-panel-2\/70  {
     background: rgba(255, 255, 255, 0.06) !important;
     border-color: rgba(255, 255, 255, 0.12) !important;
     color: #F8FAFC !important;
@@ -1029,14 +1018,14 @@ body.dark-mode .bg-panel-2\/70 {
    ============================================================ */
 /* -- Kartu utama -- */
 body.dark-mode .glass-page .settings-card,
-body.dark-mode .settings-page .settings-card {
+body.dark-mode .settings-page .settings-card  {
     background: rgba(255, 255, 255, 0.08) !important;
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
-body.dark-mode .glass-page .bg-white {
+body.dark-mode .glass-page .bg-white  {
     background: rgba(255, 255, 255, 0.08) !important;
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
@@ -1044,7 +1033,7 @@ body.dark-mode .glass-page .bg-white {
 }
 /* -- Sub-blok / kotak field -- */
 body.dark-mode .glass-page .bg-cream2,
-body.dark-mode .settings-page .bg-cream2 {
+body.dark-mode .settings-page .bg-cream2  {
     background: rgba(255, 255, 255, 0.06) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
 }
@@ -1053,13 +1042,13 @@ body.dark-mode .glass-page textarea,
 body.dark-mode .glass-page select,
 body.dark-mode .settings-page input,
 body.dark-mode .settings-page textarea,
-body.dark-mode .settings-page select {
+body.dark-mode .settings-page select  {
     background: rgba(255, 255, 255, 0.06) !important;
     border: 1px solid rgba(255, 255, 255, 0.10) !important;
     color: #F5DEB3 !important;
 }
 /* -- Pastikan teks kontras -- */
-body.dark-mode .glass-page { color: #F5DEB3; }
+body.dark-mode .glass-page  { color: #F5DEB3; }
 body.dark-mode .glass-page h1,
 body.dark-mode .glass-page h2,
 body.dark-mode .glass-page h3,
@@ -1067,11 +1056,11 @@ body.dark-mode .glass-page .text-oliveDark,
 body.dark-mode .settings-page h1,
 body.dark-mode .settings-page h2,
 body.dark-mode .settings-page h3,
-body.dark-mode .settings-page .text-oliveDark { color: #FFFFFF; }
+body.dark-mode .settings-page .text-oliveDark  { color: #FFFFFF; }
 body.dark-mode .glass-page .text-olive\/60,
 body.dark-mode .glass-page .text-black\/40,
 body.dark-mode .glass-page .text-black\/50,
-body.dark-mode .settings-page .text-olive\/60 { color: rgba(245, 222, 179, 0.7); }
+body.dark-mode .settings-page .text-olive\/60  { color: rgba(245, 222, 179, 0.7); }
 
 
 /* ============================================================
@@ -1082,7 +1071,7 @@ body.dark-mode .settings-page .text-olive\/60 { color: rgba(245, 222, 179, 0.7);
 .anim-dashboard .bg-white\/95,
 .anim-dashboard .bg-white\/90,
 .anim-dashboard .bg-white\/80,
-.anim-dashboard .bg-white\/70 {
+.anim-dashboard .bg-white\/70  {
     background: #ffffff !important;
     border: 1px solid #e7e5e4 !important;
     box-shadow: 0 1px 3px rgba(28, 25, 23, .07) !important;
@@ -1092,18 +1081,18 @@ body.dark-mode .settings-page .text-olive\/60 { color: rgba(245, 222, 179, 0.7);
 .anim-dashboard .text-olive\/40,
 .anim-dashboard .text-olive\/50,
 .anim-dashboard .text-olive\/60,
-.anim-dashboard .text-olive\/70 { color: #57534e !important; }
+.anim-dashboard .text-olive\/70  { color: #57534e !important; }
 .anim-dashboard .text-gray-400,
 .anim-dashboard .text-slate-400,
-.anim-dashboard .text-stone-400 { color: #78716c !important; }
-.anim-dashboard thead th { color: #44403c !important; }
+.anim-dashboard .text-stone-400  { color: #78716c !important; }
+.anim-dashboard thead th  { color: #44403c !important; }
 
 /* -- DARK: kartu putih transparan lembut (glass) -- */
 body.dark-mode .anim-dashboard .bg-white,
 body.dark-mode .anim-dashboard .bg-white\/95,
 body.dark-mode .anim-dashboard .bg-white\/90,
 body.dark-mode .anim-dashboard .bg-white\/80,
-body.dark-mode .anim-dashboard .bg-white\/70 {
+body.dark-mode .anim-dashboard .bg-white\/70  {
     background: rgba(255, 255, 255, .10) !important;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
@@ -1114,50 +1103,40 @@ body.dark-mode .anim-dashboard .text-olive\/30,
 body.dark-mode .anim-dashboard .text-olive\/40,
 body.dark-mode .anim-dashboard .text-olive\/50,
 body.dark-mode .anim-dashboard .text-olive\/60,
-body.dark-mode .anim-dashboard .text-olive\/70 { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .text-olive\/70  { color: #F5DEB3 !important; }
 body.dark-mode .anim-dashboard .text-gray-400,
 body.dark-mode .anim-dashboard .text-slate-400,
-body.dark-mode .anim-dashboard .text-stone-400 { color: #DEB887 !important; }
-body.dark-mode .anim-dashboard thead th { color: #F5DEB3 !important; }
-body.dark-mode .anim-dashboard table td { color: rgba(245, 222, 179, .85) !important; }
+body.dark-mode .anim-dashboard .text-stone-400  { color: #DEB887 !important; }
+body.dark-mode .anim-dashboard table td  { color: rgba(245, 222, 179, .85) !important; }
 
 /* ============================================================
    ORNAMEN LENTERA — layer belakang + redup (jangan menabrak)
    ============================================================ */
-.zy-lantern, .zy-lantern-right, .zy-lantern-left {
+.zy-lantern, .zy-lantern-right, .zy-lantern-left  {
     z-index: -10 !important;
     opacity: .20 !important;
 }
 body.dark-mode .zy-lantern,
 body.dark-mode .zy-lantern-right,
-body.dark-mode .zy-lantern-left { opacity: .14 !important; }
+body.dark-mode .zy-lantern-left  { opacity: .14 !important; }
 
 
 /* ============================================================
    SUPER ADMIN — kartu & blok SOLID (tidak tembus motif)
    ============================================================ */
 /* -- DARK: solid hijau zaitun gelap hangat -- */
-body.dark-mode .super-page .rounded-\[20px\] {
+body.dark-mode .super-page .rounded-\[20px\]  {
     background: #242B16 !important;
     border-color: rgba(194, 178, 128, .25) !important;
     box-shadow: none !important;
 }
-body.dark-mode .super-page .sys-row,
-body.dark-mode .super-page .user-row { background: #2F381D !important; }
-body.dark-mode .super-page .text-olive\/30,
-body.dark-mode .super-page .text-olive\/40,
-body.dark-mode .super-page .text-olive\/50,
-body.dark-mode .super-page .text-olive\/60,
-body.dark-mode .super-page .text-olive\/70 { color: #F5DEB3 !important; }
-body.dark-mode .super-page thead th { color: #F5DEB3 !important; }
-body.dark-mode .super-page td { color: rgba(245, 222, 179, .85) !important; }
-body.dark-mode .super-page .text-cream\/60 { color: #DEB887 !important; }
+body.dark-mode .super-page .text-cream\/60  { color: #DEB887 !important; }
 
 
 /* ============================================================
    DARK: toggle notifikasi — track solid kontras (jangan nabrak bg)
    ============================================================ */
-body.dark-mode .settings-page .peer:not(:checked) ~ span.absolute.inset-0.rounded-full {
+body.dark-mode .settings-page .peer:not(:checked) ~ span.absolute.inset-0.rounded-full  {
     background: #171D0F !important;
     border: 1px solid rgba(245, 222, 179, .35) !important;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25);
@@ -1168,12 +1147,12 @@ body.dark-mode .settings-page .peer:not(:checked) ~ span.absolute.inset-0.rounde
    SUPER ADMIN DARK: kartu STATISTIK (.stat-card) -> SOLID
    (menimpa rule glass line ~805 agar tidak tembus motif)
    ============================================================ */
-body.dark-mode .super-page .stat-card {
+body.dark-mode .super-page .stat-card  {
     background: #242B16 !important;
     border: 1px solid rgba(194, 178, 128, .25) !important;
     box-shadow: 0 10px 28px rgba(0, 0, 0, .35) !important;
 }
-body.dark-mode .super-page .stat-card .sc-icon {
+body.dark-mode .super-page .stat-card .sc-icon  {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06);
 }
 
@@ -1181,10 +1160,10 @@ body.dark-mode .super-page .stat-card .sc-icon {
 /* ============================================================
    TOMBOL MATA (show/hide password) — Ganti Kata Sandi
    ============================================================ */
-.pw-toggle { color: #64748b; transition: color .15s ease; }
-.pw-toggle:hover { color: #1e293b; }
-body.dark-mode .pw-toggle { color: rgba(167, 213, 186, .70); }
-body.dark-mode .pw-toggle:hover { color: #ffffff; }
+.pw-toggle  { color: #64748b; transition: color .15s ease; }
+.pw-toggle:hover  { color: #1e293b; }
+body.dark-mode .pw-toggle  { color: rgba(167, 213, 186, .70); }
+body.dark-mode .pw-toggle:hover  { color: #ffffff; }
 
 
 /* ============================================================
@@ -1192,82 +1171,76 @@ body.dark-mode .pw-toggle:hover { color: #ffffff; }
    hanya halaman Super Admin (.super-page); User/Publik tidak berubah
    ============================================================ */
 /* ---- LIGHT ---- */
-.super-page .rounded-\[20px\] {
+.super-page .rounded-\[20px\]  {
     background: #ffffff !important;
     border-color: #e7e5e4 !important;
     box-shadow: 0 1px 3px rgba(28, 25, 23, .07) !important;
 }
-.super-page .stat-card {
+.super-page .stat-card  {
     background: #ffffff !important;
     border: 1px solid #e7e5e4 !important;
     box-shadow: 0 1px 3px rgba(28, 25, 23, .07) !important;
 }
 .super-page .sys-row,
-.super-page .user-row {
+.super-page .user-row  {
     background: #f5f5f4 !important;
     border: 1px solid rgba(231, 229, 228, .80) !important;
 }
 .super-page input,
 .super-page select,
-.super-page textarea {
+.super-page textarea  {
     background: #f5f5f4 !important;
     border-color: rgba(231, 229, 228, .85) !important;
 }
-.super-page tbody tr { background: rgba(245, 245, 244, .55) !important; }
-.super-page thead th { color: #1e293b !important; }
-.super-page td { color: #475569 !important; }
+.super-page tbody tr  { background: rgba(245, 245, 244, .55) !important; }
+.super-page thead th  { color: #1e293b !important; }
+.super-page td  { color: #475569 !important; }
 .super-page .text-olive\/30,
 .super-page .text-olive\/40,
 .super-page .text-olive\/50,
 .super-page .text-olive\/60,
-.super-page .text-olive\/70 { color: #475569 !important; }
+.super-page .text-olive\/70  { color: #475569 !important; }
 .super-page .text-gray-400,
 .super-page .text-slate-400,
-.super-page .text-stone-400 { color: #64748b !important; }
+.super-page .text-stone-400  { color: #64748b !important; }
 .super-page .sc-num,
-.super-page .sc-sub { color: #1e293b !important; }
-.super-page .sc-foot { color: #475569 !important; }
+.super-page .sc-sub  { color: #1e293b !important; }
+.super-page .sc-foot  { color: #475569 !important; }
 
 /* ---- DARK ---- */
-body.dark-mode .super-page .rounded-\[20px\] {
+body.dark-mode .super-page .rounded-\[20px\]  {
     background: #242B16 !important;
     border: 1px solid rgba(194, 178, 128, .30) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .40) !important;
 }
-body.dark-mode .super-page .stat-card {
+body.dark-mode .super-page .stat-card  {
     background: #242B16 !important;
     border: 1px solid rgba(194, 178, 128, .30) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .40) !important;
-}
-body.dark-mode .super-page .sys-row,
-body.dark-mode .super-page .user-row {
-    background: #313B1E !important;
-    border: 1px solid rgba(194, 178, 128, .25) !important;
-}
+}body.dark-mode .super-page .sys-row,
+body.dark-mode .super-page .user-row {background: #2F381D !important; background: #313B1E !important;
+    border: 1px solid rgba(194, 178, 128, .25) !important;}
 body.dark-mode .super-page input,
 body.dark-mode .super-page select,
-body.dark-mode .super-page textarea {
+body.dark-mode .super-page textarea  {
     background: #313B1E !important;
     border: 1px solid rgba(194, 178, 128, .25) !important;
     color: #F5DEB3 !important;
 }
-body.dark-mode .super-page tbody tr { background: #313B1E !important; }
-body.dark-mode .super-page thead th { color: #F5DEB3 !important; }
-body.dark-mode .super-page td { color: rgba(245, 222, 179, .90) !important; }
-body.dark-mode .super-page .text-olive\/30,
+body.dark-mode .super-page tbody tr  { background: #313B1E !important; }body.dark-mode .super-page thead th {color: #F5DEB3 !important; color: #F5DEB3 !important;}body.dark-mode .super-page td {color: rgba(245, 222, 179, .85) !important; color: rgba(245, 222, 179, .90) !important;}body.dark-mode .super-page .text-olive\/30,
 body.dark-mode .super-page .text-olive\/40,
 body.dark-mode .super-page .text-olive\/50,
 body.dark-mode .super-page .text-olive\/60,
-body.dark-mode .super-page .text-olive\/70 { color: #F5DEB3 !important; }
+body.dark-mode .super-page .text-olive\/70 {color: #F5DEB3 !important; color: #F5DEB3 !important;}
 body.dark-mode .super-page .text-gray-400,
 body.dark-mode .super-page .text-slate-400,
-body.dark-mode .super-page .text-stone-400 { color: #DEB887 !important; }
-body.dark-mode .super-page .sc-num { color: #ffffff !important; }
-body.dark-mode .super-page .sc-sub { color: #F5DEB3 !important; }
-body.dark-mode .super-page .sc-foot { color: #DEB887 !important; }
+body.dark-mode .super-page .text-stone-400  { color: #DEB887 !important; }
+body.dark-mode .super-page .sc-num  { color: #ffffff !important; }
+body.dark-mode .super-page .sc-sub  { color: #F5DEB3 !important; }
+body.dark-mode .super-page .sc-foot  { color: #DEB887 !important; }
 
-.pw-toggle { display: flex !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; }
-.pw-toggle i { display: block; line-height: 1; }
+.pw-toggle  { display: flex !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; }
+.pw-toggle i  { display: block; line-height: 1; }
 
 
 /* ============================================================
@@ -1280,7 +1253,7 @@ body.dark-mode .anim-dashboard .rounded-\[20px\],
 body.dark-mode .anim-dashboard .stat-card,
 body.dark-mode .anim-dashboard .settings-card,
 body.dark-mode .anim-dashboard .bg-white,
-body.dark-mode .anim-dashboard [class*="rounded-[20px]"] {
+body.dark-mode .anim-dashboard [class*="rounded-[20px]"]  {
     background: rgba(255, 255, 255, .22) !important;
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
@@ -1290,23 +1263,23 @@ body.dark-mode .anim-dashboard [class*="rounded-[20px]"] {
 /* ---- Sub-blok / kotak data / input / baris tabel ---- */
 body.dark-mode .anim-dashboard .sys-row,
 body.dark-mode .anim-dashboard .user-row,
-body.dark-mode .anim-dashboard tbody tr {
+body.dark-mode .anim-dashboard tbody tr  {
     background: #183528 !important;
     border: 1px solid rgba(255, 255, 255, .15) !important;
 }
 body.dark-mode .anim-dashboard input,
 body.dark-mode .anim-dashboard select,
-body.dark-mode .anim-dashboard textarea {
+body.dark-mode .anim-dashboard textarea  {
     background: #183528 !important;
     border: 1px solid rgba(255, 255, 255, .15) !important;
     color: #F5DEB3 !important;
 }
 body.dark-mode .anim-dashboard input::placeholder,
-body.dark-mode .anim-dashboard textarea::placeholder { color: rgba(245, 222, 179, .55) !important; }
+body.dark-mode .anim-dashboard textarea::placeholder  { color: rgba(245, 222, 179, .55) !important; }
 /* ---- Teks: kontras terang ---- */
 body.dark-mode .anim-dashboard .text-oliveDark,
-body.dark-mode .anim-dashboard .text-black { color: #ffffff !important; }
-body.dark-mode .anim-dashboard .text-olive { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .text-black  { color: #ffffff !important; }
+body.dark-mode .anim-dashboard .text-olive  { color: #F5DEB3 !important; }
 body.dark-mode .anim-dashboard .text-olive\/30,
 body.dark-mode .anim-dashboard .text-olive\/40,
 body.dark-mode .anim-dashboard .text-olive\/50,
@@ -1314,12 +1287,11 @@ body.dark-mode .anim-dashboard .text-olive\/60,
 body.dark-mode .anim-dashboard .text-olive\/70,
 body.dark-mode .anim-dashboard .text-olive\/80,
 body.dark-mode .anim-dashboard .text-slate-600,
-body.dark-mode .anim-dashboard .text-gray-600 { color: #DEB887 !important; }
-body.dark-mode .anim-dashboard thead th { color: #F5DEB3 !important; }
-body.dark-mode .anim-dashboard td { color: rgba(255, 255, 255, .85) !important; }
-body.dark-mode .anim-dashboard .stat-card .sc-num { color: #ffffff !important; }
-body.dark-mode .anim-dashboard .stat-card .sc-sub { color: #F5DEB3 !important; }
-body.dark-mode .anim-dashboard .stat-card .sc-foot { color: #DEB887 !important; }
+body.dark-mode .anim-dashboard .text-gray-600  { color: #DEB887 !important; }body.dark-mode .anim-dashboard thead th {color: #F5DEB3 !important; color: #F5DEB3 !important;}
+body.dark-mode .anim-dashboard td  { color: rgba(255, 255, 255, .85) !important; }
+body.dark-mode .anim-dashboard .stat-card .sc-num  { color: #ffffff !important; }
+body.dark-mode .anim-dashboard .stat-card .sc-sub  { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .stat-card .sc-foot  { color: #DEB887 !important; }
 
 
 /* ============================================================
@@ -1327,15 +1299,15 @@ body.dark-mode .anim-dashboard .stat-card .sc-foot { color: #DEB887 !important; 
    (bg-cream2/bg-cream3 = kotak data & area teks di dalam kartu)
    ============================================================ */
 body.dark-mode .anim-dashboard .bg-cream2,
-body.dark-mode .anim-dashboard .bg-cream3 {
+body.dark-mode .anim-dashboard .bg-cream3  {
     background: #183528 !important;
     border: 1px solid rgba(255, 255, 255, .15) !important;
 }
 body.dark-mode .anim-dashboard .bg-cream2\/50,
-body.dark-mode .anim-dashboard .hover\:bg-cream2\/50:hover { background: rgba(20, 38, 28, .6) !important; }
+body.dark-mode .anim-dashboard .hover\:bg-cream2\/50:hover  { background: rgba(20, 38, 28, .6) !important; }
 body.dark-mode .anim-dashboard tr.border-cream2,
-body.dark-mode .anim-dashboard tr { border-color: rgba(255, 255, 255, .10) !important; }
-body.dark-mode .anim-dashboard .text-oliveDark { color: #ffffff !important; }
+body.dark-mode .anim-dashboard tr  { border-color: rgba(255, 255, 255, .10) !important; }
+body.dark-mode .anim-dashboard .text-oliveDark  { color: #ffffff !important; }
 
 
 /* ============================================================
@@ -1347,7 +1319,7 @@ body.dark-mode .anim-dashboard .bg-white\/50,
 body.dark-mode .anim-dashboard .bg-white\/60,
 body.dark-mode .anim-dashboard .bg-white\/70,
 body.dark-mode .anim-dashboard .bg-white\/80,
-body.dark-mode .anim-dashboard .bg-white\/90 {
+body.dark-mode .anim-dashboard .bg-white\/90  {
     background: rgba(255, 255, 255, .20) !important;
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
@@ -1359,7 +1331,7 @@ body.dark-mode .anim-dashboard .bg-cream,
 body.dark-mode .anim-dashboard .bg-stone-100,
 body.dark-mode .anim-dashboard .bg-gray-100,
 body.dark-mode .anim-dashboard .bg-slate-100,
-body.dark-mode .anim-dashboard .bg-white\/10 {
+body.dark-mode .anim-dashboard .bg-white\/10  {
     background: #183528 !important;
     border: 1px solid rgba(255, 255, 255, .15) !important;
     color: #F5DEB3 !important;
@@ -1372,7 +1344,7 @@ body.dark-mode .anim-dashboard .text-gray-500,
 body.dark-mode .anim-dashboard .text-gray-600,
 body.dark-mode .anim-dashboard .text-stone-400,
 body.dark-mode .anim-dashboard .text-stone-500,
-body.dark-mode .anim-dashboard .text-stone-600 { color: #DEB887 !important; }
+body.dark-mode .anim-dashboard .text-stone-600  { color: #DEB887 !important; }
 body.dark-mode .anim-dashboard .text-slate-700,
 body.dark-mode .anim-dashboard .text-slate-800,
 body.dark-mode .anim-dashboard .text-slate-900,
@@ -1380,7 +1352,7 @@ body.dark-mode .anim-dashboard .text-gray-700,
 body.dark-mode .anim-dashboard .text-gray-800,
 body.dark-mode .anim-dashboard .text-gray-900,
 body.dark-mode .anim-dashboard .text-stone-700,
-body.dark-mode .anim-dashboard .text-stone-800 { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .text-stone-800  { color: #F5DEB3 !important; }
 
 
 /* ============================================================
@@ -1398,7 +1370,7 @@ body.dark-mode .anim-dashboard .bg-white\/55,
 body.dark-mode .anim-dashboard .bg-white\/65,
 body.dark-mode .anim-dashboard .bg-white\/75,
 body.dark-mode .anim-dashboard .bg-white\/85,
-body.dark-mode .anim-dashboard .bg-white\/95 {
+body.dark-mode .anim-dashboard .bg-white\/95  {
     background: rgba(255, 255, 255, .20) !important;
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
@@ -1415,14 +1387,14 @@ body.dark-mode .anim-dashboard .bg-cream2\/60,
 body.dark-mode .anim-dashboard .bg-cream2\/70,
 body.dark-mode .anim-dashboard .bg-black\/15,
 body.dark-mode .anim-dashboard .bg-black\/25,
-body.dark-mode .anim-dashboard .bg-black\/30 {
+body.dark-mode .anim-dashboard .bg-black\/30  {
     background: #183528 !important;
     border: 1px solid rgba(255, 255, 255, .15) !important;
 }
 /* L4: teks gelap zinc/sisa -> terang */
 body.dark-mode .anim-dashboard .text-zinc-600,
 body.dark-mode .anim-dashboard .text-zinc-700,
-body.dark-mode .anim-dashboard .text-zinc-800 { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .text-zinc-800  { color: #F5DEB3 !important; }
 
 
 /* ============================================================
@@ -1452,7 +1424,7 @@ body.dark-mode .anim-dashboard .bg-white\/80,
 body.dark-mode .anim-dashboard .bg-white\/85,
 body.dark-mode .anim-dashboard .bg-white\/90,
 body.dark-mode .anim-dashboard .bg-white\/95,
-body.dark-mode .anim-dashboard [class*="rounded-[20px]"] {
+body.dark-mode .anim-dashboard [class*="rounded-[20px]"]  {
     background: linear-gradient(160deg, #1e432e 0%, #163321 100%) !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
@@ -1471,13 +1443,13 @@ body.dark-mode .anim-dashboard .user-row,
 body.dark-mode .anim-dashboard tbody tr,
 body.dark-mode .anim-dashboard input,
 body.dark-mode .anim-dashboard select,
-body.dark-mode .anim-dashboard textarea {
+body.dark-mode .anim-dashboard textarea  {
     background: #183528 !important;
     border: 1px solid rgba(255, 255, 255, .12) !important;
 }
 /* aksen emas untuk label penting & link (ala kalkulator) */
 body.dark-mode .anim-dashboard .text-gold,
-body.dark-mode .anim-dashboard .text-gold\/80 { color: #e8c547 !important; }
+body.dark-mode .anim-dashboard .text-gold\/80  { color: #e8c547 !important; }
 
 
 /* ============================================================
@@ -1487,7 +1459,7 @@ body.dark-mode .anim-dashboard .text-gold\/80 { color: #e8c547 !important; }
    ============================================================ */
 /* --- Item menu AKTIF: LIGHT = putih + hijau tua pekat --- */
 #sidebar nav a.bg-white,
-#sidebar nav .nav-active {
+#sidebar nav .nav-active  {
     background: #ffffff !important;
     color: #14261C !important;
     font-weight: 600 !important;
@@ -1495,12 +1467,12 @@ body.dark-mode .anim-dashboard .text-gold\/80 { color: #e8c547 !important; }
     border-color: rgba(20, 38, 28, 0.12) !important;
 }
 #sidebar nav a.bg-white i,
-#sidebar nav .nav-active i {
+#sidebar nav .nav-active i  {
     color: #14261C !important;
 }
 /* --- Item menu AKTIF: DARK = hijau + teks/ikon putih --- */
 body.dark-mode #sidebar nav a.bg-white,
-body.dark-mode #sidebar .nav-active {
+body.dark-mode #sidebar .nav-active  {
     background: #23533A !important;
     color: #ffffff !important;
     font-weight: 600 !important;
@@ -1508,23 +1480,22 @@ body.dark-mode #sidebar .nav-active {
     border-color: rgba(255, 255, 255, 0.15) !important;
 }
 body.dark-mode #sidebar nav a.bg-white i,
-body.dark-mode #sidebar .nav-active i {
+body.dark-mode #sidebar .nav-active i  {
     color: #ffffff !important;
 }
 /* --- Hover item non-aktif: putih transparan lembut --- */
-#sidebar nav a:not(.bg-white):hover {
+#sidebar nav a:not(.bg-white):hover  {
     background: rgba(255, 255, 255, 0.10) !important;
     color: #ffffff !important;
 }
-body.dark-mode #sidebar nav a:not(.bg-white):hover {
+body.dark-mode #sidebar nav a:not(.bg-white):hover  {
     background: rgba(255, 255, 255, 0.10) !important;
     color: #ffffff !important;
 }
-#sidebar nav a:not(.bg-white):hover i { color: #ffffff !important; }
-body.dark-mode #sidebar nav a:not(.bg-white):hover i { color: #ffffff !important; }
+#sidebar nav a:not(.bg-white):hover i  { color: #ffffff !important; }
+body.dark-mode #sidebar nav a:not(.bg-white):hover i  { color: #ffffff !important; }
 /* --- Ornamen garis/siluet: putih transparan lembut --- */
-.sidebar-ornament-img { opacity: 0.15 !important; }
-body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.20 !important; }
+.sidebar-ornament-img  { opacity: 0.15 !important; }body.dark-mode #sidebar .sidebar-ornament-img {opacity: 0.5; opacity: 0.20 !important;}
 
 
 /* ============================================================
@@ -1539,19 +1510,19 @@ body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.20 !important; }
    Hanya untuk halaman user (penanda .user-stats), dark mode.
    Kontras diperkuat: tiap kartu punya hue yang jelas berbeda.
    ============================================================ */
-body.dark-mode .user-stats .stat-card.sc-olive {
+body.dark-mode .user-stats .stat-card.sc-olive  {
     background: linear-gradient(160deg, #1c4a30, #12331f) !important;
     border: 1px solid rgba(52, 211, 153, .40) !important;
 }
-body.dark-mode .user-stats .stat-card.sc-gold {
+body.dark-mode .user-stats .stat-card.sc-gold  {
     background: linear-gradient(160deg, #3d3218, #2a2210) !important;
     border: 1px solid rgba(232, 197, 71, .50) !important;
 }
-body.dark-mode .user-stats .stat-card.sc-emerald {
+body.dark-mode .user-stats .stat-card.sc-emerald  {
     background: linear-gradient(160deg, #0f4d40, #0a352b) !important;
     border: 1px solid rgba(45, 212, 191, .42) !important;
 }
-body.dark-mode .user-stats .stat-solid {
+body.dark-mode .user-stats .stat-solid  {
     background: linear-gradient(160deg, #1d6a3f, #144d2b) !important;
     border: 1px solid rgba(232, 197, 71, .45) !important;
 }
@@ -1561,14 +1532,14 @@ body.dark-mode .user-stats .stat-solid {
    FIELD DATA DIRI — kotak ikon SERAGAM hijau monokrom
    (halaman Profil User; mendukung light + dark)
    ============================================================ */
-.pf-box {
+.pf-box  {
     display: flex; align-items: flex-start; gap: .75rem;
     border-radius: 14px; padding: .8rem 1rem;
     background: #f4efe3; border: 1px solid #e3d9bd;
     border-left: 4px solid rgba(75,83,32,.30);
     box-shadow: 0 1px 3px rgba(60,45,20,.06);
 }
-.pf-icon {
+.pf-icon  {
     flex: none; width: 40px; height: 40px; border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     font-size: 15px;
@@ -1576,38 +1547,38 @@ body.dark-mode .user-stats .stat-solid {
     border: 1px solid rgba(16,185,129,.35);    /* border-emerald-200/70 */
     color: #4B5320;                             /* text-[#4B5320] hijau islami */
 }
-.pf-label { font-weight: 700; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; opacity: .75; }
-.pf-val { font-weight: 800; font-size: 13px; color: #133a24; margin-top: 2px; }
+.pf-label  { font-weight: 700; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; opacity: .75; }
+.pf-val  { font-weight: 800; font-size: 13px; color: #133a24; margin-top: 2px; }
 
 /* Dark mode: kotak ikon hijau transparan + ikon mint/emas zaitun */
-body.dark-mode .pf-box {
+body.dark-mode .pf-box  {
     background: #14261c; border-color: rgba(255,255,255,.12);
     border-left-color: rgba(52,211,153,.40);
 }
-body.dark-mode .pf-icon {
+body.dark-mode .pf-icon  {
     background: rgba(75,83,32,.40);             /* dark:bg-[#4B5320]/40 */
     border: 1px solid rgba(52,211,153,.25);    /* dark:border-emerald-400/25 */
     color: #C2B280;                             /* dark:text-[#C2B280] emas zaitun */
 }
-body.dark-mode .pf-val { color: #f8fafc; }
-body.dark-mode .pf-label { color: #f5deb3; }
+body.dark-mode .pf-val  { color: #f8fafc; }
+body.dark-mode .pf-label  { color: #f5deb3; }
 
 /* ============================================================
    LOGO E-ZAKAT — badge monokrom emas + gradasi lembut
    ============================================================ */
-.logo-badge {
+.logo-badge  {
     background: linear-gradient(150deg, #f8f2e0, #efe5c8);
     border: 1px solid rgba(200,157,68,.45);
     box-shadow: 0 4px 14px rgba(60,45,20,.20);
 }
-body.dark-mode .logo-badge {
+body.dark-mode .logo-badge  {
     background: linear-gradient(150deg, #1d3a29, #14281c);
     border-color: rgba(232,197,71,.35);
 }
 
 
 body.dark-mode .settings-page .peer:checked + div[class*="peer-checked:bg-olive/10"] [data-rgv-name],
-body.dark-mode .settings-page label:has(> input.peer:checked) [data-rgv-name] {
+body.dark-mode .settings-page label:has(> input.peer:checked) [data-rgv-name]  {
     color: #D4AF37 !important;
     font-weight: 700 !important;
 }

@@ -58,10 +58,10 @@
         <div class="sc-sub">{{ __('Catatan Zakat') }}</div>
     </div>
     <div class="stat-solid">
-        <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10"></div>
-        <div class="absolute right-6 bottom-2 text-white/10 text-3xl"><i class="fa-solid fa-wheat-awn"></i></div>
-        <div class="flex items-center justify-between">
-            <div class="sc-icon bg-white/15"><i class="fa-solid fa-wheat-awn"></i></div>
+        <div class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-white/10 pointer-events-none"></div>
+        <div class="absolute right-6 bottom-2 text-white/10 text-3xl pointer-events-none"><i class="fa-solid fa-wheat-awn"></i></div>
+        <div class="relative z-10 flex items-center justify-between">
+            <div class="sc-icon"><i class="fa-solid fa-wheat-awn"></i></div>
             <span class="sc-label">{{ __('HARGA') }}</span>
         </div>
         <div class="sc-num text-gold">Rp {{ number_format($beras,0,',','.') }}</div>
