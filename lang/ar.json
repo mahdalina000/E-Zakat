@@ -1260,5 +1260,19 @@
   "Hapus masukan ini?": "حذف هذه الملاحظة؟",
   "Hapus banner ini?": "حذف هذا الشعار؟",
   "Hapus lokasi ini?": "حذف هذا الموقع؟",
-  "Ya, Keluar": "نعم، تسجيل الخروج"
+  "Ya, Keluar": "نعم، تسجيل الخروج",
+  "Pengajuan Hitung Waris Masuk": "طلب جديد لحساب المواريث",
+  "Terima notifikasi saat ada pengajuan hitung waris baru dari warga yang perlu diverifikasi": "تلقي إشعار عند وجود طلب جديد لحساب المواريث من المواطنين يتطلب التحقق",
+  "Masukan & Aspirasi Warga": "ملاحظات وطموحات المواطنين",
+  "Terima notifikasi saat warga mengirimkan kritik, saran, atau masukan baru": "تلقي إشعار عند إرسال المواطنين نقدًا أو اقتراحات أو ملاحظات جديدة",
+  "Pembaruan Harga Beras & Sistem": "تحديث أسعار الأرز والنظام",
+  "Terima notifikasi pengingat pembaruan harga acuan zakat fitrah dan info sistem": "تلقي إشعار لتذكير بتحديث السعر المرجعي لزكاة الفطر ومعلومات النظام",
+  "Pengaturan Super Admin": "إعدادات المدير العام",
+  "Atur preferensi akun serta notifikasi Anda": "إدارة تفضيلات حسابك وإشعاراتك",
+  "Pengajuan User / Lembaga Baru": "تسجيل مستخدم / مؤسسة جديد",
+  "Terima notifikasi saat ada pengajuan user atau lembaga baru yang perlu diverifikasi": "تلقي إشعار عند وجود تسجيل جديد لمستخدم أو مؤسسة يتطلب التحقق",
+  "Perubahan Data Lokasi": "تغييرات بيانات الموقع",
+  "Terima notifikasi saat ada perubahan data lokasi atau titik peta lembaga": "تلقي إشعار عند حدوث تغييرات في بيانات الموقع أو نقاط خريطة المؤسسات",
+  "Aktivitas Login Keamanan": "نشاط تسجيل الدخول الأمني",
+  "Terima notifikasi saat terdeteksi aktivitas login yang mencurigakan": "تلقي إشعار عند اكتشاف نشاط تسجيل دخول مشبوه"
 }

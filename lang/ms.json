@@ -1260,5 +1260,19 @@
   "Hapus masukan ini?": "Hapus maklum balas ini?",
   "Hapus banner ini?": "Hapus banner ini?",
   "Hapus lokasi ini?": "Hapus lokasi ini?",
-  "Ya, Keluar": "Ya, Log Keluar"
+  "Ya, Keluar": "Ya, Log Keluar",
+  "Pengajuan Hitung Waris Masuk": "Permohonan Kiraan Pusaka Masuk",
+  "Terima notifikasi saat ada pengajuan hitung waris baru dari warga yang perlu diverifikasi": "Terima pemberitahuan apabila terdapat permohonan kiraan pusaka baharu daripada penduduk yang perlu disahkan",
+  "Masukan & Aspirasi Warga": "Maklum Balas & Aspirasi Penduduk",
+  "Terima notifikasi saat warga mengirimkan kritik, saran, atau masukan baru": "Terima pemberitahuan apabila penduduk menghantar kritikan, cadangan atau maklum balas baharu",
+  "Pembaruan Harga Beras & Sistem": "Kemas Kini Harga Beras & Sistem",
+  "Terima notifikasi pengingat pembaruan harga acuan zakat fitrah dan info sistem": "Terima pemberitahuan peringatan untuk mengemas kini harga rujukan zakat fitrah dan maklumat sistem",
+  "Pengaturan Super Admin": "Tetapan Pentadbir Super",
+  "Atur preferensi akun serta notifikasi Anda": "Urus pilihan akaun dan pemberitahuan anda",
+  "Pengajuan User / Lembaga Baru": "Pendaftaran Pengguna / Institusi Baharu",
+  "Terima notifikasi saat ada pengajuan user atau lembaga baru yang perlu diverifikasi": "Terima pemberitahuan apabila terdapat pendaftaran pengguna atau institusi baharu yang perlu disahkan",
+  "Perubahan Data Lokasi": "Perubahan Data Lokasi",
+  "Terima notifikasi saat ada perubahan data lokasi atau titik peta lembaga": "Terima pemberitahuan apabila terdapat perubahan data lokasi atau titik peta institusi",
+  "Aktivitas Login Keamanan": "Aktiviti Log Masuk Keselamatan",
+  "Terima notifikasi saat terdeteksi aktivitas login yang mencurigakan": "Terima pemberitahuan apabila dikesan aktiviti log masuk yang mencurigakan"
 }

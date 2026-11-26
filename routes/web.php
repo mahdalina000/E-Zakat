@@ -201,6 +201,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/users', [SuperAdminController::class, 'store'])->name('users.store');
         Route::get('/locations', [SuperAdminController::class, 'locations'])->name('locations');
         Route::get('/activity', [SuperAdminController::class, 'activity'])->name('activity');
+    Route::get('/settings', [SuperAdminController::class, 'settings'])->name('settings');
         Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
         Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
         Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');

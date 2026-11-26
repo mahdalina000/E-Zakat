@@ -1513,14 +1513,14 @@ body.dark-mode #sidebar .nav-active i {
 }
 /* --- Hover item non-aktif: putih transparan lembut --- */
 #sidebar nav a:not(.bg-white):hover {
-    background: rgba(20, 38, 28, 0.06) !important;
-    color: #14261C !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
 }
 body.dark-mode #sidebar nav a:not(.bg-white):hover {
     background: rgba(255, 255, 255, 0.10) !important;
     color: #ffffff !important;
 }
-#sidebar nav a:not(.bg-white):hover i { color: #14261C !important; }
+#sidebar nav a:not(.bg-white):hover i { color: #ffffff !important; }
 body.dark-mode #sidebar nav a:not(.bg-white):hover i { color: #ffffff !important; }
 /* --- Ornamen garis/siluet: putih transparan lembut --- */
 .sidebar-ornament-img { opacity: 0.15 !important; }

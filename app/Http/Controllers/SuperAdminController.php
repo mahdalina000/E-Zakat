@@ -103,4 +103,9 @@ class SuperAdminController extends Controller
 
         return view('dashboard.super-activity', compact('activities', 'total'));
     }
+
+    public function settings()
+    {
+        return view('dashboard.super-settings');
+    }
 }

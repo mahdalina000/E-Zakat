@@ -1260,5 +1260,19 @@
   "Hapus masukan ini?": "Delete this feedback?",
   "Hapus banner ini?": "Delete this banner?",
   "Hapus lokasi ini?": "Delete this location?",
-  "Ya, Keluar": "Yes, Logout"
+  "Ya, Keluar": "Yes, Logout",
+  "Pengajuan Hitung Waris Masuk": "Incoming Inheritance Calculation Requests",
+  "Terima notifikasi saat ada pengajuan hitung waris baru dari warga yang perlu diverifikasi": "Get notified when a new inheritance calculation request from residents needs verification.",
+  "Masukan & Aspirasi Warga": "Citizen Feedback & Aspirations",
+  "Terima notifikasi saat warga mengirimkan kritik, saran, atau masukan baru": "Get notified when residents send new criticism, suggestions, or feedback.",
+  "Pembaruan Harga Beras & Sistem": "Rice Price & System Updates",
+  "Terima notifikasi pengingat pembaruan harga acuan zakat fitrah dan info sistem": "Get reminded to update the zakat fitrah reference price and system information.",
+  "Pengaturan Super Admin": "Super Admin Settings",
+  "Atur preferensi akun serta notifikasi Anda": "Manage your account preferences and notifications.",
+  "Pengajuan User / Lembaga Baru": "New User / Institution Registration",
+  "Terima notifikasi saat ada pengajuan user atau lembaga baru yang perlu diverifikasi": "Get notified when a new user or institution registration needs to be verified.",
+  "Perubahan Data Lokasi": "Location Data Changes",
+  "Terima notifikasi saat ada perubahan data lokasi atau titik peta lembaga": "Get notified when there are changes to location data or institution map points.",
+  "Aktivitas Login Keamanan": "Security Login Activity",
+  "Terima notifikasi saat terdeteksi aktivitas login yang mencurigakan": "Get notified when suspicious login activity is detected."
 }
