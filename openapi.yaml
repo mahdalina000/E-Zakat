@@ -457,6 +457,70 @@ paths:
           $ref: '#/components/responses/ForbiddenError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+  /token:
+    post:
+      tags: [Auth]
+      summary: Terbitkan token API (login untuk aplikasi luar)
+      operationId: apiToken
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiTokenRequest'
+            examples:
+              contoh:
+                value:
+                  email: admin@baznas.go.id
+                  password: password123
+                  device_name: Android
+      responses:
+        '200':
+          description: Token berhasil diterbitkan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTokenResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /user:
+    get:
+      tags: [Auth]
+      summary: Ambil data user terautentikasi via token
+      operationId: apiUser
+      responses:
+        '200':
+          description: Data user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /logout:
+    post:
+      tags: [Auth]
+      summary: Cabut token yang sedang aktif
+      operationId: apiLogout
+      responses:
+        '200':
+          description: Token berhasil dicabut
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Berhasil keluar.
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
 components:
   securitySchemes:
     bearerAuth:
@@ -695,6 +759,32 @@ components:
         remember:
           type: boolean
           default: false
+    ApiTokenRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+          example: admin@baznas.go.id
+        password:
+          type: string
+          example: password123
+        device_name:
+          type: string
+          example: Android
+    ApiTokenResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+              example: 1|abc123token
+              description: Personal Access Token. Kirim pada header Authorization dengan skema Bearer.
+            user:
+              $ref: '#/components/schemas/User'
     AuthResponse:
       type: object
       properties:
