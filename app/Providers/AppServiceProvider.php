@@ -19,6 +19,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Illuminate\Support\Facades\RateLimiter::for(
+            'login',
+            fn (\Illuminate\Http\Request $r) => \Illuminate\Cache\RateLimiting\Limit::perMinute(5)->by($r->ip())
+        );
+
+        \Illuminate\Support\Facades\RateLimiter::for(
+            'register',
+            fn (\Illuminate\Http\Request $r) => \Illuminate\Cache\RateLimiting\Limit::perMinute(3)->by($r->ip())
+        );
     }
 }

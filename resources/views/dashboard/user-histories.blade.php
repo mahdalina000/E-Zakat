@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
-@section('title','Riwayat Perhitungan — E-Zakat')
-@section('page-title','Riwayat Perhitungan Zakat')
-@section('page-sub','Semua perhitungan yang pernah Anda lakukan')
+@section('title',__('Riwayat Perhitungan — E-Zakat'))
+@section('page-title',__('Riwayat Perhitungan Zakat'))
+@section('page-sub',__('Semua perhitungan yang pernah Anda lakukan'))
 
 @section('head')
 <style>
@@ -75,14 +75,14 @@
             <div class="flex items-center justify-between sm:justify-end gap-3 shrink-0">
                 @if(($h->result_data['total'] ?? null) !== null)
                 <div class="text-left sm:text-right">
-                    <div class="text-[9px] text-olive/50 uppercase tracking-wider font-semibold">Total Nilai</div>
+                    <div class="text-[9px] text-olive/50 uppercase tracking-wider font-semibold">{{ __('Total Nilai') }}</div>
                     <div class="font-black text-oliveDark text-base leading-none whitespace-nowrap">Rp {{ number_format($h->result_data['total'], 0, ',', '.') }}</div>
                 </div>
                 @endif
-                <form action="{{ route('user.histories.destroy', $h->id) }}" method="POST" onsubmit="return confirm('Hapus riwayat perhitungan ini?')">
+                <form action="{{ route('user.histories.destroy', $h->id) }}" method="POST" onsubmit="event.preventDefault()">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" title="Hapus riwayat" class="w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-100 flex items-center justify-center transition">
+                    <button type="button" data-title="{{ __('Hapus') }}" data-message="{{ __('Hapus riwayat perhitungan ini?') }}" data-action="{{ route('user.histories.destroy', $h->id) }}" title="{{ __('Hapus riwayat') }}" class="w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-100 flex items-center justify-center transition" onclick="event.preventDefault(); confirmDelete({ title: this.dataset.title, message: this.dataset.message, action: this.dataset.action })">
                         <i class="fa-solid fa-trash-can text-xs"></i>
                     </button>
                 </form>
@@ -113,7 +113,7 @@
             @if($h->input_data)
             <details class="group rounded-xl border border-cream3 bg-cream2/50 open:bg-white transition">
                 <summary class="flex items-center justify-between px-3 py-2.5 text-xs font-bold text-olive cursor-pointer select-none">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-sliders text-[11px]"></i> Input Data</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-sliders text-[11px]"></i> {{ __('Input Data') }}</span>
                     <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"></i>
                 </summary>
                 <div class="px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
@@ -121,7 +121,7 @@
                     <div class="flex justify-between items-baseline border-b border-cream3/50 pb-1">
                         <span class="text-[11px] text-olive/60 capitalize">{{ str_replace('_', ' ', $key) }}</span>
                         <span class="text-xs font-bold text-oliveDark text-right ml-2">
-                            {{ is_bool($val) ? ($val ? 'Ya' : 'Tidak') : (is_numeric($val) ? number_format($val, 0, ',', '.') : $val) }}
+                            {{ is_bool($val) ? ($val ? __('Ya') : __('Tidak')) : (is_numeric($val) ? number_format($val, 0, ',', '.') : $val) }}
                         </span>
                     </div>
                     @endforeach
@@ -133,13 +133,13 @@
             @if($h->result_data)
             <details class="group rounded-xl border border-cream3 bg-cream2/50 open:bg-white transition">
                 <summary class="flex items-center justify-between px-3 py-2.5 text-xs font-bold text-olive cursor-pointer select-none">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-[11px]"></i> Hasil Perhitungan</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-calculator text-[11px]"></i> {{ __('Hasil Perhitungan') }}</span>
                     <i class="fa-solid fa-chevron-down text-[10px] transition group-open:rotate-180"></i>
                 </summary>
                 <div class="px-3 pb-3">
                     @if(isset($h->result_data['hasil']))
                     <div class="rounded-xl overflow-hidden border border-emerald-100">
-                        <div class="bg-olive text-white px-3 py-2 text-[11px] font-extrabold tracking-wide uppercase">Daftar Pembagian</div>
+                        <div class="bg-olive text-white px-3 py-2 text-[11px] font-extrabold tracking-wide uppercase">{{ __('Daftar Pembagian') }}</div>
                         <table class="w-full text-left text-xs">
                             <tbody>
                             @foreach($h->result_data['hasil'] as $item)
@@ -175,7 +175,7 @@
         <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-olive/10 text-olive flex items-center justify-center">
             <i class="fa-solid fa-chart-column"></i>
         </div>
-        <div class="text-olive/40 text-sm">Belum ada riwayat perhitungan. <a href="{{ route('user.calculators') }}" class="text-olive underline font-semibold">Mulai hitung sekarang</a>.</div>
+        <div class="text-olive/40 text-sm">{{ __('Belum ada riwayat perhitungan.') }} <a href="{{ route('user.calculators') }}" class="text-olive underline font-semibold">{{ __('Mulai hitung sekarang') }}</a>.</div>
     </div>
     @endforelse
 </div>

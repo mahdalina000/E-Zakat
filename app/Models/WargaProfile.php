@@ -38,6 +38,10 @@ class WargaProfile extends Model
         'category_approved_at' => 'datetime',
         'is_verified' => 'boolean',
         'verified_at' => 'datetime',
+        'nik' => 'encrypted',
+        'phone' => 'encrypted',
+        'address_line1' => 'encrypted',
+        'address_line2' => 'encrypted',
     ];
 
     public function user(): BelongsTo

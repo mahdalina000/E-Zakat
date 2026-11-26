@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-Zakat Banjarbaru — Selamat Datang</title>
+    <title>E-Zakat Banjarbaru — {{ __('Selamat Datang') }}</title>
 
     <!-- Polyfill awal untuk window.ezOnReady — antri callback sampai bundle JS siap -->
     <script>
@@ -255,30 +255,37 @@
     </div>
 
     <!-- FLOATING HEADER -->
-    <header class="bg-olive text-white rounded-full max-w-7xl mx-auto w-full px-6 h-[56px] flex items-center justify-between shadow-md shrink-0 border border-white/10 relative z-10">
+    <header class="bg-olive text-white rounded-full w-full px-4 sm:px-6 lg:px-8 h-[56px] flex items-center justify-between shadow-md shrink-0 border border-white/10 relative z-10">
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
             <div class="w-10 h-10 rounded-full bg-cream p-1 flex items-center justify-center shadow-sm transition-transform group-hover:scale-105 shrink-0 overflow-hidden">
                 <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain" fetchpriority="high" decoding="async">
             </div>
             <div class="leading-tight">
-                <div class="font-extrabold text-sm tracking-wide text-white">E-ZAKAT</div>
-                <div class="text-[9px] tracking-[0.18em] text-cream/80 -mt-0.5">BANJARBARU</div>
+                <div class="font-extrabold text-sm tracking-wide text-white">{{ __('E-ZAKAT') }}</div>
+                <div class="text-[9px] tracking-[0.18em] text-cream/80 -mt-0.5">{{ __('BANJARBARU') }}</div>
             </div>
         </a>
 
         <div class="flex items-center gap-2">
+            @auth
+            <a href="{{ route('dashboard') }}" class="bg-gold2 hover:bg-gold text-oliveDark text-xs font-extrabold px-5 py-2 rounded-full transition shadow-md flex items-center gap-1.5 active:scale-95">
+                <span>{{ __('Dashboard') }}</span>
+                <i class="fa-solid fa-gauge-high text-[10px]"></i>
+            </a>
+            @else
             <a href="{{ url('/beranda') }}" class="bg-gold2 hover:bg-gold text-oliveDark text-xs font-extrabold px-5 py-2 rounded-full transition shadow-md flex items-center gap-1.5 active:scale-95">
-                <span>Masuk Web</span>
+                <span>{{ __('Masuk Web') }}</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </a>
-            <button id="themeToggle" type="button" title="Mode Gelap/Terang" class="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition shadow-sm active:scale-95">
+            @endauth
+            <button id="themeToggle" type="button" title="{{ __('Mode Gelap/Terang') }}" class="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition shadow-sm active:scale-95">
                 <i id="themeIcon" class="fa-solid fa-moon text-xs"></i>
             </button>
         </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto w-full my-auto space-y-4 flex-1 flex flex-col justify-center anim-welcome relative z-10 px-2">
+    <main class="w-full my-auto space-y-4 flex-1 flex flex-col justify-center anim-welcome relative z-10 px-4 sm:px-6 lg:px-8">
 
         <!-- HERO SECTION 2 KOLOM -->
         <div class="grid lg:grid-cols-12 gap-8 items-center w-full my-auto">
@@ -286,24 +293,24 @@
             <!-- KOLOM KIRI: UCAPAN SELAMAT DATANG -->
             <div class="lg:col-span-7 space-y-4 eze-col-left">
                 <div class="inline-flex items-center gap-2 bg-panel-welcome border border-gold/40 px-3.5 py-1 rounded-full text-xs font-bold text-oliveDark shadow-sm">
-                    <i class="fa-solid fa-sparkles text-gold2"></i> PLATFORM ZAKAT DIGITAL TERPERCAYA
+                    <i class="fa-solid fa-sparkles text-gold2"></i> {{ __('PLATFORM ZAKAT DIGITAL TERPERCAYA') }}
                 </div>
 
                 <h1 class="font-black text-oliveDark leading-[0.98] text-[36px] sm:text-[48px] lg:text-[58px] tracking-tight drop-shadow-sm">
-                    Selamat Datang<br>
-                    <span class="text-gold2">di E-Zakat</span>
+                    {{ __('Selamat Datang') }}<br>
+                    <span class="text-gold2">{{ __('di E-Zakat') }}</span>
                 </h1>
 
                 <p class="text-oliveDark/90 text-xs sm:text-sm lg:text-base max-w-lg leading-relaxed font-semibold drop-shadow-sm">
-                    Tunaikan kewajiban, raih keberkahan. Platform digital untuk menghitung, menyalurkan, dan memahami zakat sesuai syariat — khusus warga Banjarbaru.
+                    {{ __('Tunaikan kewajiban, raih keberkahan. Platform digital untuk menghitung, menyalurkan, dan memahami zakat sesuai syariat — khusus warga Banjarbaru.') }}
                 </p>
 
                 <div class="flex flex-wrap items-center gap-3 pt-2">
                     <a href="{{ url('/beranda') }}" class="bg-olive hover:bg-olive2 text-white font-bold px-7 py-3 rounded-full text-xs lg:text-sm shadow-md transition flex items-center gap-2 active:scale-95 border border-gold/30">
-                        Mulai Sekarang <i class="fa-solid fa-arrow-right text-xs"></i>
+                        {{ __('Mulai Sekarang') }} <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                     <span class="text-xs text-oliveDark font-semibold bg-panel-welcome border border-gold/40 px-4 py-2.5 rounded-full shadow-sm">
-                        <i class="fa-solid fa-shield-halved text-gold2 mr-1"></i> 100% Sesuai Syariat
+                        <i class="fa-solid fa-shield-halved text-gold2 mr-1"></i> {{ __('100% Sesuai Syariat') }}
                     </span>
                 </div>
             </div>
@@ -315,7 +322,7 @@
                     <!-- Badge Hadis -->
                     <div class="flex items-center justify-between mb-2">
                         <span class="bg-gold2 text-oliveDark text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                            <i class="fa-solid fa-quote-left mr-1"></i> Hadis Zakat
+                            <i class="fa-solid fa-quote-left mr-1"></i> {{ __('Hadis Zakat') }}
                         </span>
                         <div class="flex items-center gap-2">
                             <button id="speakBtn" type="button" title="Putar bacaan hadis & artinya" class="bg-white/20 hover:bg-gold2 hover:text-oliveDark text-white transition w-7 h-7 rounded-full flex items-center justify-center text-xs active:scale-95">
@@ -347,23 +354,23 @@
             <div class="flex items-center gap-3 px-3 py-1 md:border-r border-panel-border quick-card-gold">
                 <i class="fa-solid fa-calculator text-gold2 text-lg shrink-0"></i>
                 <div>
-                    <div class="text-xs font-bold text-oliveDark">Kalkulator Zakat</div>
-                    <div class="text-[10px] text-oliveDark/70">Hitung Fitrah, Maal & Fidyah</div>
+                    <div class="text-xs font-bold text-oliveDark">{{ __('Kalkulator Zakat') }}</div>
+                    <div class="text-[10px] text-oliveDark/70">{{ __('Hitung Fitrah, Maal & Fidyah') }}</div>
                 </div>
             </div>
             <div class="flex items-center gap-3 px-3 py-1 md:border-r border-panel-border quick-card-blue">
                 <i class="fa-solid fa-map-location-dot text-blue-600 text-lg shrink-0"></i>
                 <div>
-                    <div class="text-xs font-bold text-oliveDark">Lokasi Penyaluran</div>
-                    <div class="text-[10px] text-oliveDark/70">Peta amil zakat Banjarbaru</div>
+                    <div class="text-xs font-bold text-oliveDark">{{ __('Lokasi Penyaluran') }}</div>
+                    <div class="text-[10px] text-oliveDark/70">{{ __('Peta amil zakat Banjarbaru') }}</div>
                 </div>
             </div>
             <div class="flex items-center justify-between px-3 py-1 quick-card-emerald">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-book-quran text-emerald-600 text-lg shrink-0"></i>
                     <div>
-                        <div class="text-xs font-bold text-oliveDark">Panduan Syariat</div>
-                        <div class="text-[10px] text-oliveDark/70">Nisab, syarat & 8 asnaf</div>
+                        <div class="text-xs font-bold text-oliveDark">{{ __('Panduan Syariat') }}</div>
+                        <div class="text-[10px] text-oliveDark/70">{{ __('Nisab, syarat & 8 asnaf') }}</div>
                     </div>
                 </div>
                 <a href="{{ url('/panduan') }}" class="bg-emerald-500/20 hover:bg-emerald-600 hover:text-white text-emerald-700 w-7 h-7 rounded-full flex items-center justify-center transition shrink-0 active:scale-95">
@@ -375,8 +382,8 @@
     </main>
 
     <!-- FOOTER SIMPLE -->
-    <footer class="max-w-7xl mx-auto w-full text-center text-[11px] text-oliveDark/70 py-1 shrink-0 relative z-10 font-medium">
-        © {{ date('Y') }} E-Zakat Banjarbaru — Amanah, Transparan, Berkah
+    <footer class="w-full text-center text-[11px] text-oliveDark/70 py-1 shrink-0 relative z-10 font-medium">
+        {{ __('© :year E-Zakat Banjarbaru — Amanah, Transparan, Berkah', ['year' => date('Y')]) }}
     </footer>
 
     <!-- SCRIPT DARK MODE TOGGLE -->
@@ -399,28 +406,31 @@
 
     <!-- SCRIPT HADIS SLIDER -->
     <script>
-    const hadiths = [
-        {arab:"بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ ... وَإِيتَاءِ الزَّكَاةِ", indo:"Islam dibangun di atas lima perkara: syahadat, shalat, zakat, puasa Ramadhan, dan haji.", sumber:"HR. Bukhari & Muslim"},
-        {arab:"مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ", indo:"Sedekah tidak akan mengurangi harta.", sumber:"HR. Muslim No. 2588"},
-        {arab:"حَصِّنُوا أَمْوَالَكُمْ بِالزَّكَاةِ", indo:"Bentengilah hartamu dengan zakat.", sumber:"HR. Thabrani — Hasan"},
-        {arab:"مَنْ أَدَّى زَكَاةَ مَالِهِ فَقَدْ ذَهَبَ عَنْهُ شَرُّهُ", indo:"Barangsiapa menunaikan zakat hartanya, maka hilanglah keburukan hartanya.", sumber:"HR. Thabrani"},
-        {arab:"إِنَّ اللَّهَ فَرَضَ عَلَيْهِمْ صَدَقَةً تُؤْخَذُ مِنْ أَغْنِيَائِهِمْ", indo:"Sesungguhnya Allah mewajibkan sedekah (zakat) yang diambil dari orang kaya mereka.", sumber:"HR. Bukhari"},
-        {arab:"وَفِي أَمْوَالِهِمْ حَقٌّ لِلسَّائِلِ وَالْمَحْرُومِ", indo:"Dan pada harta mereka ada hak untuk orang miskin yang meminta dan yang tidak meminta.", sumber:"QS. Adz-Dzariyat: 19"},
-        {arab:"خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ", indo:"Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan mereka.", sumber:"QS. At-Taubah: 103"},
-        {arab:"مَا مَنَعَ قَوْمٌ الزَّكَاةَ إِلَّا ابْتَلَاهُمُ اللَّهُ بِالسِّنِينَ", indo:"Tidaklah suatu kaum enggan membayar zakat melainkan Allah akan menimpakan paceklik.", sumber:"HR. Thabrani"},
-        {arab:"تَهَادَوْا وَتَصَدَّقُوا", indo:"Saling memberi hadiahlah dan bersedekahlah.", sumber:"HR. Bukhari (Adabul Mufrad)"},
-        {arab:"الصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ", indo:"Sedekah memadamkan kesalahan sebagaimana air memadamkan api.", sumber:"HR. Tirmidzi No. 614"},
-        {arab:"دَاوُوا مَرْضَاكُمْ بِالصَّدَقَةِ", indo:"Obatilah orang sakit di antara kalian dengan sedekah.", sumber:"HR. Baihaqi — Hasan"},
-        {arab:"إِنَّ الصَّدَقَةَ لَتُطْفِئُ غَضَبَ الرَّبِّ", indo:"Sesungguhnya sedekah benar-benar memadamkan kemurkaan Allah.", sumber:"HR. Tirmidzi"},
-        {arab:"مَا مِنْ يَوْمٍ يُصْبِحُ الْعِبَادُ فِيهِ إِلَّا مَلَكَانِ يَنْزِلَانِ", indo:"Tidak ada hari kecuali dua malaikat turun dan mendoakan orang yang berinfak.", sumber:"HR. Bukhari & Muslim"},
-        {arab:"أَنْفِقْ يَا ابْنَ آدَمَ أُنْفِقْ عَلَيْكَ", indo:"Berinfaklah wahai anak Adam, niscaya Aku akan berinfak kepadamu.", sumber:"HR. Bukhari & Muslim"},
-        {arab:"الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى", indo:"Tangan di atas lebih baik daripada tangan di bawah.", sumber:"HR. Bukhari & Muslim"},
-        {arab:"اتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ", indo:"Jagalah diri kalian dari api neraka walau dengan separuh kurma.", sumber:"HR. Bukhari & Muslim"},
-        {arab:"كُلُّ امْرِئٍ فِي ظِلِّ صَدَقَتِهِ حَتَّى يُفْصَلَ بَيْنَ النَّاسِ", indo:"Setiap orang berada di bawah naungan sedekahnya hingga diputuskan perkara manusia.", sumber:"HR. Ahmad"},
-        {arab:"إِذَا مَاتَ ابْنُ آدَمَ انْقَطَعَ عَمَلُهُ إِلَّا مِنْ ثَلَاثٍ ... صَدَقَةٍ جَارِيَةٍ", indo:"Jika anak Adam meninggal, terputus amalnya kecuali tiga: sedekah jariyah...", sumber:"HR. Muslim"},
-        {arab:"حَصِّنُوا أَمْوَالَكُمْ بِالزَّكَاةِ وَدَاوُوا مَرْضَاكُمْ بِالصَّدَقَةِ", indo:"Jagalah hartamu dengan zakat dan obati sakitmu dengan sedekah.", sumber:"HR. Abu Dawud"},
-        {arab:"لَنْ تَنَالُوا الْبِرَّ حَتَّى تُنْفِقُوا مِمَّا تُحِبُّونَ", indo:"Kamu tidak akan memperoleh kebajikan hingga kamu menginfakkan sebagian harta yang kamu cintai.", sumber:"QS. Ali Imran: 92"},
-    ];
+    @php
+$hadiths = [
+    ['arab' => "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ ... وَإِيتَاءِ الزَّكَاةِ", 'indo' => __('Islam dibangun di atas lima perkara: syahadat, shalat, zakat, puasa Ramadhan, dan haji.'), 'sumber' => __('HR. Bukhari & Muslim')],
+    ['arab' => "مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ", 'indo' => __('Sedekah tidak akan mengurangi harta.'), 'sumber' => __('HR. Muslim No. 2588')],
+    ['arab' => "حَصِّنُوا أَمْوَالَكُمْ بِالزَّكَاةِ", 'indo' => __('Bentengilah hartamu dengan zakat.'), 'sumber' => __('HR. Thabrani — Hasan')],
+    ['arab' => "مَنْ أَدَّى زَكَاةَ مَالِهِ فَقَدْ ذَهَبَ عَنْهُ شَرُّهُ", 'indo' => __('Barangsiapa menunaikan zakat hartanya, maka hilanglah keburukan hartanya.'), 'sumber' => __('HR. Thabrani')],
+    ['arab' => "إِنَّ اللَّهَ فَرَضَ عَلَيْهِمْ صَدَقَةً تُؤْخَذُ مِنْ أَغْنِيَائِهِمْ", 'indo' => __('Sesungguhnya Allah mewajibkan sedekah (zakat) yang diambil dari orang kaya mereka.'), 'sumber' => __('HR. Bukhari')],
+    ['arab' => "وَفِي أَمْوَالِهِمْ حَقٌّ لِلسَّائِلِ وَالْمَحْرُومِ", 'indo' => __('Dan pada harta mereka ada hak untuk orang miskin yang meminta dan yang tidak meminta.'), 'sumber' => __('QS. Adz-Dzariyat: 19')],
+    ['arab' => "خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ", 'indo' => __('Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan mereka.'), 'sumber' => __('QS. At-Taubah: 103')],
+    ['arab' => "مَا مَنَعَ قَوْمٌ الزَّكَاةَ إِلَّا ابْتَلَاهُمُ اللَّهُ بِالسِّنِينَ", 'indo' => __('Tidaklah suatu kaum enggan membayar zakat melainkan Allah akan menimpakan paceklik.'), 'sumber' => __('HR. Thabrani')],
+    ['arab' => "تَهَادَوْا وَتَصَدَّقُوا", 'indo' => __('Saling memberi hadiahlah dan bersedekahlah.'), 'sumber' => __('HR. Bukhari (Adabul Mufrad)')],
+    ['arab' => "الصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ", 'indo' => __('Sedekah memadamkan kesalahan sebagaimana air memadamkan api.'), 'sumber' => __('HR. Tirmidzi No. 614')],
+    ['arab' => "دَاوُوا مَرْضَاكُمْ بِالصَّدَقَةِ", 'indo' => __('Obatilah orang sakit di antara kalian dengan sedekah.'), 'sumber' => __('HR. Baihaqi — Hasan')],
+    ['arab' => "إِنَّ الصَّدَقَةَ لَتُطْفِئُ غَضَبَ الرَّبِّ", 'indo' => __('Sesungguhnya sedekah benar-benar memadamkan kemurkaan Allah.'), 'sumber' => __('HR. Tirmidzi')],
+    ['arab' => "مَا مِنْ يَوْمٍ يُصْبِحُ الْعِبَادُ فِيهِ إِلَّا مَلَكَانِ يَنْزِلَانِ", 'indo' => __('Tidak ada hari kecuali dua malaikat turun dan mendoakan orang yang berinfak.'), 'sumber' => __('HR. Bukhari & Muslim')],
+    ['arab' => "أَنْفِقْ يَا ابْنَ آدَمَ أُنْفِقْ عَلَيْكَ", 'indo' => __('Berinfaklah wahai anak Adam, niscaya Aku akan berinfak kepadamu.'), 'sumber' => __('HR. Bukhari & Muslim')],
+    ['arab' => "الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى", 'indo' => __('Tangan di atas lebih baik daripada tangan di bawah.'), 'sumber' => __('HR. Bukhari & Muslim')],
+    ['arab' => "اتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ", 'indo' => __('Jagalah diri kalian dari api neraka walau dengan separuh kurma.'), 'sumber' => __('HR. Bukhari & Muslim')],
+    ['arab' => "كُلُّ امْرِئٍ فِي ظِلِّ صَدَقَتِهِ حَتَّى يُفْصَلَ بَيْنَ النَّاسِ", 'indo' => __('Setiap orang berada di bawah naungan sedekahnya hingga diputuskan perkara manusia.'), 'sumber' => __('HR. Ahmad')],
+    ['arab' => "إِذَا مَاتَ ابْنُ آدَمَ انْقَطَعَ عَمَلُهُ إِلَّا مِنْ ثَلَاثٍ ... صَدَقَةٍ جَارِيَةٍ", 'indo' => __('Jika anak Adam meninggal, terputus amalnya kecuali tiga: sedekah jariyah...'), 'sumber' => __('HR. Muslim')],
+    ['arab' => "حَصِّنُوا أَمْوَالَكُمْ بِالزَّكَاةِ وَدَاوُوا مَرْضَاكُمْ بِالصَّدَقَةِ", 'indo' => __('Jagalah hartamu dengan zakat dan obati sakitmu dengan sedekah.'), 'sumber' => __('HR. Abu Dawud')],
+    ['arab' => "لَنْ تَنَالُوا الْبِرَّ حَتَّى تُنْفِقُوا مِمَّا تُحِبُّونَ", 'indo' => __('Kamu tidak akan memperoleh kebajikan hingga kamu menginfakkan sebagian harta yang kamu cintai.'), 'sumber' => __('QS. Ali Imran: 92')],
+];
+@endphp
+const hadiths = @json($hadiths, JSON_UNESCAPED_UNICODE);
     let idx=0,timer=null,paused=false;
     const card=document.getElementById('hadithCard'), idxLabel=document.getElementById('idxLabel'), dots=document.getElementById('dots');
     function render(){

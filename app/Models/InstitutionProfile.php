@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class InstitutionProfile extends Model
 {
+    protected $casts = [
+        'address' => 'encrypted',
+        'phone' => 'encrypted',
+    ];
+
     protected $fillable = [
         'user_id',
         'institution_type',

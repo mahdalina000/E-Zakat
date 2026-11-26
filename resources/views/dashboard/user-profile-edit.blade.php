@@ -9,69 +9,69 @@
     $profile = $profile ?: auth()->user()->wargaProfile()->first();
 @endphp
 
-<div class="max-w-3xl">
+<div class="w-full">
     <form method="POST" action="{{ route('user.profile.update') }}" class="bg-white rounded-[20px] border border-cream3 p-5 lg:p-6 space-y-4">
         @csrf @method('PUT')
 
-        <p class="text-[10px] text-olive/50 -mt-2">Tanda <span class="text-red-500">*</span> wajib diisi. Sisanya opsional.</p>
+        <p class="text-[10px] text-olive/50 -mt-2">{{ __('Tanda') }} <span class="text-red-500">*</span> {{ __('wajib diisi. Sisanya opsional.') }}</p>
 
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2">
-            <i class="fa-solid fa-user-pen text-olive"></i> Identitas
+            <i class="fa-solid fa-user-pen text-olive"></i> {{ __('Identitas') }}
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4">
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> NIK</label>
-                <input name="nik" value="{{ old('nik', $profile->nik ?? '') }}" maxlength="16" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="16 digit NIK">
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('NIK') }}</label>
+                <input name="nik" value="{{ old('nik', $profile->nik ?? '') }}" maxlength="16" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="16 digit {{ __('NIK') }}">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Jenis Kelamin</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Jenis Kelamin') }}</label>
                 <select name="gender" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
-                    <option value="">Pilih...</option>
-                    <option value="male" @selected(old('gender', $profile->gender) === 'male')>Laki-laki</option>
-                    <option value="female" @selected(old('gender', $profile->gender) === 'female')>Perempuan</option>
+                    <option value="">{{ __('Pilih...') }}</option>
+                    <option value="male" @selected(old('gender', $profile->gender) === 'male')>{{ __('Laki-laki') }}</option>
+                    <option value="female" @selected(old('gender', $profile->gender) === 'female')>{{ __('Perempuan') }}</option>
                 </select>
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Tanggal Lahir</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Tanggal Lahir') }}</label>
                 <input name="birth_date" type="date" value="{{ old('birth_date', $profile->birth_date?->format('Y-m-d')) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Tempat Lahir</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Tempat Lahir') }}</label>
                 <input name="birth_place" value="{{ old('birth_place', $profile->birth_place ?? '') }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="mis. Banjarbaru">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Status Keluarga</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Status Keluarga') }}</label>
                 <input type="hidden" name="marital_status" value="{{ old('marital_status', $profile->marital_status) }}">
                 <select data-marital required onchange="this.previousElementSibling.value=this.value" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
-                    <option value="" @selected(blank(old('marital_status', $profile->marital_status))) hidden>Pilih Status Keluarga</option>
-                    <option value="single" @selected(old('marital_status', $profile->marital_status) === 'single')>Belum Menikah</option>
-                    <option value="married" @selected(old('marital_status', $profile->marital_status) === 'married')>Menikah</option>
-                    <option value="divorced" @selected(old('marital_status', $profile->marital_status) === 'divorced')>Cerai</option>
-                    <option value="widowed" @selected(old('marital_status', $profile->marital_status) === 'widowed')>Duda/Janda</option>
+                    <option value="" @selected(blank(old('marital_status', $profile->marital_status))) hidden>Pilih {{ __('Status Keluarga') }}</option>
+                    <option value="single" @selected(old('marital_status', $profile->marital_status) === 'single')>{{ __('Belum Menikah') }}</option>
+                    <option value="married" @selected(old('marital_status', $profile->marital_status) === 'married')>{{ __('Menikah') }}</option>
+                    <option value="divorced" @selected(old('marital_status', $profile->marital_status) === 'divorced')>{{ __('Cerai') }}</option>
+                    <option value="widowed" @selected(old('marital_status', $profile->marital_status) === 'widowed')>{{ __('Duda/Janda') }}</option>
                 </select>
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Pekerjaan</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Pekerjaan') }}</label>
                 <input name="occupation" value="{{ old('occupation', $profile->occupation ?? '') }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="mis. Petani, Karyawan, Wiraswasta">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> No. Telepon</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('No. Telepon') }}</label>
                 <input name="phone" value="{{ old('phone', $profile->phone ?? '') }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="08xx-xxxx-xxxx">
             </div>
         </div>
 
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2 mt-4">
-            <i class="fa-solid fa-people-group text-olive"></i> Tanggungan & Ekonomi
+            <i class="fa-solid fa-people-group text-olive"></i> {{ __('Tanggungan & Ekonomi') }}
         </div>
 
         <div class="grid sm:grid-cols-3 gap-4">
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Jumlah Tanggungan</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Jumlah Tanggungan') }}</label>
                 <input name="dependents_count" type="number" min="0" max="50" value="{{ old('dependents_count', $profile->dependents_count ?? 0) }}" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Penghasilan Bulanan (Rp)</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Penghasilan Bulanan (Rp)') }}</label>
                 <input type="text" 
                        value="{{ old('monthly_income', $profile->monthly_income) !== null && old('monthly_income', $profile->monthly_income) !== '' ? number_format((float)old('monthly_income', $profile->monthly_income), 0, ',', '.') : '' }}" 
                        required 
@@ -81,7 +81,7 @@
                 <input type="hidden" name="monthly_income" id="monthly_income" value="{{ old('monthly_income', $profile->monthly_income ?? '') }}">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Pengeluaran Bulanan (Rp)</label>
+                <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Pengeluaran Bulanan (Rp)') }}</label>
                 <input type="text" 
                        value="{{ number_format((float)old('monthly_expense', $profile->monthly_expense ?? 0), 0, ',', '.') }}" 
                        required 
@@ -89,11 +89,11 @@
                        placeholder="0" 
                        oninput="formatRupiahField(this, 'monthly_expense')">
                 <input type="hidden" name="monthly_expense" id="monthly_expense" value="{{ old('monthly_expense', $profile->monthly_expense ?? 0) }}">
-                <p class="text-[10px] text-olive/50 mt-0.5">Isi 0 jika tidak ada pengeluaran rutin.</p>
+                <p class="text-[10px] text-olive/50 mt-0.5">{{ __('Isi 0 jika tidak ada pengeluaran rutin.') }}</p>
             </div>
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Total Hutang (Rp)</label>
+            <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Total Hutang (Rp)') }}</label>
             <input type="text" 
                    value="{{ number_format((float)old('debt_amount', $profile->debt_amount ?? 0), 0, ',', '.') }}" 
                    required 
@@ -101,15 +101,15 @@
                    placeholder="0" 
                    oninput="formatRupiahField(this, 'debt_amount')">
             <input type="hidden" name="debt_amount" id="debt_amount" value="{{ old('debt_amount', $profile->debt_amount ?? 0) }}">
-            <p class="text-[10px] text-olive/50 mt-0.5">Isi 0 jika tidak punya hutang.</p>
+            <p class="text-[10px] text-olive/50 mt-0.5">{{ __('Isi 0 jika tidak punya hutang.') }}</p>
         </div>
 
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2 mt-4">
-            <i class="fa-solid fa-landmark text-olive"></i> Aset & Harta
+            <i class="fa-solid fa-landmark text-olive"></i> {{ __('Aset & Harta') }}
         </div>
 
         <div>
-            <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Perkiraan Total Aset (Rp)</label>
+            <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Perkiraan Total Aset (Rp)') }}</label>
             <input type="text" 
                    value="{{ number_format((float)old('asset_value', $profile->asset_value ?? 0), 0, ',', '.') }}" 
                    required 
@@ -117,12 +117,12 @@
                    placeholder="0" 
                    oninput="formatRupiahField(this, 'asset_value')">
             <input type="hidden" name="asset_value" id="asset_value" value="{{ old('asset_value', $profile->asset_value ?? 0) }}">
-            <p class="text-[10px] text-olive/50 mt-0.5">Gabungan kas, emas, investasi, properti, kendaraan. Isi 0 jika tidak ada. Boleh dikosongkan rinciannya di bawah.</p>
+            <p class="text-[10px] text-olive/50 mt-0.5">{{ __('Gabungan kas, emas, investasi, properti, kendaraan. Isi 0 jika tidak ada. Boleh dikosongkan') }} rinciannya di bawah.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4">
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Kas / Tabungan (Rp)</label>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Kas / Tabungan (Rp)') }}</label>
                 <input type="text" 
                        value="{{ old('cash_value', $profile->cash_value) !== null && old('cash_value', $profile->cash_value) !== '' ? number_format((float)old('cash_value', $profile->cash_value), 0, ',', '.') : '' }}" 
                        class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
@@ -131,7 +131,7 @@
                 <input type="hidden" name="cash_value" id="cash_value" value="{{ old('cash_value', $profile->cash_value ?? '') }}">
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Emas (Rp)</label>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Emas (Rp)') }}</label>
                 <input type="text" 
                        value="{{ old('gold_value', $profile->gold_value) !== null && old('gold_value', $profile->gold_value) !== '' ? number_format((float)old('gold_value', $profile->gold_value), 0, ',', '.') : '' }}" 
                        class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div>
-            <label class="text-xs font-semibold text-oliveDark">Kendaraan (Rp)</label>
+            <label class="text-xs font-semibold text-oliveDark">{{ __('Kendaraan (Rp)') }}</label>
             <input type="text" 
                    value="{{ old('vehicle_value', $profile->vehicle_value) !== null && old('vehicle_value', $profile->vehicle_value) !== '' ? number_format((float)old('vehicle_value', $profile->vehicle_value), 0, ',', '.') : '' }}" 
                    class="mt-1 w-full border border-cream3 rounded-full px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" 
@@ -151,18 +151,18 @@
         </div>
 
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2 mt-4">
-            <i class="fa-solid fa-house text-olive"></i> Alamat
+            <i class="fa-solid fa-house text-olive"></i> {{ __('Alamat') }}
         </div>
 
         <div>
-            <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> Alamat Lengkap</label>
+            <label class="text-xs font-semibold text-oliveDark"><span class="text-red-500">*</span> {{ __('Alamat') }} Lengkap</label>
             <textarea name="address_line1" rows="3" required maxlength="255" class="mt-1 w-full border border-cream3 rounded-2xl px-4 py-2.5 text-sm bg-cream2 outline-none focus:border-olive" placeholder="Jalan, no. rumah, RT/RW, kelurahan, kecamatan">{{ old('address_line1', $profile->address_line1 ?? '') }}</textarea>
-            <p class="text-[10px] text-olive/50 mt-0.5">Tulis lengkap dalam satu kolom: jalan, no. rumah, RT/RW, kelurahan, kecamatan.</p>
+            <p class="text-[10px] text-olive/50 mt-0.5">{{ __('Tulis lengkap dalam satu kolom: jalan, no. rumah, RT/RW, kelurahan, kecamatan.') }}</p>
         </div>
 
         <div class="flex gap-3 pt-2">
-            <button class="bg-olive text-white font-semibold px-6 py-2.5 rounded-full hover:bg-olive2"><i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Perubahan</button>
-            <a href="{{ route('user.profile') }}" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2.5 rounded-full hover:bg-cream3">Batal</a>
+            <button class="bg-olive text-white font-semibold px-6 py-2.5 rounded-full hover:bg-olive2"><i class="fa-solid fa-floppy-disk mr-1"></i> {{ __('Simpan Perubahan') }}</button>
+            <a href="{{ route('user.profile') }}" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2.5 rounded-full hover:bg-cream3">{{ __('Batal') }}</a>
         </div>
     </form>
 </div>

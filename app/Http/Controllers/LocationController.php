@@ -38,7 +38,7 @@ class LocationController extends Controller
         abort_unless(
             Auth::user()->isSuperAdmin() || Auth::user()->isAdminBaznas(),
             403,
-            'Admin UPZ hanya dapat melihat dan mengubah lokasi, tidak menghapus.'
+            __('Admin UPZ hanya dapat melihat dan mengubah lokasi, tidak menghapus.')
         );
     }
 
@@ -64,7 +64,7 @@ class LocationController extends Controller
         }
         Location::create($data);
         $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
-        return redirect()->route($home)->with('success', 'Lokasi berhasil ditambahkan.');
+        return redirect()->route($home)->with('success', __('Lokasi berhasil ditambahkan.'));
     }
 
     public function edit(Location $location)
@@ -82,7 +82,7 @@ class LocationController extends Controller
         }
         $location->update($data);
         $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
-        return redirect()->route($home)->with('success', 'Lokasi berhasil diperbarui.');
+        return redirect()->route($home)->with('success', __('Lokasi berhasil diperbarui.'));
     }
 
     public function destroy(Location $location)
@@ -90,7 +90,7 @@ class LocationController extends Controller
         $this->authorizeDelete();
         $location->delete();
         $home = Auth::user()->isSuperAdmin() ? 'super.locations' : 'admin.locations.index';
-        return redirect()->route($home)->with('success', 'Lokasi berhasil dihapus.');
+        return redirect()->route($home)->with('success', __('Lokasi berhasil dihapus.'));
     }
 
     private function validated(Request $request): array
@@ -108,8 +108,8 @@ class LocationController extends Controller
             'opening_hours' => ['nullable', 'string', 'max:100'],
             'is_active' => ['nullable', 'boolean'],
         ], [
-            'name.required' => 'Nama lokasi wajib diisi.',
-            'address.required' => 'Alamat wajib diisi.',
+            'name.required' => __('Nama lokasi wajib diisi.'),
+            'address.required' => __('Alamat wajib diisi.'),
             'latitude.between' => 'Latitude harus antara -90 sampai 90.',
             'longitude.between' => 'Longitude harus antara -180 sampai 180.',
         ]) + ['is_active' => $request->boolean('is_active', true)];

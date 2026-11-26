@@ -21,7 +21,7 @@ class HolidayBannerAdminController extends Controller
         $this->authorizeAdmin();
         $data = $this->validated($request);
         HolidayBanner::create($data);
-        return back()->with('success', 'Banner hari raya berhasil ditambahkan.');
+        return back()->with('success', __('Banner hari raya berhasil ditambahkan.'));
     }
 
     public function update(Request $request, HolidayBanner $banner)
@@ -29,21 +29,21 @@ class HolidayBannerAdminController extends Controller
         $this->authorizeAdmin();
         $data = $this->validated($request);
         $banner->update($data);
-        return back()->with('success', 'Banner hari raya berhasil diperbarui.');
+        return back()->with('success', __('Banner hari raya berhasil diperbarui.'));
     }
 
     public function toggle(HolidayBanner $banner)
     {
         $this->authorizeAdmin();
         $banner->update(['is_active' => !$banner->is_active]);
-        return back()->with('success', 'Status banner diperbarui.');
+        return back()->with('success', __('Status banner diperbarui.'));
     }
 
     public function destroy(HolidayBanner $banner)
     {
         $this->authorizeAdmin();
         $banner->delete();
-        return back()->with('success', 'Banner hari raya dihapus.');
+        return back()->with('success', __('Banner hari raya dihapus.'));
     }
 
     private function authorizeAdmin(): void

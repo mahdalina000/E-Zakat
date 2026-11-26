@@ -78,7 +78,7 @@ class UserProfileController extends Controller
 
         $profile->update($data);
 
-        return redirect()->route('user.profile')->with('success', 'Data diri berhasil diperbarui. Kategori zakat diperbarui otomatis.');
+        return redirect()->route('user.profile')->with('success', __('Data diri berhasil diperbarui. Kategori zakat diperbarui otomatis.'));
     }
 
     /**
@@ -122,7 +122,7 @@ class UserProfileController extends Controller
         $data['is_confirmed'] = false;
         ZakatRecord::create($data);
 
-        return redirect()->route('user.profile')->with('success', 'Pencatatan zakat berhasil disimpan.');
+        return redirect()->route('user.profile')->with('success', __('Pencatatan zakat berhasil disimpan.'));
     }
 
     /**
@@ -133,7 +133,7 @@ class UserProfileController extends Controller
         $u = Auth::user();
         abort_unless($record->user_id === $u->id, 403);
         $record->delete();
-        return redirect()->route('user.profile')->with('success', 'Catatan zakat dihapus.');
+        return redirect()->route('user.profile')->with('success', __('Catatan zakat dihapus.'));
     }
 
     /**
@@ -173,7 +173,7 @@ class UserProfileController extends Controller
         }
         $record->update($data);
 
-        return redirect()->route('user.profile')->with('success', 'Catatan zakat berhasil diperbarui.');
+        return redirect()->route('user.profile')->with('success', __('Catatan zakat berhasil diperbarui.'));
     }
 
     /**
@@ -194,7 +194,7 @@ class UserProfileController extends Controller
         $u = Auth::user();
         abort_unless($history->user_id === $u->id, 403);
         $history->delete();
-        return redirect()->route('user.histories')->with('success', 'Riwayat perhitungan dihapus.');
+        return redirect()->route('user.histories')->with('success', __('Riwayat perhitungan dihapus.'));
     }
 
     /**
@@ -247,7 +247,7 @@ class UserProfileController extends Controller
     public function calculate(Request $request, string $type)
     {
         $allowedTypes = ['zakat_penghasilan', 'zakat_pertanian', 'zakat_perdagangan', 'wariq'];
-        abort_unless(in_array($type, $allowedTypes, true), 400, 'Jenis perhitungan tidak valid.');
+        abort_unless(in_array($type, $allowedTypes, true), 400, __('Jenis perhitungan tidak valid.'));
 
         $u = Auth::user();
         $save = $request->boolean('save'); // jika true, simpan otomatis ke riwayat
@@ -379,7 +379,7 @@ class UserProfileController extends Controller
             'zakat_fitrah', 'zakat_maal', 'fidyah', 'wariq',
             'zakat_penghasilan', 'zakat_pertanian', 'zakat_perdagangan',
         ];
-        abort_unless(in_array($type, $allowedTypes, true), 400, 'Jenis perhitungan tidak valid.');
+        abort_unless(in_array($type, $allowedTypes, true), 400, __('Jenis perhitungan tidak valid.'));
 
         $u = Auth::user();
 
@@ -420,6 +420,6 @@ class UserProfileController extends Controller
             'gold_price' => $request->filled('gold_price') ? (float) $request->input('gold_price') : null,
         ]);
 
-        return back()->with('success', 'Perhitungan berhasil disimpan ke riwayat.');
+        return back()->with('success', __('Perhitungan berhasil disimpan ke riwayat.'));
     }
 }

@@ -177,7 +177,7 @@
         transform: translateX(20%);
     }
 
-    /* ANIMASI MASUK KARTU AWAL */
+    /* ANIMASI {{ __('MASUK') }} KARTU AWAL */
     @keyframes riseInLogin {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -293,16 +293,16 @@
 
     <!-- TOMBOL TOGGLE DARK MODE (HIJAU SAAT LIGHT MODE, ORANGE SAAT DARK MODE) -->
     <div class="w-full flex justify-end mb-1.5 max-w-3xl">
-        <button id="themeToggleAuth" type="button" class="bg-white/60 dark:bg-white/10 text-oliveDark dark:text-orange-400 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5 border border-gold/40 dark:border-orange-500/40 shadow-sm active:scale-95" title="Mode Gelap/Terang">
+        <button id="themeToggleAuth" type="button" class="bg-white/60 dark:bg-white/10 text-oliveDark dark:text-orange-400 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5 border border-gold/40 dark:border-orange-500/40 shadow-sm active:scale-95" title="{{ __('Mode Gelap') }}/Terang">
             <i id="themeIconAuth" class="fa-solid fa-moon text-oliveDark dark:text-orange-400"></i>
-            <span id="themeTextAuth">Mode Gelap</span>
+            <span id="themeTextAuth">{{ __('Mode Gelap') }}</span>
         </button>
     </div>
     
     <!-- CARD UTAMA -->
     <div class="neu-container bg-panel backdrop-blur-md border border-panel-border relative" id="authContainer">
         
-        <!-- ================= FORM MASUK (LOGIN) ================= -->
+        <!-- ================= FORM {{ __('MASUK') }} (LOGIN) ================= -->
         <div class="form-container sign-in-container p-5 sm:p-6 flex flex-col justify-between bg-cream2/60">
             <div>
                 <div class="flex items-center gap-2.5">
@@ -310,8 +310,8 @@
                         <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain">
                     </div>
                     <div>
-                        <h1 class="font-black text-oliveDark text-base tracking-tight leading-tight">Masuk ke Website</h1>
-                        <p class="text-[10px] text-olive/70">Masukkan akun Anda atau pilih akun demo.</p>
+                        <h1 class="font-black text-oliveDark text-base tracking-tight leading-tight">{{ __('Masuk ke Website') }}</h1>
+                        <p class="text-[10px] text-olive/70">{{ __('Masukkan akun Anda atau pilih akun demo.') }}</p>
                     </div>
                 </div>
 
@@ -324,7 +324,7 @@
                 <form method="POST" action="{{ route('login') }}" class="mt-2.5 space-y-2">
                     @csrf
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Email</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">{{ __('Email') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-envelope text-olive/50 text-xs"></i>
                             <input name="email" type="email" value="{{ old('email') }}" required class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="nama@email.com">
@@ -332,39 +332,40 @@
                     </div>
 
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Kata Sandi</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">{{ __('Kata Sandi') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-lock text-olive/50 text-xs"></i>
-                            <input name="password" type="password" required class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="••••••••">
+                            <input name="password" type="password" required class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="••••••••">
+                            <button type="button" tabindex="-1" onclick="togglePwd(this)" class="text-olive/50 hover:text-olive text-sm px-1.5"><i class="fa-solid fa-eye"></i></button>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between text-xs pt-0.5">
                         <label class="flex items-center gap-1.5 text-oliveDark/80 cursor-pointer font-medium text-[10px]">
                             <input type="checkbox" name="remember" class="accent-olive rounded">
-                            <span>Ingat saya</span>
+                            <span>{{ __('Ingat saya') }}</span>
                         </label>
                         <button type="submit" class="neu-btn bg-olive hover:bg-olive2 text-white font-bold px-4 py-1.5 rounded-xl text-xs flex items-center gap-1.5 border border-gold/30">
-                            MASUK <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            {{ __('MASUK') }} <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
                     </div>
                 </form>
 
                 <!-- AKUN DEMO RINGKAS -->
                 <div class="mt-2.5 pt-2 border-t border-cream3/80">
-                    <div class="text-[9px] tracking-[0.12em] font-extrabold text-olive/60 mb-1 uppercase">— Akun Demo (Klik untuk Isi) —</div>
+                    <div class="text-[9px] tracking-[0.12em] font-extrabold text-olive/60 mb-1 uppercase">{{ __('— Akun Demo (Klik untuk Isi) —') }}</div>
                     <div class="grid grid-cols-2 gap-1.5" id="demoAccounts">
                         <button type="button" data-email="superadmin@banjarbaru.go.id" data-pass="superadmin123" class="demo text-left bg-white/80 border border-cream3/80 rounded-lg p-1.5 hover:bg-olive/10 transition group">
-                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">Super Admin</div>
+                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">{{ __('Super Admin') }}</div>
                         </button>
                         <button type="button" data-email="admin@baznas-banjarbaru.id" data-pass="admin123" class="demo text-left bg-white/80 border border-cream3/80 rounded-lg p-1.5 hover:bg-olive/10 transition group">
-                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">Admin BAZNAS</div>
+                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">{{ __('Admin BAZNAS') }}</div>
                         </button>
                         <button type="button" data-email="admin@upz-banjarbaru.id" data-pass="admin123" class="demo text-left bg-white/80 border border-cream3/80 rounded-lg p-1.5 hover:bg-olive/10 transition group">
-                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">Admin UPZ Masjid</div>
+                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">{{ __('Admin UPZ Masjid') }}</div>
                         </button>
                         <button type="button" data-email="user@gmail.com" data-pass="user123" class="demo text-left bg-white/80 border border-cream3/80 rounded-lg p-1.5 hover:bg-olive/10 transition group">
-                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">User Warga</div>
+                            <div class="text-[10px] font-bold text-oliveDark group-hover:text-olive truncate">{{ __('User Warga') }}</div>
                         </button>
                     </div>
                 </div>
@@ -372,10 +373,10 @@
 
             <div class="pb-3 px-5 sm:px-6">
                 <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
-                    <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
+                    <i class="fa-solid fa-arrow-left text-[9px]"></i> {{ __('Kembali ke beranda') }}
                 </a>
                 <button type="button" id="mobGoRegister" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
-                    Belum punya akun? <span class="text-gold">Daftar →</span>
+                    {{ __('Belum punya akun?') }} <span class="text-gold">{{ __('Daftar →') }}</span>
                 </button>
             </div>
         </div>
@@ -383,8 +384,8 @@
         <!-- ================= FORM DAFTAR (REGISTER) ================= -->
         <div class="form-container sign-up-container p-5 sm:p-6 flex flex-col justify-between bg-cream2/60">
             <div>
-                <h1 class="font-black text-oliveDark text-base tracking-tight leading-tight">Buat Akun Baru</h1>
-                <p class="text-[10px] text-olive/70 mt-0.5">Buat akun masyarakat untuk mengakses e-zakat.</p>
+                <h1 class="font-black text-oliveDark text-base tracking-tight leading-tight">{{ __('Buat Akun Baru') }}</h1>
+                <p class="text-[10px] text-olive/70 mt-0.5">{{ __('Buat akun masyarakat untuk mengakses e-zakat.') }}</p>
 
                 @if($errors->any() && old('is_register'))
                     <div class="mt-2 bg-red-50 border border-red-200 text-red-700 rounded-xl px-3 py-1 text-[10px]">
@@ -396,7 +397,7 @@
                     @csrf
                     <input type="hidden" name="is_register" value="1">
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Nama Lengkap</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">{{ __('Nama Lengkap') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-user text-olive/50 text-xs"></i>
                             <input name="name" type="text" value="{{ old('name') }}" required class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="Nama Anda">
@@ -404,7 +405,7 @@
                     </div>
 
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Email</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">{{ __('Email') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-envelope text-olive/50 text-xs"></i>
                             <input name="email" type="email" value="{{ old('email') }}" required class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="nama@email.com">
@@ -412,7 +413,7 @@
                     </div>
 
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">No. Telepon</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">{{ __('No. Telepon') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-phone text-olive/50 text-xs"></i>
                             <input name="phone" type="text" inputmode="tel" value="{{ old('phone') }}" required maxlength="20" pattern="(\+62|62|0)[0-9]{8,14}" title="Nomor telepon diawali 08, 62, atau +62, lalu 8-14 angka" class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="08xx-xxxx-xxxx">
@@ -420,15 +421,15 @@
                     </div>
 
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Kata Sandi</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">{{ __('Kata Sandi') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-lock text-olive/50 text-xs"></i>
-                            <input name="password" type="password" required class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="Min. 8 karakter">
+                            <input name="password" type="password" required class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="Min. 8 karakter">
                         </div>
                     </div>
 
                     <div>
-                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Ulangi Kata Sandi</label>
+                        <label class="text-[9px] font-extrabold text-oliveDark block mb-0.5 uppercase tracking-wider">Ulangi {{ __('Kata Sandi') }}</label>
                         <div class="neu-input flex items-center border border-cream3/80 rounded-xl px-3 py-1.5 bg-white/80">
                             <i class="fa-solid fa-shield-halved text-olive/50 text-xs"></i>
                             <input name="password_confirmation" type="password" required class="w-full bg-transparent outline-none text-xs ml-2 text-oliveDark font-semibold" placeholder="Ulangi kata sandi">
@@ -437,7 +438,7 @@
 
                     <div class="pt-1.5">
                         <button type="submit" class="neu-btn w-full bg-olive hover:bg-olive2 text-white font-bold py-1.5 rounded-xl text-xs border border-gold/30">
-                            DAFTAR SEKARANG
+                            {{ __('DAFTAR SEKARANG') }}
                         </button>
                     </div>
                 </form>
@@ -445,10 +446,10 @@
 
             <div class="pb-3">
                 <a href="{{ route('beranda') }}" class="text-[10px] text-olive/70 hover:text-oliveDark font-semibold transition flex items-center gap-1">
-                    <i class="fa-solid fa-arrow-left text-[9px]"></i> Kembali ke beranda
+                    <i class="fa-solid fa-arrow-left text-[9px]"></i> {{ __('Kembali ke beranda') }}
                 </a>
                 <button type="button" id="mobGoLogin" class="sm:hidden mt-2 text-[10px] text-olive font-semibold underline inline-flex items-center gap-1">
-                    Sudah punya akun? <span class="text-gold">Masuk →</span>
+                    {{ __('Sudah punya akun?') }} <span class="text-gold">{{ __('Masuk →') }}</span>
                 </button>
             </div>
         </div>
@@ -482,12 +483,12 @@
                     </div>
 
                     <div class="relative z-20">
-                        <h2 class="font-black text-xl lg:text-2xl text-white tracking-tight">Selamat Datang Kembali!</h2>
+                        <h2 class="font-black text-xl lg:text-2xl text-white tracking-tight">{{ __('Selamat Datang Kembali!') }}</h2>
                         <p class="text-[11px] text-white/80 leading-relaxed font-medium mt-1.5">
-                            Untuk tetap terhubung dengan kami, silakan masuk menggunakan akun pribadi Anda.
+                            {{ __('Untuk tetap terhubung dengan kami, silakan masuk menggunakan akun pribadi Anda.') }}
                         </p>
                         <button type="button" class="neu-btn btn-overlay-action px-6 py-2 rounded-full text-xs mt-3.5 shadow-md transition active:scale-95 border border-amber-300/40" id="signInBtn">
-                            MASUK
+                            {{ __('MASUK') }}
                         </button>
                     </div>
                 </div>
@@ -516,12 +517,12 @@
                     </div>
 
                     <div class="relative z-20">
-                        <h2 class="font-black text-xl lg:text-2xl text-white tracking-tight">Halo, Sahabat!</h2>
+                        <h2 class="font-black text-xl lg:text-2xl text-white tracking-tight">{{ __('Halo, Sahabat!') }}</h2>
                         <p class="text-[11px] text-white/80 leading-relaxed font-medium mt-1.5">
-                            Masukkan data pribadi Anda dan mulailah perjalanan keberkahan bersama E-Zakat Banjarbaru.
+                            {{ __('Masukkan data pribadi Anda dan mulailah perjalanan keberkahan bersama E-Zakat Banjarbaru.') }}
                         </p>
                         <button type="button" class="neu-btn btn-overlay-action px-6 py-2 rounded-full text-xs mt-3.5 shadow-md transition active:scale-95 border border-amber-300/40" id="signUpBtn">
-                            DAFTAR
+                            {{ __('DAFTAR') }}
                         </button>
                     </div>
                 </div>
@@ -551,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             document.body.classList.remove('dark-mode');
             if(themeIcon) themeIcon.className = 'fa-solid fa-moon text-oliveDark';
-            if(themeText) themeText.textContent = 'Mode Gelap';
+            if(themeText) themeText.textContent = '{{ __('Mode Gelap') }}';
         }
     }
 
@@ -597,5 +598,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (container) container.classList.add('right-panel-active');
     @endif
 });
+</script>
+<script>
+function togglePwd(btn){
+    const box = btn.closest('div');
+    const inp = box.querySelector('input[name=password]');
+    const isPwd = inp && inp.type === 'password';
+    if (inp) inp.type = isPwd ? 'text' : 'password';
+    const ic = btn.querySelector('i');
+    if (ic) ic.className = isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+}
 </script>
 @endsection

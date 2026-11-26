@@ -9,12 +9,12 @@
         </a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button class="w-9 h-9 bg-white/15 hover:bg-red-500 transition rounded-full flex items-center justify-center" title="Keluar"><i class="fa-solid fa-right-from-bracket text-sm"></i></button>
+            <button class="w-9 h-9 bg-white/15 hover:bg-red-500 transition rounded-full flex items-center justify-center" title="{{ __('Keluar') }}"><i class="fa-solid fa-right-from-bracket text-sm"></i></button>
         </form>
     </div>
 @else
     <div class="hidden lg:flex items-center gap-2">
-        <a href="{{ route('login') }}" class="bg-white/15 hover:bg-white/25 transition px-4 py-2 rounded-full text-xs font-semibold"><i class="fa-solid fa-right-to-bracket mr-1"></i> Masuk</a>
-        <a href="{{ route('register') }}" class="bg-cream text-olive hover:bg-white transition px-4 py-2 rounded-full text-xs font-semibold">Daftar</a>
+        <a href="{{ route('login') }}" class="bg-white/15 hover:bg-white/25 transition px-4 py-2 rounded-full text-xs font-semibold"><i class="fa-solid fa-right-to-bracket mr-1"></i> {{ __('Masuk') }}</a>
+        <a href="{{ route('register') }}" class="bg-cream text-olive hover:bg-white transition px-4 py-2 rounded-full text-xs font-semibold">{{ __('Daftar') }}</a>
     </div>
 @endauth

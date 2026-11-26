@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title','E-Zakat Banjarbaru')</title>
+    <title>@yield('title', __('E-Zakat Banjarbaru'))</title>
     <!-- Polyfill awal untuk window.ezOnReady — antri callback sampai bundle JS siap -->
     <script>
         window.ezOnReady = window.ezOnReady || (function () {
@@ -51,7 +51,7 @@
     </div>
 
 <header class="bg-olive text-white shadow-sm relative z-10 anim-smooth delay-1">
-    <div class="max-w-6xl mx-auto px-4 lg:px-6 h-[60px] flex items-center justify-between">
+    <div class="w-full px-4 sm:px-6 lg:px-8 h-[60px] flex items-center justify-between">
       {{-- Logo E-Zakat --}}
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
             <div class="w-10 h-10 rounded-xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-sm transition-transform group-hover:scale-105 overflow-hidden shrink-0">
@@ -64,7 +64,7 @@
         </a>
         
         <a href="{{ url('/beranda') }}" class="text-xs bg-white/15 hover:bg-white/25 px-4 py-2 rounded-full text-white transition flex items-center gap-1.5 border border-white/10">
-            <i class="fa-solid fa-house"></i> Beranda
+            <i class="fa-solid fa-house"></i> {{ __('Beranda') }}
         </a>
     </div>
 </header>

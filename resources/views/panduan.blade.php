@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Panduan Zakat — E-Zakat Banjarbaru')
+@section('title', __('Panduan Zakat — E-Zakat Banjarbaru'))
 
 @section('head')
 <style>
@@ -87,7 +87,7 @@
 @endsection
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
+<div class="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-4">
 
     <!-- HEADER PANDUAN DENGAN BLOK TRANSPARAN SERTA AKSELERASI ORNAMEN -->
     <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm relative overflow-hidden anim-smooth delay-1 eze-up">
@@ -96,14 +96,14 @@
         </svg>
 
         <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
-            <i class="fa-solid fa-book-quran text-black"></i> Panduan Zakat Lengkap
+            <i class="fa-solid fa-book-quran text-black"></i> {{ __('Panduan Zakat Lengkap') }}
         </h1>
-        <p class="text-xs lg:text-sm text-black/70 mt-1 font-medium">Pahami niat, syarat, waktu, besaran, 8 asnaf, dalil, dan tanya jawab — ringkas dan sesuai rujukan syariat.</p>
+        <p class="text-xs lg:text-sm text-black/70 mt-1 font-medium">{{ __('Pahami niat, syarat, waktu, besaran, 8 asnaf, dalil, dan tanya jawab — ringkas dan sesuai rujukan syariat.') }}</p>
         <div class="mt-4 flex flex-wrap gap-2 text-xs">
-            <a href="#niat" class="bg-olive text-white border border-olive px-3.5 py-1.5 rounded-full font-bold shadow-sm hover-smooth">Niat</a>
-            <a href="#asnaf" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">8 Asnaf</a>
-            <a href="#waris" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">Waris</a>
-            <a href="#faq" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">FAQ</a>
+            <a href="#niat" class="bg-olive text-white border border-olive px-3.5 py-1.5 rounded-full font-bold shadow-sm hover-smooth">{{ __('Niat') }}</a>
+            <a href="#asnaf" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">{{ __('8 Asnaf') }}</a>
+            <a href="#waris" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">{{ __('Waris') }}</a>
+            <a href="#faq" class="bg-panel-2 border border-panel-border px-3.5 py-1.5 rounded-full text-oliveDark font-bold hover:bg-olive hover:text-white transition shadow-sm">{{ __('FAQ') }}</a>
         </div>
     </div>
 
@@ -112,58 +112,58 @@
             {{-- Niat --}}
             <div id="niat" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-2 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm font-black">1</span> Niat Zakat
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm font-black">1</span> {{ __('Niat Zakat') }}
                 </h2>
-                <p class="text-xs text-black/70 mt-1">Niat di dalam hati; melafalkan membantu menguatkan. Berikut lafal yang umum diajarkan ulama.</p>
+                <p class="text-xs text-black/70 mt-1">{{ __('Niat di dalam hati; melafalkan membantu menguatkan. Berikut lafal yang umum diajarkan ulama.') }}</p>
 
                 <div class="mt-4 grid md:grid-cols-2 gap-4">
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT FITRAH UNTUK DIRI SENDIRI</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT ZAKAT FITRAH UNTUK DIRI SENDIRI') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُّ أُنْ أُخْرِجَ زَكَاةَ الِافْطِرِ عَنِ نَفْسِي فَرْضًا لِلهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakatal fitri 'an nafsi fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat fitrah untuk diriku sendiri, fardu karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __("Artinya: Aku berniat mengeluarkan zakat fitrah untuk diriku sendiri, fardu karena Allah Ta'ala.") }}</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT FITRAH UNTUK KELUARGA</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT ZAKAT FITRAH UNTUK KELUARGA') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُّ أَنْ أُخْرِجَ زَكَاةَ الْفِطْرِ عَنِّي وَعَنْ جَمِيعِ مَنْ تَلْزَمُنِي نَفَقَتُهُ فَرْضًا لِلَّهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakatal fitri 'anni wa 'an jami'i man talzmunni nafaqatuhu fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Untuk kepala keluarga yang menanggung istri/anak.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __('Untuk kepala keluarga yang menanggung istri/anak.') }}</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT MAAL</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT ZAKAT MAAL') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي فَرْضًا لِلَّهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata mali fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat harta kekayaanku, fardu karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __("Artinya: Aku berniat mengeluarkan zakat harta kekayaanku, fardu karena Allah Ta'ala.") }}</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT PENGHASILAN</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT ZAKAT PENGHASILAN') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ دَخْلِي فَرْضًا لِلَّهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata dakhli fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat penghasilanku, fardu karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __("Artinya: Aku berniat mengeluarkan zakat penghasilanku, fardu karena Allah Ta'ala.") }}</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT PERNIAGAAAN</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT ZAKAT PERNIAGAAAN') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ تِجَارَتِي فَرْضًا لِلَّهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata tijarati fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat perniagaan (dagang)ku, fardu karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __("Artinya: Aku berniat mengeluarkan zakat perniagaan (dagang)ku, fardu karena Allah Ta'ala.") }}</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT ZAKAT PERTANIAN</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT ZAKAT PERTANIAN') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ زَرْعِي فَرْضًا لِلَّهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija zakata zar'i fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan zakat hasil pertanianku, fardu karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __("Artinya: Aku berniat mengeluarkan zakat hasil pertanianku, fardu karena Allah Ta'ala.") }}</div>
                     </div>
 
                     <div class="bg-niat-box rounded-2xl p-4 border border-panel-border">
-                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">NIAT FIDYAH</div>
+                        <div class="text-[10px] font-extrabold tracking-wider text-gold2 uppercase">{{ __('NIAT FIDYAH') }}</div>
                         <div class="font-amiri text-oliveDark text-base mt-2 leading-relaxed" dir="rtl">نَوَيْتُ أَنْ أُخْرِجَ الْفِدْيَةَ عَنْ تَرْكِ الصَّوْمِ فَرْضًا لِلَّهِ تَعَالَى</div>
                         <div class="text-xs text-gold2 mt-2 italic font-semibold">"Nawaitu an ukhrija al-fidyah 'an tarki ash-shaum fardhan lillahi ta'ala"</div>
-                        <div class="text-[11px] text-black/70 mt-1">Artinya: Aku berniat mengeluarkan fidyah karena meninggalkan puasa, karena Allah Ta'ala.</div>
+                        <div class="text-[11px] text-black/70 mt-1">{{ __("Artinya: Aku berniat mengeluarkan fidyah karena meninggalkan puasa, karena Allah Ta'ala.") }}</div>
                     </div>
                 </div>
             </div>
@@ -171,19 +171,19 @@
             {{-- 8 Asnaf --}}
             <div id="asnaf" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">2</span> 8 Asnaf Penerima Zakat
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">2</span> {{ __('8 Asnaf Penerima Zakat') }}
                 </h2>
-                <p class="text-xs text-black/70 mt-1">QS. At-Taubah: 60 — Sesungguhnya zakat itu hanyalah untuk...</p>
+                <p class="text-xs text-black/70 mt-1">{{ __('QS. At-Taubah: 60 — Sesungguhnya zakat itu hanyalah untuk...') }}</p>
                 <div class="mt-4 grid sm:grid-cols-2 gap-3 text-xs">
                     @php $asnafs = [
-                        ['Fakir','Tidak punya harta & penghasilan, atau sangat tidak mencukupi.','fa-person-circle-question'],
-                        ['Miskin','Punya penghasilan tapi tidak cukup untuk kebutuhan pokok.','fa-hand-holding-heart'],
-                        ['Amil','Pengelola zakat yang ditunjuk.','fa-people-group'],
-                        ['Muallaf','Yang dijinakkan hatinya (baru masuk Islam).','fa-heart'],
-                        ['Riqab','Budak/hamba sahaya (konteks modern: memerdekakan dari jeratan).','fa-link-slash'],
-                        ['Gharimin','Berhutang untuk kebutuhan pokok & tidak mampu membayar.','fa-scale-balanced'],
-                        ['Fisabilillah','Di jalan Allah (dakwah, jihad, kepentingan umum syar\'i).','fa-mosque'],
-                        ['Ibnu Sabil','Musafir kehabisan bekal.','fa-person-walking-luggage'],
+                        [__('Fakir'),__('Tidak punya harta & penghasilan, atau sangat tidak mencukupi.'),'fa-person-circle-question'],
+                        [__('Miskin'),__('Punya penghasilan tapi tidak cukup untuk kebutuhan pokok.'),'fa-hand-holding-heart'],
+                        [__('Amil'),__('Pengelola zakat yang ditunjuk.'),'fa-people-group'],
+                        [__('Muallaf'),__('Yang dijinakkan hatinya (baru masuk Islam).'),'fa-heart'],
+                        [__('Riqab'),__('Budak/hamba sahaya (konteks modern: memerdekakan dari jeratan).'),'fa-link-slash'],
+                        [__('Gharimin'),__('Berhutang untuk kebutuhan pokok & tidak mampu membayar.'),'fa-scale-balanced'],
+                        [__('Fisabilillah'),__('Di jalan Allah (dakwah, jihad, kepentingan umum syar\'i).'),'fa-mosque'],
+                        [__('Ibnu Sabil'),__('Musafir kehabisan bekal.'),'fa-person-walking-luggage'],
                     ]; @endphp
                     @foreach($asnafs as $i=>$a)
                     <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border flex gap-3 items-center">
@@ -197,21 +197,21 @@
             {{-- Waris --}}
             <div id="waris" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 shadow-sm border-l-4 border-l-gold">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">3</span> Waris (Faraidh)
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">3</span> {{ __('Waris (Faraidh)') }}
                 </h2>
-                <p class="text-xs text-black/70 mt-1">QS. An-Nisa': 11–12 — Pembagian harta warisan menurut syariat (faraidh) agar adil dan sesuai ketentuan.</p>
+                <p class="text-xs text-black/70 mt-1">{{ __("QS. An-Nisa': 11–12 — Pembagian harta warisan menurut syariat (faraidh) agar adil dan sesuai ketentuan.") }}</p>
                 <div class="mt-4 grid md:grid-cols-2 gap-4 text-xs">
                     <div class="space-y-2.5">
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Apa itu?</div><div class="text-black/70 mt-0.5">Ketentuan ahli waris yang berhak dan bagian masing-masing, bersumber dari Al-Qur'an, Sunnah, dan ijma' ulama.</div></div>
-                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">Ahli waris utama</div><div class="text-black/70 mt-0.5">Anak, suami/istri, ayah, dan ibu — serta saudara ketika tidak ada anak.</div></div>
+                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">{{ __('Apa itu?') }}</div><div class="text-black/70 mt-0.5">{{ __("Ketentuan ahli waris yang berhak dan bagian masing-masing, bersumber dari Al-Qur'an, Sunnah, dan ijma' ulama.") }}</div></div>
+                        <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border"><div class="font-bold text-oliveDark">{{ __('Ahli waris utama') }}</div><div class="text-black/70 mt-0.5">{{ __('Anak, suami/istri, ayah, dan ibu — serta saudara ketika tidak ada anak.') }}</div></div>
                     </div>
                     <div class="bg-olive text-white rounded-2xl p-4 flex flex-col justify-between shadow-md border-l-4 border-l-gold2">
                         <div>
-                            <div class="text-[10px] text-gold2 font-extrabold uppercase tracking-wider">HITUNG WARIS</div>
-                            <div class="font-bold mt-1">Butuh simulasi pembagian waris?</div>
-                            <div class="text-white/80 text-xs mt-1">Fitur penghitungan waris tersedia setelah Anda masuk.</div>
+                            <div class="text-[10px] text-gold2 font-extrabold uppercase tracking-wider">{{ __('HITUNG WARIS') }}</div>
+                            <div class="font-bold mt-1">{{ __('Butuh simulasi pembagian waris?') }}</div>
+                            <div class="text-white/80 text-xs mt-1">{{ __('Fitur penghitungan waris tersedia setelah Anda masuk.') }}</div>
                         </div>
-                        <a href="{{ url('/login') }}" class="inline-block mt-3 bg-gold2 text-oliveDark text-xs font-extrabold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-gold transition active:scale-95">Masuk untuk Menghitung →</a>
+                        <a href="{{ url('/login') }}" class="inline-block mt-3 bg-gold2 text-oliveDark text-xs font-extrabold px-4 py-1.5 rounded-full text-center shadow-sm hover:bg-gold transition active:scale-95">{{ __('Masuk untuk Menghitung →') }}</a>
                     </div>
                 </div>
             </div>
@@ -219,24 +219,24 @@
             {{-- FAQ --}}
             <div id="faq" class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 anim-smooth delay-4 eze-up shadow-sm">
                 <h2 class="font-extrabold text-oliveDark text-base lg:text-lg flex items-center gap-2">
-                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> FAQ Zakat
+                    <span class="w-8 h-8 bg-olive text-white rounded-xl inline-flex items-center justify-center text-xs shadow-sm">4</span> {{ __('FAQ Zakat') }}
                 </h2>
                 <div class="mt-4 space-y-3 text-xs">
                     <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>Apakah zakat fitrah boleh dibayar pakai uang?</div>
-                        <div class="text-black/70 mt-0.5 leading-relaxed">Boleh, dengan konversi harga beras lokal (±Rp16.500/kg × 2,5 kg/jiwa). Disunnahkan membayar dengan beras langsung agar manfaatnya lebih cepat sampai ke asnaf.</div>
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>{{ __('Apakah zakat fitrah boleh dibayar pakai uang?') }}</div>
+                        <div class="text-black/70 mt-0.5 leading-relaxed">{{ __('Boleh, dengan konversi harga beras lokal (±Rp16.500/kg × 2,5 kg/jiwa). Disunnahkan membayar dengan beras langsung agar manfaatnya lebih cepat sampai ke asnaf.') }}</div>
                     </div>
                     <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>Kapan waktu membayar zakat fitrah?</div>
-                        <div class="text-black/70 mt-0.5 leading-relaxed">Sebaiknya sebelum Shalat Idul Fitri. Tidak disarankan melebihkan 2 hari sebelum Id. Waktu ideal: akhir Ramadhan sampai H-1 Idul Fitri.</div>
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>{{ __('Kapan waktu membayar zakat fitrah?') }}</div>
+                        <div class="text-black/70 mt-0.5 leading-relaxed">{{ __('Sebaiknya sebelum Shalat Idul Fitri. Tidak disarankan melebihkan 2 hari sebelum Id. Waktu ideal: akhir Ramadhan sampai H-1 Idul Fitri.') }}</div>
                     </div>
                     <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>Apakah anak & lansia wajib zakat fitrah?</div>
-                        <div class="text-black/70 mt-0.5 leading-relaxed">Ya — setiap jiwa muslim yang masih hidup di 1 Syawal wajib ditunaikan zakat fitrahnya. Wali/kepala keluarga membayar atas nama mereka.</div>
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>{{ __('Apakah anak & lansia wajib zakat fitrah?') }}</div>
+                        <div class="text-black/70 mt-0.5 leading-relaxed">{{ __('Ya — setiap jiwa muslim yang masih hidup di 1 Syawal wajib ditunaikan zakat fitrahnya. Wali/kepala keluarga membayar atas nama mereka.') }}</div>
                     </div>
                     <div class="bg-panel-2/70 rounded-xl p-3 border border-panel-border">
-                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>Ke mana zakat saya disalurkan?</div>
-                        <div class="text-black/70 mt-0.5 leading-relaxed">Melalui amil yang sah: BAZNAS, UPZ masjid, atau lembaga yang ditunjuk pemerintah kota Banjarbaru. Lihat <a href="{{ url('/direktori') }}" class="font-bold text-gold2 underline">Lokasi Penyaluran</a> untuk titik terdekat.</div>
+                        <div class="font-bold text-oliveDark mb-1"><i class="fa-solid fa-circle-question text-gold2 mr-1.5"></i>{{ __('Ke mana zakat saya disalurkan?') }}</div>
+                        <div class="text-black/70 mt-0.5 leading-relaxed">{{ __('Melalui amil yang sah: BAZNAS, UPZ masjid, atau lembaga yang ditunjuk pemerintah kota Banjarbaru. Lihat') }} <a href="{{ url('/direktori') }}" class="font-bold text-gold2 underline">{{ __('Lokasi Penyaluran') }}</a> {{ __('untuk titik terdekat.') }}</div>
                     </div>
                 </div>
             </div>
@@ -246,9 +246,9 @@
         <div class="space-y-4 anim-smooth delay-3 eze-col-right">
             <div class="bg-olive rounded-[24px] p-5 text-white lg:sticky lg:top-[80px] shadow-xl hover-smooth border border-white/20 border-l-4 border-l-gold2 relative overflow-hidden">
                 <div class="w-10 h-10 bg-gold2 text-oliveDark rounded-xl flex items-center justify-center font-black shadow-sm"><i class="fa-solid fa-lightbulb text-base"></i></div>
-                <div class="font-bold text-sm mt-3">Butuh Hitung Cepat?</div>
-                <p class="text-xs text-white/80 mt-1 leading-relaxed">Buka kalkulator untuk simulasi zakat fitrah, maal, dan fidyah otomatis.</p>
-                <a href="{{ url('/kalkulator') }}" class="mt-4 block text-center bg-gold2 text-oliveDark font-extrabold py-2.5 rounded-full text-xs hover:bg-gold transition shadow active:scale-95">Buka Kalkulator <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <div class="font-bold text-sm mt-3">{{ __('Butuh Hitung Cepat?') }}</div>
+                <p class="text-xs text-white/80 mt-1 leading-relaxed">{{ __('Buka kalkulator untuk simulasi zakat fitrah, maal, dan fidyah otomatis.') }}</p>
+                <a href="{{ url('/kalkulator') }}" class="mt-4 block text-center bg-gold2 text-oliveDark font-extrabold py-2.5 rounded-full text-xs hover:bg-gold transition shadow active:scale-95">{{ __('Buka Kalkulator') }} <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
         </div>
     </div>

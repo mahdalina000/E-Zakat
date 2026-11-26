@@ -1,41 +1,45 @@
 @extends('layouts.dashboard')
-@section('title','Profil Warga — E-Zakat')
-@section('page-title','Profil & Data Diri')
-@section('page-sub','Kelola data diri, kategori zakat, dan catatan perhitungan')
+@section('title', __('Profil Warga — E-Zakat'))
+@section('page-title', __('Profil & Data Diri'))
+@section('page-sub', __('Kelola data diri, kategori zakat, dan catatan perhitungan'))
 @section('content')
+<div class="glass-page w-full">
 
 @php
     $profile = auth()->user()->wargaProfile;
 @endphp
 
+{{-- Kartu header profil (foto, nama, email, tanggal) --}}
+@include('settings.partials.profile-header')
+
 {{-- CARD DATA DIRI --}}
 <div class="bg-white rounded-[20px] border border-cream3 p-5 lg:p-6">
     <div class="flex items-center justify-between mb-4">
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2">
-            <i class="fa-solid fa-id-card text-olive"></i> Data Diri
+            <i class="fa-solid fa-id-card text-olive"></i> {{ __('Data Diri') }}
         </div>
         <a href="{{ route('user.profile.edit') }}" class="bg-olive text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-olive2">
-            <i class="fa-solid fa-pen mr-1"></i> Edit Data
+            <i class="fa-solid fa-pen mr-1"></i> {{ __('Edit Data') }}
         </a>
     </div>
 
     @if($profile)
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">NIK</div><div class="font-bold text-oliveDark break-words">{{ $profile->nik ?? '-' }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Jenis Kelamin</div><div class="font-bold text-oliveDark">{{ $profile->genderLabel() }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Tanggal Lahir</div><div class="font-bold text-oliveDark">{{ $profile->birth_date?->translatedFormat('d M Y') ?? '-' }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Status Pernikahan</div><div class="font-bold text-oliveDark">{{ $profile->statusPernikahanLabel() }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Pekerjaan</div><div class="font-bold text-oliveDark">{{ $profile->occupation ?? '-' }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Tanggungan</div><div class="font-bold text-oliveDark">{{ $profile->dependents_count ?? 0 }} jiwa</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Penghasilan/Bulan</div><div class="font-bold text-oliveDark">Rp {{ number_format($profile->monthly_income ?? 0, 0, ',', '.') }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Total Hutang</div><div class="font-bold text-oliveDark">Rp {{ number_format($profile->debt_amount ?? 0, 0, ',', '.') }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3"><div class="text-olive/60">Total Aset</div><div class="font-bold text-oliveDark">Rp {{ number_format($profile->totalAsset(), 0, ',', '.') }}</div></div>
-        <div class="bg-cream2 rounded-xl p-3 col-span-full"><div class="text-olive/60">Alamat</div><div class="font-bold text-oliveDark break-words">{{ $profile->address_line1 ?: '-' }}</div></div>
+        <div class="pf-box pf-id"><div class="pf-icon"><i class="fa-solid fa-id-card"></i></div><div><div class="pf-label">{{ __('NIK') }}</div><div class="pf-val break-words">{{ mask_sensitive($profile->nik) ?: '-' }}</div></div></div>
+        <div class="pf-box pf-gender"><div class="pf-icon"><i class="fa-solid fa-venus-mars"></i></div><div><div class="pf-label">{{ __('Jenis Kelamin') }}</div><div class="pf-val">{{ $profile->genderLabel() }}</div></div></div>
+        <div class="pf-box pf-birth"><div class="pf-icon"><i class="fa-solid fa-cake-candles"></i></div><div><div class="pf-label">{{ __('Tanggal Lahir') }}</div><div class="pf-val">{{ $profile->birth_date?->translatedFormat('d M Y') ?? '-' }}</div></div></div>
+        <div class="pf-box pf-marital"><div class="pf-icon"><i class="fa-solid fa-ring"></i></div><div><div class="pf-label">{{ __('Status Pernikahan') }}</div><div class="pf-val">{{ $profile->statusPernikahanLabel() }}</div></div></div>
+        <div class="pf-box pf-job"><div class="pf-icon"><i class="fa-solid fa-briefcase"></i></div><div><div class="pf-label">{{ __('Pekerjaan') }}</div><div class="pf-val">{{ $profile->occupation ?? '-' }}</div></div></div>
+        <div class="pf-box pf-dep"><div class="pf-icon"><i class="fa-solid fa-people-group"></i></div><div><div class="pf-label">{{ __('Tanggungan') }}</div><div class="pf-val">{{ $profile->dependents_count ?? 0 }} {{ __('jiwa') }}</div></div></div>
+        <div class="pf-box pf-income"><div class="pf-icon"><i class="fa-solid fa-money-bill-wave"></i></div><div><div class="pf-label">{{ __('Penghasilan/Bulan') }}</div><div class="pf-val">Rp {{ number_format($profile->monthly_income ?? 0, 0, ',', '.') }}</div></div></div>
+        <div class="pf-box pf-debt"><div class="pf-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div><div><div class="pf-label">{{ __('Total Hutang') }}</div><div class="pf-val">Rp {{ number_format($profile->debt_amount ?? 0, 0, ',', '.') }}</div></div></div>
+        <div class="pf-box pf-asset"><div class="pf-icon"><i class="fa-solid fa-landmark"></i></div><div><div class="pf-label">{{ __('Total Aset') }}</div><div class="pf-val">Rp {{ number_format($profile->totalAsset(), 0, ',', '.') }}</div></div></div>
+        <div class="pf-box pf-addr col-span-full"><div class="pf-icon"><i class="fa-solid fa-house"></i></div><div><div class="pf-label">{{ __('Alamat') }}</div><div class="pf-val break-words">{{ mask_sensitive($profile->address_line1) ?: '-' }}</div></div></div>
     </div>
     @else
     <div class="text-center py-8">
-        <div class="text-olive/40 text-sm mb-3">Data diri belum diisi.</div>
-        <a href="{{ route('user.profile.edit') }}" class="bg-olive text-white text-xs font-semibold px-4 py-2 rounded-full">Isi Data Diri Sekarang</a>
+        <div class="text-olive/40 text-sm mb-3">{{ __('Data diri belum diisi.') }}</div>
+        <a href="{{ route('user.profile.edit') }}" class="bg-olive text-white text-xs font-semibold px-4 py-2 rounded-full">{{ __('Isi Data Diri Sekarang') }}</a>
     </div>
     @endif
 </div>
@@ -43,43 +47,43 @@
 {{-- CARD KATEGORI ZAKAT --}}
 <div class="bg-white rounded-[20px] border border-cream3 p-5 lg:p-6 mt-4">
     <div class="font-bold text-oliveDark text-sm mb-3 flex items-center gap-2">
-        <i class="fa-solid fa-scale-balanced text-olive"></i> Kategori Zakat
+        <i class="fa-solid fa-scale-balanced text-olive"></i> {{ __('Kategori Zakat') }}
     </div>
     @if($profile?->zakat_category)
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div class="bg-olive/10 rounded-xl p-4">
-            <div class="text-xs font-bold text-olive uppercase tracking-wider">Status Zakat</div>
+            <div class="text-xs font-bold text-olive uppercase tracking-wider">{{ __('Status Zakat') }}</div>
             <div class="text-lg font-black text-oliveDark mt-1">{{ $profile->kategoriLabel() }}</div>
             @if($profile->zakat_category_reason)
-            <div class="text-xs text-olive/70 mt-1">Alasan: {{ $profile->zakat_category_reason }}</div>
+            <div class="text-xs text-olive/70 mt-1">{{ __('Alasan:') }} {{ $profile->zakat_category_reason }}</div>
             @endif
             @if($profile->category_approved)
-            <div class="text-[11px] text-olive font-semibold mt-2 inline-block bg-olive/10 rounded-full px-2 py-0.5">✓ Diverifikasi admin</div>
+            <div class="text-[11px] text-olive font-semibold mt-2 inline-block bg-olive/10 rounded-full px-2 py-0.5">{{ __('✓ Diverifikasi admin') }}</div>
             @else
-            <div class="text-[11px] text-amber-600 font-semibold mt-2 inline-block bg-amber-50 rounded-full px-2 py-0.5">⏳ Menunggu verifikasi admin</div>
+            <div class="text-[11px] text-amber-600 font-semibold mt-2 inline-block bg-amber-50 rounded-full px-2 py-0.5">{{ __('⏳ Menunggu verifikasi admin') }}</div>
             @endif
         </div>
         <div class="bg-cream2 rounded-xl p-4">
-            <div class="text-xs font-bold text-olive uppercase tracking-wider">Pengaturan</div>
-            <p class="text-xs text-olive/60 mt-1 leading-relaxed">Kategori ditentukan otomatis berdasarkan penghasilan, tanggungan, dan hutang. Status akhir akan dikunci setelah diverifikasi admin.</p>
+            <div class="text-xs font-bold text-olive uppercase tracking-wider">{{ __('Pengaturan') }}</div>
+            <p class="text-xs text-olive/60 mt-1 leading-relaxed">{{ __('Kategori ditentukan otomatis berdasarkan penghasilan, tanggungan, dan hutang. Status akhir akan dikunci setelah diverifikasi admin.') }}</p>
         </div>
     </div>
     @else
-    <div class="text-center py-6 text-olive/40 text-sm">Kategori belum ditentukan. Isi data diri lengkap terlebih dahulu.</div>
+    <div class="text-center py-6 text-olive/40 text-sm">{{ __('Kategori belum ditentukan. Isi data diri lengkap terlebih dahulu.') }}</div>
     @endif
 
     <div class="mt-4 bg-cream2 rounded-xl p-4 text-xs text-oliveDark">
-        <div class="font-bold text-oliveDark uppercase tracking-wider text-xs mb-2">Cara Menghitung Kategori</div>
+        <div class="font-bold text-oliveDark uppercase tracking-wider text-xs mb-2">{{ __('Cara Menghitung Kategori') }}</div>
         <ol class="list-decimal list-inside space-y-1.5 leading-relaxed text-oliveDark">
-            <li>Hitung <b class="text-oliveDark">kebutuhan pokok keluarga</b> = Rp1.500.000 × jumlah tanggungan (minimal 1).</li>
-            <li>Punya <b class="text-oliveDark">hutang</b> dan penghasilan ≤ kebutuhan pokok → <b class="text-oliveDark">Gharimin</b>.</li>
-            <li><b class="text-oliveDark">Tanpa penghasilan &amp; tanpa harta</b> → <b class="text-oliveDark">Fakir</b>.</li>
-            <li>Penghasilan <b class="text-oliveDark">≤ kebutuhan pokok</b> → <b class="text-oliveDark">Kurang / Tidak Mampu</b>.</li>
-            <li>Penghasilan <b class="text-oliveDark">≥ Rp5.000.000</b> &amp; total aset <b class="text-oliveDark">≥ Rp10.000.000</b> → <b class="text-oliveDark">Pemberi Zakat</b>.</li>
-            <li>Selain itu → <b class="text-oliveDark">Netral</b>.</li>
+            <li>{{ __('Hitung') }} <b class="text-oliveDark">{{ __('kebutuhan pokok keluarga') }}</b> {{ __('= Rp1.500.000 × jumlah tanggungan (minimal 1).') }}</li>
+            <li>{{ __('Punya') }} <b class="text-oliveDark">{{ __('hutang') }}</b> {{ __('dan penghasilan ≤ kebutuhan pokok →') }} <b class="text-oliveDark">{{ __('Gharimin') }}</b>.</li>
+            <li><b class="text-oliveDark">{{ __('Tanpa penghasilan & tanpa harta') }}</b> → <b class="text-oliveDark">{{ __('Fakir') }}</b>.</li>
+            <li>{{ __('Penghasilan') }} <b class="text-oliveDark">{{ __('≤ kebutuhan pokok') }}</b> → <b class="text-oliveDark">{{ __('Kurang / Tidak Mampu') }}</b>.</li>
+            <li>{{ __('Penghasilan') }} <b class="text-oliveDark">{{ __('≥ Rp5.000.000') }}</b> {{ __('& total aset') }} <b class="text-oliveDark">{{ __('≥ Rp10.000.000') }}</b> → <b class="text-oliveDark">{{ __('Pemberi Zakat') }}</b>.</li>
+            <li>{{ __('Selain itu →') }} <b class="text-oliveDark">{{ __('Netral') }}</b>.</li>
         </ol>
         <div class="mt-2.5 pt-2.5 border-t border-cream3 text-oliveDark">
-            Data yang dipakai: penghasilan/bulan, tanggungan, hutang, dan total aset. Edit data diri untuk memperbarui status.
+            {{ __('Data yang dipakai: penghasilan/bulan, tanggungan, hutang, dan total aset. Edit data diri untuk memperbarui status.') }}
         </div>
     </div>
 </div>
@@ -88,14 +92,14 @@
 <div class="bg-white rounded-[20px] border border-cream3 p-5 lg:p-6 mt-4">
     <div class="flex items-center justify-between mb-4 gap-3 flex-wrap">
         <div class="font-bold text-oliveDark text-sm flex items-center gap-2">
-            <i class="fa-solid fa-clipboard-list text-olive"></i> Catatan Zakat
+            <i class="fa-solid fa-clipboard-list text-olive"></i> {{ __('Catatan Zakat') }}
         </div>
         <div class="flex gap-2 flex-wrap">
             <button type="button" onclick="openRecordModal()" class="bg-olive text-white text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-olive2">
-                <i class="fa-solid fa-plus mr-1"></i> Tambah
+                <i class="fa-solid fa-plus mr-1"></i> {{ __('Tambah') }}
             </button>
             <button onclick="location.href='{{ route('user.export') }}'" class="bg-cream border border-cream3 text-olive text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-cream3">
-                <i class="fa-solid fa-file-excel mr-1"></i> Export
+                <i class="fa-solid fa-file-excel mr-1"></i> {{ __('Export') }}
             </button>
         </div>
     </div>
@@ -103,34 +107,34 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <div class="relative">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-olive/40 text-xs pointer-events-none"></i>
-            <input type="text" id="recordSearch" placeholder="Cari catatan…" style="padding-left:2.25rem"
+            <input type="text" id="recordSearch" placeholder="{{ __('Cari catatan…') }}" style="padding-left:2.25rem"
                 class="w-full border border-cream3 rounded-full pr-4 py-2 text-xs bg-cream2 outline-none focus:border-olive">
         </div>
         <select id="recordTypeFilter" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none focus:border-olive">
-            <option value="">Semua Jenis</option>
-            <option value="zakat_fitrah">Zakat Fitrah</option>
-            <option value="zakat_maal">Zakat Maal</option>
-            <option value="fidyah">Fidyah</option>
-            <option value="infak_sedekah">Infak & Sedekah</option>
-            <option value="wariq">Waris (Wariq)</option>
+            <option value="">{{ __('Semua Jenis') }}</option>
+            <option value="zakat_fitrah">{{ __('Zakat Fitrah') }}</option>
+            <option value="zakat_maal">{{ __('Zakat Maal') }}</option>
+            <option value="fidyah">{{ __('Fidyah') }}</option>
+            <option value="infak_sedekah">{{ __('Infak & Sedekah') }}</option>
+            <option value="wariq">{{ __('Waris (Wariq)') }}</option>
         </select>
     </div>
 
     <div class="overflow-x-auto">
         <table class="w-full text-sm min-w-[640px]">
             <thead><tr class="text-left text-xs text-olive/50 border-b border-cream3">
-                <th class="py-2 pr-4">Jenis</th><th class="py-2 pr-4">Jumlah</th>
-                <th class="py-2 pr-4">Total (Rp)</th><th class="py-2 pr-4">Tanggal</th>
-                <th class="py-2 pr-4">Metode</th><th class="py-2 pr-4">Tujuan</th>
-                <th class="py-2 pr-4">Keterangan</th>
-                <th class="py-2 pr-4">Bukti</th>
-                <th class="py-2 text-right">Aksi</th>
+                <th class="py-2 pr-4">{{ __('Jenis') }}</th><th class="py-2 pr-4">{{ __('Jumlah') }}</th>
+                <th class="py-2 pr-4">{{ __('Total (Rp)') }}</th><th class="py-2 pr-4">{{ __('Tanggal') }}</th>
+                <th class="py-2 pr-4">{{ __('Metode') }}</th><th class="py-2 pr-4">{{ __('Tujuan') }}</th>
+                <th class="py-2 pr-4">{{ __('Keterangan') }}</th>
+                <th class="py-2 pr-4">{{ __('Bukti') }}</th>
+                <th class="py-2 text-right">{{ __('Aksi') }}</th>
             </tr></thead>
             <tbody id="recordsTableBody">
             @forelse($records as $r)
                 <tr class="border-b border-cream2 hover:bg-cream2/50" data-id="{{ $r->id }}" data-type="{{ $r->zakat_type }}" data-proof="{{ $r->payment_proof }}" data-search="{{ strtolower($r->zakatTypeLabel().' '.$r->paymentMethodLabel().' '.($r->tujuanLabel() ?? '').' '.($r->notes ?? '').' '.($r->payment_date?->format('d M Y') ?? '')) }}">
                     <td class="py-2.5 pr-3"><span class="text-[11px] px-2 py-0.5 rounded-full bg-olive/10 text-olive font-semibold whitespace-nowrap">{{ $r->zakatTypeLabel() }}</span></td>
-                    <td class="py-2.5 pr-3 text-xs whitespace-nowrap">{{ $r->jiwa_count }} jiwa @if($r->beras_kg) • {{ $r->beras_kg }} kg beras @endif</td>
+                    <td class="py-2.5 pr-3 text-xs whitespace-nowrap">{{ $r->jiwa_count }} {{ __('jiwa') }} @if($r->beras_kg) • {{ $r->beras_kg }} {{ __('kg beras') }} @endif</td>
                     <td class="py-2.5 pr-3 font-bold text-oliveDark whitespace-nowrap">Rp {{ number_format($r->total_amount ?? 0, 0, ',', '.') }}</td>
                     <td class="py-2.5 pr-3 text-xs text-olive/60 whitespace-nowrap">{{ $r->payment_date?->translatedFormat('d M Y') ?? ($r->due_date?->translatedFormat('d M Y') ?? '-') }}</td>
                     <td class="py-2.5 pr-3 text-xs whitespace-nowrap">{{ $r->paymentMethodLabel() }}</td>
@@ -138,23 +142,23 @@
                     <td class="py-2.5 pr-3 text-xs text-olive/70 max-w-[140px] truncate">{{ Str::limit($r->notes, 40) }}</td>
                     <td class="py-2.5 pr-3 text-xs whitespace-nowrap">
                         @if($r->payment_proof)
-                        <img src="{{ asset('storage/' . $r->payment_proof) }}" alt="Bukti pembayaran" title="Klik untuk perbesar" class="h-9 w-9 object-cover rounded-lg border border-cream3 shadow-sm cursor-pointer" onclick="window.open(this.src,'_blank','width=900,height=700')">
+                        <img src="{{ asset('storage/' . $r->payment_proof) }}" alt="{{ __('Bukti pembayaran') }}" title="{{ __('Klik untuk perbesar') }}" class="h-9 w-9 object-cover rounded-lg border border-cream3 shadow-sm cursor-pointer" onclick="window.open(this.src,'_blank','width=900,height=700')">
                         @else
                         <span class="text-olive/40">—</span>
                         @endif
                     </td>
                     <td class="py-2.5 pr-3 text-right whitespace-nowrap">
                         <div class="inline-flex items-center gap-2">
-                        <button type="button" onclick="openEditModal({{ $r->id }})" class="w-8 h-8 rounded-lg bg-olive/10 text-olive hover:bg-olive/20 text-xs flex items-center justify-center" title="Edit"><i class="fa-solid fa-pen"></i></button>
-                        <form method="POST" action="{{ route('user.records.destroy', $r) }}" onsubmit="return confirm('Hapus catatan ini?')" class="inline">
+                        <button type="button" onclick="openEditModal({{ $r->id }})" class="w-8 h-8 rounded-lg bg-olive/10 text-olive hover:bg-olive/20 text-xs flex items-center justify-center" title="{{ __('Edit') }}"><i class="fa-solid fa-pen"></i></button>
+                        <form method="POST" action="{{ route('user.records.destroy', $r) }}" onsubmit="event.preventDefault()" class="inline">
                             @csrf @method('DELETE')
-                            <button class="w-8 h-8 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 text-xs flex items-center justify-center" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" data-title="{{ __('Hapus') }}" data-message="{{ __('Hapus catatan ini?') }}" data-action="{{ route('user.records.destroy', $r) }}" class="w-8 h-8 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 text-xs flex items-center justify-center" title="{{ __('Hapus') }}" onclick="event.preventDefault(); confirmDelete({ title: this.dataset.title, message: this.dataset.message, action: this.dataset.action })"><i class="fa-solid fa-trash"></i></button>
                         </form>
                         </div>
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="9" class="py-8 text-center text-olive/40">Belum ada catatan zakat.</td></tr>
+                <tr><td colspan="9" class="py-8 text-center text-olive/40">{{ __('Belum ada catatan zakat.') }}</td></tr>
             @endforelse
             </tbody>
         </table>
@@ -166,7 +170,7 @@
     <div class="fixed inset-0 bg-black/50"></div>
     <div id="recordModalInner" class="relative flex p-4" style="min-height:100%;overscroll-behavior:contain">
         <div id="recordModalBox" class="w-full max-w-lg bg-white rounded-2xl p-5" style="margin:auto;max-height:90vh;display:flex;flex-direction:column">
-            <h3 id="recordModalTitle" class="font-bold text-oliveDark text-sm mb-3">Tambah Catatan Zakat</h3>
+            <h3 id="recordModalTitle" class="font-bold text-oliveDark text-sm mb-3">{{ __('Tambah Catatan Zakat') }}</h3>
             @error('jumlah')
                 <div class="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-3">{{ $message }}</div>
             @enderror
@@ -175,28 +179,28 @@
             <input type="hidden" name="_method" id="recordMethod" value="POST">
             <div class="space-y-3" style="flex:1 1 0%;min-height:0;overflow-y:auto">
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Jenis Zakat *</label>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Jenis Zakat *') }}</label>
                 <select name="zakat_type" id="f_zakat_type" required class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
-                    <option value="zakat_fitrah">Zakat Fitrah</option>
-                    <option value="zakat_maal">Zakat Maal</option>
-                    <option value="fidyah">Fidyah</option>
-                    <option value="infak_sedekah">Infak & Sedekah</option>
-                    <option value="wariq">Waris (Wariq)</option>
+                    <option value="zakat_fitrah">{{ __('Zakat Fitrah') }}</option>
+                    <option value="zakat_maal">{{ __('Zakat Maal') }}</option>
+                    <option value="fidyah">{{ __('Fidyah') }}</option>
+                    <option value="infak_sedekah">{{ __('Infak & Sedekah') }}</option>
+                    <option value="wariq">{{ __('Waris (Wariq)') }}</option>
                 </select>
             </div>
             <div class="grid grid-cols-2 gap-3">
                 <div>
-                    <label class="text-xs font-semibold text-oliveDark">Jumlah Jiwa</label>
+                    <label class="text-xs font-semibold text-oliveDark">{{ __('Jumlah Jiwa') }}</label>
                     <input name="jiwa_count" id="f_jiwa_count" type="number" min="1" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                 </div>
                 <div>
-                    <label class="text-xs font-semibold text-oliveDark">Beras (kg)</label>
+                    <label class="text-xs font-semibold text-oliveDark">{{ __('Beras (kg)') }}</label>
                     <input name="beras_kg" id="f_beras_kg" type="number" step="0.01" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
                 </div>
             </div>
 
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Total Nilai (Rp)</label>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Total Nilai (Rp)') }}</label>
                 <input type="text" id="total_amount_formatted" placeholder="0"
                        class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none"
                        oninput="formatRupiahDirect(this)">
@@ -205,47 +209,47 @@
 
             <div class="grid grid-cols-2 gap-3">
                 <div>
-                    <label class="text-xs font-semibold text-oliveDark block mb-1">Tanggal Bayar</label>
+                    <label class="text-xs font-semibold text-oliveDark block mb-1">{{ __('Tanggal Bayar') }}</label>
                     <input name="payment_date" id="f_payment_date"
                            type="date"
                            onclick="this.showPicker()"
                            class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none cursor-pointer text-oliveDark">
                 </div>
                 <div>
-                    <label class="text-xs font-semibold text-oliveDark block mb-1">Metode Pembayaran</label>
+                    <label class="text-xs font-semibold text-oliveDark block mb-1">{{ __('Metode Pembayaran') }}</label>
                     <select name="payment_method" id="f_payment_method" class="w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
-                        <option value="tunai">Tunai</option>
-                        <option value="transfer">Transfer</option>
-                        <option value="qris">QRIS</option>
-                        <option value="beras_fisik">Beras Fisik</option>
-                        <option value="makanan">Makanan</option>
+                        <option value="tunai">{{ __('Tunai') }}</option>
+                        <option value="transfer">{{ __('Transfer') }}</option>
+                        <option value="qris">{{ __('QRIS') }}</option>
+                        <option value="beras_fisik">{{ __('Beras Fisik') }}</option>
+                        <option value="makanan">{{ __('Makanan') }}</option>
                     </select>
                 </div>
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Tujuan Zakat</label>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Tujuan Zakat') }}</label>
                 <select name="tujuan" id="f_tujuan" class="mt-1 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 outline-none">
-                    <option value="">— Pilih Tujuan —</option>
-                    <option value="warga">Warga (mustahik)</option>
-                    <option value="upz">Ke UPZ / Masjid</option>
-                    <option value="baznas">Ke BAZNAS</option>
+                    <option value="">{{ __('— Pilih Tujuan —') }}</option>
+                    <option value="warga">{{ __('Warga (mustahik)') }}</option>
+                    <option value="upz">{{ __('Ke UPZ / Masjid') }}</option>
+                    <option value="baznas">{{ __('Ke BAZNAS') }}</option>
                 </select>
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Bukti Foto Pembayaran</label>
-                <label for="f_payment_proof" class="mt-1 block w-full cursor-pointer rounded-full bg-olive hover:bg-olive2 text-white text-center px-4 py-2.5 text-xs font-semibold transition shadow-sm"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Pilih File Bukti</label>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Bukti Foto Pembayaran') }}</label>
+                <label for="f_payment_proof" class="mt-1 block w-full cursor-pointer rounded-full bg-olive hover:bg-olive2 text-white text-center px-4 py-2.5 text-xs font-semibold transition shadow-sm"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>{{ __('Pilih File Bukti') }}</label>
                 <input type="file" name="payment_proof" id="f_payment_proof" accept="image/*" onchange="showProofPreview(this)" class="sr-only">
-                <p class="text-[10px] text-olive/50 mt-1.5 text-center">JPG / PNG / WEBP · maks 2 MB (opsional)</p>
+                <p class="text-[10px] text-olive/50 mt-1.5 text-center">{{ __('JPG / PNG / WEBP · maks 2 MB (opsional)') }}</p>
                 <div id="f_payment_proof_preview" class="hidden mt-2 flex justify-center"></div>
             </div>
             <div>
-                <label class="text-xs font-semibold text-oliveDark">Keterangan</label>
-                <textarea name="notes" id="f_notes" rows="2" class="mt-1 w-full border border-cream3 rounded-xl px-4 py-2 text-xs bg-cream2 outline-none" style="resize:none" placeholder="mis. Zakat fitrah keluarga, 4 jiwa × 2.5 kg"></textarea>
+                <label class="text-xs font-semibold text-oliveDark">{{ __('Keterangan') }}</label>
+                <textarea name="notes" id="f_notes" rows="2" class="mt-1 w-full border border-cream3 rounded-xl px-4 py-2 text-xs bg-cream2 outline-none" style="resize:none" placeholder="{{ __('mis. Zakat fitrah keluarga, 4 jiwa × 2.5 kg') }}"></textarea>
             </div>
             </div>
             <div class="flex gap-3 pt-3 border-t border-cream3" style="flex-shrink:0">
-                <button class="bg-olive text-white font-semibold px-6 py-2 rounded-full text-xs hover:bg-olive2" id="recordSubmitBtn">Simpan Catatan</button>
-                <button type="button" onclick="closeRecordModal()" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2 rounded-full text-xs">Batal</button>
+                <button class="bg-olive text-white font-semibold px-6 py-2 rounded-full text-xs hover:bg-olive2" id="recordSubmitBtn">{{ __('Simpan Catatan') }}</button>
+                <button type="button" onclick="closeRecordModal()" class="bg-cream border border-cream3 text-olive font-semibold px-6 py-2 rounded-full text-xs">{{ __('Batal') }}</button>
             </div>
         </form>
         </div>
@@ -255,11 +259,11 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
     <a href="{{ route('user.waris') }}" class="bg-olive/10 border border-olive/20 rounded-xl p-3 text-center hover:bg-olive/20 transition">
         <i class="fa-solid fa-scale-balanced text-olive text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Kalkulator Waris</div>
+        <div class="text-xs font-bold text-oliveDark mt-1">{{ __('Kalkulator Waris') }}</div>
     </a>
     <a href="{{ route('user.histories') }}" class="bg-cream2 border border-cream3 rounded-xl p-3 text-center hover:bg-cream3 transition">
         <i class="fa-solid fa-clock-rotate-left text-olive text-lg"></i>
-        <div class="text-xs font-bold text-oliveDark mt-1">Riwayat Perhitungan</div>
+        <div class="text-xs font-bold text-oliveDark mt-1">{{ __('Riwayat Perhitungan') }}</div>
     </a>
 </div>
 
@@ -439,4 +443,5 @@ document.getElementById('recordModalInner')?.addEventListener('click', function(
         if (filter) filter.addEventListener('change', apply);
     })();
 </script>
+</div>
 @endsection

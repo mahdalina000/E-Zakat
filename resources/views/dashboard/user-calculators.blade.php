@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
-@section('title','Kalkulator Zakat & Waris — E-Zakat')
-@section('page-title','Kalkulator Zakat & Waris')
-@section('page-sub','Hitung zakat & waris Anda')
+@section('title',__('Kalkulator Zakat & Waris — E-Zakat'))
+@section('page-title',__('Kalkulator Zakat & Waris'))
+@section('page-sub',__('Hitung zakat & waris Anda'))
 
 @section('head')
 <style>
@@ -296,6 +296,223 @@ body.dark-mode #calc-panel-wariq .bg-white\/70 .text-olive,
 body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
     color: #e2b356 !important;
 }
+
+/* ============================================================ */
+/* OVERRIDE: NAVY (#1e293b) -> CREAM HANGAT (khusus kalkulator)  */
+/* Ganti latar gelap pada elemen pilihan & sub-blok opsi menjadi  */
+/* cream; teks/ikon diubah gelap kontras. Scope .calc-panel.     */
+/* ============================================================ */
+/* Kartu pilihan RADIO (non-aktif): cream + border cokelat muda */
+body.dark-mode .calc-panel .peer:not(:checked) ~ .peer-checked\:bg-olive {
+    background-color: #EFE6D5 !important;
+    color: #14261C !important;
+    border-color: #D2B48C !important;
+}
+body.dark-mode .calc-panel .peer:not(:checked) ~ .peer-checked\:bg-olive div,
+body.dark-mode .calc-panel .peer:not(:checked) ~ .peer-checked\:bg-olive span {
+    color: #14261C !important;
+}
+
+/* Kartu pilihan CHECKBOX ahli waris (non-aktif): cream */
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) {
+    background-color: #EFE6D5 !important;
+    border-color: #D2B48C !important;
+    color: #14261C !important;
+}
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-oliveDark,
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-olive\/60,
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-olive\/70 {
+    color: #14261C !important;
+}
+
+/* Sub-blok opsi (input/select) di dalam panel: cream + teks gelap */
+body.dark-mode .calc-panel input[type="text"],
+body.dark-mode .calc-panel input[type="number"],
+body.dark-mode .calc-panel select {
+    background-color: #F5DEB3 !important;
+    color: #14261C !important;
+    border-color: #D2B48C !important;
+}
+
+/* ============================================================ */
+/* REVISI ULTIMATE: CREAM SERAGAM #EDE2CE + TEKS TAJAM (dark)   */
+/* Semua scoped .calc-panel / #calc-panel-wariq — tidak menyentuh */
+/* light mode maupun halaman lain.                                */
+/* ============================================================ */
+
+/* --- A. Semua kotak input nominal/jumlah/select: cream seragam --- */
+body.dark-mode .calc-panel input[type="text"],
+body.dark-mode .calc-panel input[type="number"],
+body.dark-mode .calc-panel select {
+    background-color: #EDE2CE !important;
+    border-color: #D2B48C !important;
+    color: #14261C !important;
+    font-weight: 600 !important;
+}
+body.dark-mode .calc-panel input::placeholder,
+body.dark-mode .calc-panel textarea::placeholder {
+    color: #78716c !important;  /* stone-500: cokelat keabu-abuan */
+    opacity: 1 !important;
+}
+
+/* --- B. Radio Jenis Kelamin Pewaris --- */
+/* tidak dipilih: cream + teks hijau tua */
+body.dark-mode .calc-panel input[name="pewarisJk"]:not(:checked) + div {
+    background-color: #EDE2CE !important;
+    border-color: #D2B48C !important;
+    color: #14261C !important;
+    font-weight: 700 !important;
+}
+/* dipilih: hijau + border emas + teks putih */
+body.dark-mode .calc-panel input[name="pewarisJk"]:checked + div {
+    background-color: #1d5b37 !important;
+    border-color: rgba(230,179,86,0.95) !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+
+/* --- C. Kartu pilihan RADIO opsi (non-aktif): cream seragam --- */
+body.dark-mode .calc-panel .peer:not(:checked) ~ .peer-checked\:bg-olive {
+    background-color: #EDE2CE !important;
+    border-color: #D2B48C !important;
+    color: #14261C !important;
+}
+body.dark-mode .calc-panel .peer:not(:checked) ~ .peer-checked\:bg-olive div {
+    color: #14261C !important;
+}
+
+/* --- D. Kartu Ahli Waris --- */
+/* Tidak dicentang: cream + teks gelap (judul + subteks + dalil) */
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) {
+    background-color: #EDE2CE !important;
+    border-color: #D2B48C !important;
+}
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-oliveDark,
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-olive\/60,
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-olive\/70 {
+    color: #14261C !important;
+    font-weight: 700 !important;
+}
+/* Dicentang / aktif: hijau solid + border emas + teks putih lembut */
+body.dark-mode #calc-panel-wariq label.active,
+body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) {
+    background-color: rgba(34,94,62,0.95) !important;
+    border-color: rgba(230,179,86,0.95) !important;
+}
+body.dark-mode #calc-panel-wariq label.active .text-oliveDark,
+body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) .text-oliveDark {
+    color: #ffffff !important;
+}
+body.dark-mode #calc-panel-wariq label.active .text-olive\/60,
+body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) .text-olive\/60 {
+    color: rgba(255,255,255,0.82) !important;
+}
+/* Input di dalam kartu aktif: tetap terang + teks putih (tidak cream) */
+body.dark-mode #calc-panel-wariq label.active input,
+body.dark-mode #calc-panel-wariq label:has(input[type="checkbox"]:checked) input {
+    background: rgba(255,255,255,0.16) !important;
+    border-color: rgba(230,179,86,0.6) !important;
+    color: #ffffff !important;
+}
+body.dark-mode #calc-panel-wariq .wariq-qty-card.active input {
+    background: rgba(255,255,255,0.16) !important;
+    border-color: rgba(230,179,86,0.6) !important;
+    color: #ffffff !important;
+}
+
+/* ============================================================ */
+/* FIX TEKS HITAM: Jenis Kelamin Pewaris & Ahli Waris Tunggal    */
+/* (dark only). Latar gelap/frosted + teks terang, menyamai      */
+/* kotak Istri/Janda.                                            */
+/* ============================================================ */
+
+/* 1. Radio Jenis Kelamin Pewaris — tidak dipilih: gelap + teks terang */
+body.dark-mode .calc-panel input[name="pewarisJk"]:not(:checked) + div {
+    background-color: rgba(29,91,55,0.55) !important;
+    border-color: rgba(255,255,255,0.20) !important;
+    color: #F5DEB3 !important;
+    font-weight: 700 !important;
+}
+
+/* 2. Ahli Waris Tunggal/Pasangan/Orang Tua — belum dicentang:
+   latar frosted gelap + judul krem terang + keterangan putih lembut */
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) {
+    background-color: rgba(255,255,255,0.10) !important;
+    border-color: rgba(255,255,255,0.16) !important;
+}
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-oliveDark {
+    color: #F5DEB3 !important;
+    font-weight: 700 !important;
+}
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-olive\/60,
+body.dark-mode #calc-panel-wariq .grid > label:not(:has(input:checked)) .text-olive\/70 {
+    color: rgba(255,255,255,0.75) !important;
+}
+
+/* ============================================================ */
+/* REVISI: Jenis Kelamin Pewaris + Ahli Waris Berjumlah (dark)   */
+/* Aktif=cream+teks hijau tua; Nonaktif=hijau gelap+teks krem.  */
+/* Qty card: judul & keterangan cream.                           */
+/* ============================================================ */
+
+/* --- Radio Jenis Kelamin Pewaris: AKTIF = cream + hijau tua --- */
+body.dark-mode .calc-panel input[name="pewarisJk"]:checked + div {
+    background-color: #EDE2CE !important;
+    border-color: #D2B48C !important;
+    color: #14261C !important;
+    font-weight: 600 !important;
+}
+/* --- Radio Jenis Kelamin Pewaris: NONAKTIF = hijau gelap + krem --- */
+body.dark-mode .calc-panel input[name="pewarisJk"]:not(:checked) + div {
+    background-color: #14261C !important;
+    border-color: rgba(194,178,128,0.40) !important;
+    color: #F5DEB3 !important;
+    font-weight: 600 !important;
+}
+
+/* --- Ahli Waris Berjumlah: judul & keterangan cream (semua kondisi) --- */
+body.dark-mode #calc-panel-wariq .wariq-qty-card.active .text-oliveDark,
+body.dark-mode #calc-panel-wariq .wariq-qty-card .text-oliveDark {
+    color: #F5DEB3 !important;
+    font-weight: 700 !important;
+}
+body.dark-mode #calc-panel-wariq .wariq-qty-card.active .text-olive\/60,
+body.dark-mode #calc-panel-wariq .wariq-qty-card.active .text-olive\/70,
+body.dark-mode #calc-panel-wariq .wariq-qty-card .text-olive\/60,
+body.dark-mode #calc-panel-wariq .wariq-qty-card .text-olive\/70 {
+    color: rgba(245,222,179,0.75) !important;
+}
+
+/* ============================================================ */
+/* FALLBACK KUAT: tombol Jenis Kelamin Pewaris (dark) + Istri    */
+/* ============================================================ */
+body.dark-mode .calc-panel input[name="pewarisJk"]:checked + div,
+html.dark-mode .calc-panel input[name="pewarisJk"]:checked + div {
+    background-color: #EDE2CE !important;
+    border-color: #D2B48C !important;
+    color: #14261C !important;
+    font-weight: 600 !important;
+}
+body.dark-mode .calc-panel input[name="pewarisJk"]:not(:checked) + div,
+html.dark-mode .calc-panel input[name="pewarisJk"]:not(:checked) + div {
+    background-color: #14261C !important;
+    border-color: rgba(194,178,128,0.40) !important;
+    color: #F5DEB3 !important;
+    font-weight: 600 !important;
+}
+/* Samakan kartu Istri/Janda dengan kartu ahli waris lain (default/belum dicentang) */
+body.dark-mode #wariqIstriBox,
+html.dark-mode #wariqIstriBox {
+    background-color: rgba(255,255,255,0.10) !important;
+    border: 1px solid rgba(255,255,255,0.16) !important;
+}
+
+/* Tombol pewaris: fallback yang dijamin jalan (style inline jadi prioritas utama) */
+body.dark-mode .rgv-gender,
+html.dark-mode .rgv-gender {
+    /* style inline di HTML sudah meng-handle; ini cadangan bila inline dihapus */
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
 </style>
 @endsection
 
@@ -307,13 +524,13 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 {{--  TAB BAR --}}
 {{-- ============================================================ --}}
 <div class="flex flex-wrap gap-2 mb-5">
-    <button data-tab="fitrah" class="calc-tab bg-olive text-white px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow transition active:scale-95"><i class="fa-solid fa-wheat-awn mr-2"></i>Fitrah</button>
-    <button data-tab="maal" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-coins mr-2"></i>Maal</button>
-    <button data-tab="fidyah" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-utensils mr-2"></i>Fidyah</button>
-    <button data-tab="penghasilan" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-money-bill-trend-up mr-2"></i>Penghasilan</button>
-    <button data-tab="pertanian" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-seedling mr-2"></i>Pertanian</button>
-    <button data-tab="perdagangan" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-store mr-2"></i>Perdagangan</button>
-    <button data-tab="wariq" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-scale-balanced mr-2"></i>Waris</button>
+    <button data-tab="fitrah" class="calc-tab bg-olive text-white px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow transition active:scale-95"><i class="fa-solid fa-wheat-awn mr-2"></i>{{ __('Fitrah') }}</button>
+    <button data-tab="maal" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-coins mr-2"></i>{{ __('Maal') }}</button>
+    <button data-tab="fidyah" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-utensils mr-2"></i>{{ __('Fidyah') }}</button>
+    <button data-tab="penghasilan" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-money-bill-trend-up mr-2"></i>{{ __('Penghasilan') }}</button>
+    <button data-tab="pertanian" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-seedling mr-2"></i>{{ __('Pertanian') }}</button>
+    <button data-tab="perdagangan" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-store mr-2"></i>{{ __('Perdagangan') }}</button>
+    <button data-tab="wariq" class="calc-tab bg-white border border-cream3 text-olive px-4 py-2.5 rounded-full text-xs lg:text-sm font-bold shadow-sm transition active:scale-95"><i class="fa-solid fa-scale-balanced mr-2"></i>{{ __('Waris') }}</button>
 </div>
 
 {{-- ============================================================ --}}
@@ -323,79 +540,79 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     {{-- FORM --}}
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-olive"></i> Zakat Fitrah</h2>
-        <p class="text-xs text-olive/70 mt-1">Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras (±3,5 liter) per jiwa.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-wheat-awn text-olive"></i> {{ __('Zakat Fitrah') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('Wajib bagi setiap jiwa muslim menjelang Idul Fitri. Besaran: 2,5 kg beras (±3,5 liter) per jiwa.') }}</p>
 
-        <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jumlah Jiwa</label>
+        <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">{{ __('Jumlah Jiwa') }}</label>
         <div class="mt-2 flex items-center gap-3">
             <button type="button" data-adjust="fitrahJiwa" data-dir="-1" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-olive font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
             <input id="fitrahJiwa" type="number" min="1" value="1" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-cream2">
             <button type="button" data-adjust="fitrahJiwa" data-dir="1" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
         </div>
 
-        <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">Jenis Beras</label>
+        <label class="block mt-5 text-xs font-bold text-oliveDark uppercase tracking-wider">{{ __('Jenis Beras') }}</label>
         <div class="mt-2 grid grid-cols-2 gap-2">
             <label class="cursor-pointer">
                 <input type="radio" name="beras" value="banjar" checked class="peer sr-only">
                 <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive bg-cream2 border border-cream3 rounded-2xl p-3 text-center transition shadow-sm">
-                    <div class="text-xs font-extrabold">Beras Banjar</div>
-                    <div class="text-[10px] opacity-80">Premium lokal</div>
+                    <div class="text-xs font-extrabold">{{ __('Beras Banjar') }}</div>
+                    <div class="text-[10px] opacity-80">{{ __('Premium lokal') }}</div>
                     <div class="text-xs mt-1 font-bold">Rp {{ number_format($beras ?? 16000,0,',','.') }} / kg</div>
                 </div>
             </label>
             <label class="cursor-pointer">
                 <input type="radio" name="beras" value="lain" class="peer sr-only">
                 <div class="peer-checked:bg-olive peer-checked:text-white peer-checked:border-olive bg-cream2 border border-cream3 rounded-2xl p-3 text-center transition shadow-sm">
-                    <div class="text-xs font-extrabold">Beras Lain</div>
-                    <div class="text-[10px] opacity-80">Atur harga sendiri</div>
-                    <div class="text-xs mt-1 font-bold">Custom / kg</div>
+                    <div class="text-xs font-extrabold">{{ __('Beras Lain') }}</div>
+                    <div class="text-[10px] opacity-80">{{ __('Atur harga sendiri') }}</div>
+                    <div class="text-xs mt-1 font-bold">{{ __('Custom / kg') }}</div>
                 </div>
             </label>
         </div>
 
         <div id="hargaBanjarBox" class="mt-4">
-            <label class="text-xs font-bold text-oliveDark">Harga Beras Banjar (per kg)</label>
+            <label class="text-xs font-bold text-oliveDark">{{ __('Harga Beras Banjar (per kg)') }}</label>
             <div class="mt-1 flex items-center gap-2">
                 <span class="text-xs font-bold text-olive">Rp</span>
                 <input id="hargaBanjar" type="text" data-money value="{{ number_format($beras ?? 16000,0,'','') }}" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
             </div>
         </div>
         <div id="hargaLainBox" class="mt-4 hidden">
-            <label class="text-xs font-bold text-oliveDark">Harga Beras Lain (per kg)</label>
+            <label class="text-xs font-bold text-oliveDark">{{ __('Harga Beras Lain (per kg)') }}</label>
             <div class="mt-1 flex items-center gap-2">
                 <span class="text-xs font-bold text-olive">Rp</span>
                 <input id="hargaLain" type="number" value="14000" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
             </div>
-            <input id="namaBerasLain" placeholder="Nama beras (opsional)" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
+            <input id="namaBerasLain" placeholder="{{ __('Nama beras (opsional)') }}" class="mt-2 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2">
         </div>
 
         <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-            <p class="mt-1">Atur jumlah jiwa, pilih jenis beras, dan sesuaikan harga per kg. Hasil berubah otomatis. Boleh setor dalam bentuk beras atau uang (sesuai harga beras lokal).</p>
+            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+            <p class="mt-1">{{ __('Atur jumlah jiwa, pilih jenis beras, dan sesuaikan harga per kg. Hasil berubah otomatis. Boleh setor dalam bentuk beras atau uang (sesuai harga beras lokal).') }}</p>
         </div>
-        <button type="button" data-save-calc="zakat_fitrah" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
+        <button type="button" data-save-calc="zakat_fitrah" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>{{ __('Simpan ke Riwayat') }}</button>
     </div>
 
     {{-- HASIL --}}
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
         <div>
-            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL PERHITUNGAN</div>
-            <h3 class="font-black text-2xl mt-1">Zakat Fitrah</h3>
+            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL PERHITUNGAN') }}</div>
+            <h3 class="font-black text-2xl mt-1">{{ __('Zakat Fitrah') }}</h3>
             <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
                 <div class="grid grid-cols-2 gap-3 text-center">
                     <div class="bg-cream2 rounded-xl p-3">
-                        <div class="text-[10px] text-olive/70 font-semibold">Total Beras</div>
+                        <div class="text-[10px] text-olive/70 font-semibold">{{ __('Total Beras') }}</div>
                         <div id="fitrahBeras" class="font-black text-olive text-lg">2,5 kg</div>
                         <div id="fitrahLiter" class="text-[10px] text-olive/60">≈ 3,5 liter</div>
                     </div>
                     <div class="bg-cream2 rounded-xl p-3">
-                        <div class="text-[10px] text-olive/70 font-semibold">Jiwa</div>
+                        <div class="text-[10px] text-olive/70 font-semibold">{{ __('Jiwa') }}</div>
                         <div id="fitrahJiwaOut" class="font-black text-olive text-lg">1</div>
-                        <div class="text-[10px] text-olive/60">orang</div>
+                        <div class="text-[10px] text-olive/60">{{ __('orang') }}</div>
                     </div>
                 </div>
                 <div class="mt-3 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
-                    <div class="text-[10px] text-cream/80 font-medium">Setara Uang</div>
+                    <div class="text-[10px] text-cream/80 font-medium">{{ __('Setara Uang') }}</div>
                     <div id="fitrahRupiah" class="font-black text-xl">Rp 40.000</div>
                     <div id="fitrahJenisLabel" class="text-[10px] text-cream/80 mt-0.5">Beras Banjar • Rp{{ number_format($beras ?? 16000,0,',','.') }}/kg</div>
                 </div>
@@ -403,15 +620,15 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
                 </div>
 
                 <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
-                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> {{ __('Sumber perhitungan') }}</div>
                 <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
-                <li>QS. Al-Baqarah {184 (kewajiban fidyah & pembayaran fitrah)
-                <li>Hadits riwayat Muslim: 1 sha' (±2,5 kg) makanan pokok per jiwa
-                <li>Fatwa & modul BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                <li>{{ __('QS. Al-Baqarah {184 (kewajiban fidyah & pembayaran fitrah)') }}
+                <li>{{ __("Hadits riwayat Muslim: 1 sha' (±2,5 kg) makanan pokok per jiwa") }}
+                <li>{{ __('Fatwa & modul BAZNAS:') }} <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
                 </ul>
                 </div>
                 </div>
-                <p class="text-[11px] text-cream/70 mt-4"><i class="fa-solid fa-clock mr-1"></i> Waktu utama: akhir Ramadhan hingga sebelum shalat Id.</p>
+                <p class="text-[11px] text-cream/70 mt-4"><i class="fa-solid fa-clock mr-1"></i> {{ __('Waktu utama: akhir Ramadhan hingga sebelum shalat Id.') }}</p>
     </div>
 </div>
 </div>
@@ -422,51 +639,51 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div id="calc-panel-maal" class="calc-panel hidden">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-olive"></i> Zakat Maal (Harta)</h2>
-        <p class="text-xs text-olive/70 mt-1">2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-coins text-olive"></i> {{ __('Zakat Maal (Harta)') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('2,5% dari harta yang telah mencapai nisab (85 gr emas) dan haul 1 tahun.') }}</p>
 
-        <label class="block mt-5 text-xs font-bold text-oliveDark">Total Harta (Rp)</label>
+        <label class="block mt-5 text-xs font-bold text-oliveDark">{{ __('Total Harta (Rp)') }}</label>
         <input id="maalHarta" type="text" data-money value="{{ number_format(100000000,0,'','.') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <label class="block mt-4 text-xs font-bold text-oliveDark">Harga Emas per gram (Rp)</label>
+        <label class="block mt-4 text-xs font-bold text-oliveDark">{{ __('Harga Emas per gram (Rp)') }}</label>
         <input id="maalEmas" type="text" data-money value="{{ number_format(1300000,0,'','.') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <label class="block mt-4 text-xs font-bold text-oliveDark">Sudah haul 1 tahun?</label>
+        <label class="block mt-4 text-xs font-bold text-oliveDark">{{ __('Sudah haul 1 tahun?') }}</label>
         <div class="mt-2 flex gap-2">
-            <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Ya</div></label>
-            <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Belum</div></label>
+            <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">{{ __('Ya') }}</div></label>
+            <label class="flex-1 cursor-pointer"><input type="radio" name="haul" value="belum" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">{{ __('Belum') }}</div></label>
         </div>
 
         <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-            <p class="mt-1">Masukkan total harta (tabungan, deposito, emas, barang dagang). Status berubah <b>Wajib</b> jika harta ≥ nisab (85 gr) &amp; sudah haul 1 tahun. Zakat = 2,5% dari harta.</p>
+            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+            <p class="mt-1">{{ __('Masukkan total harta (tabungan, deposito, emas, barang dagang). Status berubah') }} <b>{{ __('Wajib') }}</b> {{ __('jika harta ≥ nisab (85 gr) & sudah haul 1 tahun. Zakat = 2,5% dari harta.') }}</p>
         </div>
         <button type="button" data-save-calc="zakat_maal" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
         <div>
-            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL ZAKAT MAAL</div>
+            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL ZAKAT MAAL') }}</div>
             <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
-                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">Nisab (85 gr)</span><span id="maalNisab" class="font-bold">Rp 110.500.000</span></div>
-                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">Harta Anda</span><span id="maalHartaOut" class="font-bold">Rp 100.000.000</span></div>
+                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">{{ __('Nisab (85 gr)') }}</span><span id="maalNisab" class="font-bold">Rp 110.500.000</span></div>
+                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">{{ __('Harta Anda') }}</span><span id="maalHartaOut" class="font-bold">Rp 100.000.000</span></div>
                 <div class="mt-3 bg-cream2 rounded-xl p-3 text-center">
-                    <div class="text-[10px] text-olive/70">Status</div>
-                    <div id="maalStatus" class="font-extrabold text-olive text-sm">Belum wajib zakat</div>
+                    <div class="text-[10px] text-olive/70">{{ __('Status') }}</div>
+                    <div id="maalStatus" class="font-extrabold text-olive text-sm">{{ __('Belum wajib zakat') }}</div>
                     <div id="maalKet" class="text-[10px] text-olive/60 mt-0.5"></div>
                 </div>
                 <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
-                    <div class="text-[10px] text-cream/80">Zakat yang harus dibayar (2,5%)</div>
+                    <div class="text-[10px] text-cream/80">{{ __('Zakat yang harus dibayar (2,5%)') }}</div>
                     <div id="maalZakat" class="font-black text-xl">Rp 0</div>
                 </div>
             </div>
 
             <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
-                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> {{ __('Sumber perhitungan') }}</div>
                 <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
-                    <li>QS. At-Taubah:103 (kewajiban zakat harta)
-                    <li>Hadits riwayat Bukhari-Muslim: tidak ada zakat < 5 wasaq / nisab 85 gr emas
-                    <li>Fatwa & modul BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                    <li>{{ __('QS. At-Taubah:103 (kewajiban zakat harta)') }}
+                    <li>{{ __('Hadits riwayat Bukhari-Muslim: tidak ada zakat < 5 wasaq / nisab 85 gr emas') }}
+                    <li>{{ __('Fatwa & modul BAZNAS:') }} <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
                 </ul>
             </div>
         </div>
@@ -480,46 +697,46 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div id="calc-panel-fidyah" class="calc-panel hidden">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-olive"></i> Fidyah Puasa</h2>
-        <p class="text-xs text-olive/70 mt-1">Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-utensils text-olive"></i> {{ __('Fidyah Puasa') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('Bagi yang tidak mampu berpuasa (sakit menahun, lansia). 1 hari = 1 mud (±0,75 kg beras) atau 1 porsi makan.') }}</p>
 
-        <label class="block mt-5 text-xs font-bold text-oliveDark">Jumlah hari yang ditinggalkan</label>
+        <label class="block mt-5 text-xs font-bold text-oliveDark">{{ __('Jumlah hari yang ditinggalkan') }}</label>
         <div class="mt-2 flex items-center gap-3">
             <button type="button" data-adjust="fidyahHari" data-dir="-1" class="w-10 h-10 rounded-full bg-cream2 border border-cream3 text-olive font-bold flex items-center justify-center hover:bg-cream3 transition"><i class="fa-solid fa-minus text-xs"></i></button>
             <input id="fidyahHari" type="number" min="1" value="7" class="flex-1 border border-cream3 rounded-full px-4 py-2 text-center font-black text-oliveDark text-base bg-cream2">
             <button type="button" data-adjust="fidyahHari" data-dir="1" class="w-10 h-10 rounded-full bg-olive text-white font-bold flex items-center justify-center hover:bg-olive2 transition"><i class="fa-solid fa-plus text-xs"></i></button>
         </div>
 
-        <label class="block mt-4 text-xs font-bold text-oliveDark">Harga 1 porsi makan (Rp)</label>
+        <label class="block mt-4 text-xs font-bold text-oliveDark">{{ __('Harga 1 porsi makan (Rp)') }}</label>
         <input id="fidyahHarga" type="text" data-money value="{{ number_format(45000,0,'','.') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
         <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-            <p class="mt-1">Isi jumlah hari puasa yang ditinggalkan &amp; harga 1 porsi makan. Total fidyah otomatis terhitung. Boleh disalurkan berupa uang, beras (±0,75 kg/hari), atau makanan siap saji.</p>
+            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+            <p class="mt-1">{{ __('Isi jumlah hari puasa yang ditinggalkan & harga 1 porsi makan. Total fidyah otomatis terhitung. Boleh disalurkan berupa uang, beras (±0,75 kg/hari), atau makanan siap saji.') }}</p>
         </div>
         <button type="button" data-save-calc="fidyah" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
         <div>
-            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL FIDYAH</div>
+            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL FIDYAH') }}</div>
             <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
                 <div class="grid grid-cols-2 gap-3 text-center">
-                    <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-olive/70">Hari</div><div id="fidyahHariOut" class="font-black text-olive text-lg">7</div><div class="text-[10px] text-olive/60">hari</div></div>
-                    <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-olive/70">Per hari</div><div id="fidyahPerHari" class="font-bold text-olive text-xs">Rp 45.000</div><div class="text-[10px] text-olive/60">1 porsi</div></div>
+                    <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-olive/70">{{ __('Hari') }}</div><div id="fidyahHariOut" class="font-black text-olive text-lg">7</div><div class="text-[10px] text-olive/60">{{ __('hari') }}</div></div>
+                    <div class="bg-cream2 rounded-xl p-3"><div class="text-[10px] text-olive/70">{{ __('Per hari') }}</div><div id="fidyahPerHari" class="font-bold text-olive text-xs">Rp 45.000</div><div class="text-[10px] text-olive/60">{{ __('1 porsi') }}</div></div>
                 </div>
                 <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
-                    <div class="text-[10px] text-cream/80">Total Fidyah</div>
+                    <div class="text-[10px] text-cream/80">{{ __('Total Fidyah') }}</div>
                     <div id="fidyahTotal" class="font-black text-xl">Rp 315.000</div>
                     <div id="fidyahBerasOut" class="text-[10px] text-cream/80 mt-0.5"></div>
                 </div>
             </div>
 
             <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
-                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> {{ __('Sumber perhitungan') }}</div>
                 <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
-                    <li>QS. Al-Baqarah:184 (fidyah pengganti puasa)
-                    <li>Modul BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                    <li>{{ __('QS. Al-Baqarah:184 (fidyah pengganti puasa)') }}
+                    <li>{{ __('Modul BAZNAS:') }} <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
                 </ul>
             </div>
         </div>
@@ -533,44 +750,44 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div id="calc-panel-penghasilan" class="calc-panel hidden">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-money-bill-trend-up text-olive"></i> Zakat Penghasilan</h2>
-        <p class="text-xs text-olive/70 mt-1">2,5% dari penghasilan bulanan (gaji, honor, dll). Nisab: Rp2.500.000/bulan (setara 85 gr emas konversi). Disetorkan setiap bulan.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-money-bill-trend-up text-olive"></i> {{ __('Zakat Penghasilan') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('2,5% dari penghasilan bulanan (gaji, honor, dll). Nisab: Rp2.500.000/bulan (setara 85 gr emas konversi). Disetorkan setiap bulan.') }}</p>
 
-        <label class="block mt-5 text-xs font-bold text-oliveDark">Penghasilan per Bulan (Rp)</label>
-        <input id="penghasilanBulan" type="text" data-money value="" placeholder="cth: 8500000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
-        <p class="text-[10px] text-olive/50 mt-1">Ketik angka biasa — akan otomatis dipisah ribuan.</p>
+        <label class="block mt-5 text-xs font-bold text-oliveDark">{{ __('Penghasilan per Bulan (Rp)') }}</label>
+        <input id="penghasilanBulan" type="text" data-money value="" placeholder="{{ __('cth: 8500000') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+        <p class="text-[10px] text-olive/50 mt-1"> {{ __('Ketik angka biasa — akan otomatis dipisah ribuan.') }}</p>
 
         <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-            <p class="mt-1">Isi penghasilan bersih per bulan (Rp). Wajib zakat jika penghasilan ≥ <b>Rp 7.640.144/bulan</b>. Zakat = 2,5% dari penghasilan per bulan, dibayarkan langsung setiap bulan tanpa menunggu haul.</p>
+            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+            <p class="mt-1">{{ __('Isi penghasilan bersih per bulan (Rp). Wajib zakat jika penghasilan ≥') }} <b>{{ __('Rp 7.640.144/bulan') }}</b>{{ __('. Zakat = 2,5% dari penghasilan per bulan, dibayarkan langsung setiap bulan tanpa menunggu haul.') }}</p>
         </div>
-        <button type="button" data-calc-type="zakat_penghasilan" data-save-calc="zakat_penghasilan" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
+        <button type="button" data-calc-type="zakat_penghasilan" data-save-calc="zakat_penghasilan" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>{{ __('Simpan ke Riwayat') }}</button>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
         <div>
-            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL ZAKAT PENGHASILAN</div>
+            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL ZAKAT PENGHASILAN') }}</div>
             <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
-                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">Nisab / bulan</span><span class="font-bold">Rp 2.500.000</span></div>
-                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">Penghasilan Anda</span><span id="penghasilanOut" class="font-bold">Rp 0</span></div>
+                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">{{ __('Nisab / bulan') }}</span><span class="font-bold">Rp 2.500.000</span></div>
+                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">{{ __('Penghasilan Anda') }}</span><span id="penghasilanOut" class="font-bold">Rp 0</span></div>
                 <div class="mt-3 bg-cream2 rounded-xl p-3 text-center">
-                    <div class="text-[10px] text-olive/70">Status</div>
-                    <div id="penghasilanStatus" class="font-extrabold text-amber-600 text-sm">Belum wajib</div>
+                    <div class="text-[10px] text-olive/70">{{ __('Status') }}</div>
+                    <div id="penghasilanStatus" class="font-extrabold text-amber-600 text-sm">{{ __('Belum wajib') }}</div>
                     <div id="penghasilanKet" class="text-[10px] text-olive/60 mt-0.5"></div>
                 </div>
                 <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
-                    <div class="text-[10px] text-cream/80">Zakat / Bulan</div>
+                    <div class="text-[10px] text-cream/80">{{ __('Zakat / Bulan') }}</div>
                     <div id="penghasilanZakat" class="font-black text-xl">Rp 0</div>
-                    <div id="penghasilanTahunan" class="text-[10px] text-cream/80 mt-0.5">/ tahun: Rp 0</div>
+                    <div id="penghasilanTahunan" class="text-[10px] text-cream/80 mt-0.5">{{ __('/ tahun: Rp 0') }}</div>
                 </div>
             </div>
 
             <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
-                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> {{ __('Sumber perhitungan') }}</div>
                 <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
-                    <li>Fatwa MUI No. 3/2003 & modul BAZNAS (zakat penghasilan)
-                    <li>Nisab = nilai 85 gr emas, kadar 2,5%
-                    <li>Fatwa MUI: <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · BAZNAS: <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                    <li>{{ __('Fatwa MUI No. 3/2003 & modul BAZNAS (zakat penghasilan)') }}
+                    <li>{{ __('Nisab = nilai 85 gr emas, kadar 2,5%') }}
+                    <li>{{ __('Fatwa MUI:') }} <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> {{ __('· BAZNAS:') }} <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
                 </ul>
             </div>
         </div>
@@ -584,48 +801,48 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div id="calc-panel-pertanian" class="calc-panel hidden">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-seedling text-olive"></i> Zakat Pertanian</h2>
-        <p class="text-xs text-olive/70 mt-1">Dihitung dari hasil panen yang mencapai nisab. Dengan irigasi (sarana air berbiaya): zakat 2,5%. Tanpa irigasi: zakat 5%.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-seedling text-olive"></i> {{ __('Zakat Pertanian') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('Dihitung dari hasil panen yang mencapai nisab. Dengan irigasi (sarana air berbiaya): zakat 2,5%. Tanpa irigasi: zakat 5%.') }}</p>
 
-        <label class="block mt-5 text-xs font-bold text-oliveDark">Hasil Panen (kg)</label>
-        <input id="pertanianPanen" type="text" data-money value="" placeholder="cth: 1500" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+        <label class="block mt-5 text-xs font-bold text-oliveDark">{{ __('Hasil Panen (kg)') }}</label>
+        <input id="pertanianPanen" type="text" data-money value="" placeholder="{{ __('cth: 1500') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <label class="block mt-4 text-xs font-bold text-oliveDark">Sistem Pengairan</label>
+        <label class="block mt-4 text-xs font-bold text-oliveDark">{{ __('Sistem Pengairan') }}</label>
         <div class="mt-2 flex gap-2">
-            <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Dengan irigasi (2,5%)</div></label>
-            <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="tidak" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">Tanpa irigasi (5%)</div></label>
+            <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="ya" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">{{ __('Dengan irigasi (2,5%)') }}</div></label>
+            <label class="flex-1 cursor-pointer"><input type="radio" name="irigasi" value="tidak" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-cream2 border border-cream3 rounded-full py-2 text-center text-xs font-bold">{{ __('Tanpa irigasi (5%)') }}</div></label>
         </div>
 
         <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-            <p class="mt-1">Isi total hasil panen dalam kg. Pilih irigasi: <b>Tanpa Irigasi</b> = kadar 5%, <b>Dengan Irigasi</b> = 2,5%. Wajib jika panen ≥ nisab 960 kg (15,24 kuintal).</p>
+            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+            <p class="mt-1">{{ __('Isi total hasil panen dalam kg. Pilih irigasi:') }} <b>{{ __('Tanpa Irigasi') }}</b> {{ __('= kadar 5%,') }} <b>{{ __('Dengan Irigasi') }}</b> {{ __('= 2,5%. Wajib jika panen ≥ nisab 960 kg (15,24 kuintal).') }}</p>
         </div>
-        <button type="button" data-calc-type="zakat_pertanian" data-save-calc="zakat_pertanian" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
+        <button type="button" data-calc-type="zakat_pertanian" data-save-calc="zakat_pertanian" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>{{ __('Simpan ke Riwayat') }}</button>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
         <div>
-            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL ZAKAT PERTANIAN</div>
+            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL ZAKAT PERTANIAN') }}</div>
             <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
-                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">Nisab</span><span id="pertanianNisab" class="font-bold">1.000 kg</span></div>
-                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">Hasil Panen</span><span id="pertanianPanenOut" class="font-bold">0 kg</span></div>
+                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">{{ __('Nisab') }}</span><span id="pertanianNisab" class="font-bold">1.000 kg</span></div>
+                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">{{ __('Hasil Panen') }}</span><span id="pertanianPanenOut" class="font-bold">0 kg</span></div>
                 <div class="mt-3 bg-cream2 rounded-xl p-3 text-center">
-                    <div class="text-[10px] text-olive/70">Status</div>
-                    <div id="pertanianStatus" class="font-extrabold text-amber-600 text-sm">Belum wajib</div>
+                    <div class="text-[10px] text-olive/70">{{ __('Status') }}</div>
+                    <div id="pertanianStatus" class="font-extrabold text-amber-600 text-sm">{{ __('Belum wajib') }}</div>
                     <div id="pertanianKet" class="text-[10px] text-olive/60 mt-0.5"></div>
                 </div>
                 <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
-                    <div class="text-[10px] text-cream/80">Zakat (kg beras)</div>
+                    <div class="text-[10px] text-cream/80">{{ __('Zakat (kg beras)') }}</div>
                     <div id="pertanianZakat" class="font-black text-xl">0 kg</div>
                 </div>
             </div>
 
             <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
-                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> {{ __('Sumber perhitungan') }}</div>
                 <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
-                    <li>QS. Al-An'am:141 & Hadits riwayat Bukhari-Muslim: zakat pertanian saat panen
-                    <li>Nisab 653 kg beras (5 wasaq); kadar 5% (irigasi) / 10% (tadah hujan)
-                    <li>Fatwa MUI & modul BAZNAS: <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                    <li>{{ __("QS. Al-An'am:141 & Hadits riwayat Bukhari-Muslim: zakat pertanian saat panen") }}
+                    <li>{{ __('Nisab 653 kg beras (5 wasaq); kadar 5% (irigasi) / 10% (tadah hujan)') }}
+                    <li>{{ __('Fatwa MUI & modul BAZNAS:') }} <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
                 </ul>
             </div>
         </div>
@@ -639,61 +856,61 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div id="calc-panel-perdagangan" class="calc-panel hidden">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-store text-olive"></i> Zakat Perdagangan</h2>
-        <p class="text-xs text-olive/70 mt-1">Untuk pedagang. Total harta = modal + piutang + persediaan − utang. Nisab 85 gr emas, zakat 2,5% bila mencapai nisab & haul 1 tahun.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-store text-olive"></i> {{ __('Zakat Perdagangan') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('Untuk pedagang. Total harta = modal + piutang + persediaan − utang. Nisab 85 gr emas, zakat 2,5% bila mencapai nisab & haul 1 tahun.') }}</p>
 
-        <label class="block mt-4 text-xs font-bold text-oliveDark">Modal (Rp)</label>
-        <input id="dagModal" type="text" data-money value="" placeholder="cth: 50000000" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
+        <label class="block mt-4 text-xs font-bold text-oliveDark">{{ __('Modal (Rp)') }}</label>
+        <input id="dagModal" type="text" data-money value="" placeholder="{{ __('cth: 50000000') }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
         <div class="grid grid-cols-2 gap-3 mt-3">
             <div>
-                <label class="text-xs font-bold text-oliveDark">Piutang (Rp)</label>
+                <label class="text-xs font-bold text-oliveDark">{{ __('Piutang (Rp)') }}</label>
                 <input id="dagPiutang" type="text" data-money value="0" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
             </div>
             <div>
-                <label class="text-xs font-bold text-oliveDark">Persediaan (Rp)</label>
+                <label class="text-xs font-bold text-oliveDark">{{ __('Persediaan (Rp)') }}</label>
                 <input id="dagPersediaan" type="text" data-money value="0" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
             </div>
         </div>
 
-        <label class="block mt-3 text-xs font-bold text-oliveDark">Utang (Rp)</label>
+        <label class="block mt-3 text-xs font-bold text-oliveDark">{{ __('Utang (Rp)') }}</label>
         <input id="dagUtang" type="text" data-money value="0" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <label class="block mt-3 text-xs font-bold text-oliveDark">Harga Emas / gr (Rp)</label>
+        <label class="block mt-3 text-xs font-bold text-oliveDark">{{ __('Harga Emas / gr (Rp)') }}</label>
         <input id="dagEmas" type="text" data-money value="{{ $hargaEmas ?? 1300000 }}" class="mt-1.5 w-full border border-cream3 rounded-full px-4 py-2 text-xs bg-cream2 font-bold">
 
-        <label class="flex items-center gap-2 text-xs font-semibold mt-3"><input type="checkbox" id="dagHaul" checked class="accent-olive"> Sudah genap haul 1 tahun</label>
+        <label class="flex items-center gap-2 text-xs font-semibold mt-3"><input type="checkbox" id="dagHaul" checked class="accent-olive"> {{ __('Sudah genap haul 1 tahun') }}</label>
 
         <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-            <p class="mt-1">Masukkan total modal dagang, kurangi utang. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas) &amp; sudah haul 1 tahun.</p>
+            <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+            <p class="mt-1">{{ __('Masukkan total modal dagang, kurangi utang. Zakat 2,5% hanya jika harta bersih ≥ nisab (85 gr emas) & sudah haul 1 tahun.') }}</p>
         </div>
-        <button type="button" data-calc-type="zakat_perdagangan" data-save-calc="zakat_perdagangan" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan ke Riwayat</button>
+        <button type="button" data-calc-type="zakat_perdagangan" data-save-calc="zakat_perdagangan" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-floppy-disk mr-2"></i>{{ __('Simpan ke Riwayat') }}</button>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl flex flex-col justify-between">
         <div>
-            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL ZAKAT PERDAGANGAN</div>
+            <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL ZAKAT PERDAGANGAN') }}</div>
             <div class="mt-4 bg-white text-oliveDark rounded-2xl p-4 shadow-inner">
-                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">Nisab (85 gr emas)</span><span id="dagNisab" class="font-bold">Rp 0</span></div>
-                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">Total Harta</span><span id="dagHarta" class="font-bold">Rp 0</span></div>
+                <div class="flex justify-between text-xs font-medium"><span class="text-olive/70">{{ __('Nisab (85 gr emas)') }}</span><span id="dagNisab" class="font-bold">Rp 0</span></div>
+                <div class="flex justify-between text-xs font-medium mt-2"><span class="text-olive/70">{{ __('Total Harta') }}</span><span id="dagHarta" class="font-bold">Rp 0</span></div>
                 <div class="mt-3 bg-cream2 rounded-xl p-3 text-center">
-                    <div class="text-[10px] text-olive/70">Status</div>
-                    <div id="dagStatus" class="font-extrabold text-amber-600 text-sm">Belum wajib</div>
+                    <div class="text-[10px] text-olive/70">{{ __('Status') }}</div>
+                    <div id="dagStatus" class="font-extrabold text-amber-600 text-sm">{{ __('Belum wajib') }}</div>
                     <div id="dagKet" class="text-[10px] text-olive/60 mt-0.5"></div>
                 </div>
                 <div class="mt-4 bg-olive text-white rounded-xl p-3.5 text-center shadow-md">
-                    <div class="text-[10px] text-cream/80">Zakat (2,5%)</div>
+                    <div class="text-[10px] text-cream/80">{{ __('Zakat (2,5%)') }}</div>
                     <div id="dagZakat" class="font-black text-xl">Rp 0</div>
                 </div>
             </div>
 
             <div class="mt-4 rounded-xl bg-white text-oliveDark p-4 shadow-inner">
-                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> Sumber perhitungan</div>
+                <div class="font-bold text-olive flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-book"></i> {{ __('Sumber perhitungan') }}</div>
                 <ul class="mt-1 list-disc list-inside space-y-0.5 text-[11px] leading-relaxed">
-                    <li>QS. Al-Baqarah:267 & Hadits riwayat Abu Dawud (zakat perdagangan)
-                    <li>Nisab 85 gr emas; kadar 2,5% dari nilai barang dagang + untung (berjalan 1 tahun)
-                    <li>Fatwa MUI & modul BAZNAS: <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
+                    <li>{{ __('QS. Al-Baqarah:267 & Hadits riwayat Abu Dawud (zakat perdagangan)') }}
+                    <li>{{ __('Nisab 85 gr emas; kadar 2,5% dari nilai barang dagang + untung (berjalan 1 tahun)') }}
+                    <li>{{ __('Fatwa MUI & modul BAZNAS:') }} <a href="https://mui.or.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">mui.or.id</a> · <a href="https://baznas.go.id" target="_blank" rel="noopener" class="text-olive underline font-semibold">baznas.go.id</a>
                 </ul>
             </div>
         </div>
@@ -707,8 +924,8 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 <div id="calc-panel-wariq" class="calc-panel hidden">
 <div class="space-y-5">
     <div class="bg-white/90 backdrop-blur-md rounded-[24px] border border-cream3 p-5 lg:p-6 shadow-xl">
-        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-scale-balanced text-olive"></i> Waris (Faraidh)</h2>
-        <p class="text-xs text-olive/70 mt-1">Pembagian harta warisan berdasarkan hukum Islam.</p>
+        <h2 class="font-extrabold text-oliveDark flex items-center gap-2 text-base"><i class="fa-solid fa-scale-balanced text-olive"></i> {{ __('Waris (Faraidh)') }}</h2>
+        <p class="text-xs text-olive/70 mt-1">{{ __('Pembagian harta warisan berdasarkan hukum Islam.') }}</p>
 
         <div class="mt-4 space-y-4">
 
@@ -716,26 +933,26 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
     <div class="rounded-2xl border border-cream3 overflow-hidden shadow-sm">
         <div class="flex items-center gap-2.5 px-4 py-3 bg-olive text-white">
             <i class="fa-solid fa-house-chimney text-[13px]"></i>
-            <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">Harta Peninggalan (Tirkah)</span>
+            <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">{{ __('Harta Peninggalan (Tirkah)') }}</span>
         </div>
         <div class="p-4">
             <div class="rounded-2xl border border-cream3 bg-white divide-y divide-cream3 overflow-hidden">
                 <div class="px-4 py-3">
-                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Total Harta Kotor *</label>
+                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">{{ __('Total Harta Kotor *') }}</label>
                     <div class="relative mt-1">
                         <span class="absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-olive/50">Rp</span>
                         <input id="wariqHarta" type="text" inputmode="numeric" data-money value="120.000.000" class="w-full bg-transparent outline-none pl-7 pr-3 py-1 text-sm font-bold">
                     </div>
                 </div>
                 <div class="px-4 py-3">
-                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Biaya Pengurusan Jenazah</label>
+                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">{{ __('Biaya Pengurusan Jenazah') }}</label>
                     <div class="relative mt-1">
                         <span class="absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-olive/50">Rp</span>
                         <input id="wariqPemakaman" type="text" inputmode="numeric" data-money value="0" class="w-full bg-transparent outline-none pl-7 pr-3 py-1 text-sm font-bold">
                     </div>
                 </div>
                 <div class="px-4 py-3">
-                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">Hutang Almarhum/Almarhumah</label>
+                    <label class="block text-[10px] font-bold text-oliveDark uppercase tracking-wide">{{ __('Hutang Almarhum/Almarhumah') }}</label>
                     <div class="relative mt-1">
                         <span class="absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-olive/50">Rp</span>
                         <input id="wariqHutang" type="text" inputmode="numeric" data-money value="0" class="w-full bg-transparent outline-none pl-7 pr-3 py-1 text-sm font-bold">
@@ -747,10 +964,10 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 
     <!-- ===== SEKSI 2: JENIS KELAMIN PEWARIS ===== -->
     <div class="rounded-2xl border border-cream3 p-4 bg-cream2/60 shadow-sm">
-        <label class="block text-xs font-bold text-oliveDark">Jenis Kelamin Pewaris <span class="text-red-500">*</span></label>
+        <label class="block text-xs font-bold text-oliveDark">{{ __('Jenis Kelamin Pewaris') }} <span class="text-red-500">*</span></label>
         <div class="mt-2 flex gap-2">
-            <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="L" checked class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-white border border-cream3 rounded-full py-2 text-center text-xs font-bold transition">Laki-laki</div></label>
-            <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="P" class="peer sr-only"><div class="peer-checked:bg-olive peer-checked:text-white bg-white border border-cream3 rounded-full py-2 text-center text-xs font-bold transition">Perempuan</div></label>
+            <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="L" checked class="peer sr-only"><div class="rgv-gender rounded-full py-2 text-center text-xs font-bold transition" style="background:#EDE2CE;border:1px solid #D2B48C;color:#14261C;font-weight:600">{{ __('Laki-laki') }}</div></label>
+            <label class="flex-1 cursor-pointer"><input type="radio" name="pewarisJk" value="P" class="peer sr-only"><div class="rgv-gender rounded-full py-2 text-center text-xs font-bold transition" style="background:#14261C;border:1px solid rgba(194,178,128,0.4);color:#F5DEB3;font-weight:600">{{ __('Perempuan') }}</div></label>
         </div>
     </div>
 
@@ -758,28 +975,28 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
     <div class="rounded-2xl border border-cream3 overflow-hidden shadow-sm">
         <div class="flex items-center gap-2.5 px-4 py-3 bg-olive text-white">
             <i class="fa-solid fa-people-group text-[13px]"></i>
-            <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">Ahli Waris yang Ada</span>
+            <span class="text-[11px] font-extrabold tracking-[0.16em] uppercase">{{ __('Ahli Waris yang Ada') }}</span>
         </div>
         <div class="p-4 bg-cream2/60 space-y-4">
 
             <!-- KELOMPOK 1: PILIHAN CENTANG (CHECKBOX) -->
             <div>
                 <div class="text-xs font-extrabold text-oliveDark mb-2 uppercase tracking-wider">
-                    <i class="fa-solid fa-square-check mr-1 text-olive"></i> Ahli Waris Tunggal / Pasangan / Orang Tua
+                    <i class="fa-solid fa-square-check mr-1 text-olive"></i> {{ __('Ahli Waris Tunggal / Pasangan / Orang Tua') }}
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     <!-- PASANGAN -->
                     <label id="wariqSuamiBox" class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqSuami" class="accent-amber-400 mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Suami (Duda)</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · tunggal · QS. 4:12</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Suami (Duda)') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Dzawul furudh · tunggal · QS. 4:12') }}</div></div>
                     </label>
                     <div id="wariqIstriBox" class="rounded-2xl p-3 bg-white border border-cream3">
                         <label id="wariqIstriLabel" class="flex items-start gap-2.5 cursor-pointer">
                             <input type="checkbox" id="wariqIstri" class="accent-amber-400 mt-0.5">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Istri / Janda</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · maks. 4 orang</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Istri / Janda') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Dzawul furudh · maks. 4 orang') }}</div></div>
                         </label>
                         <div id="wariqJumlahIstriWrap" class="mt-2 flex items-center gap-2 pl-7" style="display:none">
-                            <span class="text-[10px] font-bold text-olive/70">Jumlah istri</span>
+                            <span class="text-[10px] font-bold text-olive/70">{{ __('Jumlah istri') }}</span>
                             <input type="number" id="wariqJumlahIstri" value="2" min="1" max="4" class="w-16 border border-cream3 rounded-full px-3 py-1 text-xs bg-cream2 outline-none text-center">
                         </div>
                     </div>
@@ -787,23 +1004,23 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
                     <!-- ORANG TUA / KAKEK / NENEK -->
                     <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqAyah" class="accent-amber-400 mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Ayah Kandung</div><div class="text-[10px] text-olive/60 mt-0.5">Furudh/ashabah · QS. 4:11</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Ayah Kandung') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Furudh/ashabah · QS. 4:11') }}</div></div>
                     </label>
                     <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqIbu" class="accent-amber-400 mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Ibu Kandung</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh · QS. 4:11</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Ibu Kandung') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Dzawul furudh · QS. 4:11') }}</div></div>
                     </label>
                     <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqKakek" class="accent-amber-400 mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Kakek (dari Ayah)</div><div class="text-[10px] text-olive/60 mt-0.5">Pengganti ayah jika tidak ada</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Kakek (dari Ayah)') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Pengganti ayah jika tidak ada') }}</div></div>
                     </label>
                     <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqNenekIbu" class="accent-amber-400 mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Nenek (dari Ibu)</div><div class="text-[10px] text-olive/60 mt-0.5">Pengganti ibu jika tidak ada</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Nenek (dari Ibu)') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Pengganti ibu jika tidak ada') }}</div></div>
                     </label>
                     <label class="flex items-start gap-2.5 rounded-2xl p-3 bg-white border border-cream3 cursor-pointer transition hover:border-olive/40 hover:shadow-sm">
                         <input type="checkbox" id="wariqNenekAyah" class="accent-amber-400 mt-0.5">
-                        <div><div class="text-xs font-bold text-oliveDark leading-tight">Nenek (dari Ayah)</div><div class="text-[10px] text-olive/60 mt-0.5">Pengganti ibu jika tidak ada</div></div>
+                        <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Nenek (dari Ayah)') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Pengganti ibu jika tidak ada') }}</div></div>
                     </label>
                 </div>
             </div>
@@ -811,31 +1028,31 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
             <!-- KELOMPOK 2: PILIHAN JUMLAH / ANGKA (INPUT NUMBER) -->
             <div class="pt-2 border-t border-cream3/60">
                 <div class="text-xs font-extrabold text-oliveDark mb-2 uppercase tracking-wider">
-                    <i class="fa-solid fa-calculator mr-1 text-olive"></i> Ahli Waris Berjumlah (Isi Jumlah Jiwa)
+                    <i class="fa-solid fa-calculator mr-1 text-olive"></i> {{ __('Ahli Waris Berjumlah (Isi Jumlah Jiwa)') }}
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     <!-- ANAK & CUCU -->
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Anak Laki-laki</div><div class="text-[10px] text-olive/60 mt-0.5">Ashabah · QS. 4:11</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Anak Laki-laki') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Ashabah · QS. 4:11') }}</div></div>
                             <input id="wariqAnakL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Anak Perempuan</div><div class="text-[10px] text-olive/60 mt-0.5">Furudh/ashabah · QS. 4:11</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Anak Perempuan') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Furudh/ashabah · QS. 4:11') }}</div></div>
                             <input id="wariqAnakP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Cucu Laki-laki</div><div class="text-[10px] text-olive/60 mt-0.5">Jika tidak ada anak</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Cucu Laki-laki') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Jika tidak ada anak') }}</div></div>
                             <input id="wariqCucuL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Cucu Perempuan</div><div class="text-[10px] text-olive/60 mt-0.5">Jika tidak ada anak</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Cucu Perempuan') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Jika tidak ada anak') }}</div></div>
                             <input id="wariqCucuP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
@@ -843,19 +1060,19 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
                     <!-- SAUDARA -->
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Kandung Laki-laki</div><div class="text-[10px] text-olive/60 mt-0.5">Sekandung/seayah · QS. 4:176</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Saudara Kandung Laki-laki') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Sekandung/seayah · QS. 4:176') }}</div></div>
                             <input id="wariqSaudaraL" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Kandung Perempuan</div><div class="text-[10px] text-olive/60 mt-0.5">Sekandung/seayah · QS. 4:176</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Saudara Kandung Perempuan') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Sekandung/seayah · QS. 4:176') }}</div></div>
                             <input id="wariqSaudaraP" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
                     <div class="rounded-2xl p-3 bg-white border border-cream3 wariq-qty-card">
                         <div class="flex items-center justify-between gap-2">
-                            <div><div class="text-xs font-bold text-oliveDark leading-tight">Saudara Seibu</div><div class="text-[10px] text-olive/60 mt-0.5">Dzawul furudh</div></div>
+                            <div><div class="text-xs font-bold text-oliveDark leading-tight">{{ __('Saudara Seibu') }}</div><div class="text-[10px] text-olive/60 mt-0.5">{{ __('Dzawul furudh') }}</div></div>
                             <input id="wariqSaudaraSeibu" type="number" min="0" max="100" value="0" class="w-14 border border-cream3 rounded-full px-2 py-1.5 text-xs bg-cream2 font-bold text-center">
                         </div>
                     </div>
@@ -864,23 +1081,23 @@ body.dark-mode #calc-panel-wariq .bg-cream2\/70 .text-olive {
 
         </div>
         <div class="px-4 pb-3 pt-2 text-[11px] text-olive/70 font-medium">
-            <p><i class="fa-solid fa-circle-info mr-1"></i>Cucu hanya berhak bila tidak ada anak. Kakek hanya bila ayah tidak ada. Nenek hanya bila ibu tidak ada. Saudara terhalang bila ada anak/ayah/kakek.</p>
+            <p><i class="fa-solid fa-circle-info mr-1"></i>{{ __('Cucu hanya berhak bila tidak ada anak. Kakek hanya bila ayah tidak ada. Nenek hanya bila ibu tidak ada. Saudara terhalang bila ada anak/ayah/kakek.') }}</p>
         </div>
     </div>
 
 <div class="mt-4 bg-cream2/70 border border-cream3 rounded-2xl p-4 text-xs text-oliveDark leading-relaxed">
-    <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Cara pakai:</div>
-    <p class="mt-1">Isi total harta peninggalan kotor beserta kewajiban (biaya jenazah, hutang, wasiat), pilih jenis kelamin pewaris, lalu pilih/isi jumlah ahli waris yang ditinggalkan. Klik tombol hitung untuk melihat pembagian porsi secara otomatis.</p>
+    <div class="font-extrabold text-olive flex items-center gap-2"><i class="fa-solid fa-book-open"></i> {{ __('Cara pakai:') }}</div>
+    <p class="mt-1">{{ __('Isi total harta peninggalan kotor beserta kewajiban (biaya jenazah, hutang, wasiat), pilih jenis kelamin pewaris, lalu pilih/isi jumlah ahli waris yang ditinggalkan. Klik tombol hitung untuk melihat pembagian porsi secara otomatis.') }}</p>
 </div>
 
-<button type="button" id="wariqHitung" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-calculator mr-2"></i>Hitung & Simpan Pembagian</button>
-        <p class="text-[10px] text-olive/70 mt-2 text-center font-medium"><i class="fa-solid fa-lock mr-1"></i> Versi login: hasil langsung tersimpan ke riwayat (pembeda kalkulator publik).</p>
+<button type="button" id="wariqHitung" class="mt-5 w-full bg-olive text-white font-bold py-3 rounded-full hover:bg-olive2 transition text-sm shadow-md"><i class="fa-solid fa-calculator mr-2"></i>{{ __('Hitung & Simpan Pembagian') }}</button>
+        <p class="text-[10px] text-olive/70 mt-2 text-center font-medium"><i class="fa-solid fa-lock mr-1"></i> {{ __('Versi login: hasil langsung tersimpan ke riwayat (pembeda kalkulator publik).') }}</p>
     </div>
 
     <div class="bg-olive rounded-[24px] p-6 text-white shadow-xl">
-        <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">HASIL PEMBAGIAN</div>
+        <div class="text-[10px] tracking-[0.18em] font-extrabold text-earth uppercase">{{ __('HASIL PEMBAGIAN') }}</div>
         <div id="wariqResult" class="mt-3 bg-white text-oliveDark rounded-2xl p-4 shadow-inner text-sm">
-            <div class="text-center text-olive/70 font-medium py-6">Belum dihitung. Isi form lalu klik "Hitung Pembagian".</div>
+            <div class="text-center text-olive/70 font-medium py-6">{{ __('Belum dihitung. Isi form lalu klik "Hitung Pembagian".') }}</div>
         </div>
     </div>
 </div>
@@ -936,7 +1153,12 @@ function attachThousandSeparator(input){
         input.value = raw ? parseInt(raw,10).toLocaleString('id-ID') : '';
     });
 }
-document.querySelectorAll('input[data-money]').forEach(attachThousandSeparator);
+document.querySelectorAll('input[data-money]').forEach(function(input){
+    attachThousandSeparator(input);
+    // Format nilai awal saat halaman dimuat (mis. harga beras 13000 -> "13.000")
+    var raw0 = input.value.replace(/\D/g,'');
+    if (raw0) input.value = parseInt(raw0,10).toLocaleString('id-ID');
+});
 
 // ===================== KALKULATOR BARU (server) =====================
 const ROUTE_CALC = @json(route('user.calculators.calculate', ':type'));
@@ -1057,6 +1279,42 @@ document.querySelectorAll('input[name=pewarisJk]').forEach(function (r) {
     r.addEventListener('change', updatePasanganCalc);
 });
 updatePasanganCalc();
+
+// ============================================================
+// WARNA TOMBOL JENIS KELAMIN PEWARIS (dark-only, via style inline)
+// Menjamin warna aktif/nonaktif selalu terwujud, apa pun cascade
+// CSS / Tailwind. Real-time saat toggle tema (MutationObserver).
+// ============================================================
+function applyPewarisColors() {
+    var dark = document.body.classList.contains('dark-mode');
+    document.querySelectorAll('input[name="pewarisJk"]').forEach(function (r) {
+        var d = r.nextElementSibling;
+        if (!d) return;
+        if (dark) {
+            d.style.backgroundColor = r.checked ? '#EDE2CE' : '#14261C';
+            d.style.borderColor = r.checked ? '#D2B48C' : 'rgba(194,178,128,0.40)';
+            d.style.color = r.checked ? '#14261C' : '#F5DEB3';
+            d.style.fontWeight = '600';
+        } else {
+            // light mode: kembalikan ke default Tailwind/CSS
+            d.style.backgroundColor = '';
+            d.style.borderColor = '';
+            d.style.color = '';
+            d.style.fontWeight = '';
+        }
+    });
+}
+document.querySelectorAll('input[name="pewarisJk"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+        applyPewarisColors();
+        updatePasanganCalc();
+    });
+});
+applyPewarisColors();
+if (window.MutationObserver) {
+    new MutationObserver(function () { applyPewarisColors(); })
+        .observe(document.body, { attributes: true, attributeFilter: ['class'] });
+}
 
 async function calcWariq() {
     const jk = document.querySelector('input[name=pewarisJk]:checked').value;
@@ -1342,4 +1600,37 @@ calcPenghasilan(); calcPertanian(); calcPerdagangan();
     syncWariqCards();
 })();
 </script>
+
+<script>
+// ============================================================
+// WARNA TOMBOL JENIS KELAMIN PEWARIS (dark-only) — script
+// terpisah agar tetap jalan walau ada error di script lain.
+// ============================================================
+(function () {
+    function applyPewarisColors() {
+        var dark = document.body.classList.contains('dark-mode');
+        document.querySelectorAll('input[name="pewarisJk"]').forEach(function (r) {
+            var d = r.nextElementSibling;
+            if (!d) return;
+            if (dark) {
+                d.style.backgroundColor = r.checked ? '#EDE2CE' : '#14261C';
+                d.style.borderColor = r.checked ? '#D2B48C' : 'rgba(194,178,128,0.40)';
+                d.style.color = r.checked ? '#14261C' : '#F5DEB3';
+                d.style.fontWeight = '600';
+            } else {
+                d.style.backgroundColor = d.style.borderColor = d.style.color = d.style.fontWeight = '';
+            }
+        });
+    }
+    document.querySelectorAll('input[name="pewarisJk"]').forEach(function (r) {
+        r.addEventListener('change', applyPewarisColors);
+    });
+    applyPewarisColors();
+    if (window.MutationObserver) {
+        new MutationObserver(applyPewarisColors).observe(document.body,
+            { attributes: true, attributeFilter: ['class'] });
+    }
+})();
+</script>
+
 @endsection

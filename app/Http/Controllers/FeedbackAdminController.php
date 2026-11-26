@@ -29,7 +29,7 @@ class FeedbackAdminController extends Controller
     {
         $feedback->update(['is_read' => true]);
 
-        return back()->with('success', 'Masukan ditandai sebagai sudah dibaca.');
+        return back()->with('success', __('Masukan ditandai sebagai sudah dibaca.'));
     }
 
     /**
@@ -39,6 +39,6 @@ class FeedbackAdminController extends Controller
     {
         $feedback->delete();
 
-        return back()->with('success', 'Masukan dihapus.');
+        return back()->with('success', __('Masukan dihapus.'));
     }
 }

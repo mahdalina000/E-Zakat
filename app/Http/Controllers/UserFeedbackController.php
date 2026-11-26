@@ -36,7 +36,7 @@ class UserFeedbackController extends Controller
         Feedback::create($data);
 
         return redirect()->route('user.feedback')
-            ->with('success', 'Terima kasih! Kritik/saran Anda sudah terkirim.');
+            ->with('success', __('Terima kasih! Kritik/saran Anda sudah terkirim.'));
     }
 
     /**
@@ -48,6 +48,6 @@ class UserFeedbackController extends Controller
         $feedback->delete();
 
         return redirect()->route('user.feedback')
-            ->with('success', 'Kritik/saran dihapus.');
+            ->with('success', __('Kritik/saran dihapus.'));
     }
 }

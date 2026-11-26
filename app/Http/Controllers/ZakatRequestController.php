@@ -94,7 +94,14 @@ class ZakatRequestController extends Controller
             'status' => 'pending',
         ]);
 
-        return back()->with('success', 'Pengajuan hitung waris berhasil dikirim. Admin akan memverifikasi lalu menghitung pembagian waris.');
+        Auth::user()->notifications()->create([
+            'type' => 'submitted',
+            'title' => 'Pengajuan hitung waris terkirim',
+            'message' => 'Pengajuan Anda berhasil dikirim dan sedang menunggu verifikasi admin.',
+            'link' => route('user.zakat-request'),
+        ]);
+
+        return back()->with('success', __('Pengajuan hitung waris berhasil dikirim. Admin akan memverifikasi lalu menghitung pembagian waris.'));
     }
 
     /**
@@ -129,7 +136,16 @@ class ZakatRequestController extends Controller
             'verified_by' => Auth::id(),
             'verified_at' => now(),
         ]);
-        return back()->with('success', 'Pengajuan diverifikasi. Silakan hitung zakatnya.');
+
+        \App\Models\Notification::create([
+            'user_id' => $zakatRequest->user_id,
+            'type' => 'zakat_request',
+            'title' => 'Pengajuan Diverifikasi',
+            'message' => 'Pengajuan waris Anda telah diverifikasi oleh admin.',
+            'link' => route('user.zakat-request'),
+        ]);
+
+        return back()->with('success', __('Pengajuan diverifikasi. Silakan hitung zakatnya.'));
     }
 
     /**
@@ -196,7 +212,7 @@ class ZakatRequestController extends Controller
         }
 
         if (empty($w) || !isset($w['total_harta'])) {
-            return back()->withErrors(['waris' => 'Data pengajuan waris tidak lengkap.']);
+            return back()->withErrors(['waris' => __('Data pengajuan waris tidak lengkap.')]);
         }
 
         // Harta sengketa dikeluarkan dari total sebelum dibagi (belum bisa dibagikan)
@@ -243,7 +259,7 @@ class ZakatRequestController extends Controller
             'calculated_at' => now(),
         ]);
 
-        return back()->with('success', 'Pembagian waris telah dihitung dan hasilnya terkirim ke warga.');
+        return back()->with('success', __('Pembagian waris telah dihitung dan hasilnya terkirim ke warga.'));
     }
 
     /**
@@ -365,7 +381,18 @@ class ZakatRequestController extends Controller
             'admin_note' => $data['admin_note'] ?? $zakatRequest->admin_note,
             'rejected_at' => now(),
         ]);
-        return back()->with('success', 'Pengajuan ditolak.');
+
+        \App\Models\Notification::create([
+           'user_id' => $zakatRequest->user_id,
+           'type' => 'zakat_request',
+           'title' => 'Pengajuan Ditolak',
+           'message' => ($data['admin_note'] ?? null)
+               ? json_encode(['k' => 'Pengajuan ditolak: :catatan', 'p' => ['catatan' => $data['admin_note']]])
+               : 'Pengajuan waris Anda ditolak oleh admin.',
+           'link' => route('user.zakat-request'),
+        ]);
+
+        return back()->with('success', __('Pengajuan ditolak.'));
     }
 
     /**
@@ -375,6 +402,6 @@ class ZakatRequestController extends Controller
     {
         abort_unless($zakatRequest->user_id === Auth::id(), 403);
         $zakatRequest->delete();
-        return back()->with('success', 'Pengajuan dihapus.');
+        return back()->with('success', __('Pengajuan dihapus.'));
     }
 }

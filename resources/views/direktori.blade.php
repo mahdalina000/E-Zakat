@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Lokasi Penyaluran Zakat — E-Zakat Banjarbaru')
+@section('title', __('Lokasi Penyaluran Zakat — E-Zakat Banjarbaru'))
 
 @section('head')
 <!-- Leaflet CSS sudah dibundel oleh Vite (melalui app.js) — tidak perlu CDN -->
@@ -157,15 +157,15 @@
 @endsection
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 lg:px-6 py-6 w-full space-y-4">
+<div class="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-4">
 
     <!-- BLOK 1: HEADER JUDUL & KARTU STATISTIK PENYALURAN -->
     <div class="bg-panel rounded-[24px] border border-panel-border p-5 lg:p-6 shadow-sm space-y-5 eze-up">
         <div>
             <h1 class="font-black text-oliveDark text-xl lg:text-2xl flex items-center gap-2">
-                <i class="fa-solid fa-map-location-dot text-black"></i> Lokasi Penyaluran Zakat — Banjarbaru
+                <i class="fa-solid fa-map-location-dot text-black"></i> {{ __('Lokasi Penyaluran Zakat — Banjarbaru') }}
             </h1>
-            <p class="text-xs lg:text-sm text-black/70 mt-1 font-medium">Peta interaktif titik penyaluran. Filter berdasarkan kategori dan klik pin untuk detail & rute.</p>
+            <p class="text-xs lg:text-sm text-black/70 mt-1 font-medium">{{ __('Peta interaktif titik penyaluran. Filter berdasarkan kategori dan klik pin untuk detail & rute.') }}</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-3">
@@ -174,7 +174,7 @@
                     <div class="w-3.5 h-3.5 rounded-full bg-olive shrink-0"></div>
                     <div>
                         <div class="font-extrabold text-xs text-oliveDark">BAZNAS</div>
-                        <div class="text-[10px] text-black/70">Resmi • Kota Banjarbaru</div>
+                        <div class="text-[10px] text-black/70">{{ __('Resmi • Kota Banjarbaru') }}</div>
                     </div>
                 </div>
                 <span id="countBaznas" class="font-black text-sm bg-olive text-white px-2.5 py-0.5 rounded-full">0</span>
@@ -184,8 +184,8 @@
                 <div class="flex items-center gap-3">
                     <div class="w-3.5 h-3.5 rounded-full bg-blue-600 shrink-0"></div>
                     <div>
-                        <div class="font-extrabold text-xs text-oliveDark">UPZ / Masjid</div>
-                        <div class="text-[10px] text-black/70">Menerima zakat fitrah & maal</div>
+                        <div class="font-extrabold text-xs text-oliveDark">{{ __('UPZ / Masjid') }}</div>
+                        <div class="text-[10px] text-black/70">{{ __('Menerima zakat fitrah & maal') }}</div>
                     </div>
                 </div>
                 <span id="countUpz" class="font-black text-sm bg-blue-600 text-white px-2.5 py-0.5 rounded-full">0</span>
@@ -195,8 +195,8 @@
                 <div class="flex items-center gap-3">
                     <div class="w-3.5 h-3.5 rounded-full bg-rose-500 shrink-0"></div>
                     <div>
-                        <div class="font-extrabold text-xs text-oliveDark">Rumah Warga</div>
-                        <div class="text-[10px] text-black/70">Terdeteksi membutuhkan</div>
+                        <div class="font-extrabold text-xs text-oliveDark">{{ __('Rumah Warga') }}</div>
+                        <div class="text-[10px] text-black/70">{{ __('Terdeteksi membutuhkan') }}</div>
                     </div>
                 </div>
                 <span id="countWarga" class="font-black text-sm bg-rose-500 text-white px-2.5 py-0.5 rounded-full">0</span>
@@ -207,14 +207,14 @@
     <!-- BLOK 2: BAR FILTER PETA TERPISAH -->
     <div class="bg-panel rounded-2xl p-3.5 border border-panel-border flex flex-wrap items-center justify-between gap-3 shadow-sm eze-up">
         <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-oliveDark">Filter:</span>
-            <button data-filter="all" class="filter-btn bg-olive text-white px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95 shadow-sm">Semua</button>
+            <span class="text-xs font-bold text-oliveDark">{{ __('Filter:') }}</span>
+            <button data-filter="all" class="filter-btn bg-olive text-white px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95 shadow-sm">{{ __('Semua') }}</button>
             <button data-filter="baznas" class="filter-btn border text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95" style="border-color: rgba(36,108,66,0.45);">BAZNAS</button>
-            <button data-filter="upz" class="filter-btn border border-blue-500/40 text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95">UPZ/Masjid</button>
+            <button data-filter="upz" class="filter-btn border border-blue-500/40 text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95">{{ __('UPZ/Masjid') }}</button>
             <button data-filter="warga" class="filter-btn border border-rose-500/40 text-black px-4 py-1.5 rounded-full text-xs font-bold transition active:scale-95">Warga</button>
         </div>
         <div class="text-[11px] text-black/60 font-medium">
-            <i class="fa-solid fa-circle-info mr-1"></i> Data live dari pengelolaan Admin UPZ/BAZNAS.
+            <i class="fa-solid fa-circle-info mr-1"></i> {{ __('Data live dari pengelolaan Admin UPZ/BAZNAS.') }}
         </div>
     </div>
 
@@ -230,20 +230,20 @@
             <!-- LEGENDA PENJELASAN WARNA PENANDA LOKASI DI BAWAH PETA -->
             <div class="bg-panel-2 rounded-2xl p-3 border border-panel-border">
                 <div class="text-[11px] font-extrabold text-oliveDark mb-1.5 flex items-center gap-1.5">
-                    <i class="fa-solid fa-layer-group"></i> Penjelasan Warna Titik Lokasi pada Peta:
+                    <i class="fa-solid fa-layer-group"></i> {{ __('Penjelasan Warna Titik Lokasi pada Peta:') }}
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
                     <div class="flex items-center gap-2">
                         <span class="w-3 h-3 rounded-full bg-olive shrink-0 border border-white"></span>
-                        <span class="text-black/80 font-semibold">Hijau: <span class="font-normal">Kantor BAZNAS Resmi</span></span>
+                        <span class="text-black/80 font-semibold">{{ __('Hijau:') }} <span class="font-normal">{{ __('Kantor BAZNAS Resmi') }}</span></span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-3 h-3 rounded-full bg-blue-600 shrink-0 border border-white"></span>
-                        <span class="text-black/80 font-semibold">Biru: <span class="font-normal">UPZ / Masjid / Musholla</span></span>
+                        <span class="text-black/80 font-semibold">{{ __('Biru:') }} <span class="font-normal">{{ __('UPZ / Masjid / Musholla') }}</span></span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-3 h-3 rounded-full bg-rose-500 shrink-0 border border-white"></span>
-                        <span class="text-black/80 font-semibold">Merah: <span class="font-normal">Rumah Warga Membutuhkan</span></span>
+                        <span class="text-black/80 font-semibold">{{ __('Merah:') }} <span class="font-normal">{{ __('Rumah Warga Membutuhkan') }}</span></span>
                     </div>
                 </div>
             </div>
@@ -253,8 +253,8 @@
         <div class="fix-col-list bg-panel rounded-[24px] border border-panel-border p-5 shadow-md flex flex-col justify-between space-y-4 w-full eze-col-right">
             <div>
                 <div class="flex items-center justify-between gap-2 mb-3">
-                    <h2 class="font-black text-xs uppercase tracking-wider text-oliveDark">DAFTAR LOKASI</h2>
-                    <input id="searchLocation" type="text" placeholder="Cari nama / alamat..." class="border border-panel-border rounded-full px-3 py-1 text-xs bg-panel-2 font-medium w-36">
+                    <h2 class="font-black text-xs uppercase tracking-wider text-oliveDark">{{ __('DAFTAR LOKASI') }}</h2>
+                    <input id="searchLocation" type="text" placeholder="{{ __('Cari nama / alamat...') }}" class="border border-panel-border rounded-full px-3 py-1 text-xs bg-panel-2 font-medium w-36">
                 </div>
 
                 <!-- LIST LOKASI SCROLLABLE -->
@@ -264,7 +264,7 @@
             </div>
 
             <div class="bg-panel-2 rounded-2xl p-3 border border-panel-border text-[11px] text-black/70 leading-relaxed">
-                <i class="fa-solid fa-location-arrow text-oliveDark mr-1"></i> Klik salah satu lokasi di daftar atau pin di peta untuk melihat rute petunjuk arah.
+                <i class="fa-solid fa-location-arrow text-oliveDark mr-1"></i> {{ __('Klik salah satu lokasi di daftar atau pin di peta untuk melihat rute petunjuk arah.') }}
             </div>
         </div>
 

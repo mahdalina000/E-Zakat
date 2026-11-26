@@ -87,12 +87,35 @@ Route::get('/panduan', fn () => view('panduan'))->name('panduan');
 */
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:register');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->middleware('auth')->name('notifications.index');
+Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationController::class, 'readAll'])->middleware('auth')->name('notifications.read-all');
+
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en', 'ar', 'ms'])) {
+        session(['locale' => $locale]);
+        app()->setLocale($locale);
+    }
+    return redirect()->back();
+})->name('language.switch');
+
+Route::get('/skm', [\App\Http\Controllers\SkmController::class, 'index'])->middleware('auth')->name('skm.index');
+Route::post('/skm', [\App\Http\Controllers\SkmController::class, 'store'])->middleware('auth')->name('skm.store');
+Route::get('/admin/skm', [\App\Http\Controllers\SkmController::class, 'adminSummary'])->middleware(['auth', 'role:admin'])->name('admin.skm');
+
+Route::get('/settings', [\App\Http\Controllers\SettingsController::class, 'index'])->middleware('auth')->name('settings.index');
+Route::post('/settings/locale', [\App\Http\Controllers\SettingsController::class, 'updateLocale'])->middleware('auth')->name('settings.locale');
+Route::post('/settings/profile', [\App\Http\Controllers\SettingsController::class, 'updateProfile'])->middleware('auth')->name('settings.profile');
+Route::post('/settings/password', [\App\Http\Controllers\SettingsController::class, 'updatePassword'])->middleware('auth')->name('settings.password');
+Route::post('/settings/avatar', [\App\Http\Controllers\SettingsController::class, 'updateAvatar'])->middleware('auth')->name('settings.avatar');
+Route::delete('/settings/avatar', [\App\Http\Controllers\SettingsController::class, 'removeAvatar'])->middleware('auth')->name('settings.avatar.remove');
+Route::post('/settings/notifications', [\App\Http\Controllers\SettingsController::class, 'updateNotifications'])->middleware('auth')->name('settings.notifications');
 
 /*
 |--------------------------------------------------------------------------

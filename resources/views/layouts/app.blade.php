@@ -155,7 +155,7 @@ body.dark-mode header .rounded-full.bg-cream { background-color:#0d2417 !importa
         </div>
     </div>
 
-    <header class="max-w-7xl mx-auto w-full px-4 pt-4 shrink-0 relative z-20 anim-smooth delay-1">
+    <header class="w-full px-4 sm:px-6 lg:px-8 pt-4 shrink-0 relative z-20 anim-smooth delay-1">
         <div class="bg-olive text-white rounded-full px-6 h-[56px] flex items-center justify-between shadow-lg border border-white/10 hover-smooth">
             <!-- LOGO BRANDING -->
             <a href="{{ url('/') }}" class="flex items-center gap-3 group">
@@ -170,10 +170,10 @@ body.dark-mode header .rounded-full.bg-cream { background-color:#0d2417 !importa
 
             <!-- NAVIGATION LINKS (LOKASI PENYALURAN DIUPDATE) -->
             <nav class="hidden md:flex items-center gap-1 bg-white/10 p-1 rounded-full text-xs font-semibold">
-                <a href="{{ url('/beranda') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('beranda') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">Beranda</a>
-                <a href="{{ url('/kalkulator') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('kalkulator') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">Kalkulator</a>
-                <a href="{{ url('/direktori') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('direktori') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">Lokasi Penyaluran</a>
-                <a href="{{ url('/panduan') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('panduan') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">Panduan</a>
+                <a href="{{ url('/beranda') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('beranda') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">{{ __('Beranda') }}</a>
+                <a href="{{ url('/kalkulator') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('kalkulator') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">{{ __('Kalkulator') }}</a>
+                <a href="{{ url('/direktori') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('direktori') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">{{ __('Lokasi Penyaluran') }}</a>
+                <a href="{{ url('/panduan') }}" class="px-4 py-1.5 rounded-full transition {{ Request::is('panduan') ? 'bg-white text-oliveDark font-bold shadow' : 'hover:bg-white/15 text-white' }}">{{ __('Panduan') }}</a>
             </nav>
 
             <!-- AUTH BUTTONS & TOGGLE MODE -->
@@ -181,13 +181,23 @@ body.dark-mode header .rounded-full.bg-cream { background-color:#0d2417 !importa
                 <span class="hidden lg:inline-flex items-center gap-1 text-[11px] text-cream/80 bg-white/10 px-3 py-1 rounded-full"><i class="fa-solid fa-location-dot text-earth"></i> Banjarbaru, Kalsel</span>
                 
                 <!-- TOGGLE DARK/LIGHT MODE -->
+                <div class="flex items-center gap-1 bg-white/10 rounded-full p-0.5 text-[11px] font-bold">
+                    <a href="{{ route('language.switch', 'id') }}" class="px-2 py-1 rounded-full {{ app()->getLocale() == 'id' ? 'bg-white text-oliveDark shadow' : 'text-white hover:bg-white/15' }}">ID</a>
+                    <a href="{{ route('language.switch', 'en') }}" class="px-2 py-1 rounded-full {{ app()->getLocale() == 'en' ? 'bg-white text-oliveDark shadow' : 'text-white hover:bg-white/15' }}">EN</a>
+                </div>
                 <button id="themeToggle" type="button" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition text-xs shadow-sm active:scale-95" title="Mode Gelap/Terang">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
 
-                <a href="{{ route('login') }}" class="bg-earth hover:bg-yellow-400 text-oliveDark text-xs font-bold px-4 py-1.5 rounded-full transition shadow flex items-center gap-1.5 active:scale-95">
-                    <i class="fa-solid fa-right-to-bracket text-[10px]"></i> Masuk
-                </a>
+                @auth
+                                <a href="{{ route('dashboard') }}" class="bg-earth hover:bg-yellow-400 text-oliveDark text-xs font-bold px-4 py-1.5 rounded-full transition shadow flex items-center gap-1.5 active:scale-95">
+                                                                    <i class="fa-solid fa-gauge-high text-[10px]"></i> {{ __('Dashboard') }}
+                                </a>
+                                @else
+                                <a href="{{ route('login') }}" class="bg-earth hover:bg-yellow-400 text-oliveDark text-xs font-bold px-4 py-1.5 rounded-full transition shadow flex items-center gap-1.5 active:scale-95">
+                                    <i class="fa-solid fa-right-to-bracket text-[10px]"></i> {{ __('Masuk Web') }}
+                                </a>
+                                @endauth
             </div>
         </div>
     </header>
@@ -200,7 +210,7 @@ body.dark-mode header .rounded-full.bg-cream { background-color:#0d2417 !importa
 
     <!-- FULL-WIDTH SOLID GREEN FOOTER -->
     <footer class="w-full bg-olive text-white py-2.5 px-4 lg:px-8 mt-auto shrink-0 border-t border-white/10 shadow-inner relative z-20 anim-smooth delay-5">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
             <div class="flex items-center gap-2">
                 <span class="font-extrabold tracking-wide text-white">E-ZAKAT</span>
                 <span class="text-white/40">•</span>

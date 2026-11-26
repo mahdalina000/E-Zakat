@@ -748,18 +748,12 @@ body.dark-mode header {
 
 /* Sidebar */
 body.dark-mode #sidebar {
-    background: linear-gradient(180deg, #050d09, #081a10) !important;
+    background: linear-gradient(180deg, #0e1f16, #14301f) !important;
     border-right: 1px solid rgba(218,180,96,0.32);
 }
 body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.5; }
 body.dark-mode #sidebar a { color: #cfd8cd; }
 body.dark-mode #sidebar a:hover { background: rgba(218,180,96,0.14); color: #f4ead0; }
-/* item menu aktif -> emas */
-body.dark-mode #sidebar .nav-active,
-body.dark-mode #sidebar .bg-white {
-    background: linear-gradient(90deg, rgba(222,184,100,0.95), rgba(222,184,100,0.60)) !important;
-    color: #08150d !important;
-}
 
 /* Teks */
 body.dark-mode .text-oliveDark { color: #f2e9d2 !important; }
@@ -850,4 +844,763 @@ body.dark-mode .fa-calendar,
 body.dark-mode .fa-calendar-days,
 body.dark-mode .fa-clock {
     color: #f8fafc !important;
+}
+
+/* ============================================================
+   COUNTDOWN BANNER — kotak angka terpisah (tanpa titik dua)
+   ============================================================ */
+.countdown-cell {
+    position: relative;
+    min-width: 3.6rem;
+    padding: 0.7rem 0.8rem 0.65rem;
+    border-radius: 1.15rem;
+    text-align: center;
+    background: linear-gradient(165deg, rgba(255,255,255,0.26), rgba(255,255,255,0.05));
+    border: 1px solid rgba(255,255,255,0.32);
+    box-shadow: 0 12px 28px -12px rgba(0,0,0,0.45),
+                inset 0 1px 0 rgba(255,255,255,0.30),
+                inset 0 -8px 16px -12px rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    transition: transform .25s cubic-bezier(.25,1,.5,1), box-shadow .25s ease;
+}
+.countdown-cell::after {
+    content: "";
+    position: absolute;
+    inset: 1px 1px auto 1px;
+    height: 50%;
+    border-radius: 1.05rem 1.05rem 0 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+    pointer-events: none;
+}
+@media (max-width: 640px) {
+    .countdown-cell { min-width: 3.1rem; padding: 0.55rem 0.6rem 0.5rem; border-radius: 1rem; }
+    .countdown-cell::after { border-radius: 0.9rem 0.9rem 0 0; }
+}
+
+/* ===== Notifikasi dropdown ===== */
+.notif-dropdown{ background:#ffffff; border-color:var(--color-cream3); }
+body.dark-mode .notif-dropdown{ background:#17251c; border-color:rgba(255,255,255,.15); }
+body.dark-mode .notif-dropdown .bg-white{ background:#17251c; }
+body.dark-mode .notif-dropdown .notif-head{ background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.08); }
+body.dark-mode .notif-dropdown .notif-head-title{ color:#f8fafc; }
+body.dark-mode .notif-dropdown .notif-head-count{ color:#a9b9ad; }
+body.dark-mode .notif-dropdown .notif-title{ color:#f8fafc; }
+body.dark-mode .notif-dropdown .notif-msg{ color:#cbd5e1; }
+body.dark-mode .notif-dropdown .notif-time{ color:#8fa096; }
+body.dark-mode .notif-dropdown .notif-empty{ color:#94a89b; }
+body.dark-mode .notif-dropdown .divide-y > :not([hidden]) ~ :not([hidden]){ border-color:rgba(255,255,255,.08); }
+
+/* Cover profil (gradien hijau-emas islami) */
+.profile-cover{ height:6.5rem; border-radius:calc(1rem - 1px) calc(1rem - 1px) 0 0; position:relative;
+    background-image:
+        linear-gradient(120deg,#1d5b37 0%,#246c42 58%,#e2b356 135%),
+        radial-gradient(rgba(226,179,86,.28) 1px, transparent 1px);
+    background-size:100% 100%, 18px 18px; }
+/* Alert sukses */
+.alert-success{ position:relative; display:flex; align-items:flex-start; gap:.75rem;
+    border-radius:1rem; border-left:4px solid #10b981; padding:.9rem 1.1rem;
+    background:rgba(236,253,245,.95); color:#065f46; box-shadow:0 10px 26px -14px rgba(6,78,59,.35); }
+/* --- Kartu / komponen halaman Pengaturan (Light) --- */
+.settings-card{ background:#fff; border:1px solid rgba(6,78,59,.10); border-radius:1rem; box-shadow:0 10px 30px -16px rgba(6,78,59,.25); }
+.avatar-circle{ width:5rem; height:5rem; border-radius:9999px; background:linear-gradient(145deg,#10b981,#064e3b);
+    box-shadow:0 0 0 3px #e2b356, 0 12px 28px -12px rgba(6,78,59,.55);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:1.5rem; }
+.role-badge{ display:inline-flex; align-items:center; gap:.4rem; font-size:.75rem; font-weight:700;
+    padding:.32rem .8rem; border-radius:9999px; background:rgba(226,179,86,.16); color:#8a6720; }
+.info-icon{ width:2rem; height:2rem; flex:none; border-radius:.65rem; display:flex; align-items:center; justify-content:center;
+    background:rgba(36,108,66,.10); color:#246c42; font-size:.85rem; }
+/* Modal konfirmasi hapus foto */
+.avatar-modal{ background:#fff; border:1px solid rgba(6,78,59,.10); }
+.avatar-modal-icon{ background:rgba(254,226,226,.9); color:#dc2626; }
+.avatar-modal-title{ color:#064e3b; }
+.avatar-modal-text{ color:#64748b; }
+.avatar-modal-btn-neutral{ background:#f1f5f9; color:#475569; }
+.avatar-modal-btn-neutral:hover{ background:#e2e8f0; }
+/* ============================================================
+   DARK MODE — Halaman PENGATURAN (/settings & admin)
+   Hanya mengubah styling dark; Light Mode tidak disentuh.
+   ============================================================ */
+body.dark-mode .settings-page .bg-white {
+    background-color: #0d2417 !important;
+    color: #f8fafc !important;
+}
+body.dark-mode .profile-cover {
+    background-image:
+        linear-gradient(120deg,#0f3d28 0%,#1d5b37 58%,rgba(226,179,86,.65) 135%),
+        radial-gradient(rgba(226,179,86,.22) 1px, transparent 1px);
+    background-size:100% 100%, 18px 18px;
+}
+body.dark-mode .alert-success {
+    background:rgba(6,78,59,.35); color:#a7f3d0;
+    border-left-color:#34d399; box-shadow:0 10px 26px -14px rgba(0,0,0,.55);
+}
+body.dark-mode .settings-card {
+    background: #0d2417 !important;
+    border-color: rgba(255,255,255,.10) !important;
+    box-shadow: 0 12px 32px -16px rgba(0,0,0,.6) !important;
+}
+body.dark-mode .avatar-circle {
+    box-shadow: 0 0 0 3px rgba(226,179,86,.85), 0 14px 30px -12px rgba(0,0,0,.6) !important;
+}
+body.dark-mode .role-badge {
+    background: rgba(226,179,86,.18) !important;
+    color: #f0ce8c !important;
+}
+body.dark-mode .info-icon {
+    background: rgba(36,108,66,.28) !important;
+    color: #9fe0b6 !important;
+}
+body.dark-mode .avatar-modal {
+    background: #0d2417 !important;
+    border-color: rgba(255,255,255,.10) !important;
+}
+body.dark-mode .avatar-modal-icon {
+    background: rgba(220,38,38,.18) !important;
+    color: #fca5a5 !important;
+}
+body.dark-mode .avatar-modal-title { color: #f8fafc !important; }
+body.dark-mode .avatar-modal-text { color: #B9DCC4 !important; }
+body.dark-mode .avatar-modal-btn-neutral { background: rgba(255,255,255,.08) !important; color:#fff !important; }
+body.dark-mode .avatar-modal-btn-neutral:hover { background: rgba(255,255,255,.14) !important; }
+body.dark-mode .settings-page .rounded-2xl,
+body.dark-mode .settings-page .rounded-\[20px\] {
+    background-color: #0d2417 !important;
+    border-color: #245032 !important;
+}
+body.dark-mode .settings-page .text-oliveDark { color: #f8fafc !important; }
+body.dark-mode .settings-page .text-olive,
+body.dark-mode .settings-page .text-olive\/40,
+body.dark-mode .settings-page .text-olive\/50,
+body.dark-mode .settings-page .text-olive\/60,
+body.dark-mode .settings-page .text-olive\/70,
+body.dark-mode .settings-page .text-olive\/80,
+body.dark-mode .settings-page .text-olive\/90 { color: #B9DCC4 !important; }
+body.dark-mode .settings-page .border-cream3,
+body.dark-mode .settings-page .border-b { border-color: #245032 !important; }
+body.dark-mode .settings-page input.bg-white,
+body.dark-mode .settings-page textarea.bg-white {
+    background-color: #0a1c12 !important;
+    border-color: #2c563a !important;
+    color: #f8fafc !important;
+}
+body.dark-mode .settings-page input::placeholder,
+body.dark-mode .settings-page textarea::placeholder { color: #7da08b !important; }
+body.dark-mode .settings-page label,
+body.dark-mode .settings-page .font-medium { color: #cfe5d6 !important; }
+body.dark-mode .settings-page .peer:checked ~ .peer-checked\:bg-olive\/10 {
+    background-color: #245a34 !important;
+    border-color: #3f7a4f !important;
+}
+body.dark-mode .settings-page .peer:not(:checked) ~ .peer-checked\:bg-olive\/10 {
+    background-color: #0d2417 !important;
+}
+body.dark-mode .settings-page .bg-olive\/10 { background-color: rgba(75,139,59,0.25) !important; }
+
+
+/* ============================================================
+
+
+/* ============================================================
+   DARK MODE: blok transparan/gelap -> PUTIH BENING (frosted glass)
+   ============================================================ */
+body.dark-mode .bg-cream2,
+body.dark-mode .bg-cream2\/50,
+body.dark-mode .bg-cream2\/60,
+body.dark-mode .bg-cream2\/70,
+body.dark-mode .bg-cream2\/80,
+body.dark-mode .bg-cream2\/90 {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    color: #F8FAFC !important;
+}
+body.dark-mode .bg-panel-2,
+body.dark-mode .bg-panel-2\/50,
+body.dark-mode .bg-panel-2\/70 {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #F8FAFC !important;
+}
+
+
+/* ============================================================
+   GLASSMORPHISM DARK — halaman Profil & Pengaturan
+   (kartu utama putih transparan + blur; sub-blok/field lebih tipis)
+   ============================================================ */
+/* -- Kartu utama -- */
+body.dark-mode .glass-page .settings-card,
+body.dark-mode .settings-page .settings-card {
+    background: rgba(255, 255, 255, 0.08) !important;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+body.dark-mode .glass-page .bg-white {
+    background: rgba(255, 255, 255, 0.08) !important;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+/* -- Sub-blok / kotak field -- */
+body.dark-mode .glass-page .bg-cream2,
+body.dark-mode .settings-page .bg-cream2 {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+body.dark-mode .glass-page input,
+body.dark-mode .glass-page textarea,
+body.dark-mode .glass-page select,
+body.dark-mode .settings-page input,
+body.dark-mode .settings-page textarea,
+body.dark-mode .settings-page select {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    color: #F5DEB3 !important;
+}
+/* -- Pastikan teks kontras -- */
+body.dark-mode .glass-page { color: #F5DEB3; }
+body.dark-mode .glass-page h1,
+body.dark-mode .glass-page h2,
+body.dark-mode .glass-page h3,
+body.dark-mode .glass-page .text-oliveDark,
+body.dark-mode .settings-page h1,
+body.dark-mode .settings-page h2,
+body.dark-mode .settings-page h3,
+body.dark-mode .settings-page .text-oliveDark { color: #FFFFFF; }
+body.dark-mode .glass-page .text-olive\/60,
+body.dark-mode .glass-page .text-black\/40,
+body.dark-mode .glass-page .text-black\/50,
+body.dark-mode .settings-page .text-olive\/60 { color: rgba(245, 222, 179, 0.7); }
+
+
+/* ============================================================
+   KONTRAS ADMIN — kartu & teks (scoped .anim-dashboard)
+   ============================================================ */
+/* -- LIGHT: kartu solid putih + border halus + bayangan lembut -- */
+.anim-dashboard .bg-white,
+.anim-dashboard .bg-white\/95,
+.anim-dashboard .bg-white\/90,
+.anim-dashboard .bg-white\/80,
+.anim-dashboard .bg-white\/70 {
+    background: #ffffff !important;
+    border: 1px solid #e7e5e4 !important;
+    box-shadow: 0 1px 3px rgba(28, 25, 23, .07) !important;
+}
+/* teks pudar -> gelap kontras tinggi (light) */
+.anim-dashboard .text-olive\/30,
+.anim-dashboard .text-olive\/40,
+.anim-dashboard .text-olive\/50,
+.anim-dashboard .text-olive\/60,
+.anim-dashboard .text-olive\/70 { color: #57534e !important; }
+.anim-dashboard .text-gray-400,
+.anim-dashboard .text-slate-400,
+.anim-dashboard .text-stone-400 { color: #78716c !important; }
+.anim-dashboard thead th { color: #44403c !important; }
+
+/* -- DARK: kartu putih transparan lembut (glass) -- */
+body.dark-mode .anim-dashboard .bg-white,
+body.dark-mode .anim-dashboard .bg-white\/95,
+body.dark-mode .anim-dashboard .bg-white\/90,
+body.dark-mode .anim-dashboard .bg-white\/80,
+body.dark-mode .anim-dashboard .bg-white\/70 {
+    background: rgba(255, 255, 255, .10) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .35);
+}
+body.dark-mode .anim-dashboard .text-olive\/30,
+body.dark-mode .anim-dashboard .text-olive\/40,
+body.dark-mode .anim-dashboard .text-olive\/50,
+body.dark-mode .anim-dashboard .text-olive\/60,
+body.dark-mode .anim-dashboard .text-olive\/70 { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .text-gray-400,
+body.dark-mode .anim-dashboard .text-slate-400,
+body.dark-mode .anim-dashboard .text-stone-400 { color: #DEB887 !important; }
+body.dark-mode .anim-dashboard thead th { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard table td { color: rgba(245, 222, 179, .85) !important; }
+
+/* ============================================================
+   ORNAMEN LENTERA — layer belakang + redup (jangan menabrak)
+   ============================================================ */
+.zy-lantern, .zy-lantern-right, .zy-lantern-left {
+    z-index: -10 !important;
+    opacity: .20 !important;
+}
+body.dark-mode .zy-lantern,
+body.dark-mode .zy-lantern-right,
+body.dark-mode .zy-lantern-left { opacity: .14 !important; }
+
+
+/* ============================================================
+   SUPER ADMIN — kartu & blok SOLID (tidak tembus motif)
+   ============================================================ */
+/* -- DARK: solid hijau zaitun gelap hangat -- */
+body.dark-mode .super-page .rounded-\[20px\] {
+    background: #242B16 !important;
+    border-color: rgba(194, 178, 128, .25) !important;
+    box-shadow: none !important;
+}
+body.dark-mode .super-page .sys-row,
+body.dark-mode .super-page .user-row { background: #2F381D !important; }
+body.dark-mode .super-page .text-olive\/30,
+body.dark-mode .super-page .text-olive\/40,
+body.dark-mode .super-page .text-olive\/50,
+body.dark-mode .super-page .text-olive\/60,
+body.dark-mode .super-page .text-olive\/70 { color: #F5DEB3 !important; }
+body.dark-mode .super-page thead th { color: #F5DEB3 !important; }
+body.dark-mode .super-page td { color: rgba(245, 222, 179, .85) !important; }
+body.dark-mode .super-page .text-cream\/60 { color: #DEB887 !important; }
+
+
+/* ============================================================
+   DARK: toggle notifikasi — track solid kontras (jangan nabrak bg)
+   ============================================================ */
+body.dark-mode .settings-page .peer:not(:checked) ~ span.absolute.inset-0.rounded-full {
+    background: #171D0F !important;
+    border: 1px solid rgba(245, 222, 179, .35) !important;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25);
+}
+
+
+/* ============================================================
+   SUPER ADMIN DARK: kartu STATISTIK (.stat-card) -> SOLID
+   (menimpa rule glass line ~805 agar tidak tembus motif)
+   ============================================================ */
+body.dark-mode .super-page .stat-card {
+    background: #242B16 !important;
+    border: 1px solid rgba(194, 178, 128, .25) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .35) !important;
+}
+body.dark-mode .super-page .stat-card .sc-icon {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06);
+}
+
+
+/* ============================================================
+   TOMBOL MATA (show/hide password) — Ganti Kata Sandi
+   ============================================================ */
+.pw-toggle { color: #64748b; transition: color .15s ease; }
+.pw-toggle:hover { color: #1e293b; }
+body.dark-mode .pw-toggle { color: rgba(167, 213, 186, .70); }
+body.dark-mode .pw-toggle:hover { color: #ffffff; }
+
+
+/* ============================================================
+   SUPER ADMIN FINAL — kartu & sub-blok SOLID berlapis (light+dark)
+   hanya halaman Super Admin (.super-page); User/Publik tidak berubah
+   ============================================================ */
+/* ---- LIGHT ---- */
+.super-page .rounded-\[20px\] {
+    background: #ffffff !important;
+    border-color: #e7e5e4 !important;
+    box-shadow: 0 1px 3px rgba(28, 25, 23, .07) !important;
+}
+.super-page .stat-card {
+    background: #ffffff !important;
+    border: 1px solid #e7e5e4 !important;
+    box-shadow: 0 1px 3px rgba(28, 25, 23, .07) !important;
+}
+.super-page .sys-row,
+.super-page .user-row {
+    background: #f5f5f4 !important;
+    border: 1px solid rgba(231, 229, 228, .80) !important;
+}
+.super-page input,
+.super-page select,
+.super-page textarea {
+    background: #f5f5f4 !important;
+    border-color: rgba(231, 229, 228, .85) !important;
+}
+.super-page tbody tr { background: rgba(245, 245, 244, .55) !important; }
+.super-page thead th { color: #1e293b !important; }
+.super-page td { color: #475569 !important; }
+.super-page .text-olive\/30,
+.super-page .text-olive\/40,
+.super-page .text-olive\/50,
+.super-page .text-olive\/60,
+.super-page .text-olive\/70 { color: #475569 !important; }
+.super-page .text-gray-400,
+.super-page .text-slate-400,
+.super-page .text-stone-400 { color: #64748b !important; }
+.super-page .sc-num,
+.super-page .sc-sub { color: #1e293b !important; }
+.super-page .sc-foot { color: #475569 !important; }
+
+/* ---- DARK ---- */
+body.dark-mode .super-page .rounded-\[20px\] {
+    background: #242B16 !important;
+    border: 1px solid rgba(194, 178, 128, .30) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .40) !important;
+}
+body.dark-mode .super-page .stat-card {
+    background: #242B16 !important;
+    border: 1px solid rgba(194, 178, 128, .30) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .40) !important;
+}
+body.dark-mode .super-page .sys-row,
+body.dark-mode .super-page .user-row {
+    background: #313B1E !important;
+    border: 1px solid rgba(194, 178, 128, .25) !important;
+}
+body.dark-mode .super-page input,
+body.dark-mode .super-page select,
+body.dark-mode .super-page textarea {
+    background: #313B1E !important;
+    border: 1px solid rgba(194, 178, 128, .25) !important;
+    color: #F5DEB3 !important;
+}
+body.dark-mode .super-page tbody tr { background: #313B1E !important; }
+body.dark-mode .super-page thead th { color: #F5DEB3 !important; }
+body.dark-mode .super-page td { color: rgba(245, 222, 179, .90) !important; }
+body.dark-mode .super-page .text-olive\/30,
+body.dark-mode .super-page .text-olive\/40,
+body.dark-mode .super-page .text-olive\/50,
+body.dark-mode .super-page .text-olive\/60,
+body.dark-mode .super-page .text-olive\/70 { color: #F5DEB3 !important; }
+body.dark-mode .super-page .text-gray-400,
+body.dark-mode .super-page .text-slate-400,
+body.dark-mode .super-page .text-stone-400 { color: #DEB887 !important; }
+body.dark-mode .super-page .sc-num { color: #ffffff !important; }
+body.dark-mode .super-page .sc-sub { color: #F5DEB3 !important; }
+body.dark-mode .super-page .sc-foot { color: #DEB887 !important; }
+
+.pw-toggle { display: flex !important; align-items: center !important; justify-content: center !important; border: 0 !important; background: transparent !important; }
+.pw-toggle i { display: block; line-height: 1; }
+
+
+/* ============================================================
+   DARK: FROSTED GLASS seluruh dashboard (User/Admin/Super Admin)
+   kartu utama putih transparan + blur + border putih; sub-blok lebih
+   lembut; teks terang kontras. Light Mode tidak berubah.
+   ============================================================ */
+/* ---- Kartu / blok utama ---- */
+body.dark-mode .anim-dashboard .rounded-\[20px\],
+body.dark-mode .anim-dashboard .stat-card,
+body.dark-mode .anim-dashboard .settings-card,
+body.dark-mode .anim-dashboard .bg-white,
+body.dark-mode .anim-dashboard [class*="rounded-[20px]"] {
+    background: rgba(255, 255, 255, .22) !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, .30) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35) !important;
+}
+/* ---- Sub-blok / kotak data / input / baris tabel ---- */
+body.dark-mode .anim-dashboard .sys-row,
+body.dark-mode .anim-dashboard .user-row,
+body.dark-mode .anim-dashboard tbody tr {
+    background: #183528 !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+}
+body.dark-mode .anim-dashboard input,
+body.dark-mode .anim-dashboard select,
+body.dark-mode .anim-dashboard textarea {
+    background: #183528 !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+    color: #F5DEB3 !important;
+}
+body.dark-mode .anim-dashboard input::placeholder,
+body.dark-mode .anim-dashboard textarea::placeholder { color: rgba(245, 222, 179, .55) !important; }
+/* ---- Teks: kontras terang ---- */
+body.dark-mode .anim-dashboard .text-oliveDark,
+body.dark-mode .anim-dashboard .text-black { color: #ffffff !important; }
+body.dark-mode .anim-dashboard .text-olive { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .text-olive\/30,
+body.dark-mode .anim-dashboard .text-olive\/40,
+body.dark-mode .anim-dashboard .text-olive\/50,
+body.dark-mode .anim-dashboard .text-olive\/60,
+body.dark-mode .anim-dashboard .text-olive\/70,
+body.dark-mode .anim-dashboard .text-olive\/80,
+body.dark-mode .anim-dashboard .text-slate-600,
+body.dark-mode .anim-dashboard .text-gray-600 { color: #DEB887 !important; }
+body.dark-mode .anim-dashboard thead th { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard td { color: rgba(255, 255, 255, .85) !important; }
+body.dark-mode .anim-dashboard .stat-card .sc-num { color: #ffffff !important; }
+body.dark-mode .anim-dashboard .stat-card .sc-sub { color: #F5DEB3 !important; }
+body.dark-mode .anim-dashboard .stat-card .sc-foot { color: #DEB887 !important; }
+
+
+/* ============================================================
+   DARK: sub-blok/kotak dalam kartu -> HIJAU GELAP recessed
+   (bg-cream2/bg-cream3 = kotak data & area teks di dalam kartu)
+   ============================================================ */
+body.dark-mode .anim-dashboard .bg-cream2,
+body.dark-mode .anim-dashboard .bg-cream3 {
+    background: #183528 !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+}
+body.dark-mode .anim-dashboard .bg-cream2\/50,
+body.dark-mode .anim-dashboard .hover\:bg-cream2\/50:hover { background: rgba(20, 38, 28, .6) !important; }
+body.dark-mode .anim-dashboard tr.border-cream2,
+body.dark-mode .anim-dashboard tr { border-color: rgba(255, 255, 255, .10) !important; }
+body.dark-mode .anim-dashboard .text-oliveDark { color: #ffffff !important; }
+
+
+/* ============================================================
+   DARK FINAL — sistem 4 lapisan seragam (semua role dashboard)
+   ============================================================ */
+/* ---- L2: kartu utama frosted — termasuk putih translusen ---- */
+body.dark-mode .anim-dashboard .bg-white\/40,
+body.dark-mode .anim-dashboard .bg-white\/50,
+body.dark-mode .anim-dashboard .bg-white\/60,
+body.dark-mode .anim-dashboard .bg-white\/70,
+body.dark-mode .anim-dashboard .bg-white\/80,
+body.dark-mode .anim-dashboard .bg-white\/90 {
+    background: rgba(255, 255, 255, .20) !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, .30) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35) !important;
+}
+/* L3: badge sekunder netral -> hijau gelap */
+body.dark-mode .anim-dashboard .bg-cream,
+body.dark-mode .anim-dashboard .bg-stone-100,
+body.dark-mode .anim-dashboard .bg-gray-100,
+body.dark-mode .anim-dashboard .bg-slate-100,
+body.dark-mode .anim-dashboard .bg-white\/10 {
+    background: #183528 !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+    color: #F5DEB3 !important;
+}
+/* L4: sapuan teks gelap slate/gray/stone -> terang */
+body.dark-mode .anim-dashboard .text-slate-500,
+body.dark-mode .anim-dashboard .text-slate-600,
+body.dark-mode .anim-dashboard .text-gray-400,
+body.dark-mode .anim-dashboard .text-gray-500,
+body.dark-mode .anim-dashboard .text-gray-600,
+body.dark-mode .anim-dashboard .text-stone-400,
+body.dark-mode .anim-dashboard .text-stone-500,
+body.dark-mode .anim-dashboard .text-stone-600 { color: #DEB887 !important; }
+body.dark-mode .anim-dashboard .text-slate-700,
+body.dark-mode .anim-dashboard .text-slate-800,
+body.dark-mode .anim-dashboard .text-slate-900,
+body.dark-mode .anim-dashboard .text-gray-700,
+body.dark-mode .anim-dashboard .text-gray-800,
+body.dark-mode .anim-dashboard .text-gray-900,
+body.dark-mode .anim-dashboard .text-stone-700,
+body.dark-mode .anim-dashboard .text-stone-800 { color: #F5DEB3 !important; }
+
+
+/* ============================================================
+   DARK FINAL-2 — perluasan cakupan sub-blok (semua kelas bg)
+   ============================================================ */
+/* L2: semua varian kartu putih translusen -> frosted */
+body.dark-mode .anim-dashboard .bg-white\/5,
+body.dark-mode .anim-dashboard .bg-white\/15,
+body.dark-mode .anim-dashboard .bg-white\/20,
+body.dark-mode .anim-dashboard .bg-white\/25,
+body.dark-mode .anim-dashboard .bg-white\/30,
+body.dark-mode .anim-dashboard .bg-white\/35,
+body.dark-mode .anim-dashboard .bg-white\/45,
+body.dark-mode .anim-dashboard .bg-white\/55,
+body.dark-mode .anim-dashboard .bg-white\/65,
+body.dark-mode .anim-dashboard .bg-white\/75,
+body.dark-mode .anim-dashboard .bg-white\/85,
+body.dark-mode .anim-dashboard .bg-white\/95 {
+    background: rgba(255, 255, 255, .20) !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, .30) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35) !important;
+}
+/* L3: semua pola sub-blok hijau gelap */
+body.dark-mode .anim-dashboard .bg-panel,
+body.dark-mode .anim-dashboard .bg-panel-2,
+body.dark-mode .anim-dashboard .bg-panel-2\/70,
+body.dark-mode .anim-dashboard .bg-panel-welcome,
+body.dark-mode .anim-dashboard .bg-niat-box,
+body.dark-mode .anim-dashboard .bg-cream2\/60,
+body.dark-mode .anim-dashboard .bg-cream2\/70,
+body.dark-mode .anim-dashboard .bg-black\/15,
+body.dark-mode .anim-dashboard .bg-black\/25,
+body.dark-mode .anim-dashboard .bg-black\/30 {
+    background: #183528 !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+}
+/* L4: teks gelap zinc/sisa -> terang */
+body.dark-mode .anim-dashboard .text-zinc-600,
+body.dark-mode .anim-dashboard .text-zinc-700,
+body.dark-mode .anim-dashboard .text-zinc-800 { color: #F5DEB3 !important; }
+
+
+/* ============================================================
+   PALET KALKULATOR DARK (semua role, menggantikan frosted putih)
+   panel hijau gelap gradasi + border hijau tipis + aksen emerald/emas
+   ============================================================ */
+body.dark-mode .anim-dashboard .rounded-\[20px\],
+body.dark-mode .anim-dashboard .stat-card,
+body.dark-mode .anim-dashboard .settings-card,
+body.dark-mode .anim-dashboard .bg-white,
+body.dark-mode .anim-dashboard .bg-white\/5,
+body.dark-mode .anim-dashboard .bg-white\/10,
+body.dark-mode .anim-dashboard .bg-white\/15,
+body.dark-mode .anim-dashboard .bg-white\/20,
+body.dark-mode .anim-dashboard .bg-white\/25,
+body.dark-mode .anim-dashboard .bg-white\/30,
+body.dark-mode .anim-dashboard .bg-white\/35,
+body.dark-mode .anim-dashboard .bg-white\/40,
+body.dark-mode .anim-dashboard .bg-white\/45,
+body.dark-mode .anim-dashboard .bg-white\/50,
+body.dark-mode .anim-dashboard .bg-white\/55,
+body.dark-mode .anim-dashboard .bg-white\/60,
+body.dark-mode .anim-dashboard .bg-white\/65,
+body.dark-mode .anim-dashboard .bg-white\/70,
+body.dark-mode .anim-dashboard .bg-white\/75,
+body.dark-mode .anim-dashboard .bg-white\/80,
+body.dark-mode .anim-dashboard .bg-white\/85,
+body.dark-mode .anim-dashboard .bg-white\/90,
+body.dark-mode .anim-dashboard .bg-white\/95,
+body.dark-mode .anim-dashboard [class*="rounded-[20px]"] {
+    background: linear-gradient(160deg, #1e432e 0%, #163321 100%) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(52, 211, 153, .35) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35) !important;
+}
+/* sub-blok tetap hijau gelap dalam */
+body.dark-mode .anim-dashboard .bg-cream2,
+body.dark-mode .anim-dashboard .bg-cream3,
+body.dark-mode .anim-dashboard .bg-panel,
+body.dark-mode .anim-dashboard .bg-panel-2,
+body.dark-mode .anim-dashboard .bg-niat-box,
+body.dark-mode .anim-dashboard .bg-panel-welcome,
+body.dark-mode .anim-dashboard .sys-row,
+body.dark-mode .anim-dashboard .user-row,
+body.dark-mode .anim-dashboard tbody tr,
+body.dark-mode .anim-dashboard input,
+body.dark-mode .anim-dashboard select,
+body.dark-mode .anim-dashboard textarea {
+    background: #183528 !important;
+    border: 1px solid rgba(255, 255, 255, .12) !important;
+}
+/* aksen emas untuk label penting & link (ala kalkulator) */
+body.dark-mode .anim-dashboard .text-gold,
+body.dark-mode .anim-dashboard .text-gold\/80 { color: #e8c547 !important; }
+
+
+/* ============================================================
+   SIDEBAR SERAGAM — menu aktif menyesuaikan tema
+   Light: putih bersih + teks/ikon hijau tua pekat
+   Dark : hijau (#23533A) + teks/ikon putih (semua role)
+   ============================================================ */
+/* --- Item menu AKTIF: LIGHT = putih + hijau tua pekat --- */
+#sidebar nav a.bg-white,
+#sidebar nav .nav-active {
+    background: #ffffff !important;
+    color: #14261C !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+    border-color: rgba(20, 38, 28, 0.12) !important;
+}
+#sidebar nav a.bg-white i,
+#sidebar nav .nav-active i {
+    color: #14261C !important;
+}
+/* --- Item menu AKTIF: DARK = hijau + teks/ikon putih --- */
+body.dark-mode #sidebar nav a.bg-white,
+body.dark-mode #sidebar .nav-active {
+    background: #23533A !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.30) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+body.dark-mode #sidebar nav a.bg-white i,
+body.dark-mode #sidebar .nav-active i {
+    color: #ffffff !important;
+}
+/* --- Hover item non-aktif: putih transparan lembut --- */
+#sidebar nav a:not(.bg-white):hover {
+    background: rgba(20, 38, 28, 0.06) !important;
+    color: #14261C !important;
+}
+body.dark-mode #sidebar nav a:not(.bg-white):hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #ffffff !important;
+}
+#sidebar nav a:not(.bg-white):hover i { color: #14261C !important; }
+body.dark-mode #sidebar nav a:not(.bg-white):hover i { color: #ffffff !important; }
+/* --- Ornamen garis/siluet: putih transparan lembut --- */
+.sidebar-ornament-img { opacity: 0.15 !important; }
+body.dark-mode #sidebar .sidebar-ornament-img { opacity: 0.20 !important; }
+
+
+/* ============================================================
+   DASHBOARD USER — variasi warna kartu statistik (anti-monoton)
+   Hanya untuk halaman user (penanda .user-stats), dark mode.
+   Tetap dalam palet tema: hijau / emas / emerald.
+   ============================================================ */
+
+
+/* ============================================================
+   DASHBOARD USER — variasi warna kartu statistik (anti-monoton)
+   Hanya untuk halaman user (penanda .user-stats), dark mode.
+   Kontras diperkuat: tiap kartu punya hue yang jelas berbeda.
+   ============================================================ */
+body.dark-mode .user-stats .stat-card.sc-olive {
+    background: linear-gradient(160deg, #1c4a30, #12331f) !important;
+    border: 1px solid rgba(52, 211, 153, .40) !important;
+}
+body.dark-mode .user-stats .stat-card.sc-gold {
+    background: linear-gradient(160deg, #3d3218, #2a2210) !important;
+    border: 1px solid rgba(232, 197, 71, .50) !important;
+}
+body.dark-mode .user-stats .stat-card.sc-emerald {
+    background: linear-gradient(160deg, #0f4d40, #0a352b) !important;
+    border: 1px solid rgba(45, 212, 191, .42) !important;
+}
+body.dark-mode .user-stats .stat-solid {
+    background: linear-gradient(160deg, #1d6a3f, #144d2b) !important;
+    border: 1px solid rgba(232, 197, 71, .45) !important;
+}
+
+
+/* ============================================================
+   FIELD DATA DIRI — kotak ikon SERAGAM hijau monokrom
+   (halaman Profil User; mendukung light + dark)
+   ============================================================ */
+.pf-box {
+    display: flex; align-items: flex-start; gap: .75rem;
+    border-radius: 14px; padding: .8rem 1rem;
+    background: #f4efe3; border: 1px solid #e3d9bd;
+    border-left: 4px solid rgba(75,83,32,.30);
+    box-shadow: 0 1px 3px rgba(60,45,20,.06);
+}
+.pf-icon {
+    flex: none; width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    background: rgba(75,83,32,.10);            /* + emerald-50 / olive lembut */
+    border: 1px solid rgba(16,185,129,.35);    /* border-emerald-200/70 */
+    color: #4B5320;                             /* text-[#4B5320] hijau islami */
+}
+.pf-label { font-weight: 700; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; opacity: .75; }
+.pf-val { font-weight: 800; font-size: 13px; color: #133a24; margin-top: 2px; }
+
+/* Dark mode: kotak ikon hijau transparan + ikon mint/emas zaitun */
+body.dark-mode .pf-box {
+    background: #14261c; border-color: rgba(255,255,255,.12);
+    border-left-color: rgba(52,211,153,.40);
+}
+body.dark-mode .pf-icon {
+    background: rgba(75,83,32,.40);             /* dark:bg-[#4B5320]/40 */
+    border: 1px solid rgba(52,211,153,.25);    /* dark:border-emerald-400/25 */
+    color: #C2B280;                             /* dark:text-[#C2B280] emas zaitun */
+}
+body.dark-mode .pf-val { color: #f8fafc; }
+body.dark-mode .pf-label { color: #f5deb3; }
+
+/* ============================================================
+   LOGO E-ZAKAT — badge monokrom emas + gradasi lembut
+   ============================================================ */
+.logo-badge {
+    background: linear-gradient(150deg, #f8f2e0, #efe5c8);
+    border: 1px solid rgba(200,157,68,.45);
+    box-shadow: 0 4px 14px rgba(60,45,20,.20);
+}
+body.dark-mode .logo-badge {
+    background: linear-gradient(150deg, #1d3a29, #14281c);
+    border-color: rgba(232,197,71,.35);
 }

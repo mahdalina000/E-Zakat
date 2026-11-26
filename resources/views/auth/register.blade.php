@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','Daftar — E-Zakat Banjarbaru')
+@section('title',__('Daftar — E-Zakat Banjarbaru'))
 
 @section('head')
 <style>
@@ -63,13 +63,13 @@
             <div class="absolute -bottom-12 -right-12 w-48 h-48 rounded-full border-8 border-white/20 pointer-events-none transition-transform duration-700 hover:scale-110"></div>
 
             <div class="relative z-10 space-y-4 max-w-xs">
-                <h2 class="font-black text-oliveDark text-2xl lg:text-3xl tracking-tight">Welcome Back !</h2>
+                <h2 class="font-black text-oliveDark text-2xl lg:text-3xl tracking-tight">{{ __('Welcome Back !') }}</h2>
                 <p class="text-xs text-oliveDark/80 leading-relaxed font-medium">
-                    Untuk tetap terhubung dengan kami, silakan masuk menggunakan akun pribadi Anda.
+                    {{ __('Untuk tetap terhubung dengan kami, silakan masuk menggunakan akun pribadi Anda.') }}
                 </p>
                 <div class="pt-2">
                     <a href="{{ route('login') }}" class="neu-btn inline-block bg-white hover:bg-cream text-oliveDark font-extrabold px-8 py-3 rounded-full text-xs border border-cream3/60">
-                        SIGN IN
+                        {{ __('SIGN IN') }}
                     </a>
                 </div>
             </div>
@@ -80,8 +80,8 @@
             <div>
                 <!-- HEADER REGISTER -->
                 <div class="text-center sm:text-left">
-                    <h1 class="font-black text-oliveDark text-2xl tracking-tight">Create Account</h1>
-                    <p class="text-[11px] text-olive/70 mt-0.5">Buat akun masyarakat untuk mengakses fitur e-zakat.</p>
+                    <h1 class="font-black text-oliveDark text-2xl tracking-tight">{{ __('Create Account') }}</h1>
+                    <p class="text-[11px] text-olive/70 mt-0.5">{{ __('Buat akun masyarakat untuk mengakses fitur e-zakat.') }}</p>
                 </div>
 
                 <!-- ERROR ALERT -->
@@ -95,58 +95,71 @@
                 <form method="POST" action="{{ route('register') }}" class="mt-5 space-y-3.5">
                     @csrf
                     <div>
-                        <label class="text-xs font-bold text-oliveDark block mb-1">Nama Lengkap</label>
+                        <label class="text-xs font-bold text-oliveDark block mb-1">{{ __('Nama Lengkap') }}</label>
                         <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
                             <i class="fa-solid fa-user text-olive/50 text-xs"></i>
-                            <input name="name" type="text" value="{{ old('name') }}" required class="w-full bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="Nama Anda">
+                            <input name="name" type="text" value="{{ old('name') }}" required class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="{{ __('Nama Anda') }}">
                         </div>
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold text-oliveDark block mb-1">Email</label>
+                        <label class="text-xs font-bold text-oliveDark block mb-1">{{ __('Email') }}</label>
                         <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
                             <i class="fa-solid fa-envelope text-olive/50 text-xs"></i>
-                            <input name="email" type="email" value="{{ old('email') }}" required class="w-full bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="nama@email.com">
+                            <input name="email" type="email" value="{{ old('email') }}" required class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="nama@email.com">
                         </div>
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold text-oliveDark block mb-1">No. Telepon</label>
+                        <label class="text-xs font-bold text-oliveDark block mb-1">{{ __('No. Telepon') }}</label>
                         <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
                             <i class="fa-solid fa-phone text-olive/50 text-xs"></i>
-                            <input name="phone" type="text" inputmode="tel" value="{{ old('phone') }}" required maxlength="20" pattern="(\+62|62|0)[0-9]{8,14}" title="Nomor telepon diawali 08, 62, atau +62, lalu 8-14 angka" class="w-full bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="08xx-xxxx-xxxx">
+                            <input name="phone" type="text" inputmode="tel" value="{{ old('phone') }}" required maxlength="20" pattern="(\+62|62|0)[0-9]{8,14}" title="{{ __('Nomor telepon diawali 08, 62, atau +62, lalu 8-14') }} {{ __('angka') }}" class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="08xx-xxxx-xxxx">
                         </div>
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold text-oliveDark block mb-1">Password</label>
+                        <label class="text-xs font-bold text-oliveDark block mb-1">{{ __('Password') }}</label>
                         <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
                             <i class="fa-solid fa-lock text-olive/50 text-xs"></i>
-                            <input name="password" type="password" required class="w-full bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="Minimal 8 karakter">
+                            <input name="password" type="password" required class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="{{ __('Minimal 8 karakter') }}">
+                            <button type="button" tabindex="-1" onclick="togglePwd(this)" class="text-olive/50 hover:text-olive text-sm px-1.5"><i class="fa-solid fa-eye"></i></button>
                         </div>
+                        <p class="text-[10px] text-olive/50 mt-1.5 leading-snug">{{ __('Minimal 8 karakter — wajib kombinasi') }} <b>{{ __('huruf besar') }}</b>, <b>{{ __('huruf kecil') }}</b>, <b>{{ __('angka') }}</b>{{ __(', dan') }} <b>{{ __('simbol') }}</b>.</p>
                     </div>
 
                     <div>
-                        <label class="text-xs font-bold text-oliveDark block mb-1">Ulangi Password</label>
+                        <label class="text-xs font-bold text-oliveDark block mb-1">{{ __('Ulangi') }} {{ __('Password') }}</label>
                         <div class="neu-input flex items-center border border-cream3/60 rounded-2xl px-4 py-2.5 bg-cream2">
                             <i class="fa-solid fa-shield-halved text-olive/50 text-xs"></i>
-                            <input name="password_confirmation" type="password" required class="w-full bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="Ulangi password">
+                            <input name="password_confirmation" type="password" required class="flex-1 min-w-0 bg-transparent outline-none text-xs ml-3 text-oliveDark font-medium" placeholder="{{ __('Ulangi password') }}">
+                            <button type="button" tabindex="-1" onclick="togglePwd(this)" class="text-olive/50 hover:text-olive text-sm px-1.5"><i class="fa-solid fa-eye"></i></button>
                         </div>
                     </div>
 
                     <div class="pt-2 flex justify-end">
                         <button type="submit" class="neu-btn w-full sm:w-auto bg-olive hover:bg-olive2 text-white font-extrabold px-8 py-3 rounded-2xl text-xs">
-                            SIGN UP NOW
+                            {{ __('SIGN UP NOW') }}
                         </button>
                     </div>
                 </form>
             </div>
 
             <p class="text-center sm:text-left text-xs text-olive/60 mt-5 font-medium">
-                <a href="{{ url('/') }}" class="hover:text-olive transition-colors"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke halaman utama</a>
+                <a href="{{ url('/') }}" class="hover:text-olive transition-colors"><i class="fa-solid fa-arrow-left mr-1"></i> {{ __('Kembali ke halaman utama') }}</a>
             </p>
         </div>
 
     </div>
 </div>
+<script>
+function togglePwd(btn){
+    const inp = btn.parentElement.querySelector('input[type=password], input[name=password], input[name=password_confirmation]');
+    if (!inp) return;
+    const isPwd = inp.type === 'password';
+    inp.type = isPwd ? 'text' : 'password';
+    const ic = btn.querySelector('i');
+    if (ic) ic.className = isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+}
+</script>
 @endsection

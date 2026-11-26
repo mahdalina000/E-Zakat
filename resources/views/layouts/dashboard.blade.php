@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Dashboard — E-Zakat')</title>
+    <title>@yield('title', __('Dashboard — E-Zakat'))</title>
     <!-- Polyfill awal untuk window.ezOnReady -->
     <script>
         window.ezOnReady = window.ezOnReady || (function () {
@@ -57,7 +57,17 @@
             0% { opacity: 0.7; transform: scale(0.94); }
             100% { opacity: 1; transform: scale(1.08); }
         }
-    </style>
+    
+/* Logo E-Zakat: bingkai lapisan rapi (Light default) + Dark overlay */
+.ez-logo-badge {
+    transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+body.dark-mode .ez-logo-badge {
+    background: rgba(255,255,255,0.15) !important;
+    border: 1px solid rgba(194,178,128,0.35) !important;
+    box-shadow: none !important;
+}
+</style>
     @yield('head')
 
     <!-- REGISTER SERVICE WORKER -->
@@ -204,14 +214,12 @@ body:not(.dark-mode) header.sticky::before{
         <div class="h-[64px] flex items-center gap-3 px-5 border-b border-white/10 relative z-10">
             <!-- Logo Baru E-Zakat -->
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-md overflow-hidden shrink-0">
-                    <img src="{{ asset('images/logo.png') }}" 
-                         alt="E-Zakat Logo" 
-                         class="w-full h-full object-contain" fetchpriority="high" decoding="async">
+                <div class="ez-logo-badge w-10 h-10 rounded-2xl bg-cream p-1 flex items-center justify-center ring-2 ring-cream3 shadow-md overflow-hidden shrink-0">
+    <img src="{{ asset('images/logo.png') }}" alt="E-Zakat Logo" class="w-full h-full object-contain" fetchpriority="high" decoding="async">
                 </div>
                 <div class="leading-tight">
-                    <div class="font-extrabold text-sm tracking-wide">E-ZAKAT</div>
-                    <div class="text-[10px] tracking-[0.18em] text-cream/70 -mt-0.5">DASHBOARD</div>
+                    <div class="font-extrabold text-sm tracking-wide">{{ __('E-ZAKAT') }}</div>
+                    <div class="text-[10px] tracking-[0.18em] text-cream/70 -mt-0.5">{{ __('DASHBOARD') }}</div>
                 </div>
             </a>
             <button onclick="toggleSidebar()" class="lg:hidden ml-auto w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-cream"><i class="fa-solid fa-xmark text-sm"></i></button>
@@ -220,7 +228,8 @@ body:not(.dark-mode) header.sticky::before{
         @php $u = auth()->user(); @endphp
         <div class="px-4 py-4 border-b border-white/10 relative z-10">
             <div class="flex items-center gap-3 bg-white/10 rounded-2xl p-3 backdrop-blur-md border border-white/10">
-                <span class="w-10 h-10 rounded-full bg-cream text-olive flex items-center justify-center font-bold shadow-inner">{{ strtoupper(substr($u->name,0,1)) }}</span>
+                <img id="sidebarAvatarImg" src="{{ $u->avatarUrl() }}" alt="" class="w-10 h-10 rounded-full object-cover ring-2 ring-gold/70 shrink-0 {{ $u->avatar ? '' : 'hidden' }}">
+                <span id="sidebarAvatarInitials" class="w-10 h-10 rounded-full bg-cream text-olive flex items-center justify-center font-bold shadow-inner shrink-0 {{ $u->avatar ? 'hidden' : '' }}">{{ $u->initials() }}</span>
                 <div class="min-w-0">
                     <div class="text-sm font-semibold truncate">{{ $u->name }}</div>
                     <div class="text-[10px] text-cream/70 truncate">{{ $u->roleLabel() }}</div>
@@ -229,47 +238,57 @@ body:not(.dark-mode) header.sticky::before{
         </div>
 
         <nav class="flex-1 min-h-0 overflow-y-auto px-3 py-4 space-y-1 relative z-10">
-            <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mb-2">MENU</div>
-            <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('dashboard*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gauge-high w-4"></i> Dashboard</a>
+            <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mb-2">{{ __('Menu') }}</div>
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('dashboard*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gauge-high w-4"></i> {{ __('Dashboard') }}</a>
 
             @if($u->isSuperAdmin())
-                <a href="{{ route('super.users') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.users') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-users w-4"></i> Manajemen User</a>
-                <a href="{{ route('super.locations') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.locations') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-map-location-dot w-4"></i> Semua Lokasi</a>
-                <a href="{{ route('super.activity') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.activity') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-clock-rotate-left w-4"></i> Aktivitas Login</a>
-                <a href="{{ route('super.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Masukan Warga</a>
+                <a href="{{ route('super.users') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.users') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-users w-4"></i> {{ __('Manajemen User') }}</a>
+                <a href="{{ route('super.locations') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.locations') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-map-location-dot w-4"></i> {{ __('Semua Lokasi') }}</a>
+                <a href="{{ route('super.activity') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.activity') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-clock-rotate-left w-4"></i> {{ __('Aktivitas Login') }}</a>
+                <a href="{{ route('super.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('super.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> {{ __('Masukan Warga') }}</a>
             @endif
 
             @if($u->isAdmin())
-                <a href="{{ route('admin.baznas') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.baznas') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-users w-4"></i> Kelola Warga Zakat</a>
-                <a href="{{ route('admin.locations.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.locations.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-map-location-dot w-4"></i> Kelola Lokasi</a>
-                <a href="{{ route('admin.beras.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.beras.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-wheat-awn w-4"></i> Harga Beras Banjar</a>
-                <a href="{{ route('admin.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Masukan Warga</a>
-                <a href="{{ route('admin.zakat-requests') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.zakat-requests*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Pengajuan Hitung Waris</a>
-                <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> Pengaturan</a>
-                <a href="{{ route('admin.holidays.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.holidays.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-star-and-crescent w-4"></i> Banner Hari Raya</a>
+                <a href="{{ route('admin.baznas') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.baznas') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-users w-4"></i> {{ __('Kelola Warga Zakat') }}</a>
+                <a href="{{ route('admin.locations.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.locations.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-map-location-dot w-4"></i> {{ __('Kelola Lokasi') }}</a>
+                <a href="{{ route('admin.beras.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.beras.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-wheat-awn w-4"></i> {{ __('Harga Beras Banjar') }}</a>
+                <a href="{{ route('admin.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.feedback') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> {{ __('Masukan Warga') }}</a>
+                <a href="{{ route('admin.zakat-requests') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.zakat-requests*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> {{ __('Pengajuan Hitung Waris') }}</a>
+                <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.settings*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> {{ __('Pengaturan') }}</a>
+                <a href="{{ route('admin.holidays.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('admin.holidays.*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-star-and-crescent w-4"></i> {{ __('Banner Hari Raya') }}</a>
             @endif
 
             @if($u->isUser())
-                <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">WARGA</div>
-                <a href="{{ route('user.profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.profile*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-id-card w-4"></i> Profil & Data Diri</a>
-                <a href="{{ route('user.calculators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.calculators*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-calculator w-4"></i> Kalkulator Zakat & Waris</a>
-                <a href="{{ route('user.zakat-request') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.zakat-request*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> Ajukan Hitung Waris</a>
-                <a href="{{ route('user.histories') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.histories*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-clock-rotate-left w-4"></i> Riwayat Perhitungan</a>
-                <a href="{{ route('user.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.feedback*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> Kritik & Saran</a>
+                <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">{{ __('Warga') }}</div>
+                <a href="{{ route('user.profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.profile*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-id-card w-4"></i> {{ __('Profil & Data Diri') }}</a>
+                <a href="{{ route('user.calculators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.calculators*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-calculator w-4"></i> {{ __('Kalkulator Zakat & Waris') }}</a>
+                <a href="{{ route('user.zakat-request') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.zakat-request*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-paper-plane w-4"></i> {{ __('Ajukan Hitung Waris') }}</a>
+                <a href="{{ route('user.histories') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.histories*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-clock-rotate-left w-4"></i> {{ __('Riwayat Perhitungan') }}</a>
+                <a href="{{ route('user.feedback') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('user.feedback*') ? 'bg-white text-olive font-semibold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-comment-dots w-4"></i> {{ __('Kritik & Saran') }}</a>
+                <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm {{ request()->routeIs('settings.index') ? 'bg-white text-olive font-bold shadow' : 'text-cream hover:bg-white/10' }}"><i class="fa-solid fa-gear w-4"></i> {{ __('Pengaturan') }}</a>
 
-                <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">INFORMASI</div>
-                <a href="{{ url('/direktori') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-map-location-dot w-4"></i> Lokasi Penyaluran</a>
-                <a href="{{ url('/panduan') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-book-open w-4"></i> Panduan Zakat</a>
+                <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">{{ __('Informasi') }}</div>
+                <a href="{{ url('/direktori') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-map-location-dot w-4"></i> {{ __('Lokasi Penyaluran') }}</a>
+                <a href="{{ url('/panduan') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-book-open w-4"></i> {{ __('Panduan Zakat') }}</a>
             @endif
 
-            <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">PUBLIK</div>
-            <a href="{{ url('/beranda') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-house w-4"></i> Beranda Situs</a>
+            <div class="text-[10px] tracking-[0.16em] text-cream/50 px-3 mt-4 mb-2">{{ __('Publik') }}</div>
+            <a href="{{ url('/beranda') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-cream hover:bg-white/10"><i class="fa-solid fa-house w-4"></i> {{ __('Beranda Situs') }}</a>
         </nav>
 
         <div class="p-3 border-t border-white/10 relative z-10 flex-shrink-0">
-            <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Yakin ingin keluar dari akun ini?')">
+            <form method="POST" action="{{ route('logout') }}" onsubmit="event.preventDefault()">
                 @csrf
-                <button class="logout-btn w-full flex items-center justify-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition active:scale-[0.98]"><i class="fa-solid fa-right-from-bracket w-4"></i> Keluar</button>
+                <button type="button" class="logout-btn w-full flex items-center justify-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition active:scale-[0.98]"
+                    data-title="{{ __('Keluar') }}"
+                    data-message="{{ __('Yakin ingin keluar dari akun ini?') }}"
+                    data-action="{{ route('logout') }}"
+                    data-method="POST"
+                    data-icon="fa-solid fa-right-from-bracket"
+                    data-submit-label="{{ __('Ya, Keluar') }}"
+                    data-cancel-label="{{ __('Batal') }}"
+                    data-submit-class="bg-red-600 hover:bg-red-700"
+                    onclick="event.preventDefault(); confirmDelete({ title: this.dataset.title, message: this.dataset.message, action: this.dataset.action, method: this.dataset.method, icon: this.dataset.icon, submitLabel: this.dataset.submitLabel, cancelLabel: this.dataset.cancelLabel, submitClass: this.dataset.submitClass })"><i class="fa-solid fa-right-from-bracket w-4"></i> {{ __('Keluar') }}</button>
             </form>
         </div>
     </aside>
@@ -289,12 +308,48 @@ body:not(.dark-mode) header.sticky::before{
                     </div>
                 </div>
                 <div class="flex items-center gap-2 text-xs pr-6">
-                    <button id="themeToggleDash" type="button" class="w-9 h-9 rounded-full bg-white/15 border border-white/20 text-white hover:bg-white/25 transition flex items-center justify-center" title="Mode gelap / terang"><i id="themeIconDash" class="fa-solid fa-moon"></i></button>
+                <div id="bellWrap" class="relative">
+                    <button type="button" onclick="toggleNotif(event)" aria-haspopup="true" aria-expanded="false" class="relative w-9 h-9 rounded-full bg-white/15 border border-white/20 text-white hover:bg-white/25 transition flex items-center justify-center" title="{{ __('Notifikasi') }}">
+                        <i class="fa-solid fa-bell text-sm"></i>
+                        @if($u->unreadNotificationCount() > 0)
+                            <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-oliveDark text-[10px] font-bold flex items-center justify-center">{{ $u->unreadNotificationCount() }}</span>
+                        @endif
+                    </button>
+
+                    <div id="notifPanel" class="hidden notif-dropdown absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-2xl border shadow-2xl overflow-hidden z-50">
+                        <div class="notif-head px-4 py-3 border-b border-cream3/70 flex items-center justify-between bg-olive/5">
+                            <span class="notif-head-title font-bold text-sm text-oliveDark">{{ __('🔔 Notifikasi') }}</span>
+                            <span class="notif-head-count text-[10px] font-semibold text-olive/60">{{ __('Belum dibaca:') }} {{ $u->unreadNotificationCount() }}</span>
+                        </div>
+                        <div class="max-h-80 overflow-auto divide-y divide-cream3/60 bg-white">
+                            @forelse($u->notifications()->latest()->take(6)->get() as $n)
+                                <div class="px-4 py-3 {{ $n->read_at ? '' : 'bg-olive/5' }}">
+                                    <div class="flex items-start gap-2.5">
+                                        <span class="mt-1.5 w-2 h-2 rounded-full shrink-0 {{ $n->read_at ? 'bg-cream3' : 'bg-gold' }}"></span>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="notif-title text-sm font-semibold text-oliveDark leading-snug">{{ $n->localized_title }}</div>
+                                            <div class="notif-msg text-xs text-olive/60 mt-0.5 line-clamp-2">{{ $n->localized_message }}</div>
+                                            <div class="notif-time text-[10px] text-olive/40 mt-1">{{ $n->created_at->diffForHumans() }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="notif-empty p-8 text-center text-sm text-olive/50">{{ __('Tidak ada notifikasi.') }}</div>
+                            @endforelse
+                        </div>
+                        <a href="{{ route('notifications.index') }}" class="block text-center py-2.5 text-sm font-bold bg-olive text-white hover:brightness-110 transition">{{ __('Lihat semua notifikasi') }}</a>
+                    </div>
+                </div>
+                    <button id="themeToggleDash" type="button" class="w-9 h-9 rounded-full bg-white/15 border border-white/20 text-white hover:bg-white/25 transition flex items-center justify-center" title="{{ __('Mode gelap / terang') }}"><i id="themeIconDash" class="fa-solid fa-moon"></i></button>
                     <span class="hidden sm:inline bg-white/15 border border-white/20 px-3 py-1.5 rounded-full text-white"><i class="fa-regular fa-calendar mr-1"></i> {{ now()->translatedFormat('d M Y') }}</span>
                     @if($u->isUser())
-                    <a href="{{ route('user.profile') }}" class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold hover:bg-white/30 transition" title="Buka Profil"><i class="fa-solid fa-id-card text-[10px]"></i> {{ $u->name }}</a>
+                    <a href="{{ route('user.profile') }}" class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold hover:bg-white/30 transition" title="{{ __('Buka Profil') }}">
+                        <img src="{{ $u->avatarUrl() }}" alt="" class="header-avatar w-6 h-6 rounded-full object-cover {{ $u->avatar ? '' : 'hidden' }}">
+                        <i class="header-avatar-icon fa-solid fa-id-card text-[10px] {{ $u->avatar ? 'hidden' : '' }}"></i> {{ $u->name }}</a>
                     @elseif($u->isAdmin())
-                    <a href="{{ route('admin.settings') }}" class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold hover:bg-white/30 transition" title="Buka Pengaturan"><i class="fa-solid fa-id-card text-[10px]"></i> {{ $u->name }}</a>
+                    <a href="{{ route('admin.settings') }}" class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold hover:bg-white/30 transition" title="{{ __('Buka Pengaturan') }}">
+                        <img src="{{ $u->avatarUrl() }}" alt="" class="header-avatar w-6 h-6 rounded-full object-cover {{ $u->avatar ? '' : 'hidden' }}">
+                        <i class="header-avatar-icon fa-solid fa-id-card text-[10px] {{ $u->avatar ? 'hidden' : '' }}"></i> {{ $u->name }}</a>
                     @else
                     <span class="hidden sm:inline-flex items-center gap-2 bg-white/15 border border-white/25 px-3 py-1.5 rounded-full text-white font-bold"><i class="fa-solid fa-id-card text-[10px]"></i> {{ $u->name }}</span>
                     @endif
@@ -302,7 +357,7 @@ body:not(.dark-mode) header.sticky::before{
             </div>
         </header>
 
-        <div class="p-4 lg:p-8 anim-dashboard" style="flex:1 1 0%;min-height:0;overflow-y:auto">
+        <div class="p-4 lg:p-8 anim-dashboard {{ ((str_starts_with(optional(request()->route())->getName() ?? '', 'super.') || str_starts_with(optional(request()->route())->getName() ?? '', 'admin.') || (optional(request()->route())->getName() === 'dashboard' && (auth()->user()?->role ?? '') !== 'user')) ? 'super-page' : '') }}" style="flex:1 1 0%;min-height:0;overflow-y:auto">
             @if(session('success'))
                 <div class="mb-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl px-4 py-3 text-sm flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
             @endif
@@ -311,7 +366,7 @@ body:not(.dark-mode) header.sticky::before{
             @endif
             @if($errors->any())
                 <div class="mb-4 bg-red-50 border border-red-200 text-red-800 rounded-2xl px-4 py-3 text-sm">
-                    <div class="font-semibold mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Periksa kembali input Anda:</div>
+                    <div class="font-semibold mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> {{ __('Periksa kembali input Anda:') }}</div>
                     <ul class="list-disc list-inside text-xs space-y-0.5">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
                 </div>
             @endif
@@ -326,20 +381,42 @@ body:not(.dark-mode) header.sticky::before{
         const s=document.getElementById('sidebar'), o=document.getElementById('overlay');
         s.classList.toggle('-translate-x-full'); o.classList.toggle('hidden');
     }
+    function toggleNotif(e){
+        e.stopPropagation();
+        document.getElementById('notifPanel')?.classList.toggle('hidden');
+    }
+    document.addEventListener('click', function(e){
+        const panel = document.getElementById('notifPanel');
+        if (!panel || panel.classList.contains('hidden')) return;
+        const wrap = document.getElementById('bellWrap');
+        if (!wrap || !wrap.contains(e.target)) panel.classList.add('hidden');
+    });
     (function(){
-        const btn = document.getElementById('themeToggleDash'), icon = document.getElementById('themeIconDash');
-        function applyTheme(){
-            const dark = localStorage.getItem('theme') === 'dark';
-            document.body.classList.toggle('dark-mode', dark);
-            if (icon) icon.className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-        }
-        applyTheme();
+        const btn = document.getElementById('themeToggleDash');
+        // Fungsi global: terapkan tema + sinkronkan IKON navbar & RADIO kartu tema.
+        window.EZApplyTheme = function(dark){
+            document.body.classList.toggle('dark-mode', !!dark);
+            document.querySelectorAll('#themeIconDash, #themeIcon').forEach(function(ic){
+                ic.className = dark ? 'fa-solid fa-sun text-earth' : 'fa-solid fa-moon';
+            });
+            document.querySelectorAll('input[name="theme"]').forEach(function(r){
+                r.checked = (r.value === 'dark') === !!dark;
+            });
+        };
+        function init(){ window.EZApplyTheme(localStorage.getItem('theme') === 'dark'); }
+        init();
         btn?.addEventListener('click', function(){
-            localStorage.setItem('theme', localStorage.getItem('theme') === 'dark' ? 'light' : 'dark');
-            applyTheme();
+            const dark = localStorage.getItem('theme') !== 'dark';
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            window.EZApplyTheme(dark);
+        });
+        // Sinkron lintas-tab
+        window.addEventListener('storage', function(e){
+            if (e.key === 'theme') window.EZApplyTheme(localStorage.getItem('theme') === 'dark');
         });
     })();
 </script>
 @yield('scripts')
+<x-confirm-delete />
 </body>
 </html>

@@ -21,10 +21,10 @@ class BerasPriceController extends Controller
             'price' => ['required', 'integer', 'min:5000', 'max:100000'],
             'note' => ['nullable', 'string', 'max:200'],
         ], [
-            'price.required' => 'Harga wajib diisi.',
+            'price.required' => __('Harga wajib diisi.'),
             'price.integer' => 'Harga harus berupa angka.',
-            'price.min' => 'Harga minimal Rp5.000/kg — periksa kembali, tampaknya tidak valid.',
-            'price.max' => 'Harga maksimal Rp100.000/kg — periksa kembali, tampaknya tidak valid.',
+            'price.min' => __('Harga minimal Rp5.000/kg — periksa kembali, tampaknya tidak valid.'),
+            'price.max' => __('Harga maksimal Rp100.000/kg — periksa kembali, tampaknya tidak valid.'),
         ]);
 
         BerasPrice::create([
@@ -33,6 +33,6 @@ class BerasPriceController extends Controller
             'updated_by' => Auth::id(),
         ]);
 
-        return redirect()->route('admin.beras.index')->with('success', 'Harga Beras Banjar berhasil diperbarui menjadi Rp' . number_format($data['price'], 0, ',', '.') . '/kg.');
+        return redirect()->route('admin.beras.index')->with('success', __('Harga Beras Banjar berhasil diperbarui menjadi Rp') . number_format($data['price'], 0, ',', '.') . '/kg.');
     }
 }

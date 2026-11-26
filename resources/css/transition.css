@@ -5,20 +5,22 @@
 
 /* 1. CONTAINER KONTEN — wrapper transisi (durasi pendek biar cepet) */
 [data-page-transition] {
-    transition: opacity .18s ease, transform .18s cubic-bezier(.16,1,.3,1);
+    will-change: opacity, transform;
 }
-/* Saat navigasi keluar: konten lama naik + blur halus (cepat) */
+/* Saat navigasi keluar: konten lama naik + blur halus (mulus & terlihat) */
 body.zy-nav-out [data-page-transition] {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity .16s ease, transform .16s cubic-bezier(.16,1,.3,1);
+    animation: zyPageOut .32s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes zyPageOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-16px); }
 }
 /* Saat masuk: konten baru naik dari bawah + fade (smooth, pelan — konsisten dgn halaman lain) */
 body.zy-nav-in [data-page-transition] {
-    animation: zyPageIn 1.35s cubic-bezier(.22,.61,.36,1) both;
+    animation: zyPageIn 1.25s cubic-bezier(.22,.61,.36,1) both;
 }
 @keyframes zyPageIn {
-    from { opacity: 0.55; transform: translateY(22px); }
+    from { opacity: 0.55; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 

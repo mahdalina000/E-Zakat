@@ -71,7 +71,7 @@
             // Link dalam form
             if (a.closest('form')) return;
 
-            // Tandai navigasi maju + animasi keluar (cepat: 0.14s)
+            // Tandai navigasi maju + animasi keluar (mulus: 0.32s)
             markNav('f');
             sessionStorage.setItem('zy_nav', '1');
             document.body.classList.add('zy-nav-out');
@@ -80,6 +80,14 @@
             const bar = ensureProgress();
             bar.style.opacity = '1';
             setTimeout(() => { bar.style.width = '70%'; }, 20);
+
+            // Tahan navigasi hingga animasi keluar selesai, lalu lanjut.
+            // (tanpa ini, halaman langsung unload sehingga exit tak terlihat)
+            e.preventDefault();
+            setTimeout(() => {
+                bar.style.width = '100%';
+                window.location.href = href;
+            }, 360);
         }, false);
     } else {
         // Turbo: tandai arah maju saat Turbo mulai navigate

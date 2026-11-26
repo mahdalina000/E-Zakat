@@ -28,6 +28,8 @@ class Location extends Model
         'latitude' => 'decimal:7',
         'longitude' => 'decimal:7',
         'is_active' => 'boolean',
+        'address' => 'encrypted',
+        'phone' => 'encrypted',
     ];
 
     public function creator()

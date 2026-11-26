@@ -57,11 +57,15 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'phone' => ['required', 'string', 'min:8', 'max:20', 'regex:/^[0-9+\-\s()]+$/'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8',
+            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/',
+            'confirmed'],
         ], [
-            'phone.required' => 'Nomor telepon wajib diisi.',
+            'phone.required' => __('Nomor telepon wajib diisi.'),
             'phone.regex' => 'Nomor telepon hanya boleh berisi angka, spasi, tanda hubung, atau +.',
             'phone.min' => 'Nomor telepon minimal 8 karakter.',
+            'password.min' => 'Password minimal 8 karakter.',
+            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol.',
         ]);
 
         $user = \App\Models\User::create([

@@ -76,7 +76,7 @@ class SuperAdminController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Akun admin berhasil dibuat.');
+        return back()->with('success', __('Akun admin berhasil dibuat.'));
     }
 
     public function locations()

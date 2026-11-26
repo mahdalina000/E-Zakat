@@ -178,7 +178,7 @@
 @endsection
 
 @section('content')
-<div class="max-w-7xl mx-auto w-full px-4 py-4 flex-1 flex flex-col justify-center">
+<div class="w-full px-4 sm:px-6 lg:px-8 py-4 flex-1 flex flex-col justify-center">
 
     <!-- CONTAINER UTAMA -->
     <main class="space-y-4 my-auto relative">
@@ -221,7 +221,7 @@
             </div>
         </div>
         <div id="holidayBannerNote" class="hidden text-[10px] text-center text-black/50 py-0.5">
-            <i class="fa-solid fa-circle-info mr-1"></i> Jadwal hari raya bersifat <b>perkiraan</b> berdasarkan hisab & dapat berubah mengikuti hasil Sidang Isbat Kemenag.
+            <i class="fa-solid fa-circle-info mr-1"></i> {{ __('Jadwal hari raya bersifat') }} <b>{{ __('perkiraan') }}</b> {{ __('berdasarkan hisab & dapat berubah mengikuti hasil Sidang Isbat Kemenag.') }}
         </div>
 
         <!-- HERO TEXT (KIRI) + PENGUMUMAN CARD (KANAN) -->
@@ -236,23 +236,23 @@
     body.dark-mode .eze-badge-txt { color: #e2b356; }
 </style>
 <div class="inline-flex items-center gap-2 border border-emerald-900/30 dark:border-gold/50 bg-emerald-800/10 dark:bg-gold/15 px-3.5 py-1 rounded-full text-xs font-extrabold text-oliveDark dark:text-gold2 anim-smooth delay-2">
-    <i class="eze-badge-txt fa-solid fa-sparkles"></i> <span class="eze-badge-txt">ZAKAT MEMBERSIHKAN HARTA & JIWA</span>
+    <i class="eze-badge-txt fa-solid fa-sparkles"></i> <span class="eze-badge-txt">{{ __('Zakat Membersihkan Harta & Jiwa') }}</span>
 </div>
                 <h1 class="font-black text-oliveDark text-[34px] lg:text-[48px] leading-[1.02] tracking-tight anim-smooth delay-3">
-                    Mudahkan Zakat,<br>
-                    <span class="text-black">Raih Berkah.</span>
+                    {{ __('Mudahkan Zakat,') }}<br>
+                    <span class="text-black">{{ __('Raih Berkah.') }}</span>
                 </h1>
 
                 <p class="text-oliveDark/80 text-xs lg:text-sm max-w-lg leading-relaxed font-medium anim-smooth delay-4">
-                    Hitung zakat fitrah & maal, fidyah, temukan titik penyaluran terdekat di Banjarbaru, dan pelajari panduan lengkap sesuai syariat.
+                    {{ __('Hitung zakat fitrah & maal, fidyah, temukan titik penyaluran terdekat di Banjarbaru, dan pelajari panduan lengkap sesuai syariat.') }}
                 </p>
 
                 <div class="flex flex-wrap items-center gap-3 pt-1 anim-smooth delay-4">
                     <a href="{{ url('/kalkulator') }}" class="bg-olive hover:bg-olive2 text-white font-bold px-6 py-2.5 rounded-full text-xs transition shadow flex items-center gap-2 hover-smooth active:scale-95 border border-gold/40">
-                        <i class="fa-solid fa-calculator text-gold2"></i> Hitung Zakat
+                        <i class="fa-solid fa-calculator text-gold2"></i> {{ __('Hitung Zakat') }}
                     </a>
                     <a href="{{ url('/direktori') }}" class="border border-panel-border hover:bg-panel-2/60 text-black font-bold px-6 py-2.5 rounded-full text-xs transition hover-smooth active:scale-95">
-                        <i class="fa-solid fa-map-location-dot"></i> Lihat Lokasi Penyaluran
+                        <i class="fa-solid fa-map-location-dot"></i> {{ __('Lihat Lokasi Penyaluran') }}
                     </a>
                 </div>
 
@@ -260,15 +260,15 @@
                 <div class="grid grid-cols-3 gap-2.5 pt-2 max-w-md text-center anim-smooth delay-5">
                     <div class="bg-panel rounded-2xl p-2.5 border border-panel-border border-b-2 border-b-gold hover-smooth shadow-sm">
                         <div class="text-base font-black text-black">2.5<span class="text-xs font-semibold">kg</span></div>
-                        <div class="text-[10px] text-oliveDark/70 font-medium">Zakat Fitrah / jiwa</div>
+                        <div class="text-[10px] text-oliveDark/70 font-medium">{{ __('Zakat Fitrah / jiwa') }}</div>
                     </div>
                     <div class="bg-panel rounded-2xl p-2.5 border border-panel-border border-b-2 border-b-blue-500 hover-smooth shadow-sm">
-                        <div class="text-base font-black text-black">3<span class="text-xs font-semibold"> Kat.</span></div>
-                        <div class="text-[10px] text-oliveDark/70 font-medium">Titik Penyaluran</div>
+                        <div class="text-base font-black text-black">3<span class="text-xs font-semibold"> {{ __('Kat.') }}</span></div>
+                        <div class="text-[10px] text-oliveDark/70 font-medium">{{ __('Titik Penyaluran') }}</div>
                     </div>
                     <div class="bg-panel rounded-2xl p-2.5 border border-panel-border border-b-2 border-b-emerald-500 hover-smooth shadow-sm">
                         <div class="text-base font-black text-black">8</div>
-                        <div class="text-[10px] text-oliveDark/70 font-medium">Asnaf Penerima</div>
+                        <div class="text-[10px] text-oliveDark/70 font-medium">{{ __('Asnaf Penerima') }}</div>
                     </div>
                 </div>
             </div>
@@ -281,8 +281,8 @@
                         <i class="fa-solid fa-bullhorn text-sm"></i>
                     </div>
                     <div>
-                        <div class="font-extrabold text-oliveDark text-xs">Pengumuman Penting</div>
-                        <div class="text-[10px] text-black/70">Batas Zakat Fitrah 1 Syawal • Fidyah Rp45.000/hari</div>
+                        <div class="font-extrabold text-oliveDark text-xs">{{ __('Pengumuman Penting') }}</div>
+                        <div class="text-[10px] text-black/70">{{ __('Batas Zakat Fitrah 1 Syawal • Fidyah Rp45.000/hari') }}</div>
                     </div>
                 </div>
 
@@ -290,30 +290,30 @@
                     <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
                         <div class="w-7 h-7 bg-gold/20 text-gold rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-wheat-awn text-xs"></i></div>
                         <div class="leading-tight">
-                            <div class="font-bold text-oliveDark text-[11px]">Beras Banjar Premium</div>
-                            <div class="text-[10px] text-black/70">2.5 kg / 3.5 liter per jiwa</div>
+                            <div class="font-bold text-oliveDark text-[11px]">{{ __('Beras Banjar Premium') }}</div>
+                            <div class="text-[10px] text-black/70">{{ __('2.5 kg / 3.5 liter per jiwa') }}</div>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
                         <div class="w-7 h-7 bg-blue-500/15 text-blue-600 rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-bowl-rice text-xs"></i></div>
                         <div class="leading-tight">
-                            <div class="font-bold text-oliveDark text-[11px]">Beras Lainnya</div>
-                            <div class="text-[10px] text-black/70">Pilih harga/kg untuk konversi uang</div>
+                            <div class="font-bold text-oliveDark text-[11px]">{{ __('Beras Lainnya') }}</div>
+                            <div class="text-[10px] text-black/70">{{ __('Pilih harga/kg untuk konversi uang') }}</div>
                         </div>
                     </div>
 
                     <div class="flex items-center gap-2.5 bg-panel-2/70 rounded-xl p-2.5 border border-panel-border">
                         <div class="w-7 h-7 bg-emerald-500/15 text-emerald-600 rounded-lg flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-utensils text-xs"></i></div>
                         <div class="leading-tight">
-                            <div class="font-bold text-oliveDark text-[11px]">Fidyah Puasa</div>
-                            <div class="text-[10px] text-black/70">1 mud (±0.75 kg) atau 1 porsi makan/hari</div>
+                            <div class="font-bold text-oliveDark text-[11px]">{{ __('Fidyah Puasa') }}</div>
+                            <div class="text-[10px] text-black/70">{{ __('1 mud (±0.75 kg) atau 1 porsi makan/hari') }}</div>
                         </div>
                     </div>
                 </div>
 
                 <a href="{{ url('/panduan') }}" class="block text-center bg-panel-2/70 hover:bg-olive hover:text-white text-oliveDark font-bold py-2 rounded-xl border border-panel-border transition text-xs shadow-sm active:scale-95 relative z-10">
-                    Baca Panduan Lengkap <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
+                    {{ __('Baca Panduan Lengkap') }} <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
                 </a>
             </div>
 
@@ -321,27 +321,27 @@
 
         <!-- 3 MENU CARDS RINGKAS -->
         <div class="grid md:grid-cols-3 gap-3 shrink-0 anim-smooth delay-4 eze-up">
-            <a href="{{ url('/kalkulator') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden">
+            <a href="{{ url('/kalkulator') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden duration-300 hover:-translate-y-1 hover:border-gold">
                 <div class="w-10 h-10 bg-gold/20 text-gold rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-calculator"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">Kalkulator Zakat</div>
-                    <div class="text-[10px] text-black/70 mt-0.5">Hitung Fitrah, Maal & Fidyah otomatis.</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">{{ __('Kalkulator Zakat') }}</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">{{ __('Hitung Fitrah, Maal & Fidyah otomatis.') }}</div>
                 </div>
             </a>
 
-            <a href="{{ url('/direktori') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden">
+            <a href="{{ url('/direktori') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden duration-300 hover:-translate-y-1 hover:border-gold">
                 <div class="w-10 h-10 bg-blue-500/20 text-blue-600 rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">Lokasi Penyaluran</div>
-                    <div class="text-[10px] text-black/70 mt-0.5">Peta BAZNAS, UPZ & titik penerima.</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">{{ __('Lokasi Penyaluran') }}</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">{{ __('Peta BAZNAS, UPZ & titik penerima.') }}</div>
                 </div>
             </a>
 
-            <a href="{{ url('/panduan') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden">
+            <a href="{{ url('/panduan') }}" class="bg-panel rounded-2xl border border-panel-border p-3.5 hover-smooth transition group flex items-center gap-3 shadow-sm relative overflow-hidden duration-300 hover:-translate-y-1 hover:border-gold">
                 <div class="w-10 h-10 bg-emerald-500/20 text-emerald-600 rounded-xl flex items-center justify-center text-base group-hover:scale-110 transition shrink-0 shadow-sm font-bold"><i class="fa-solid fa-book-open"></i></div>
                 <div class="leading-tight">
-                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">Panduan Zakat</div>
-                    <div class="text-[10px] text-black/70 mt-0.5">Niat, syarat, 8 asnaf & FAQ zakat.</div>
+                    <div class="font-bold text-oliveDark text-xs group-hover:text-black transition">{{ __('Panduan Zakat') }}</div>
+                    <div class="text-[10px] text-black/70 mt-0.5">{{ __('Niat, syarat, 8 asnaf & FAQ zakat.') }}</div>
                 </div>
             </a>
         </div>
@@ -366,36 +366,36 @@
                         <div class="flex items-center gap-2.5">
                             <div class="w-11 h-11 festive-ico rounded-2xl flex items-center justify-center text-oliveDark text-lg"><i class="fa-solid fa-star-and-crescent"></i></div>
                             <div>
-                                <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold2">Peringatan Hari Raya &amp; Keagamaan</div>
-                                <div class="text-sm font-black mt-0.5">Maaf Lahir &amp; Batin &mdash; Semoga Ibadah Kita Diterima</div>
+                                <div class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold2">{{ __('Peringatan Hari Raya & Keagamaan') }}</div>
+                                <div class="text-sm font-black mt-0.5">{{ __('Maaf Lahir & Batin — Semoga Ibadah Kita Diterima') }}</div>
                             </div>
                         </div>
                         <!-- COUNTDOWN dinamis (Hari : Jam : Menit : Detik) -->
                         <div class="flex items-center gap-3 sm:gap-4 festive-card rounded-2xl px-4 py-3">
-                            <div class="flex items-end gap-1.5 sm:gap-2.5">
-                                <div class="text-center">
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div class="countdown-cell">
                                     <div id="countdownDays" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
-                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Hari</div>
+                                    
                                 </div>
-                                <span class="pb-5 text-xl sm:text-2xl font-black text-gold2/80 leading-none">:</span>
-                                <div class="text-center">
+                                
+                                <div class="countdown-cell">
                                     <div id="countdownHours" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
-                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Jam</div>
+                                    
                                 </div>
-                                <span class="pb-5 text-xl sm:text-2xl font-black text-gold2/80 leading-none">:</span>
-                                <div class="text-center">
+                                
+                                <div class="countdown-cell">
                                     <div id="countdownMinutes" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
-                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Mnt</div>
+                                    
                                 </div>
-                                <span class="pb-5 text-xl sm:text-2xl font-black text-gold2/80 leading-none">:</span>
-                                <div class="text-center">
+                                
+                                <div class="countdown-cell">
                                     <div id="countdownSeconds" class="text-3xl sm:text-4xl font-black text-gold2 leading-none tabular-nums">--</div>
-                                    <div class="text-[9px] text-white/60 font-bold uppercase tracking-wider mt-1">Dtk</div>
+                                    
                                 </div>
                             </div>
                             <div class="text-left">
-                                <div id="countdownName" class="text-[11px] font-extrabold leading-tight">Hari Raya Terdekat</div>
-                                <div id="countdownDate" class="text-[9px] text-white/60 mt-0.5">menunggu data&hellip;</div>
+                                <div id="countdownName" class="text-[11px] font-extrabold leading-tight">{{ __('Hari Raya Terdekat') }}</div>
+                                <div id="countdownDate" class="text-[9px] text-white/60 mt-0.5">{{ __('menunggu data…') }}</div>
                             </div>
                         </div>
                     </div>
@@ -404,30 +404,30 @@
                     <div class="grid lg:grid-cols-[1fr_1.2fr] gap-4 mt-5">
                         <!-- kiri: chip tanggal keagamaan -->
                         <div class="space-y-3">
-                            <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-calendar-days mr-1"></i> Kalender Terdekat</div>
+                            <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-calendar-days mr-1"></i>{{ __('Kalender Terdekat') }}</div>
                             <div class="flex flex-wrap gap-2 p-3.5 festive-card rounded-2xl" id="festivalChips">
                                 @forelse($holidayBanners as $h)
                                 <button type="button" data-key="{{ $h['key'] }}" class="festive-chip rounded-full px-3.5 py-1.5 text-white text-[11px] font-bold transition">
-                                    {{ $h['name'] }}
+                                    {{ __($h['name']) }}
                                 </button>
                                 @empty
-                                <span class="text-[11px] text-white/60">Belum ada data hari raya.</span>
+                                <span class="text-[11px] text-white/60">{{ __('Belum ada data hari raya.') }}</span>
                                 @endforelse
                             </div>
                             <a href="{{ url('/kalkulator') }}" class="inline-flex items-center gap-2 bg-gold2 hover:bg-gold text-white text-xs font-extrabold px-5 py-2.5 rounded-full transition active:scale-95 shadow-md">
-                                <i class="fa-solid fa-calculator"></i> Hitung Zakat Sekarang
+                                <i class="fa-solid fa-calculator"></i> {{ __('Hitung Zakat Sekarang') }}
                             </a>
                         </div>
 
                         <!-- kanan: 3 pengingat zakat -->
                         <div class="space-y-3">
-                            <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-bell mr-1"></i> Pengingat Zakat</div>
+                            <div class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90"><i class="fa-solid fa-bell mr-1"></i>{{ __('Pengingat Zakat') }}</div>
                             <div class="festive-card rounded-2xl p-4">
                                 <div class="flex items-center gap-2 mb-2">
                                     <i class="fa-solid fa-quote-left text-gold2 text-sm"></i>
-                                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90">Motivasi Ibadah</span>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-gold2/90">{{ __('Motivasi Ibadah') }}</span>
                                 </div>
-                                <div id="motivationText" class="text-xs leading-relaxed text-white/85">Sedang memuat&hellip;</div>
+                                <div id="motivationText" class="text-xs leading-relaxed text-white/85">{{ __('Sedang memuat…') }}</div>
                             </div>
                         </div>
                     </div>
@@ -440,12 +440,12 @@
             <div class="flex items-center gap-3 overflow-hidden relative z-10">
                 <div class="w-6 h-6 bg-white/20 rounded-lg flex items-center justify-center shrink-0 text-gold2 text-[10px]"><i class="fa-solid fa-quote-left"></i></div>
                 <div class="truncate text-xs">
-                    <span class="font-bold text-gold2 mr-2">HADIS HARI INI:</span>
+                    <span class="font-bold text-gold2 mr-2 uppercase">{{ __('Hadis Hari Ini:') }}</span>
                     <span id="dailyHadith" class="text-white/90 font-medium"></span>
                 </div>
             </div>
             <a href="{{ url('/') }}" class="text-[11px] bg-gold2 text-oliveDark font-extrabold px-3.5 py-1.5 rounded-full hover:bg-gold transition shrink-0 active:scale-95 shadow-sm relative z-10">
-                20 Hadis <i class="fa-solid fa-arrow-right ml-1 text-[9px]"></i>
+                {{ __('20 Hadis') }} <i class="fa-solid fa-arrow-right ml-1 text-[9px]"></i>
             </a>
         </div>
 
@@ -455,13 +455,16 @@
 
 @section('scripts')
 <script>
-const list = [
-    "Sedekah tidak akan mengurangi harta. — HR. Muslim",
-    "Bentengilah hartamu dengan zakat. — HR. Thabrani",
-    "Ambillah zakat dari sebagian harta mereka... — QS. At-Taubah: 103",
-    "Tangan di atas lebih baik daripada tangan di bawah. — HR. Bukhari & Muslim",
-    "Berinfaklah wahai anak Adam, niscaya Aku akan berinfak kepadamu. — HR. Bukhari & Muslim",
+@php
+$list = [
+    __('Sedekah tidak akan mengurangi harta. — HR. Muslim'),
+    __('Bentengilah hartamu dengan zakat. — HR. Thabrani'),
+    __('Ambillah zakat dari sebagian harta mereka... — QS. At-Taubah: 103'),
+    __('Tangan di atas lebih baik daripada tangan di bawah. — HR. Bukhari & Muslim'),
+    __('Berinfaklah wahai anak Adam, niscaya Aku akan berinfak kepadamu. — HR. Bukhari & Muslim'),
 ];
+@endphp
+const list = @json($list, JSON_UNESCAPED_UNICODE);
 document.getElementById('dailyHadith').textContent = '"' + list[new Date().getDate() % list.length] + '"';
 
 /* COUNTDOWN HARI RAYA TERDEKAT (dipakai oleh banner bagian bawah) */
@@ -525,7 +528,7 @@ function initMotivation() {
     const upd = () => {
         if (holidayEl) {
             const name = (holidayEl.name || '').replace(' 1448H','').replace(' 1447H','');
-            el.textContent = 'Selamat Hari Raya ' + name + ' — Maaf Lahir & Batin. Semoga ibadah kita diterima Allah SWT.';
+            el.textContent = '{{ __('Selamat Hari Raya') }} ' + name + ' — {{ __('Maaf Lahir & Batin. Semoga ibadah kita diterima Allah SWT.') }}';
         } else {
             el.textContent = MOTIVATIONS[Math.floor(Math.random() * MOTIVATIONS.length)];
         }
@@ -535,8 +538,22 @@ function initMotivation() {
 }
 window.addEventListener('load', initMotivation);
 
+const BANNER_I18N = {
+    in_days: @json(__('dalam')),
+    day_unit: @json(__('hari')),
+};
+
 // Banner hari raya dibangun dari tabel holiday_banners (dikelola Admin BAZNAS)
-const HOLIDAYS = (@json($holidayBanners ?? collect())).map(h => ({
+@php
+$hb_localized = collect($holidayBanners ?? [])->map(function($h){
+    return array_merge($h, [
+        'name'  => __($h['name']),
+        'title' => __($h['title']),
+        'text'  => __($h['text']),
+    ]);
+})->values()->all();
+@endphp
+const HOLIDAYS = (@json($hb_localized)).map(h => ({
     key: h.key,
     name: h.name,
     date: new Date(h.year, h.month - 1, h.day),
@@ -580,7 +597,7 @@ function applyFestival(h) {
     const now = new Date();
     const days = Math.max(0, Math.round((h.date - now) / 86400000));
     titleEl.textContent = h.title;
-    textEl.textContent = (days > 0 ? h.name + ' dalam ' + days + ' hari. ' : '') + h.text;
+    textEl.textContent = (days > 0 ? h.name + ' ' + BANNER_I18N.in_days + ' ' + days + ' ' + BANNER_I18N.day_unit + '. ' : '') + h.text;
 
     banner.classList.remove('hidden');
     if(noteEl) noteEl.classList.remove('hidden');

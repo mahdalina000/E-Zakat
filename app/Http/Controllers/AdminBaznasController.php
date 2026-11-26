@@ -220,7 +220,7 @@ class AdminBaznasController extends Controller
         if (!$profile->location_id || !$profile->location) {
             $loc = \App\Models\Location::create([
                 'name' => 'Warga: ' . $user->name,
-                'address' => $profile->address_line1 ?: 'Alamat tidak tercatat',
+                'address' => $profile->address_line1 ?: __('Alamat tidak tercatat'),
                 'kelurahan' => 'Banjarbaru',
                 'kecamatan' => '',
                 'latitude' => -3.4420,
@@ -261,7 +261,7 @@ class AdminBaznasController extends Controller
         $data['is_confirmed'] = false;
         ZakatRecord::create($data);
 
-        return redirect()->route('admin.baznas')->with('success', "Catatan zakat untuk {$user->name} berhasil disimpan.");
+        return redirect()->route('admin.baznas')->with('success', __('Catatan zakat untuk :name berhasil disimpan.', ['name' => $user->name]));
     }
 
     /**
@@ -270,7 +270,7 @@ class AdminBaznasController extends Controller
     public function destroyRecord(ZakatRecord $record)
     {
         $record->delete();
-        return redirect()->route('admin.baznas')->with('success', 'Catatan zakat dihapus.');
+        return redirect()->route('admin.baznas')->with('success', __('Catatan zakat dihapus.'));
     }
 
     /**
@@ -328,7 +328,7 @@ class AdminBaznasController extends Controller
                 'current_password' => ['required', 'string'],
                 'new_password' => ['required', 'string', 'min:8', 'confirmed'],
             ], [
-                'new_password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+                'new_password.confirmed' => __('Konfirmasi password baru tidak cocok.'),
             ]);
 
             if (!\Illuminate\Support\Facades\Hash::check($request->input('current_password'), Auth::user()->password)) {
@@ -338,6 +338,6 @@ class AdminBaznasController extends Controller
             Auth::user()->update(['password' => \Illuminate\Support\Facades\Hash::make($request->input('new_password'))]);
         }
 
-        return back()->with('success', 'Pengaturan lembaga berhasil disimpan.');
+        return back()->with('success', __('Pengaturan lembaga berhasil disimpan.'));
     }
 }
